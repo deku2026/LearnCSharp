@@ -1,0 +1,47 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "dotnet restore",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["restore", "LearnCSharp.slnx"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "dotnet build",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["build", "LearnCSharp.slnx", "-c", "Debug"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "dotnet build (Release)",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["build", "LearnCSharp.slnx", "-c", "Release"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "list topics",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["run", "--project", "src/LearnCSharp", "-c", "Release", "--no-build"],
+      "problemMatcher": []
+    },
+    {
+      "label": "iterate all topics (debug)",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["run", "--project", "src/LearnCSharp", "-c", "Debug", "--no-build"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "dotnet format",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["format", "LearnCSharp.slnx", "--verbosity", "minimal"],
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}
