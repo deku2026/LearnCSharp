@@ -56,7 +56,7 @@ public static class TopicRegistry
 
     public static int Count => Topics.Value.Count;
 
-    public static IReadOnlyCollection<string> Ids => (IReadOnlyCollection<string>)Topics.Value.Keys;
+    public static IReadOnlyCollection<string> Ids => Topics.Value.Keys;
 
     public static int Run(string id, string[] args)
     {
@@ -80,7 +80,7 @@ public static class TopicRegistry
             {
                 rc = kv.Value(args);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is not OutOfMemoryException)
             {
                 Console.Error.WriteLine($"  ! {kv.Key} threw {ex.GetType().Name}: {ex.Message}");
                 ++failures;

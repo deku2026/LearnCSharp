@@ -34,3 +34,16 @@ updates:
       - "dependencies"
       - "dotnet"
       - "sdk"
+
+  - package-ecosystem: "pre-commit"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "tooling"
+      - "pre-commit"
+    groups:
+      pre-commit-hooks:
+        patterns:
+          - "*"
