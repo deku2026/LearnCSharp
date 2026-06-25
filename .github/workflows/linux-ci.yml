@@ -1,0 +1,72 @@
+name: Linux CI
+
+on:
+  push:
+    branches: [main, scaffold]
+  pull_request:
+    branches: [main, scaffold]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Linux x64
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      DOTNET_NOLOGO: "1"
+      DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "1"
+      MSBUILDDISABLENODEREUSE: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          global-json-file: global.json
+
+      - name: Verify tool versions
+        run: |
+          echo "dotnet: $(dotnet --version)"
+          dotnet --list-sdks
+
+      - name: Restore
+        run: dotnet restore LearnCSharp.slnx
+
+      - name: Build (Debug)
+        run: dotnet build LearnCSharp.slnx -c Debug --no-restore
+
+      - name: Build (Release)
+        run: dotnet build LearnCSharp.slnx -c Release --no-restore
+
+      - name: Smoke - list every topic (Release)
+        run: dotnet run --project src/LearnCSharp -c Release --no-build
+
+      - name: Smoke - iterate every topic (Debug)
+        run: dotnet run --project src/LearnCSharp -c Debug --no-build
+
+      - name: Smoke - help
+        run: dotnet run --project src/LearnCSharp -c Debug --no-build -- --help
+
+      - name: Smoke - unknown topic exits non-zero
+        run: |
+          set +e
+          dotnet run --project src/LearnCSharp -c Debug --no-build -- bogus/topic
+          rc=$?
+          set -e
+          if [[ "$rc" != "2" ]]; then
+            echo "expected exit 2 for unknown topic, got $rc" >&2
+            exit 1
+          fi
