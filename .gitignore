@@ -1,0 +1,33 @@
+# Build outputs
+**/bin/
+**/obj/
+artifacts/
+build/
+out/
+dist/
+TestResults/
+.compiler-cache/
+
+# IDE / editor
+.vs/
+.vscode/*.code-workspace
+.vscode/settings.json
+.idea/
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+
+# Worktrees (git worktree add .worktree/<branch> lands here)
+.worktree/
+.worktrees/
+
+# Local AI assistant workspaces
+.claude/
+.cursor/
+
+# OS junk
+.DS_Store
+Thumbs.db
