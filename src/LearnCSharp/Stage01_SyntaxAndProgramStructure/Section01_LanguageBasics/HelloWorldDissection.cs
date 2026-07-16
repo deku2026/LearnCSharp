@@ -85,8 +85,9 @@ internal static class HelloWorldDissection
         Console.WriteLine("  ret");
 
         // 本宿主里 Run 本身就是显式入口方法，行为等价于合成后的调用
-        Action print = static () => Console.WriteLine("  (本 demo 模拟一次调用)");
-        print();
-        Debug.Assert(print.Method.IsStatic);
+        Console.WriteLine("  (本 demo 模拟一次 call Console.WriteLine)");
+        string payload = "Hello, World!";
+        Debug.Assert(payload.Length > 0);
+        Debug.Assert(typeof(Console).GetMethod(nameof(Console.WriteLine), [typeof(string)])!.IsStatic);
     }
 }
