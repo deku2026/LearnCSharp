@@ -3,5 +3,7 @@
     <OutputType>Exe</OutputType>
     <AssemblyName>LearnCSharp</AssemblyName>
     <RootNamespace>LearnCSharp</RootNamespace>
+    <!-- Stage13 Section04: real pointer / fixed / function-pointer demos -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 </Project>
