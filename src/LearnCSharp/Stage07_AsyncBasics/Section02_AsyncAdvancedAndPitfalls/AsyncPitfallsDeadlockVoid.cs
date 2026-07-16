@@ -6,8 +6,9 @@
 // Topic id : stage07/section02/async_pitfalls_deadlock_void
 //
 // 步骤 2：sync-over-async 死锁机制、async void、未 await、async all the way
-// 控制台无 UI SyncContext，.Result 通常不死锁——用说明 + 安全写法演示
+// 控制台无 UI SyncContext——用自定义单线程上下文 + 超时保证不挂死
 
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using LearnCSharp.Topics;
 
@@ -20,29 +21,50 @@ internal static class AsyncPitfallsDeadlockVoid
     {
         _ = args;
         Console.WriteLine("=== AsyncPitfallsDeadlockVoid ===");
-        DemoSyncOverAsyncRiskExplained().GetAwaiter().GetResult();
+        DemoSyncOverAsyncCompletedPath();
+        DemoSyncOverAsyncDeadlockWithTimeout();
         DemoAsyncAllTheWay().GetAwaiter().GetResult();
-        DemoAsyncTaskVsAsyncVoidPattern().GetAwaiter().GetResult();
-        DemoUnawaitedTaskObservation().GetAwaiter().GetResult();
+        DemoAsyncVoidOuterCannotCatch();
+        DemoFireAndForgetObserveWithoutAwaitAsSuccess();
         return 0;
     }
 
-    private static async Task DemoSyncOverAsyncRiskExplained()
+    private static void DemoSyncOverAsyncCompletedPath()
     {
-        Console.WriteLine("-- sync-over-async deadlock (UI / classic ASP.NET) --");
-        Console.WriteLine("  1) UI thread blocks on .Result / .Wait()");
-        Console.WriteLine("  2) await inside captured UI SynchronizationContext");
-        Console.WriteLine("  3) continuation needs UI thread, which is blocked → deadlock");
-        Console.WriteLine("  console/ASP.NET Core usually do NOT deadlock this way (no single-thread context)");
+        Console.WriteLine("-- sync-over-async: GetResult on already-completed Task is safe --");
+        Task<string> done = Task.FromResult("data");
+        string viaGetResult = done.GetAwaiter().GetResult();
+        Debug.Assert(viaGetResult == "data");
+        Console.WriteLine($"  completed Task.GetAwaiter().GetResult() → {viaGetResult}");
+        Console.WriteLine("  UI deadlock recipe: block UI thread with .Result/.Wait while await needs that same thread");
+    }
 
-        // Safe on console: still avoid in library/app code — prefer await.
-        string viaAwait = await FetchAsync();
-        Debug.Assert(viaAwait == "data");
+    private static void DemoSyncOverAsyncDeadlockWithTimeout()
+    {
+        Console.WriteLine("-- sync-over-async deadlock (custom single-thread SyncContext + timeout) --");
+        // UI-like: one thread owns the context queue. Blocking that thread with Wait prevents pumping.
+        var ctx = new SingleThreadSynchronizationContext();
+        SynchronizationContext? previous = SynchronizationContext.Current;
+        SynchronizationContext.SetSynchronizationContext(ctx);
+        try
+        {
+            async Task WorkAsync()
+            {
+                await Task.Delay(30); // continuation posts back to ctx
+            }
 
-        // ConfigureAwait(false) avoids needing the original context (library pattern).
-        string viaCfg = await FetchWithConfigureAwaitFalseAsync();
-        Debug.Assert(viaCfg == "data");
-        Console.WriteLine($"  safe paths: await → {viaAwait}; ConfigureAwait(false) → {viaCfg}");
+            Task work = WorkAsync();
+            // Block the context thread: continuation never runs → would hang forever without timeout.
+            bool finished = work.Wait(TimeSpan.FromMilliseconds(250));
+            Debug.Assert(!finished);
+            Console.WriteLine($"  Wait(250ms) returned finished={finished} (timeout = would-be deadlock)");
+            Console.WriteLine("  fix: async all the way, or ConfigureAwait(false) in libraries");
+        }
+        finally
+        {
+            SynchronizationContext.SetSynchronizationContext(previous);
+            ctx.Complete();
+        }
     }
 
     private static async Task DemoAsyncAllTheWay()
@@ -54,46 +76,83 @@ internal static class AsyncPitfallsDeadlockVoid
         Console.WriteLine("  do not sandwich .Result/.Wait() in the middle of an async chain");
     }
 
-    private static async Task DemoAsyncTaskVsAsyncVoidPattern()
+    private static void DemoAsyncVoidOuterCannotCatch()
     {
-        Console.WriteLine("-- async void vs async Task --");
-        Exception? fromTask = null;
+        Console.WriteLine("-- async void: catch INSIDE method; outer try cannot catch --");
+        bool innerCaught = false;
+        bool outerCaught = false;
+        var done = new ManualResetEventSlim(false);
+
+        async void EventHandlerStyle()
+        {
+            try
+            {
+                await Task.Delay(10);
+                throw new InvalidOperationException("async-void boom");
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Required: without this, exception hits SyncContext / process (not caller's catch).
+                innerCaught = true;
+                Console.WriteLine($"  inner catch (must be inside async void): {ex.Message}");
+            }
+            finally
+            {
+                done.Set();
+            }
+        }
+
         try
         {
-            await WorkAsTaskAsync();
+            EventHandlerStyle(); // returns immediately; post-await faults never reach here
         }
-        catch (InvalidOperationException ex)
+        catch (Exception)
         {
-            fromTask = ex;
+            outerCaught = true;
         }
 
-        Debug.Assert(fromTask is not null);
-        Console.WriteLine($"  async Task exception catchable: {fromTask.Message}");
-        Console.WriteLine("  async void: cannot await, hard to test, exceptions hit SyncContext (crash risk)");
-        Console.WriteLine("  only legitimate async void: event handlers (with internal try/catch)");
+        bool signaled = done.Wait(TimeSpan.FromSeconds(2));
+        Debug.Assert(signaled);
+        Debug.Assert(innerCaught);
+        Debug.Assert(!outerCaught);
+        Console.WriteLine($"  outerCaught={outerCaught} (caller try never sees async void faults)");
+        Console.WriteLine("  only legitimate async void: event handlers with internal try/catch");
     }
 
-    private static async Task DemoUnawaitedTaskObservation()
+    private static void DemoFireAndForgetObserveWithoutAwaitAsSuccess()
     {
-        Console.WriteLine("-- unawaited Task (fire-and-forget) risks --");
-        // Observe completion and exceptions explicitly when fire-and-forget is intentional.
-        Task orphan = ObservedBackgroundAsync();
-        await orphan;
-        Debug.Assert(orphan.IsCompletedSuccessfully);
-        Console.WriteLine("  always await, or observe exceptions (ContinueWith / wrapper try/catch)");
-        Console.WriteLine("  CS4014 warns on discarded async calls");
+        Console.WriteLine("-- fire-and-forget: do not treat start as success; observe via ContinueWith --");
+        bool observed = false;
+        bool completedOk = false;
+        Exception? fault = null;
+        var gate = new ManualResetEventSlim(false);
+
+        Task background = BackgroundWorkAsync();
+        // Intentionally not: await background;  — that would be the "success path"
+        _ = background.ContinueWith(
+            t =>
+            {
+                observed = true;
+                completedOk = t.IsCompletedSuccessfully;
+                fault = t.Exception?.GetBaseException();
+                gate.Set();
+            },
+            CancellationToken.None,
+            TaskContinuationOptions.ExecuteSynchronously,
+            TaskScheduler.Default);
+
+        Console.WriteLine("  started background Task (not awaited as success)");
+        bool signaled = gate.Wait(TimeSpan.FromSeconds(2));
+        Debug.Assert(signaled && observed);
+        Debug.Assert(completedOk);
+        Debug.Assert(fault is null);
+        Console.WriteLine($"  observed via ContinueWith: completedOk={completedOk}");
+        Console.WriteLine("  CS4014 warns on discarded async calls; always observe exceptions");
     }
 
-    private static async Task<string> FetchAsync()
+    private static async Task BackgroundWorkAsync()
     {
-        await Task.Delay(5);
-        return "data";
-    }
-
-    private static async Task<string> FetchWithConfigureAwaitFalseAsync()
-    {
-        await Task.Delay(5).ConfigureAwait(false);
-        return "data";
+        await Task.Delay(15);
     }
 
     private static async Task<string> ControllerAsync() => await ServiceAsync();
@@ -104,22 +163,34 @@ internal static class AsyncPitfallsDeadlockVoid
         return "row";
     }
 
-    private static async Task WorkAsTaskAsync()
+    /// <summary>Minimal single-thread context: Post enqueues; nothing pumps while the owner blocks.</summary>
+    private sealed class SingleThreadSynchronizationContext : SynchronizationContext
     {
-        await Task.Delay(5);
-        throw new InvalidOperationException("boom");
-    }
+        private readonly ConcurrentQueue<(SendOrPostCallback Callback, object? State)> _queue = new();
+        private volatile bool _completed;
 
-    private static async Task ObservedBackgroundAsync()
-    {
-        try
+        public override void Post(SendOrPostCallback d, object? state) => _queue.Enqueue((d, state));
+
+        public override void Send(SendOrPostCallback d, object? state)
         {
-            await Task.Delay(5);
+            // Same-thread send would re-enter; for the deadlock demo we only need Post.
+            d(state);
         }
-        catch (Exception ex)
+
+        public void Complete() => _completed = true;
+
+        public void PumpUntilEmpty(TimeSpan budget)
         {
-            Console.WriteLine($"  background fault: {ex.Message}");
-            throw;
+            long deadline = Environment.TickCount64 + (long)budget.TotalMilliseconds;
+            while (Environment.TickCount64 < deadline)
+            {
+                if (_queue.TryDequeue(out (SendOrPostCallback Callback, object? State) item))
+                    item.Callback(item.State);
+                else if (_completed)
+                    break;
+                else
+                    Thread.Sleep(1);
+            }
         }
     }
 }

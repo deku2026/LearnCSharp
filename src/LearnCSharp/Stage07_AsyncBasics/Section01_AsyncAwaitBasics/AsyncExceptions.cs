@@ -5,7 +5,7 @@
 // Item     : AsyncExceptions
 // Topic id : stage07/section01/async_exceptions
 //
-// 步骤 5：异常存进 Task、await 重抛；参数验证延迟；async void 危险
+// 步骤 5：异常存进 Task、await 重抛；参数验证延迟；async void 危险；WhenAll 多异常
 
 using System.Diagnostics;
 using LearnCSharp.Topics;
@@ -22,7 +22,9 @@ internal static class AsyncExceptions
         DemoExceptionStoredInTask().GetAwaiter().GetResult();
         DemoTryCatchAroundAwait().GetAwaiter().GetResult();
         DemoArgValidationDeferredUntilAwait().GetAwaiter().GetResult();
-        DemoAsyncVoidCannotBeAwaitedSafely().GetAwaiter().GetResult();
+        DemoNonAsyncValidationThrowsBeforeTask();
+        DemoAsyncVoidCatchInsideOnly();
+        DemoWhenAllAggregateException();
         return 0;
     }
 
@@ -30,7 +32,6 @@ internal static class AsyncExceptions
     {
         Console.WriteLine("-- exception is stored in Task (Faulted), not thrown at throw site to caller --");
         Task<int> faulted = MightFailAsync();
-        // Before await, task may already be faulted after the delay completes; observe via await.
         try
         {
             _ = await faulted;
@@ -63,9 +64,8 @@ internal static class AsyncExceptions
 
     private static async Task DemoArgValidationDeferredUntilAwait()
     {
-        Console.WriteLine("-- validation before first await still lands in Task --");
+        Console.WriteLine("-- async method: validation before first await still lands in Task --");
         Task bad = ProcessAsync(null!);
-        // Method returned a Task immediately; exception surfaces when awaited.
         try
         {
             await bad;
@@ -78,24 +78,108 @@ internal static class AsyncExceptions
         }
     }
 
-    private static async Task DemoAsyncVoidCannotBeAwaitedSafely()
+    private static void DemoNonAsyncValidationThrowsBeforeTask()
     {
-        Console.WriteLine("-- async void: cannot await; exceptions escape the Task model --");
-        // We demonstrate the safe pattern: async Task + try/catch.
-        // Real async void would post exceptions to SynchronizationContext (often crash).
-        Exception? escaped = null;
+        Console.WriteLine("-- non-async wrapper: throw before returning Task (eager) --");
+        bool threwSync = false;
         try
         {
-            await SafeFireAsync();
+            // Not async: exception escapes immediately — caller never gets a Task.
+            _ = ProcessValidatedAsync(null!);
+            Debug.Fail("expected sync throw");
         }
-        catch (Exception ex)
+        catch (ArgumentNullException ex)
         {
-            escaped = ex;
+            threwSync = true;
+            Debug.Assert(ex.ParamName == "path");
+            Console.WriteLine($"  sync throw before Task: {ex.GetType().Name} ParamName={ex.ParamName}");
         }
 
-        Debug.Assert(escaped is InvalidOperationException);
-        Console.WriteLine("  async Task: caller can catch after await");
-        Console.WriteLine("  async void: only for event handlers; always try/catch inside; prefer async Task");
+        Debug.Assert(threwSync);
+        Console.WriteLine("  pattern: validate in non-async wrapper, then return CoreAsync()");
+    }
+
+    private static void DemoAsyncVoidCatchInsideOnly()
+    {
+        Console.WriteLine("-- async void carefully: catch inside; outer try cannot catch --");
+        bool innerCaught = false;
+        bool outerCaught = false;
+        var done = new ManualResetEventSlim(false);
+
+        async void RiskyHandler()
+        {
+            try
+            {
+                await Task.Delay(10);
+                throw new InvalidOperationException("async void fault");
+            }
+            catch (InvalidOperationException ex)
+            {
+                innerCaught = true;
+                Console.WriteLine($"  caught inside async void: {ex.Message}");
+            }
+            finally
+            {
+                done.Set();
+            }
+        }
+
+        try
+        {
+            RiskyHandler();
+        }
+        catch (Exception)
+        {
+            outerCaught = true;
+        }
+
+        bool signaled = done.Wait(TimeSpan.FromSeconds(2));
+        Debug.Assert(signaled && innerCaught && !outerCaught);
+        Console.WriteLine($"  outerCaught={outerCaught}; prefer async Task for testable error flow");
+    }
+
+    private static void DemoWhenAllAggregateException()
+    {
+        Console.WriteLine("-- WhenAll multi-exception: AggregateException (via .Exception / Wait) --");
+        Task a = Task.FromException(new InvalidOperationException("fault-A"));
+        Task b = Task.FromException(new InvalidOperationException("fault-B"));
+        Task all = Task.WhenAll(a, b);
+
+        // await WhenAll rethrows only the first exception; full set is on Task.Exception.
+        Exception? firstFromAwait = null;
+        try
+        {
+            all.GetAwaiter().GetResult();
+            Debug.Fail("expected fault");
+        }
+        catch (InvalidOperationException ex)
+        {
+            firstFromAwait = ex;
+        }
+
+        Debug.Assert(firstFromAwait is not null);
+        Debug.Assert(all.IsFaulted);
+        Debug.Assert(all.Exception is not null);
+
+        AggregateException agg = all.Exception.Flatten();
+        Debug.Assert(agg.InnerExceptions.Count == 2);
+        Debug.Assert(agg.InnerExceptions.Any(e => e.Message == "fault-A"));
+        Debug.Assert(agg.InnerExceptions.Any(e => e.Message == "fault-B"));
+
+        // Explicit AggregateException catch path (e.g. task.Wait() wraps).
+        try
+        {
+            Task.WaitAll(a, b);
+            Debug.Fail("expected AggregateException");
+        }
+        catch (AggregateException ae)
+        {
+            AggregateException flat = ae.Flatten();
+            Debug.Assert(flat.InnerExceptions.Count >= 2);
+            Console.WriteLine($"  WaitAll AggregateException inners={flat.InnerExceptions.Count}");
+        }
+
+        Console.WriteLine($"  WhenAll.Exception inners={agg.InnerExceptions.Count}; await surfaces first only");
     }
 
     private static async Task<int> MightFailAsync()
@@ -111,9 +195,16 @@ internal static class AsyncExceptions
         _ = path.Length;
     }
 
-    private static async Task SafeFireAsync()
+    /// <summary>Non-async wrapper: validation throws before any Task exists.</summary>
+    private static Task ProcessValidatedAsync(string path)
+    {
+        ArgumentNullException.ThrowIfNull(path);
+        return ProcessCoreAsync(path);
+    }
+
+    private static async Task ProcessCoreAsync(string path)
     {
         await Task.Delay(5);
-        throw new InvalidOperationException("boom");
+        _ = path.Length;
     }
 }

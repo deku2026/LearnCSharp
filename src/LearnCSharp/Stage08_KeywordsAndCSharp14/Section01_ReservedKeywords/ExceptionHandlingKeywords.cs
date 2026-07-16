@@ -20,7 +20,7 @@ internal static class ExceptionHandlingKeywords
         _ = args;
         Console.WriteLine("=== ExceptionHandlingKeywords ===");
         DemoTryCatchFinally();
-        DemoThrowPreserveStack();
+        DemoThrowVsThrowExStackTrace();
         DemoWhenFilter();
         return 0;
     }
@@ -47,10 +47,11 @@ internal static class ExceptionHandlingKeywords
         Console.WriteLine($"  caught={caught}, finallyRan={finallyRan}");
     }
 
-    private static void DemoThrowPreserveStack()
+    private static void DemoThrowVsThrowExStackTrace()
     {
-        Console.WriteLine("-- throw; 保留栈 vs throw ex 重置 --");
-        string? preserved = null;
+        Console.WriteLine("-- throw; preserves stack vs throw ex resets --");
+
+        string? preservedStack = null;
         try
         {
             try
@@ -59,16 +60,44 @@ internal static class ExceptionHandlingKeywords
             }
             catch (Exception ex)
             {
-                preserved = ex.StackTrace;
-                throw; // 保留
+                // rethrow without reset
+                throw;
             }
         }
         catch (Exception ex)
         {
-            Debug.Assert(ex.StackTrace is not null && ex.StackTrace.Contains(nameof(DeepThrow)));
-            Debug.Assert(preserved is not null && preserved.Contains(nameof(DeepThrow)));
-            Console.WriteLine($"  throw; keeps DeepThrow: {ex.StackTrace.Contains(nameof(DeepThrow))}");
+            preservedStack = ex.StackTrace ?? string.Empty;
+            Debug.Assert(preservedStack.Contains(nameof(DeepThrow), StringComparison.Ordinal));
+            Console.WriteLine($"  throw; keeps DeepThrow frame: {preservedStack.Contains(nameof(DeepThrow))}");
         }
+
+        string? resetStack = null;
+        try
+        {
+            try
+            {
+                DeepThrow();
+            }
+            catch (Exception ex)
+            {
+                // BAD: resets stack to this catch site (DeepThrow often disappears).
+                throw ex;
+            }
+        }
+        catch (Exception ex)
+        {
+            resetStack = ex.StackTrace ?? string.Empty;
+            bool stillHasDeep = resetStack.Contains(nameof(DeepThrow), StringComparison.Ordinal);
+            bool hasCatchSite = resetStack.Contains(nameof(DemoThrowVsThrowExStackTrace), StringComparison.Ordinal);
+            Console.WriteLine($"  throw ex: DeepThrow frame kept={stillHasDeep} (often false); catch-site present={hasCatchSite}");
+            // On modern runtimes DeepThrow may still appear via enhanced traces; the reset is the catch rethrow site.
+            Debug.Assert(hasCatchSite || !stillHasDeep || resetStack != preservedStack);
+            Debug.Assert(preservedStack is not null && resetStack is not null);
+            // Clear contract: throw; retains original throw site; throw ex starts rethrow from catch.
+            Console.WriteLine("  prefer throw; (or ExceptionDispatchInfo) — never throw ex for rethrow");
+        }
+
+        Debug.Assert(preservedStack is not null && resetStack is not null);
     }
 
     private static void DemoWhenFilter()

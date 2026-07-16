@@ -6,6 +6,7 @@
 // Topic id : stage05/section01/concurrent_collections
 //
 // 步骤 7：ConcurrentDictionary / Queue / Stack / Bag + 原子复合操作。
+// 对比：List/Dictionary 在 Parallel.For 下的竞态 vs ConcurrentDictionary。
 
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -23,6 +24,7 @@ internal static class ConcurrentCollections
         DemoConcurrentDictionary();
         DemoQueueStackBag();
         DemoParallelCount();
+        DemoRaceOnListAndDictionaryVsConcurrent();
         DemoBlockingCollectionNote();
         return 0;
     }
@@ -69,6 +71,75 @@ internal static class ConcurrentCollections
         });
         Debug.Assert(counts["hits"] == 1000);
         Console.WriteLine($"  parallel hits={counts["hits"]}");
+    }
+
+    private static void DemoRaceOnListAndDictionaryVsConcurrent()
+    {
+        Console.WriteLine("-- race: List/Dictionary + Parallel.For vs ConcurrentDictionary --");
+        const int n = 5000;
+
+        // List.Add is not thread-safe → IndexOutOfRange / ArgumentException / lost items.
+        List<int> unsafeList = [];
+        int listExceptions = 0;
+        try
+        {
+            Parallel.For(0, n, i =>
+            {
+                try
+                {
+                    unsafeList.Add(i);
+                }
+                catch (Exception)
+                {
+                    Interlocked.Increment(ref listExceptions);
+                }
+            });
+        }
+        catch (AggregateException ae)
+        {
+            listExceptions += ae.Flatten().InnerExceptions.Count;
+        }
+
+        bool listCorrupt = listExceptions > 0 || unsafeList.Count != n;
+        Console.WriteLine($"  List.Add parallel: Count={unsafeList.Count}/{n}, caught={listExceptions}, corrupt/incomplete={listCorrupt}");
+
+        // Dictionary indexer concurrent write → often throws or loses updates.
+        Dictionary<int, int> unsafeDict = [];
+        int dictExceptions = 0;
+        try
+        {
+            Parallel.For(0, n, i =>
+            {
+                try
+                {
+                    unsafeDict[i] = i;
+                }
+                catch (Exception)
+                {
+                    Interlocked.Increment(ref dictExceptions);
+                }
+            });
+        }
+        catch (AggregateException ae)
+        {
+            dictExceptions += ae.Flatten().InnerExceptions.Count;
+        }
+
+        bool dictCorrupt = dictExceptions > 0 || unsafeDict.Count != n;
+        Console.WriteLine($"  Dictionary[] parallel: Count={unsafeDict.Count}/{n}, caught={dictExceptions}, corrupt/incomplete={dictCorrupt}");
+
+        // ConcurrentDictionary is safe for concurrent writes.
+        ConcurrentDictionary<int, int> safe = new();
+        Parallel.For(0, n, i => safe[i] = i);
+        Debug.Assert(safe.Count == n);
+        Console.WriteLine($"  ConcurrentDictionary parallel: Count={safe.Count}/{n} ✓");
+
+        // At least one of the unsafe structures should show a problem on a busy machine;
+        // if not (lucky schedule), still document the contract.
+        if (!listCorrupt && !dictCorrupt)
+            Console.WriteLine("  (schedule luck: no throw this run — still undefined behavior without sync)");
+        else
+            Debug.Assert(listCorrupt || dictCorrupt);
     }
 
     private static void DemoBlockingCollectionNote()

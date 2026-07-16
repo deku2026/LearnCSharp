@@ -15,6 +15,8 @@ namespace LearnCSharp.Stage05.Section02;
 
 internal static class IteratorLimitationsAndPitfalls
 {
+    private static readonly object Gate = new();
+
     [LearnTopic("stage05/section02/iterator_limitations_and_pitfalls")]
     internal static int Run(string[] args)
     {
@@ -22,6 +24,7 @@ internal static class IteratorLimitationsAndPitfalls
         Console.WriteLine("=== IteratorLimitationsAndPitfalls ===");
         DemoYieldBreakNotReturnValue();
         DemoTryFinallyOk();
+        DemoLockYieldCompileGuardAndRuntimeDanger();
         DemoReenumerateReruns();
         DemoMaterializeOnce();
         DemoCaptureChangingState();
@@ -62,6 +65,63 @@ internal static class IteratorLimitationsAndPitfalls
         finally
         {
             log.Append("finally;");
+        }
+    }
+
+    private static void DemoLockYieldCompileGuardAndRuntimeDanger()
+    {
+        Console.WriteLine("-- lock + yield: CS1626 compile guard + runtime hold-across-yield danger --");
+        // Illegal (CS1626 — cannot yield inside lock):
+        // IEnumerable<int> Bad() { lock (Gate) { yield return 1; } }
+        Console.WriteLine("  lock { yield return ... } → CS1626 (compiler blocks the obvious form)");
+
+        // Runtime danger: Monitor.Enter then yield holds the lock while the consumer runs.
+        bool otherThreadBlocked = false;
+        var enteredConsumer = new ManualResetEventSlim(false);
+        var releaseConsumer = new ManualResetEventSlim(false);
+
+        IEnumerator<int> e = HoldLockAcrossYield().GetEnumerator();
+        Debug.Assert(e.MoveNext()); // acquires lock, yields 1 — lock still held
+        Debug.Assert(e.Current == 1);
+
+        var probe = Task.Run(() =>
+        {
+            // TryEnter should fail while enumerator holds the lock between yields.
+            bool got = Monitor.TryEnter(Gate, TimeSpan.FromMilliseconds(80));
+            otherThreadBlocked = !got;
+            if (got)
+                Monitor.Exit(Gate);
+            enteredConsumer.Set();
+            releaseConsumer.Wait(TimeSpan.FromSeconds(2));
+        });
+
+        bool sawProbe = enteredConsumer.Wait(TimeSpan.FromSeconds(2));
+        Debug.Assert(sawProbe);
+        Debug.Assert(otherThreadBlocked);
+        Console.WriteLine($"  while yielded under Monitor.Enter, other TryEnter failed: {otherThreadBlocked}");
+
+        // Finish / dispose releases in finally.
+        while (e.MoveNext()) { }
+        e.Dispose();
+        releaseConsumer.Set();
+        probe.GetAwaiter().GetResult();
+        Console.WriteLine("  never hold a lock across yield — consumer code runs while you still own it");
+    }
+
+    /// <summary>
+    /// Holds <see cref="Gate"/> from first MoveNext until dispose/complete — dangerous pattern for demos only.
+    /// </summary>
+    private static IEnumerable<int> HoldLockAcrossYield()
+    {
+        Monitor.Enter(Gate);
+        try
+        {
+            yield return 1;
+            yield return 2;
+        }
+        finally
+        {
+            Monitor.Exit(Gate);
         }
     }
 
