@@ -5,60 +5,19 @@
 // Item     : IHttpClientFactory
 // Topic id : stage09/section05/ihttp_client_factory
 //
-// 步骤 3：IHttpClientFactory 概念 — 无 Microsoft.Extensions.Http 时用教育型迷你工厂
+// 步骤 3：真实 AddHttpClient / IHttpClientFactory（Microsoft.Extensions.Http）
 
-using System.Collections.Concurrent;
 using System.Diagnostics;
-using System.Net.Http;
 using LearnCSharp.Topics;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LearnCSharp.Stage09.Section05;
 
 internal static class IHttpClientFactoryDemo
 {
-    /// <summary>
-    /// Educational stand-in for Microsoft.Extensions.Http.IHttpClientFactory:
-    /// named clients, shared handlers, short-lived HttpClient wrappers.
-    /// </summary>
-    private interface IMiniHttpClientFactory
+    private sealed class ExampleApiClient(HttpClient http)
     {
-        HttpClient CreateClient(string name = "");
-    }
-
-    private sealed class MiniHttpClientFactory : IMiniHttpClientFactory, IDisposable
-    {
-        private readonly ConcurrentDictionary<string, Lazy<HttpMessageHandler>> _handlers = new(StringComparer.Ordinal);
-        private readonly ConcurrentDictionary<string, Action<HttpClient>> _configure = new(StringComparer.Ordinal);
-
-        public void Configure(string name, Action<HttpClient> configure)
-            => _configure[name] = configure;
-
-        public HttpClient CreateClient(string name = "")
-        {
-            HttpMessageHandler handler = _handlers.GetOrAdd(name, static _ =>
-                new Lazy<HttpMessageHandler>(() => new SocketsHttpHandler
-                {
-                    PooledConnectionLifetime = TimeSpan.FromMinutes(2)
-                })).Value;
-
-            var client = new HttpClient(handler, disposeHandler: false)
-            {
-                Timeout = TimeSpan.FromSeconds(3)
-            };
-            if (_configure.TryGetValue(name, out Action<HttpClient>? cfg))
-                cfg(client);
-            return client; // short-lived wrapper; handler is pooled
-        }
-
-        public void Dispose()
-        {
-            foreach (Lazy<HttpMessageHandler> lazy in _handlers.Values)
-            {
-                if (lazy.IsValueCreated)
-                    lazy.Value.Dispose();
-            }
-            _handlers.Clear();
-        }
+        public HttpClient Http { get; } = http;
     }
 
     [LearnTopic("stage09/section05/ihttp_client_factory")]
@@ -73,23 +32,41 @@ internal static class IHttpClientFactoryDemo
 
     private static void DemoNamedAndTypedPatterns()
     {
-        Console.WriteLine("-- production: services.AddHttpClient / named / typed --");
-        Console.WriteLine("  AddHttpClient() → IHttpClientFactory.CreateClient()");
-        Console.WriteLine("  AddHttpClient(\"github\", c => c.BaseAddress = ...) → named");
-        Console.WriteLine("  AddHttpClient<GitHubClient>() → typed client class");
-        Console.WriteLine("  (this demo uses a BCL-only mini factory — no extra packages)");
-        Debug.Assert(true);
+        Console.WriteLine("-- AddHttpClient / named / typed --");
+        var services = new ServiceCollection();
+        services.AddHttpClient("example", c =>
+        {
+            c.BaseAddress = new Uri("https://example.com/");
+            c.Timeout = TimeSpan.FromSeconds(2);
+            c.DefaultRequestHeaders.UserAgent.ParseAdd("LearnCSharp-Stage09");
+        });
+        services.AddHttpClient<ExampleApiClient>(c =>
+        {
+            c.BaseAddress = new Uri("https://example.com/");
+            c.Timeout = TimeSpan.FromSeconds(2);
+        });
+
+        using ServiceProvider provider = services.BuildServiceProvider();
+        IHttpClientFactory factory = provider.GetRequiredService<IHttpClientFactory>();
+        using HttpClient named = factory.CreateClient("example");
+        Debug.Assert(named.BaseAddress == new Uri("https://example.com/"));
+        ExampleApiClient typed = provider.GetRequiredService<ExampleApiClient>();
+        Debug.Assert(typed.Http.BaseAddress is not null);
+        Console.WriteLine("  named CreateClient(\"example\") + typed ExampleApiClient OK");
     }
 
     private static async Task DemoFactoryCreate()
     {
-        Console.WriteLine("-- mini factory: short-lived clients, shared handler --");
-        using var factory = new MiniHttpClientFactory();
-        factory.Configure("example", c =>
+        Console.WriteLine("-- factory CreateClient GET (network soft-skip) --");
+        var services = new ServiceCollection();
+        services.AddHttpClient("example", c =>
         {
             c.BaseAddress = new Uri("https://example.com/");
+            c.Timeout = TimeSpan.FromSeconds(2);
             c.DefaultRequestHeaders.UserAgent.ParseAdd("LearnCSharp-Stage09");
         });
+        using ServiceProvider provider = services.BuildServiceProvider();
+        IHttpClientFactory factory = provider.GetRequiredService<IHttpClientFactory>();
 
         try
         {

@@ -5,9 +5,10 @@
 // Item     : DotnetTestWorkflow
 // Topic id : stage10/section04/dotnet_test_workflow
 //
-// dotnet test 工作流、过滤、覆盖率概念、CI 片段（不调真实测试宿主）。
+// dotnet test 工作流 + 可执行 assert 演示（不强制跑真实测试宿主）。
 
 using System.Diagnostics;
+using System.Reflection;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage10.Section04;
@@ -22,8 +23,8 @@ internal static class DotnetTestWorkflow
         DemoBasicCommands();
         DemoFiltering();
         DemoCoverageConcept();
-        DemoCiSnippet();
-        DemoExitCodes();
+        DemoCiSnippetFromRepo();
+        DemoEducationalRunnerExitCodes();
         return 0;
     }
 
@@ -42,19 +43,17 @@ internal static class DotnetTestWorkflow
         foreach (string c in cmds)
             Console.WriteLine($"  $ {c}");
         Debug.Assert(cmds[0] == "dotnet test");
+        Debug.Assert(cmds.All(c => c.StartsWith("dotnet test", StringComparison.Ordinal)));
     }
 
     private static void DemoFiltering()
     {
         Console.WriteLine("-- filtering --");
-        Console.WriteLine("  VSTest/MSTest/NUnit 常见: --filter FullyQualifiedName~Cart");
-        Console.WriteLine("  --filter Name=Add_EmptyCart_ReturnsZero");
-        Console.WriteLine("  --filter TestCategory=Integration / Trait");
-        Console.WriteLine("  xUnit v3 + MTP: 过滤语法以当前文档为准（与经典 --filter 可能不同）");
         string[] samples =
         [
             "--filter FullyQualifiedName~OrderService",
             "--filter Category=Unit",
+            "--filter Name=Add_EmptyCart_ReturnsZero",
         ];
         foreach (string s in samples)
             Console.WriteLine($"  $ dotnet test {s}");
@@ -64,44 +63,62 @@ internal static class DotnetTestWorkflow
     private static void DemoCoverageConcept()
     {
         Console.WriteLine("-- coverage (concept) --");
-        Console.WriteLine("  coverlet / 内置收集器统计行/分支是否执行到");
-        Console.WriteLine("  例: dotnet test /p:CollectCoverage=true（coverlet.msbuild）");
-        Console.WriteLine("  MTP 侧有覆盖率扩展；输出 cobertura/opencover 等");
-        Console.WriteLine("  ⚠ 高覆盖 ≠ 好测试；关注关键路径与断言质量");
-        // 微型覆盖率心智：3 分支测了 2
         int branches = 3;
         int hit = 2;
         double pct = 100.0 * hit / branches;
         Debug.Assert(pct is > 60 and < 70);
         Console.WriteLine($"  demo branch coverage: {hit}/{branches} = {pct:0}%");
+        Console.WriteLine("  ⚠ 高覆盖 ≠ 好测试；关注关键路径与断言质量");
     }
 
-    private static void DemoCiSnippet()
+    private static void DemoCiSnippetFromRepo()
     {
-        Console.WriteLine("-- CI sketch (GitHub Actions style) --");
-        string[] yaml =
-        [
-            "- name: Test",
-            "  run: dotnet test -c Release --logger trx --results-directory TestResults",
-            "- name: Upload results",
-            "  uses: actions/upload-artifact@v4",
-            "  with:",
-            "    name: test-results",
-            "    path: TestResults",
-        ];
-        foreach (string line in yaml)
-            Console.WriteLine($"  {line}");
-        Debug.Assert(yaml.Any(l => l.Contains("dotnet test", StringComparison.Ordinal)));
+        Console.WriteLine("-- CI workflow files in this repo --");
+        string? root = FindRepoRoot();
+        Debug.Assert(root is not null);
+        string workflows = Path.Combine(root, ".github", "workflows");
+        Debug.Assert(Directory.Exists(workflows));
+        string[] yml = Directory.GetFiles(workflows, "*.yml");
+        Debug.Assert(yml.Length >= 1);
+        string any = File.ReadAllText(yml[0]);
+        Debug.Assert(any.Length > 0);
+        Console.WriteLine($"  workflow count={yml.Length}; sample={Path.GetFileName(yml[0])}");
+        bool mentionsTest = yml.Select(File.ReadAllText)
+            .Any(t => t.Contains("dotnet test", StringComparison.OrdinalIgnoreCase)
+                      || t.Contains("dotnet build", StringComparison.OrdinalIgnoreCase));
+        Debug.Assert(mentionsTest);
+        Console.WriteLine($"  mentions dotnet build/test: {mentionsTest}");
     }
 
-    private static void DemoExitCodes()
+    private static void DemoEducationalRunnerExitCodes()
     {
-        Console.WriteLine("-- exit codes (educational runner) --");
+        Console.WriteLine("-- educational runner exit codes --");
         var results = new[] { ("pass", true), ("pass", true), ("fail", false) };
         int failed = results.Count(r => !r.Item2);
         int exit = failed == 0 ? 0 : 1;
         Debug.Assert(exit == 1);
         Console.WriteLine($"  {results.Length} tests, {failed} failed → process exit {exit}");
-        Console.WriteLine("  CI 依赖非零退出码阻断流水线");
+
+        // This process itself is a "suite" of demos returning 0 when healthy
+        Assembly asm = typeof(DotnetTestWorkflow).Assembly;
+        Debug.Assert(asm.GetName().Name == "LearnCSharp");
+        Console.WriteLine($"  host assembly={asm.GetName().Name}; Environment.ProcessId={Environment.ProcessId}");
+    }
+
+    private static string? FindRepoRoot()
+    {
+        foreach (string start in new[] { Environment.CurrentDirectory, AppContext.BaseDirectory })
+        {
+            DirectoryInfo? dir = new(start);
+            while (dir is not null)
+            {
+                if (Directory.Exists(Path.Combine(dir.FullName, ".github", "workflows"))
+                    && File.Exists(Path.Combine(dir.FullName, "global.json")))
+                    return dir.FullName;
+                dir = dir.Parent;
+            }
+        }
+
+        return null;
     }
 }

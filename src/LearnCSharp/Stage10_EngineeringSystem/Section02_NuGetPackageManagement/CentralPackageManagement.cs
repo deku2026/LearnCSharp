@@ -5,9 +5,10 @@
 // Item     : CentralPackageManagement
 // Topic id : stage10/section02/central_package_management
 //
-// CPM：Directory.Packages.props 集中版本 + 传递固定。
+// CPM：Directory.Packages.props 集中版本 — 读本仓库真实文件。
 
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage10.Section02;
@@ -20,7 +21,7 @@ internal static class CentralPackageManagement
         _ = args;
         Console.WriteLine("=== CentralPackageManagement ===");
         DemoVersionScatterProblem();
-        DemoDirectoryPackagesProps();
+        DemoReadRealPackagesProps();
         DemoProjectSideReference();
         DemoTransitivePinning();
         DemoRules();
@@ -43,49 +44,48 @@ internal static class CentralPackageManagement
         Console.WriteLine($"  distinct versions in repo: {distinct} → 升级噩梦");
     }
 
-    private static void DemoDirectoryPackagesProps()
+    private static void DemoReadRealPackagesProps()
     {
-        Console.WriteLine("-- Directory.Packages.props --");
-        string[] lines =
-        [
-            "<Project>",
-            "  <PropertyGroup>",
-            "    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>",
-            "    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>",
-            "  </PropertyGroup>",
-            "  <ItemGroup>",
-            "    <PackageVersion Include=\"Newtonsoft.Json\" Version=\"13.0.3\" />",
-            "    <PackageVersion Include=\"xunit\" Version=\"2.9.0\" />",
-            "  </ItemGroup>",
-            "</Project>",
-        ];
-        foreach (string line in lines)
-            Console.WriteLine($"  {line}");
-        Debug.Assert(lines.Any(l => l.Contains("PackageVersion", StringComparison.Ordinal)));
+        Console.WriteLine("-- real Directory.Packages.props in this repo --");
+        string? root = FindRepoRoot();
+        Debug.Assert(root is not null);
+        string path = Path.Combine(root, "Directory.Packages.props");
+        string text = File.ReadAllText(path);
+        Debug.Assert(text.Contains("ManagePackageVersionsCentrally", StringComparison.Ordinal));
+        MatchCollection versions = Regex.Matches(text, @"PackageVersion\s+Include=""([^""]+)""");
+        Debug.Assert(versions.Count >= 1);
+        Console.WriteLine($"  path={path}");
+        Console.WriteLine($"  PackageVersion count={versions.Count}");
+        foreach (Match m in versions.Take(5))
+            Console.WriteLine($"    - {m.Groups[1].Value}");
     }
 
     private static void DemoProjectSideReference()
     {
-        Console.WriteLine("-- project only declares id (no Version) --");
-        Console.WriteLine("  <PackageReference Include=\"Newtonsoft.Json\" />");
-        Console.WriteLine("  版本来自中央 PackageVersion；本地写 Version 会报错（除非覆盖策略允许）");
-        string refLine = """<PackageReference Include="Newtonsoft.Json" />""";
-        Debug.Assert(!refLine.Contains("Version=", StringComparison.Ordinal));
+        Console.WriteLine("-- project PackageReference without Version (CPM) --");
+        string? root = FindRepoRoot();
+        Debug.Assert(root is not null);
+        string csproj = Path.Combine(root, "src", "LearnCSharp", "LearnCSharp.csproj");
+        string text = File.ReadAllText(csproj);
+        Debug.Assert(text.Contains("PackageReference", StringComparison.Ordinal));
+        Debug.Assert(text.Contains("Microsoft.Extensions.DependencyInjection", StringComparison.Ordinal));
+        // CPM: PackageReference lines should not carry Version=
+        MatchCollection refs = Regex.Matches(text, @"<PackageReference\s+Include=""[^""]+""\s*/>");
+        Debug.Assert(refs.Count >= 1);
+        Console.WriteLine($"  LearnCSharp.csproj PackageReference (no Version) count={refs.Count}");
     }
 
     private static void DemoTransitivePinning()
     {
-        Console.WriteLine("-- transitive pinning --");
-        Console.WriteLine("  直接依赖 A 拉进传递包 T 的“浮动”版本 → 难审计");
-        Console.WriteLine("  CentralPackageTransitivePinningEnabled: 也可在 Packages.props 钉 T");
-        Console.WriteLine("  效果: 传递依赖版本进入中央清单，升级可感知");
+        Console.WriteLine("-- transitive pinning concept --");
+        Console.WriteLine("  CentralPackageTransitivePinningEnabled: 也可在 Packages.props 钉传递包");
         var central = new HashSet<string>(StringComparer.Ordinal)
         {
-            "Newtonsoft.Json",
-            "System.Text.Json", // also pin transitive if needed
+            "Microsoft.Extensions.Hosting",
+            "Microsoft.Extensions.Http",
         };
         Debug.Assert(central.Count >= 2);
-        Console.WriteLine($"  pinned package ids (demo): {string.Join(", ", central)}");
+        Console.WriteLine($"  direct pins in this lesson: {string.Join(", ", central)}");
     }
 
     private static void DemoRules()
@@ -101,5 +101,22 @@ internal static class CentralPackageManagement
         foreach (string r in rules)
             Console.WriteLine($"  • {r}");
         Debug.Assert(rules.Length == 4);
+    }
+
+    private static string? FindRepoRoot()
+    {
+        foreach (string start in new[] { Environment.CurrentDirectory, AppContext.BaseDirectory })
+        {
+            DirectoryInfo? dir = new(start);
+            while (dir is not null)
+            {
+                if (File.Exists(Path.Combine(dir.FullName, "Directory.Packages.props"))
+                    && File.Exists(Path.Combine(dir.FullName, "global.json")))
+                    return dir.FullName;
+                dir = dir.Parent;
+            }
+        }
+
+        return null;
     }
 }

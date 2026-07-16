@@ -5,7 +5,7 @@
 // Item     : WritingTestsAaaTheory
 // Topic id : stage10/section04/writing_tests_aaa_theory
 //
-// AAA、Theory/InlineData 思想、setup/teardown（无 xunit 包）。
+// AAA、Theory/InlineData 思想、setup/teardown — 可执行 assert 演示（无 xunit 包）。
 
 using System.Diagnostics;
 using LearnCSharp.Topics;
@@ -38,28 +38,33 @@ internal static class WritingTestsAaaTheory
         decimal total = cart.Total();
         // Assert
         Debug.Assert(total == 12m);
-        Console.WriteLine($"  Total()={total} (Arrange items → Act Total → Assert 12)");
+        Debug.Assert(cart.Count == 2);
+        Console.WriteLine($"  Total()={total}; Count={cart.Count}");
         Console.WriteLine("  一个测试一个行为；避免多重无关 Assert 掩盖失败原因");
     }
 
     private static void DemoTheoryStyle()
     {
         Console.WriteLine("-- Theory + data rows (xUnit style, simulated) --");
-        (int A, int B, int Expected)[] rows =
+        (string Input, bool Expected)[] rows =
         [
-            (1, 1, 2),
-            (2, 3, 5),
-            (-1, 5, 4),
-            (0, 0, 0),
+            ("", false),
+            ("ada", true),
+            ("   ", false),
+            ("x", true),
         ];
-        foreach (var (a, b, expected) in rows)
+        int passed = 0;
+        foreach (var (input, expected) in rows)
         {
-            int actual = a + b;
+            bool actual = IsNonEmpty(input);
             Debug.Assert(actual == expected);
-            Console.WriteLine($"  [InlineData] {a}+{b} => {actual}");
+            passed++;
+            Console.WriteLine($"  [InlineData] IsNonEmpty({input!}) => {actual}");
         }
+
+        Debug.Assert(passed == rows.Length);
+        Console.WriteLine($"  theory rows passed: {passed}/{rows.Length}");
         Console.WriteLine("  xUnit: [Theory] + [InlineData]/[MemberData]；NUnit: [TestCase]");
-        Console.WriteLine("  同一逻辑多组输入，避免复制粘贴 Fact");
     }
 
     private static void DemoSetupTeardown()
@@ -70,8 +75,10 @@ internal static class WritingTestsAaaTheory
         {
             fixture.Setup();
             Debug.Assert(Directory.Exists(fixture.Path));
-            File.WriteAllText(Path.Combine(fixture.Path, "a.txt"), "hi");
-            Debug.Assert(File.Exists(Path.Combine(fixture.Path, "a.txt")));
+            string file = Path.Combine(fixture.Path, "a.txt");
+            File.WriteAllText(file, "hi");
+            Debug.Assert(File.Exists(file));
+            Debug.Assert(File.ReadAllText(file) == "hi");
             Console.WriteLine($"  setup created: {fixture.Path}");
         }
         finally
@@ -80,7 +87,6 @@ internal static class WritingTestsAaaTheory
             Debug.Assert(!Directory.Exists(fixture.Path));
             Console.WriteLine("  teardown removed temp folder");
         }
-        Console.WriteLine("  xUnit: ctor/Dispose 或 IClassFixture；NUnit: [SetUp]/[TearDown]");
     }
 
     private static void DemoNaming()
@@ -94,26 +100,33 @@ internal static class WritingTestsAaaTheory
         ];
         foreach (string n in names)
             Console.WriteLine($"  {n}");
-        Debug.Assert(names[^1].Contains('_'));
+        Debug.Assert(names.All(n => n.Contains('_', StringComparison.Ordinal)));
     }
 
     private static void DemoAssertionStyles()
     {
         Console.WriteLine("-- assertion styles --");
         int value = 42;
-        // classic
         Debug.Assert(value == 42);
-        // constraint-like message
-        if (value is < 0 or > 100)
-            throw new InvalidOperationException("out of range");
         Debug.Assert(value is >= 0 and <= 100);
-        Console.WriteLine("  优先断言有意义差异；消息写清期望 vs 实际");
-        Console.WriteLine("  FluentAssertions 等库增强可读性（可选包）");
+        // exception-style assert for educational parity with unit test frameworks
+        try
+        {
+            _ = int.Parse("not-a-number", System.Globalization.CultureInfo.InvariantCulture);
+            Debug.Assert(false, "expected FormatException");
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("  classic: Assert.Throws / try-catch FormatException OK");
+        }
     }
+
+    private static bool IsNonEmpty(string? s) => !string.IsNullOrWhiteSpace(s);
 
     private sealed class Cart
     {
         private readonly List<decimal> _prices = [];
+        public int Count => _prices.Count;
         public void Add(string _, decimal price) => _prices.Add(price);
         public decimal Total() => _prices.Sum();
     }

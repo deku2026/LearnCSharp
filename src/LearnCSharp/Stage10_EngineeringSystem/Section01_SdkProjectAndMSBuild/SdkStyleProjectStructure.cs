@@ -5,7 +5,7 @@
 // Item     : SdkStyleProjectStructure
 // Topic id : stage10/section01/sdk_style_project_structure
 //
-// SDK-style .csproj：声明式 + 默认 glob，替代旧式显式 Compile 列表。
+// SDK-style .csproj：读本仓库真实 csproj + global.json。
 
 using System.Diagnostics;
 using System.Reflection;
@@ -20,34 +20,27 @@ internal static class SdkStyleProjectStructure
     {
         _ = args;
         Console.WriteLine("=== SdkStyleProjectStructure ===");
-        DemoMinimalCsproj();
+        DemoReadRealCsproj();
         DemoSdkAttributeMeaning();
         DemoGlobVsExplicitCompile();
-        DemoAvailableSdks();
+        DemoGlobalJson();
         DemoRuntimeAssemblyEvidence();
         return 0;
     }
 
-    private static void DemoMinimalCsproj()
+    private static void DemoReadRealCsproj()
     {
-        Console.WriteLine("-- minimal modern .csproj --");
-        string[] lines =
-        [
-            """<Project Sdk="Microsoft.NET.Sdk">""",
-            "  <PropertyGroup>",
-            "    <OutputType>Exe</OutputType>",
-            "    <TargetFramework>net10.0</TargetFramework>",
-            "    <LangVersion>14.0</LangVersion>",
-            "    <Nullable>enable</Nullable>",
-            "    <ImplicitUsings>enable</ImplicitUsings>",
-            "  </PropertyGroup>",
-            "</Project>",
-        ];
-        foreach (string line in lines)
-            Console.WriteLine($"  {line}");
-        Debug.Assert(lines.Any(l => l.Contains("Microsoft.NET.Sdk", StringComparison.Ordinal)));
-        Debug.Assert(lines.Any(l => l.Contains("net10.0", StringComparison.Ordinal)));
-        Console.WriteLine("  要点: 无 <Compile Include>；SDK 默认把项目目录 **/*.cs 通配进来");
+        Console.WriteLine("-- real LearnCSharp.csproj --");
+        string? root = FindRepoRoot();
+        Debug.Assert(root is not null);
+        string path = Path.Combine(root, "src", "LearnCSharp", "LearnCSharp.csproj");
+        string text = File.ReadAllText(path);
+        Debug.Assert(text.Contains("Microsoft.NET.Sdk", StringComparison.Ordinal));
+        Debug.Assert(text.Contains("OutputType", StringComparison.Ordinal));
+        Debug.Assert(text.Contains("Exe", StringComparison.Ordinal));
+        Console.WriteLine($"  path={path}");
+        Console.WriteLine("  Sdk=Microsoft.NET.Sdk; OutputType=Exe; PackageReference via CPM");
+        Console.WriteLine("  要点: 无 <Compile Include>；SDK 默认 glob **/*.cs");
     }
 
     private static void DemoSdkAttributeMeaning()
@@ -63,27 +56,26 @@ internal static class SdkStyleProjectStructure
         foreach (var (sdk, role) in sdks)
             Console.WriteLine($"  {sdk} → {role}");
         Debug.Assert(sdks[0].Sdk.EndsWith(".Sdk", StringComparison.Ordinal));
-        Console.WriteLine("  一句 Sdk 属性 ≈ 导入一整套默认 targets（编译/还原/发布）");
     }
 
     private static void DemoGlobVsExplicitCompile()
     {
         Console.WriteLine("-- SDK-style vs legacy explicit Compile --");
-        Console.WriteLine("  legacy: 每个 .cs 都要 <Compile Include=\"File.cs\" /> → 合并冲突多");
-        Console.WriteLine("  SDK: 自动 glob；可用 <Compile Remove=\"Generated/*.cs\" /> 排除");
-        Console.WriteLine("  包: packages.config → PackageReference；引用 HintPath 大幅消失");
+        Console.WriteLine("  legacy: 每个 .cs 都要 <Compile Include=\"File.cs\" />");
+        Console.WriteLine("  SDK: 自动 glob；可用 <Compile Remove=...> 排除");
         string[] painPoints = ["explicit Compile list", "HintPath hell", "packages.config dual source"];
         Debug.Assert(painPoints.Length == 3);
-        Console.WriteLine($"  SDK-style 解决的痛点数: {painPoints.Length}");
     }
 
-    private static void DemoAvailableSdks()
+    private static void DemoGlobalJson()
     {
-        Console.WriteLine("-- 🔶 C++ 对照 --");
-        Console.WriteLine("  .csproj ≈ CMakeLists，但 MSBuild 直接执行脚本（无 generate 一步）");
-        Console.WriteLine("  默认 glob 源文件：CMake 官方不推荐 file(GLOB)，.NET SDK 则推荐");
-        Console.WriteLine("  无头文件：assembly 自带 metadata，不用 .h/.cpp 双轨");
-        Debug.Assert("assembly".Length > 0);
+        Console.WriteLine("-- real global.json pins SDK --");
+        string? root = FindRepoRoot();
+        Debug.Assert(root is not null);
+        string text = File.ReadAllText(Path.Combine(root, "global.json"));
+        Debug.Assert(text.Contains("sdk", StringComparison.OrdinalIgnoreCase));
+        Debug.Assert(text.Contains("10.0", StringComparison.Ordinal));
+        Console.WriteLine($"  global.json: {text.ReplaceLineEndings(" ").Trim()}");
     }
 
     private static void DemoRuntimeAssemblyEvidence()
@@ -93,6 +85,23 @@ internal static class SdkStyleProjectStructure
         Console.WriteLine($"  AssemblyName={asm.GetName().Name}");
         Console.WriteLine($"  Location={(string.IsNullOrEmpty(asm.Location) ? "(empty/single-file)" : Path.GetFileName(asm.Location))}");
         Console.WriteLine($"  Framework={System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription}");
-        Debug.Assert(asm.GetName().Name is not null);
+        Debug.Assert(asm.GetName().Name is "LearnCSharp");
+    }
+
+    private static string? FindRepoRoot()
+    {
+        foreach (string start in new[] { Environment.CurrentDirectory, AppContext.BaseDirectory })
+        {
+            DirectoryInfo? dir = new(start);
+            while (dir is not null)
+            {
+                if (File.Exists(Path.Combine(dir.FullName, "global.json"))
+                    && File.Exists(Path.Combine(dir.FullName, "Directory.Build.props")))
+                    return dir.FullName;
+                dir = dir.Parent;
+            }
+        }
+
+        return null;
     }
 }

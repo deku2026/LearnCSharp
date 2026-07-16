@@ -23,6 +23,7 @@ internal static class PackageReferenceBasics
         DemoDeclarePackage();
         DemoNotHeaderFiles();
         DemoRestoreGraph();
+        DemoReadRealNuGetConfig();
         DemoProjectReferenceVsPackage();
         DemoCli();
         return 0;
@@ -42,6 +43,35 @@ internal static class PackageReferenceBasics
             Console.WriteLine($"  {line}");
         Debug.Assert(xml.Any(l => l.Contains("PackageReference", StringComparison.Ordinal)));
         Console.WriteLine("  Include=包 ID；Version=直接依赖版本（CPM 下可省略）");
+    }
+
+    private static void DemoReadRealNuGetConfig()
+    {
+        Console.WriteLine("-- real NuGet.config in this repo --");
+        string? root = FindRepoRoot();
+        Debug.Assert(root is not null);
+        string path = Path.Combine(root, "NuGet.config");
+        string text = File.ReadAllText(path);
+        Debug.Assert(text.Contains("packageSources", StringComparison.OrdinalIgnoreCase));
+        Debug.Assert(text.Contains("nuget.org", StringComparison.OrdinalIgnoreCase));
+        Console.WriteLine($"  path={path}; has nuget.org source");
+    }
+
+    private static string? FindRepoRoot()
+    {
+        foreach (string start in new[] { Environment.CurrentDirectory, AppContext.BaseDirectory })
+        {
+            DirectoryInfo? dir = new(start);
+            while (dir is not null)
+            {
+                if (File.Exists(Path.Combine(dir.FullName, "NuGet.config"))
+                    && File.Exists(Path.Combine(dir.FullName, "global.json")))
+                    return dir.FullName;
+                dir = dir.Parent;
+            }
+        }
+
+        return null;
     }
 
     private static void DemoNotHeaderFiles()
