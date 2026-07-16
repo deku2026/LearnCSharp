@@ -34,7 +34,7 @@ internal static class NativeAot
         Console.WriteLine("  publish 时编译为单一（或少量）原生可执行文件");
         Console.WriteLine("  无 JIT、无 IL 运行时解释；GC 仍在（原生运行时）");
         Console.WriteLine("  启动快、部署简单、体积通常小于完整 SCD");
-        Debug.Assert(true);
+        Debug.Assert(OperatingSystem.IsWindows() || OperatingSystem.IsLinux() || OperatingSystem.IsMacOS());
     }
 
     private static void DemoEnableAndOutput()

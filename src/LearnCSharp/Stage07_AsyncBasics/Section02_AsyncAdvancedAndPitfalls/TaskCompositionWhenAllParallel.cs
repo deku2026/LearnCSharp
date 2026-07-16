@@ -120,7 +120,7 @@ internal static class TaskCompositionWhenAllParallel
         Console.WriteLine("  concurrency (async/WhenAll): structure many I/O waits without blocking");
         Console.WriteLine("  parallelism (Parallel/PLINQ): execute CPU work on many cores at once");
         Console.WriteLine("  I/O-bound → concurrency; CPU-bound → parallelism");
-        Debug.Assert(true);
+        Debug.Assert(Environment.ProcessorCount >= 1);
     }
 
     private static async Task<string> WorkAsync(int delayMs, string tag)

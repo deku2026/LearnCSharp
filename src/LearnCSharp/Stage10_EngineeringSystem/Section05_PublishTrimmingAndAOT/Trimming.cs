@@ -34,7 +34,7 @@ internal static class Trimming
         Console.WriteLine("  从应用 + 框架程序集中删除静态分析认为不可达的 IL");
         Console.WriteLine("  目标: 更小 self-contained / 更快加载");
         Console.WriteLine("  分析是静态的：看不到字符串反射、插件扫描等动态根");
-        Debug.Assert(true);
+        Debug.Assert(typeof(string).Assembly.GetName().Name is not null);
     }
 
     private static void DemoEnable()

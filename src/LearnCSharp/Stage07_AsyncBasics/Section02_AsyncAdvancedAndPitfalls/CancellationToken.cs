@@ -96,7 +96,7 @@ internal static class CancellationTokenTopic
         Console.WriteLine("  None never cancels; runtime does not force-stop work");
         Console.WriteLine("  you must pass token + check/throw; prefer over Thread.Abort");
         Console.WriteLine("  ≈ C++20 std::stop_token / std::stop_source");
-        Debug.Assert(true);
+        Debug.Assert(CancellationToken.None.CanBeCanceled is false);
     }
 
     private static async Task SlowWorkAsync(CancellationToken token)

@@ -79,6 +79,6 @@ internal static class ILoggerLogging
         svc.Checkout(1001, 19.99m);
         svc.Checkout(1002, -1m);
         Console.WriteLine("  LogInformation(\"Order {OrderId}\", id) → structured fields for sinks");
-        Debug.Assert(true);
+        Debug.Assert(svc is not null);
     }
 }

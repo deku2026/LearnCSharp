@@ -34,7 +34,7 @@ internal static class AsyncNotThreadIoVsCpu
         int after = Environment.CurrentManagedThreadId;
         Console.WriteLine($"  thread before delay: {before}, after continuation: {after}");
         Console.WriteLine("  official rule: async/await keywords do not cause extra threads to be created");
-        Debug.Assert(true);
+        Debug.Assert(before > 0 && after > 0);
     }
 
     private static async Task DemoIoBoundStyle()

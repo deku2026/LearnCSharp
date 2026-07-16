@@ -34,7 +34,7 @@ internal static class ReadyToRunR2R
         Console.WriteLine("  发布时把部分方法编译成平台原生代码嵌进程序集");
         Console.WriteLine("  启动时少做 JIT → 冷启动更好");
         Console.WriteLine("  仍是 CoreCLR：可再 JIT、可反射、有 GC");
-        Debug.Assert(true);
+        Debug.Assert(System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription.Contains(".NET"));
     }
 
     private static void DemoVsJitAndAot()

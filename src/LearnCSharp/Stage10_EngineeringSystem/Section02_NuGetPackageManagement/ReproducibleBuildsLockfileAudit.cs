@@ -35,7 +35,8 @@ internal static class ReproducibleBuildsLockfileAudit
         Console.WriteLine("  无锁文件: 今天解析到 1.2.3，明天源上出现 1.2.4 可能静默变化");
         Console.WriteLine("  有锁文件: 精确图 + 内容哈希 → CI 与本地一致");
         Console.WriteLine("  可复现 ≠ 确定性编译全部细节，但依赖闭包必须钉死");
-        Debug.Assert(true);
+        string? root = FindRepoRoot();
+        Debug.Assert(root is not null && File.Exists(Path.Combine(root, "Directory.Packages.props")));
     }
 
     private static void DemoLockFile()
@@ -89,5 +90,22 @@ internal static class ReproducibleBuildsLockfileAudit
         Debug.Assert(hash.Length == 64);
         Console.WriteLine($"  SHA256 demo: {hash[..16]}…");
         Console.WriteLine("  锁文件记录包内容哈希，防同版本不同内容");
+    }
+
+    private static string? FindRepoRoot()
+    {
+        string? dir = AppContext.BaseDirectory;
+        while (dir is not null)
+        {
+            if (File.Exists(Path.Combine(dir, "Directory.Packages.props"))
+                && File.Exists(Path.Combine(dir, "LearnCSharp.slnx")))
+            {
+                return dir;
+            }
+
+            dir = Directory.GetParent(dir)?.FullName;
+        }
+
+        return null;
     }
 }

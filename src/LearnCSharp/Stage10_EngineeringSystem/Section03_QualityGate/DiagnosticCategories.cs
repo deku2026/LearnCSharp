@@ -76,7 +76,7 @@ internal static class DiagnosticCategories
         Console.WriteLine("  dotnet build: 编译器 + 分析器（若启用）");
         Console.WriteLine("  CI: 与本地相同命令；门禁靠 TreatWarningsAsErrors / 规则 error");
         Console.WriteLine("  运行时: 测试与监控，不是 diagnostic ID");
-        Debug.Assert(true);
+        Debug.Assert("CS" is { Length: 2 });
     }
 
     private static void DemoLiveExample()

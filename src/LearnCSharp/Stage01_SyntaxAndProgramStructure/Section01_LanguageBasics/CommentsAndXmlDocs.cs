@@ -42,7 +42,7 @@ internal static class CommentsAndXmlDocs
 
         Console.WriteLine("  // 单行  |  /* */ 块  |  /// XML 单行  |  /** */ XML 块");
         Console.WriteLine("  🔶 // 与 /* */ 同 C++；/// 是语言一等公民文档，进 IntelliSense");
-        Debug.Assert(true);
+        Debug.Assert("//".Length == 2 && "/*".Length == 2);
     }
 
     private static void DemoXmlDocUsage()

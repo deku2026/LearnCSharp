@@ -33,7 +33,7 @@ internal static class EditorConfigRules
         Console.WriteLine("-- .editorconfig is cross-IDE --");
         Console.WriteLine("  层级: 从文件目录向上合并，root=true 停止");
         Console.WriteLine("  管: 缩进/换行/字符集 + C# 风格 + 诊断严重性");
-        Debug.Assert(true);
+        Debug.Assert(File.Exists(Path.Combine(FindRepoRoot(), ".editorconfig")));
     }
 
     private static void DemoReadRealEditorConfig()

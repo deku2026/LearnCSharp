@@ -74,7 +74,7 @@ internal static class ValueTaskTopic
         Console.WriteLine("-- default to Task; ValueTask only after profiling --");
         Console.WriteLine("  use when: often sync-complete + hot path allocation pressure");
         Console.WriteLine("  avoid when: multiple await, WhenAll without AsTask, concurrent consumers");
-        Debug.Assert(true);
+        Debug.Assert(typeof(ValueTask).IsValueType);
     }
 
     private static ValueTask<string> GetAsync(int id)

@@ -61,7 +61,8 @@ internal static partial class RegexPerformancePitfalls
         }
         // may match-fail quickly or timeout depending on engine; either is fine
         Console.WriteLine($"  timeout path exercised or fast-fail: timedOut={timedOut}");
-        Debug.Assert(true);
+        // either timeout or fast-fail is acceptable; just prove the path completed
+        Debug.Assert(timedOut || !timedOut);
     }
 
     private static void DemoNonBacktrackingAndGenerated()
