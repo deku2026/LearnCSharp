@@ -42,7 +42,8 @@ internal static class ParameterModifiers
     private static void DemoOut()
     {
         Console.WriteLine("-- out --");
-        Debug.Assert(TryParsePositive("42", out int n));
+        bool ok = TryParsePositive("42", out int n);
+        Debug.Assert(ok);
         Debug.Assert(n == 42);
         Debug.Assert(!TryParsePositive("-1", out _));
         Console.WriteLine($"  TryParsePositive(\"42\")={n}");

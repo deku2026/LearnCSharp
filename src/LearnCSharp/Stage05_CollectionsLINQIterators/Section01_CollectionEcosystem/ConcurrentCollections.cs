@@ -51,7 +51,8 @@ internal static class ConcurrentCollections
         ConcurrentStack<int> s = new();
         s.Push(10);
         s.Push(20);
-        Debug.Assert(s.TryPop(out int y) && y == 20);
+        bool popped = s.TryPop(out int y);
+        Debug.Assert(popped && y == 20);
 
         ConcurrentBag<int> bag = [1, 2, 3];
         Debug.Assert(bag.Count == 3);

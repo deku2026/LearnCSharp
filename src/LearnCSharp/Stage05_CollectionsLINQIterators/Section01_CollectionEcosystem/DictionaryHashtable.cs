@@ -81,7 +81,8 @@ internal static class DictionaryHashtable
         {
             [new PointKey(1, 2)] = "origin-ish",
         };
-        Debug.Assert(map.TryGetValue(new PointKey(1, 2), out string? v) && v == "origin-ish");
+        bool found = map.TryGetValue(new PointKey(1, 2), out string? v);
+        Debug.Assert(found && v == "origin-ish");
         Console.WriteLine($"  PointKey(1,2) → {v}");
     }
 

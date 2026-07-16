@@ -133,7 +133,8 @@ internal static class CSharp14Features
 
         // 隐式类型 + 修饰符（C#14）
         TryParseHandler tryParse = (string s, out int v) => int.TryParse(s, out v);
-        Debug.Assert(tryParse("42", out int parsed) && parsed == 42);
+        bool parsedOk = tryParse("42", out int parsed);
+        Debug.Assert(parsedOk && parsed == 42);
         Console.WriteLine($"  ref lambda n={n}, tryParse={parsed}");
     }
 
