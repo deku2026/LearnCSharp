@@ -23,6 +23,7 @@ internal static class Events
         DemoStandardPattern();
         DemoCustomAccessors();
         DemoUnsubscribeRequiresSameInstance();
+        DemoStrongRefLeakThenUnsubscribe();
         return 0;
     }
 
@@ -88,10 +89,63 @@ internal static class Events
         Console.WriteLine("  save handler ref to unsubscribe successfully");
     }
 
+    private static void DemoStrongRefLeakThenUnsubscribe()
+    {
+        Console.WriteLine("-- 强引用泄漏：长寿 publisher 通过 event 钉住短命 subscriber --");
+        // publisher 的委托链持有 (target=subscriber, method=OnClick)
+        // → subscriber 局部死后仍无法被 GC，直到 -= 退订
+        // NoInlining 防止 JIT 把 subscriber 存活期拉长到方法末尾
+        var publisher = new Button();
+        WeakReference weak = SubscribeThenDropLocal(publisher);
+        Debug.Assert(publisher.SubscriberCount == 1);
+
+        ForceFullGc();
+        Debug.Assert(weak.IsAlive);
+        Console.WriteLine($"  订阅中 GC 后 still alive={weak.IsAlive}（event 强引用）");
+
+        publisher.ClearSubscribers();
+        Debug.Assert(publisher.SubscriberCount == 0);
+        ForceFullGc();
+        Debug.Assert(!weak.IsAlive);
+        Console.WriteLine($"  退订后 GC → alive={weak.IsAlive}（可回收）");
+        GC.KeepAlive(publisher);
+    }
+
+    [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+    private static WeakReference SubscribeThenDropLocal(Button publisher)
+    {
+        var subscriber = new CountingSubscriber();
+        var weak = new WeakReference(subscriber);
+        publisher.Clicked += subscriber.OnClick;
+        publisher.SimulateClick();
+        Debug.Assert(subscriber.Hits == 1);
+        return weak;
+    }
+
+    private static void ForceFullGc()
+    {
+        GC.Collect(2, GCCollectionMode.Forced, blocking: true, compacting: true);
+        GC.WaitForPendingFinalizers();
+        GC.Collect(2, GCCollectionMode.Forced, blocking: true, compacting: true);
+    }
+
+    private sealed class CountingSubscriber
+    {
+        public int Hits { get; private set; }
+        public void OnClick(object? sender, EventArgs e) => Hits++;
+    }
+
     private sealed class Button
     {
         public event EventHandler? Clicked;
         public void SimulateClick() => Clicked?.Invoke(this, EventArgs.Empty);
+        public int SubscriberCount => Clicked?.GetInvocationList().Length ?? 0;
+        public void ClearSubscribers()
+        {
+            if (Clicked is null) return;
+            foreach (Delegate d in Clicked.GetInvocationList())
+                Clicked -= (EventHandler)d;
+        }
     }
 
     private sealed class TemperatureChangedEventArgs : EventArgs

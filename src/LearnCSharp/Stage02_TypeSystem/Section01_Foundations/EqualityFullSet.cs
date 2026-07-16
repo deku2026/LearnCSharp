@@ -93,7 +93,25 @@ internal static class EqualityFullSet
         var other = new BrokenPoint(1, 2);
         Debug.Assert(broken.Equals(other));
         // GetHashCode 仍是默认引用哈希 → 通常不同
-        Console.WriteLine($"  Broken Equals={broken.Equals(other)}, hash equal?={broken.GetHashCode() == other.GetHashCode()}（常为 false）");
+        bool sameHash = broken.GetHashCode() == other.GetHashCode();
+        Console.WriteLine($"  Broken Equals={broken.Equals(other)}, hash equal?={sameHash}（常为 false）");
+
+        // Dictionary 用 GetHashCode 选桶，再用 Equals 确认：
+        // 键入 new BrokenPoint(1,2) 后用另一个相等实例查找 → 常找不到
+        var map = new Dictionary<BrokenPoint, string> { [broken] = "found" };
+        bool lookupOk = map.TryGetValue(other, out string? value);
+        Debug.Assert(map.ContainsKey(broken)); // 同一引用通常能命中
+        // 值相等但哈希不同 → 查找失败（若碰巧哈希碰撞相同则可能命中，故用“坏实现”教学）
+        if (!sameHash)
+        {
+            Debug.Assert(!lookupOk);
+            Debug.Assert(value is null);
+            Console.WriteLine("  Dictionary 查找另一相等实例失败（坏 GetHashCode）");
+        }
+        else
+        {
+            Console.WriteLine("  （罕见：默认哈希碰巧相同，查找可能仍成功——仍属未定义可靠行为）");
+        }
         Console.WriteLine("  铁律：Equals 与 GetHashCode 必须成对；相等 → 哈希相同");
     }
 

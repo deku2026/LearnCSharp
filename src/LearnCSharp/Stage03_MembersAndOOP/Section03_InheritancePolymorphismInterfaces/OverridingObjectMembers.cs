@@ -5,7 +5,7 @@
 // Item     : OverridingObjectMembers
 // Topic id : stage03/section03/overriding_object_members
 //
-// 步骤 5：ToString / Equals / GetHashCode 成对重写；record 自动生成。
+// 步骤 5：ToString / Equals / GetHashCode + IEquatable + ==/!=；record 自动生成。
 
 using System.Diagnostics;
 using LearnCSharp.Topics;
@@ -20,6 +20,7 @@ internal static class OverridingObjectMembers
         _ = args;
         Console.WriteLine("=== OverridingObjectMembers ===");
         DemoToStringEqualsHashCode();
+        DemoIEquatableAndOperators();
         DemoDictionaryKey();
         DemoRecordAutoOverrides();
         DemoGetTypeNonVirtual();
@@ -39,6 +40,27 @@ internal static class OverridingObjectMembers
         Console.WriteLine($"  a={a}, a.Equals(b)={a.Equals(b)}");
     }
 
+    private static void DemoIEquatableAndOperators()
+    {
+        Console.WriteLine("-- IEquatable<T> + == / != --");
+        var a = new Money(10m, "USD");
+        var b = new Money(10m, "USD");
+        var c = new Money(20m, "USD");
+        IEquatable<Money> eq = a;
+        Debug.Assert(eq.Equals(b));
+        Debug.Assert(a == b);
+        Debug.Assert(a != c);
+        Debug.Assert(!(a != b));
+        Debug.Assert(a != null);
+        Debug.Assert(null != a);
+        Money? n = null;
+        Debug.Assert(n == null);
+        Debug.Assert(!(a == null));
+        // 强类型 Equals 避免装箱（struct 场景更明显；此处 class 也走 IEquatable 路径）
+        Debug.Assert(a.Equals(b));
+        Console.WriteLine($"  a==b={a == b}, a!=c={a != c}, null 比较安全");
+    }
+
     private static void DemoDictionaryKey()
     {
         Console.WriteLine("-- 作 Dictionary key --");
@@ -52,7 +74,7 @@ internal static class OverridingObjectMembers
 
     private static void DemoRecordAutoOverrides()
     {
-        Console.WriteLine("-- record 自动 ToString/Equals/GetHashCode --");
+        Console.WriteLine("-- record 自动 ToString/Equals/GetHashCode/== --");
         var p1 = new PointRec(1, 2);
         var p2 = new PointRec(1, 2);
         Debug.Assert(p1 == p2);
@@ -69,7 +91,7 @@ internal static class OverridingObjectMembers
         Console.WriteLine($"  GetType={o.GetType().Name}");
     }
 
-    private sealed class Money
+    private sealed class Money : IEquatable<Money>
     {
         public decimal Amount { get; }
         public string Currency { get; }
@@ -77,10 +99,21 @@ internal static class OverridingObjectMembers
 
         public override string ToString() => $"{Amount} {Currency}";
 
-        public override bool Equals(object? obj) =>
-            obj is Money m && Amount == m.Amount && Currency == m.Currency;
+        public bool Equals(Money? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Amount == other.Amount && Currency == other.Currency;
+        }
+
+        public override bool Equals(object? obj) => Equals(obj as Money);
 
         public override int GetHashCode() => HashCode.Combine(Amount, Currency);
+
+        public static bool operator ==(Money? left, Money? right) =>
+            left is null ? right is null : left.Equals(right);
+
+        public static bool operator !=(Money? left, Money? right) => !(left == right);
     }
 
     private sealed record PointRec(int X, int Y);

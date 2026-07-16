@@ -5,9 +5,16 @@
 // Item     : ResourceManagementIDisposableUsing
 // Topic id : stage03/section04/resource_management_idisposable_using
 //
-// 步骤 5：IDisposable/using、IAsyncDisposable、Dispose 模式、终结器安全网。
+// 步骤 5：IDisposable/using、IAsyncDisposable、Dispose 模式、SafeHandle、终结器安全网。
+//
+// 🔶 C++ RAII 对照：
+//   C++ 靠析构函数确定性释放（作用域结束即 ~T()）。
+//   C# 无确定性析构：GC 回收时间不确定；确定性释放靠 IDisposable + using（≈ 显式 RAII）。
+//   终结器 (~T) 只是非托管资源的安全网，绝非 C++ 析构的等价物。
+//   Deconstruct(out ...) 是模式匹配/元组拆解语法，与终结器毫无关系。
 
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Text;
 using LearnCSharp.Topics;
 
@@ -21,9 +28,12 @@ internal static class ResourceManagementIDisposableUsing
         _ = args;
         Console.WriteLine("=== ResourceManagementIDisposableUsing ===");
         DemoUsingStatementAndDeclaration();
+        DemoDisposeOrderLifo();
         DemoDisposeOnException();
         DemoAsyncDisposable();
         DemoFullDisposePattern();
+        DemoSafeHandleLike();
+        DemoDeconstructIsNotFinalizer();
         return 0;
     }
 
@@ -43,6 +53,23 @@ internal static class ResourceManagementIDisposableUsing
         Debug.Assert(r2.Content == "hi");
         // 作用域结束时 Dispose
         Console.WriteLine($"  disposed after block={disposed} (will +1 at scope end)");
+    }
+
+    private static void DemoDisposeOrderLifo()
+    {
+        Console.WriteLine("-- Dispose 顺序：嵌套 using 逆序（LIFO，像栈） --");
+        var order = new List<string>();
+        using (var outer = new TrackedResource(() => order.Add("outer")))
+        using (var inner = new TrackedResource(() => order.Add("inner")))
+        {
+            outer.Write("o");
+            inner.Write("i");
+            Debug.Assert(order.Count == 0);
+        }
+        // 先 inner 后 outer（与声明顺序相反）
+        Debug.Assert(order.Count == 2);
+        Debug.Assert(order[0] == "inner" && order[1] == "outer");
+        Console.WriteLine($"  dispose order: {string.Join(" → ", order)}");
     }
 
     private static void DemoDisposeOnException()
@@ -89,7 +116,37 @@ internal static class ResourceManagementIDisposableUsing
             n.Touch();
         }
         Debug.Assert(unmanagedReleases == 1);
-        Console.WriteLine($"  unmanaged released={unmanagedReleases}");
+        Console.WriteLine($"  unmanaged released={unmanagedReleases}（Dispose 路径调 SuppressFinalize，避免终结器再跑）");
+    }
+
+    private static void DemoSafeHandleLike()
+    {
+        Console.WriteLine("-- SafeHandle 迷你演示（可靠释放非托管句柄） --");
+        // SafeHandle 是 CLR 对“句柄 + 临界终结”的标准封装：
+        // Dispose → ReleaseHandle；若忘记 Dispose，critical finalizer 仍会释放。
+        int releases = 0;
+        using (var h = new DemoSafeHandle(() => releases++))
+        {
+            Debug.Assert(!h.IsInvalid);
+            Debug.Assert(!h.IsClosed);
+            Console.WriteLine($"  handle={h.DangerousGetHandle()} IsInvalid={h.IsInvalid}");
+        }
+        Debug.Assert(releases == 1);
+        Debug.Assert(releases == 1); // 仅释放一次
+        Console.WriteLine($"  ReleaseHandle 调用次数={releases}（using 结束确定性释放）");
+    }
+
+    private static void DemoDeconstructIsNotFinalizer()
+    {
+        Console.WriteLine("-- Deconstruct ≠ 终结器（~T） --");
+        // Deconstruct：编译器用于 (x, y) = p 与位置模式；与资源释放无关
+        var p = new Coord(3, 4);
+        p.Deconstruct(out int x, out int y);
+        Debug.Assert(x == 3 && y == 4);
+        (int a, int b) = p;
+        Debug.Assert(a == 3 && b == 4);
+        // 终结器 ~T：GC 回收前的安全网，时间不确定；Dispose 路径应 GC.SuppressFinalize
+        Console.WriteLine("  Deconstruct = 拆解语法；~T = GC 安全网；IDisposable = 确定性释放");
     }
 
     private sealed class TrackedResource : IDisposable
@@ -158,5 +215,34 @@ internal static class ResourceManagementIDisposableUsing
         }
 
         ~NativeLikeResource() => Dispose(false);
+    }
+
+    /// <summary>教学用 SafeHandle：用递增假句柄演示 ReleaseHandle + 所有权。</summary>
+    private sealed class DemoSafeHandle : SafeHandle
+    {
+        private static int s_next = 1;
+        private readonly Action _onRelease;
+
+        public DemoSafeHandle(Action onRelease)
+            : base(invalidHandleValue: IntPtr.Zero, ownsHandle: true)
+        {
+            _onRelease = onRelease;
+            SetHandle(new IntPtr(Interlocked.Increment(ref s_next)));
+        }
+
+        public override bool IsInvalid => handle == IntPtr.Zero;
+
+        protected override bool ReleaseHandle()
+        {
+            _onRelease();
+            return true;
+        }
+    }
+
+    private readonly struct Coord(int x, int y)
+    {
+        public int X { get; } = x;
+        public int Y { get; } = y;
+        public void Deconstruct(out int x, out int y) => (x, y) = (X, Y);
     }
 }

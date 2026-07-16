@@ -8,6 +8,7 @@
 // 步骤 2：Hello World 逐字解剖——类/静态方法/字面值/分号 + 编译器合成入口。
 
 using System.Diagnostics;
+using System.Reflection;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage01.Section01;
@@ -22,6 +23,7 @@ internal static class HelloWorldDissection
         DemoOneLinerParts();
         DemoImplicitUsings();
         DemoCompilerSynthesis();
+        DemoAssemblyEntryPoint();
         DemoIlIntuition();
         return 0;
     }
@@ -75,6 +77,20 @@ internal static class HelloWorldDissection
         string synthesizedEntry = "<Main>$";
         Debug.Assert(synthesizedClass == "Program");
         Debug.Assert(synthesizedEntry.Contains("Main", StringComparison.Ordinal));
+    }
+
+    private static void DemoAssemblyEntryPoint()
+    {
+        Console.WriteLine("-- 反射：本程序集入口点名 --");
+        // 顶级语句 → 合成 <Main>$；显式 static void/int Main → "Main"
+        Assembly asm = typeof(HelloWorldDissection).Assembly;
+        MethodInfo? entry = asm.EntryPoint;
+        Debug.Assert(entry is not null);
+        Debug.Assert(entry.IsStatic);
+        Debug.Assert(entry.Name is "Main" or "<Main>$" || entry.Name.Contains("Main", StringComparison.Ordinal));
+        Console.WriteLine($"  EntryPoint: {entry.DeclaringType?.FullName}.{entry.Name}");
+        Console.WriteLine($"  ReturnType={entry.ReturnType.Name}; params={entry.GetParameters().Length}");
+        Debug.Assert(entry.ReturnType == typeof(void) || entry.ReturnType == typeof(int) || entry.ReturnType == typeof(Task) || entry.ReturnType == typeof(Task<int>));
     }
 
     private static void DemoIlIntuition()

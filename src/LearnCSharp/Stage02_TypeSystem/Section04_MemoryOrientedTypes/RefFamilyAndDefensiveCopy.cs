@@ -20,6 +20,7 @@ internal static class RefFamilyAndDefensiveCopy
         _ = args;
         Console.WriteLine("=== RefFamilyAndDefensiveCopy ===");
         DemoRefParameter();
+        DemoOutParameter();
         DemoInAndRefReadonly();
         DemoRefReturn();
         DemoDefensiveCopy();
@@ -38,6 +39,25 @@ internal static class RefFamilyAndDefensiveCopy
         Move(ref p, 10, 0);
         Debug.Assert(p.X == 11);
         Console.WriteLine($"  ref int → {x}; ref Point → ({p.X},{p.Y})");
+    }
+
+    private static void DemoOutParameter()
+    {
+        Console.WriteLine("-- out：调用前可不赋值；方法内必须 definite assignment --");
+        // out 参数在调用处视为“未初始化输出槽”，方法返回前必须全部赋值路径写满
+        TryParsePositive("42", out int n);
+        Debug.Assert(n == 42);
+        bool fail = TryParsePositive("x", out int bad);
+        Debug.Assert(!fail);
+        Debug.Assert(bad == 0); // 失败路径也写了 out（约定清零）
+
+        SplitName("Ada Lovelace", out string first, out string last);
+        Debug.Assert(first == "Ada" && last == "Lovelace");
+
+        // int unassigned; Use(ref unassigned); // ref 要求调用前已赋值
+        // out 允许：
+        DiscardOut(out _);
+        Console.WriteLine($"  TryParsePositive(\"42\")={n}; SplitName → {first} {last}");
     }
 
     private static void DemoInAndRefReadonly()
@@ -105,6 +125,33 @@ internal static class RefFamilyAndDefensiveCopy
         p.X += dx;
         p.Y += dy;
     }
+
+    private static bool TryParsePositive(string text, out int value)
+    {
+        // 编译器强制：所有返回路径必须给 value 赋值
+        if (int.TryParse(text, out int parsed) && parsed > 0)
+        {
+            value = parsed;
+            return true;
+        }
+        value = 0;
+        return false;
+    }
+
+    private static void SplitName(string full, out string first, out string last)
+    {
+        int sp = full.IndexOf(' ');
+        if (sp < 0)
+        {
+            first = full;
+            last = "";
+            return;
+        }
+        first = full[..sp];
+        last = full[(sp + 1)..];
+    }
+
+    private static void DiscardOut(out int sink) => sink = 0;
 
     private static int SumIn(in BigPayload p) => p.A + p.B + p.C + p.D;
 

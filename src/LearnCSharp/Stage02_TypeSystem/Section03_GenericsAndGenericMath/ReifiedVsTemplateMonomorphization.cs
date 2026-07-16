@@ -7,7 +7,9 @@
 //
 // 步骤 3：reified 泛型 vs C++ 模板单态化——运行时类型信息与 JIT 共享/特化。
 
+using System.Collections;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage02.Section03;
@@ -45,11 +47,28 @@ internal static class ReifiedVsTemplateMonomorphization
 
     private static void DemoValueTypeNoBoxing()
     {
-        Console.WriteLine("-- 值类型 JIT 特化 → 零装箱 --");
-        var box = new Holder<int>(42);
-        Debug.Assert(box.Value == 42);
-        Debug.Assert(box.GetType().GetGenericArguments()[0] == typeof(int));
-        // List<int>/Holder<int> 按真实 int 布局操作，无需 object 盒子
+        Console.WriteLine("-- 值类型 JIT 特化 → 零装箱（可测分配） --");
+        var holder = new Holder<int>(42);
+        Debug.Assert(holder.Value == 42);
+        Debug.Assert(holder.GetType().GetGenericArguments()[0] == typeof(int));
+
+        // object[] 写入 int → 每次装箱；List<int>/int[] 写入 → 不装箱
+        long boxBytes = MeasureAlloc(static () =>
+        {
+            object[] objs = new object[64];
+            for (int i = 0; i < objs.Length; i++)
+                objs[i] = i; // box
+            Consume(objs);
+        });
+        long genericBytes = MeasureAlloc(static () =>
+        {
+            var list = new List<int>(64);
+            for (int i = 0; i < 64; i++)
+                list.Add(i); // 无装箱
+            Consume(list);
+        });
+        Debug.Assert(boxBytes > genericBytes);
+        Console.WriteLine($"  object[] 装箱分配≈{boxBytes}B；List<int> 添加≈{genericBytes}B（含列表自身）");
         Console.WriteLine("  每个不同值类型一份特化机器码（JIT monomorphization）");
     }
 
@@ -83,8 +102,38 @@ internal static class ReifiedVsTemplateMonomorphization
         Console.WriteLine("  | 引用类型 | 代码共享 | 也单态化 |");
         Console.WriteLine("  | 运行时类型 | reified 可反射 | 擦掉 |");
         Console.WriteLine("  | 约束 | 显式 where | 鸭子/concepts |");
-        Debug.Assert(true);
+        // 可观察差异：非泛型 ArrayList.Add(int) 装箱；List<int> 不装箱
+        long arrayListBox = MeasureAlloc(static () =>
+        {
+            var al = new ArrayList(32);
+            for (int i = 0; i < 32; i++)
+                al.Add(i);
+            Consume(al);
+        });
+        long listNoBox = MeasureAlloc(static () =>
+        {
+            var list = new List<int>(32);
+            for (int i = 0; i < 32; i++)
+                list.Add(i);
+            Consume(list);
+        });
+        Debug.Assert(arrayListBox > listNoBox);
+        Console.WriteLine($"  ArrayList 装箱≈{arrayListBox}B vs List<int>≈{listNoBox}B");
     }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static long MeasureAlloc(Action action)
+    {
+        // 预热一次，降低 JIT 干扰
+        action();
+        long before = GC.GetAllocatedBytesForCurrentThread();
+        action();
+        long after = GC.GetAllocatedBytesForCurrentThread();
+        return after - before;
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static void Consume(object o) => GC.KeepAlive(o);
 
     private static T Max<T>(T a, T b) where T : IComparable<T>
         => a.CompareTo(b) >= 0 ? a : b;

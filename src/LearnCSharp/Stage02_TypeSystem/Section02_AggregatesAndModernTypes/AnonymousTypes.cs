@@ -38,14 +38,16 @@ internal static class AnonymousTypes
 
     private static void DemoValueEquality()
     {
-        Console.WriteLine("-- 同形状同值 → Equals true --");
+        Console.WriteLine("-- 同形状同值：Equals 值相等，== 仍是引用相等 --");
         var a = new { X = 1, Y = 2 };
         var b = new { X = 1, Y = 2 };
+        Debug.Assert(!ReferenceEquals(a, b));
         Debug.Assert(a.Equals(b));
         Debug.Assert(a.GetHashCode() == b.GetHashCode());
-        // == 仍是引用比较（匿名类型未重载 ==）
-        Debug.Assert(a != b || ReferenceEquals(a, b) || true);
-        Console.WriteLine($"  Equals={a.Equals(b)}; 注意 == 默认仍比引用");
+        // 匿名类型未重载 ==/!= → 运算符走 object 引用比较
+        Debug.Assert(a != b);
+        Debug.Assert(!(a == b));
+        Console.WriteLine($"  Equals={a.Equals(b)}; a==b={a == b}（两实例 → false）");
     }
 
     private static void DemoLinqProjection()

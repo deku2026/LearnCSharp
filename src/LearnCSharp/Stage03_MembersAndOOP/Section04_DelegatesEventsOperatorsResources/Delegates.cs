@@ -23,6 +23,8 @@ internal static class Delegates
         DemoCustomDelegate();
         DemoFuncActionPredicate();
         DemoMulticast();
+        DemoMulticastThrowStopsRest();
+        DemoSafeInvokeLoop();
         DemoInvocationList();
         return 0;
     }
@@ -65,6 +67,62 @@ internal static class Delegates
         pipeline();
         Debug.Assert(sb.ToString() == "ABC");
         Console.WriteLine($"  pipeline() => {sb}");
+    }
+
+    private static void DemoMulticastThrowStopsRest()
+    {
+        Console.WriteLine("-- 多播陷阱：一个 handler 抛异常 → 后续不再执行 --");
+        var log = new StringBuilder();
+        Action chain = () => log.Append('A');
+        chain += () =>
+        {
+            log.Append('B');
+            throw new InvalidOperationException("boom-in-handler");
+        };
+        chain += () => log.Append('C'); // 不会跑到
+
+        try
+        {
+            chain(); // 直接 Invoke：异常在调用点冒出，C 被跳过
+            Debug.Assert(false, "expected throw");
+        }
+        catch (InvalidOperationException ex)
+        {
+            Debug.Assert(ex.Message == "boom-in-handler");
+        }
+
+        Debug.Assert(log.ToString() == "AB");
+        Console.WriteLine($"  log after throw-at-invoke-site='{log}'（C 未执行）");
+    }
+
+    private static void DemoSafeInvokeLoop()
+    {
+        Console.WriteLine("-- 对照：GetInvocationList 逐个 try/catch → 其余 handler 仍跑 --");
+        var log = new StringBuilder();
+        Action chain = () => log.Append('A');
+        chain += () =>
+        {
+            log.Append('B');
+            throw new InvalidOperationException("boom-in-handler");
+        };
+        chain += () => log.Append('C');
+
+        int failures = 0;
+        foreach (Delegate d in chain.GetInvocationList())
+        {
+            try
+            {
+                ((Action)d)();
+            }
+            catch (InvalidOperationException)
+            {
+                failures++;
+            }
+        }
+
+        Debug.Assert(failures == 1);
+        Debug.Assert(log.ToString() == "ABC");
+        Console.WriteLine($"  safe loop log='{log}', failures={failures}");
     }
 
     private static void DemoInvocationList()

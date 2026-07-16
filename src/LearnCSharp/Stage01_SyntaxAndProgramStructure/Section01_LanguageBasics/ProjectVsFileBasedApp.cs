@@ -8,6 +8,7 @@
 // 步骤 1：.csproj 项目 vs .NET 10 单文件 file-based app。
 
 using System.Diagnostics;
+using System.Reflection;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage01.Section01;
@@ -21,6 +22,7 @@ internal static class ProjectVsFileBasedApp
         Console.WriteLine("=== ProjectVsFileBasedApp ===");
         DemoProjectBasedModel();
         DemoFileBasedAppModel();
+        DemoImplicitUsingsGeneratedFile();
         DemoCppMentalModel();
         DemoCliCommands();
         return 0;
@@ -72,6 +74,40 @@ internal static class ProjectVsFileBasedApp
         Debug.Assert(directives.All(d => d.StartsWith("#:", StringComparison.Ordinal)));
     }
 
+    private static void DemoImplicitUsingsGeneratedFile()
+    {
+        Console.WriteLine("-- 行为断言：ImplicitUsings 生成 GlobalUsings.g.cs --");
+        // SDK 在 obj/{Config}/{TFM}/ 下生成 *GlobalUsings.g.cs
+        string baseDir = AppContext.BaseDirectory;
+        DirectoryInfo? dir = new DirectoryInfo(baseDir);
+        string? found = null;
+        // 从输出目录向上找 obj
+        for (int i = 0; i < 8 && dir is not null; i++, dir = dir.Parent)
+        {
+            string obj = Path.Combine(dir.FullName, "obj");
+            if (!Directory.Exists(obj)) continue;
+            found = Directory.EnumerateFiles(obj, "*GlobalUsings*.g.cs", SearchOption.AllDirectories)
+                .FirstOrDefault();
+            if (found is not null) break;
+        }
+
+        if (found is not null)
+        {
+            string text = File.ReadAllText(found);
+            Debug.Assert(text.Contains("global using", StringComparison.Ordinal));
+            Debug.Assert(text.Contains("System", StringComparison.Ordinal));
+            Console.WriteLine($"  找到 {Path.GetFileName(found)}，含 global using System");
+        }
+        else
+        {
+            // 回退：程序集已因 ImplicitUsings 解析 Console 短名；反射确认程序集身份
+            Assembly asm = typeof(ProjectVsFileBasedApp).Assembly;
+            Debug.Assert(asm.GetName().Name == "LearnCSharp");
+            Debug.Assert(typeof(Console).FullName == "System.Console");
+            Console.WriteLine("  未定位 GlobalUsings.g.cs（可能干净检出）；回退断言程序集名 + Console 全名");
+        }
+    }
+
     private static void DemoCppMentalModel()
     {
         Console.WriteLine("-- 🔶 C++ 对照 --");
@@ -82,6 +118,7 @@ internal static class ProjectVsFileBasedApp
 
         string assemblyUnit = "assembly";
         Debug.Assert(assemblyUnit is "assembly");
+        Debug.Assert(typeof(ProjectVsFileBasedApp).Assembly.GetName().Name == "LearnCSharp");
     }
 
     private static void DemoCliCommands()
