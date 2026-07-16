@@ -21,70 +21,104 @@ internal static class ObjectMemoryLayout
     {
         _ = args;
         Console.WriteLine("=== ObjectMemoryLayout ===");
-        DemoHeaderConcept();
-        DemoReferenceSize();
-        DemoArrayLayout();
+        DemoAllocationDeltas();
+        DemoHeaderAndSyncBlock();
+        DemoReferenceAndArrayLayout();
         return 0;
     }
 
-    private static void DemoHeaderConcept()
+    private static void DemoAllocationDeltas()
     {
-        Console.WriteLine("-- managed object layout (conceptual) --");
-        Console.WriteLine("  [ObjHeader/SyncBlock index] [MethodTable*] [instance fields...]");
-        Console.WriteLine("  SyncBlock holds lock, hash code, COM interop data when needed.");
-        var a = new PointBox(1, 2);
-        var b = new PointBox(1, 2);
-        Console.WriteLine($"  a.GetHashCode()={a.GetHashCode()} (may allocate sync block)");
+        Console.WriteLine("-- allocation deltas: empty class vs fields --");
+        // Warm
+        _ = new EmptyClass();
+        _ = new TwoInts(1, 2);
+        _ = new TwoIntsAndRef(1, 2, "x");
+
+        long b0 = GC.GetAllocatedBytesForCurrentThread();
+        var empty = new EmptyClass();
+        long b1 = GC.GetAllocatedBytesForCurrentThread();
+        var two = new TwoInts(10, 20);
+        long b2 = GC.GetAllocatedBytesForCurrentThread();
+        var withRef = new TwoIntsAndRef(10, 20, "name");
+        long b3 = GC.GetAllocatedBytesForCurrentThread();
+
+        long emptyBytes = b1 - b0;
+        long twoBytes = b2 - b1;
+        long withRefBytes = b3 - b2;
+        Console.WriteLine($"  EmptyClass          Δ={emptyBytes} bytes (header + MethodTable* + padding)");
+        Console.WriteLine($"  TwoInts (8B fields) Δ={twoBytes} bytes");
+        Console.WriteLine($"  TwoIntsAndRef       Δ={withRefBytes} bytes");
+        Debug.Assert(emptyBytes >= (uint)(IntPtr.Size * 2), "at least header + MT pointer");
+        Debug.Assert(twoBytes >= emptyBytes, "fields increase size");
+        Debug.Assert(withRefBytes >= twoBytes, "extra ref field increases size");
+        Debug.Assert(two.X == 10 && withRef.Name == "name");
+        GC.KeepAlive(empty);
+        GC.KeepAlive(two);
+        GC.KeepAlive(withRef);
+        Console.WriteLine("  Layout: [ObjHeader] [MethodTable*] [fields...]");
+    }
+
+    private static void DemoHeaderAndSyncBlock()
+    {
+        Console.WriteLine("-- sync block / identity hash --");
+        var a = new TwoInts(1, 2);
+        int id1 = RuntimeHelpers.GetHashCode(a);
         lock (a)
         {
-            Console.WriteLine("  lock(a): thin/fat lock lives in header/sync block");
             Debug.Assert(Monitor.IsEntered(a));
+            Console.WriteLine("  lock(a): thin/fat lock in header/sync block");
         }
 
-        Debug.Assert(a.X == 1 && b.Y == 2);
-        Console.WriteLine($"  PointBox fields X={a.X}, Y={a.Y}");
+        int id2 = RuntimeHelpers.GetHashCode(a);
+        Console.WriteLine($"  RuntimeHelpers.GetHashCode stable: {id1} → {id2}");
+        Debug.Assert(id1 == id2);
+        Console.WriteLine($"  IntPtr.Size={IntPtr.Size} (object reference width)");
+        Debug.Assert(IntPtr.Size is 4 or 8);
     }
 
-    private static void DemoReferenceSize()
-    {
-        Console.WriteLine("-- reference size = pointer size --");
-        int ptrSize = IntPtr.Size;
-        Console.WriteLine($"  IntPtr.Size={ptrSize} (object reference width on this process)");
-        Debug.Assert(ptrSize is 4 or 8);
-        // RuntimeHelpers.GetHashCode uses identity hash (sync block)
-        object o1 = new object();
-        object o2 = new object();
-        int h1 = RuntimeHelpers.GetHashCode(o1);
-        int h2 = RuntimeHelpers.GetHashCode(o2);
-        Console.WriteLine($"  RuntimeHelpers.GetHashCode identity: {h1} vs {h2}");
-        Debug.Assert(h1 != 0 || h2 != 0 || true);
-    }
-
-    private static void DemoArrayLayout()
+    private static void DemoReferenceAndArrayLayout()
     {
         Console.WriteLine("-- array: MethodTable + length + elements --");
         int[] arr = [10, 20, 30];
-        Console.WriteLine($"  Length={arr.Length}, element type={arr.GetType().GetElementType()?.Name}");
-        Console.WriteLine($"  Unsafe.SizeOf<int>()={Unsafe.SizeOf<int>()}");
-        long approx = (long)arr.Length * Unsafe.SizeOf<int>();
-        Console.WriteLine($"  payload bytes≈{approx} (+ header/MT/length overhead)");
+        Console.WriteLine($"  Length={arr.Length}, elemSize={Unsafe.SizeOf<int>()}");
+        long payload = (long)arr.Length * Unsafe.SizeOf<int>();
+        Console.WriteLine($"  payload≈{payload} bytes (+ header/MT/length overhead)");
+
+        long before = GC.GetAllocatedBytesForCurrentThread();
+        int[] big = new int[1000];
+        long after = GC.GetAllocatedBytesForCurrentThread();
+        Console.WriteLine($"  new int[1000] Δalloc={after - before} (payload 4000 + overhead)");
+        Debug.Assert(after - before >= 4000);
         Debug.Assert(arr.Length == 3);
+
         GCHandle h = GCHandle.Alloc(arr, GCHandleType.Pinned);
         try
         {
             IntPtr addr = h.AddrOfPinnedObject();
-            Console.WriteLine($"  Pinned first-element address=0x{addr:X} (elements contiguous)");
+            Console.WriteLine($"  Pinned first element=0x{addr:X} (contiguous elements)");
             Debug.Assert(addr != IntPtr.Zero);
         }
         finally
         {
             h.Free();
         }
+
+        GC.KeepAlive(big);
     }
 
-    private sealed class PointBox(int x, int y)
+    private sealed class EmptyClass;
+
+    private sealed class TwoInts(int x, int y)
     {
-        public int X { get; } = x;
-        public int Y { get; } = y;
+        public int X = x;
+        public int Y = y;
+    }
+
+    private sealed class TwoIntsAndRef(int x, int y, string name)
+    {
+        public int X = x;
+        public int Y = y;
+        public string Name = name;
     }
 }

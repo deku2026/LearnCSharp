@@ -20,50 +20,100 @@ internal static class WhyNotStopwatch
     {
         _ = args;
         Console.WriteLine("=== WhyNotStopwatch ===");
-        DemoNaiveStopwatch();
+        DemoNaiveVsMiniHarness();
         DemoPitfallsCatalog();
         DemoDeadCodeRisk();
         return 0;
     }
 
-    private static void DemoNaiveStopwatch()
+    private static void DemoNaiveVsMiniHarness()
     {
-        Console.WriteLine("-- naive Stopwatch loop (educational only; not a real benchmark) --");
+        Console.WriteLine("-- naive one-shot vs mini multi-sample harness --");
+        // Naive
         Stopwatch sw = Stopwatch.StartNew();
         long acc = 0;
         for (int i = 0; i < 10_000; i++)
             acc += Work(i);
         sw.Stop();
         Debug.Assert(acc > 0);
-        Console.WriteLine($"  10k Work calls: {sw.Elapsed.TotalMilliseconds:F3} ms, acc={acc}");
-        Console.WriteLine("  One shot + no warmup + no stats → noisy and environment-biased.");
+        Console.WriteLine($"  naive 10k: {sw.Elapsed.TotalMilliseconds:F3} ms, acc={acc}");
+
+        // Mini harness: warmup + multi sample + alloc delta (BDN-like structure)
+        MiniResult r = MiniBench.Run(
+            warmup: 2,
+            samples: 8,
+            iterations: 10_000,
+            action: static () =>
+            {
+                long a = 0;
+                for (int i = 0; i < 10_000; i++)
+                    a += Work(i);
+                return a;
+            });
+        Console.WriteLine($"  mini: mean={r.MeanMs:F3}ms median={r.MedianMs:F3} std={r.StdDevMs:F3} allocΔ/sample≈{r.AllocPerSample}");
+        Debug.Assert(r.MeanMs >= 0);
+        Debug.Assert(r.Samples.Length == 8);
+        Console.WriteLine("  Still not BDN (no process isolation / outlier rules) — but real numbers.");
     }
 
     private static void DemoPitfallsCatalog()
     {
         Console.WriteLine("-- why Stopwatch alone misleads --");
-        Console.WriteLine("  1) Debug builds: little optimization → different numbers than Release.");
-        Console.WriteLine("  2) JIT + tiered compilation: early calls may be Tier0; later Tier1.");
-        Console.WriteLine("  3) Dead-code elimination: unused results can be optimized away.");
-        Console.WriteLine("  4) GC pauses: random stalls fold into the measured interval.");
-        Console.WriteLine("  5) No stats: one sample has no Mean/Error/StdDev/outliers.");
-        Console.WriteLine("  BDN automates: Release process, warmup, overhead subtract, multi-iter stats.");
-        Console.WriteLine($"  IsDebug={Debugger.IsAttached}, ProcessorCount={Environment.ProcessorCount}");
+        Console.WriteLine("  Debug builds, tiered JIT, DCE, GC pauses, no stats, no overhead subtract.");
+        Console.WriteLine($"  IsDebugAttached={Debugger.IsAttached}, ProcessorCount={Environment.ProcessorCount}");
+        Debug.Assert(Environment.ProcessorCount >= 1);
     }
 
     private static void DemoDeadCodeRisk()
     {
-        Console.WriteLine("-- DCE risk sketch --");
-        // If result is unused, a real optimizing benchmark harness must keep it alive.
-        // BDN: return the value or Consumer.Consume(...). Google Benchmark: DoNotOptimize.
+        Console.WriteLine("-- DCE risk --");
         int kept = 0;
         for (int i = 0; i < 1000; i++)
             kept ^= Work(i);
+        Console.WriteLine($"  kept xor={kept}");
         Debug.Assert(kept != int.MinValue || kept == int.MinValue);
-        Console.WriteLine($"  kept side-effect xor={kept} (forces work to matter)");
-        Console.WriteLine("  Rule: measure only after you can prove the code ran and results survived.");
+        Console.WriteLine("  BDN: return value or Consumer.Consume to keep results live.");
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     private static int Work(int x) => (x * 17) ^ (x + 3);
+
+    private readonly struct MiniResult(double meanMs, double medianMs, double stdDevMs, long allocPerSample, double[] samples)
+    {
+        public double MeanMs { get; } = meanMs;
+        public double MedianMs { get; } = medianMs;
+        public double StdDevMs { get; } = stdDevMs;
+        public long AllocPerSample { get; } = allocPerSample;
+        public double[] Samples { get; } = samples;
+    }
+
+    private static class MiniBench
+    {
+        public static MiniResult Run(int warmup, int samples, int iterations, Func<long> action)
+        {
+            for (int w = 0; w < warmup; w++)
+                _ = action();
+
+            double[] ms = new double[samples];
+            long allocSum = 0;
+            for (int s = 0; s < samples; s++)
+            {
+                long before = GC.GetTotalAllocatedBytes(precise: true);
+                long t0 = Stopwatch.GetTimestamp();
+                long sink = action();
+                double elapsed = Stopwatch.GetElapsedTime(t0).TotalMilliseconds;
+                long after = GC.GetTotalAllocatedBytes(precise: true);
+                ms[s] = elapsed;
+                allocSum += after - before;
+                Debug.Assert(sink != long.MinValue || sink == long.MinValue);
+                _ = iterations;
+            }
+
+            Array.Sort(ms);
+            double mean = ms.Average();
+            double median = (ms[samples / 2] + ms[(samples - 1) / 2]) / 2.0;
+            double var = ms.Select(x => (x - mean) * (x - mean)).Average();
+            return new MiniResult(mean, median, Math.Sqrt(var), allocSum / samples, ms);
+        }
+    }
 }

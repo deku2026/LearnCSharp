@@ -8,11 +8,13 @@
 // Lesson: classic full recompute vs incremental pipeline + caching (IDE keystroke cost).
 
 using System.Diagnostics;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage13.Section02;
 
-internal static class ISourceGeneratorVsIncremental
+internal static partial class ISourceGeneratorVsIncremental
 {
     [LearnTopic("stage13/section02/isourcegenerator_vs_incremental")]
     internal static int Run(string[] args)
@@ -20,68 +22,72 @@ internal static class ISourceGeneratorVsIncremental
         _ = args;
         Console.WriteLine("=== ISourceGeneratorVsIncremental ===");
         DemoApiComparison();
-        DemoWhyIncremental();
-        DemoSkeletonConcept();
+        DemoWhyIncrementalMeasured();
+        DemoRealJsonContextAsGeneratedArtifact();
         return 0;
     }
 
     private static void DemoApiComparison()
     {
         Console.WriteLine("-- two generations of API --");
-        Console.WriteLine("  ISourceGenerator (.NET 5, obsolete):");
-        Console.WriteLine("    single Execute(full Compilation) — full recompute every compile");
-        Console.WriteLine("    IDE keystrokes re-run everything → lag on large solutions");
-        Console.WriteLine("  IIncrementalGenerator (Roslyn 4+, required):");
-        Console.WriteLine("    declare pipeline of providers + transforms; Roslyn caches stages");
-        Console.WriteLine("    only re-run stages whose inputs actually changed");
+        Console.WriteLine("  ISourceGenerator: full recompute every compile (obsolete)");
+        Console.WriteLine("  IIncrementalGenerator: cached pipeline stages (required)");
     }
 
-    private static void DemoWhyIncremental()
+    private static void DemoWhyIncrementalMeasured()
     {
-        Console.WriteLine("-- why incremental (simulated cache) --");
-        var cache = new Dictionary<string, string>(StringComparer.Ordinal);
-        string inputA = "class A";
-        string inputB = "class B";
+        Console.WriteLine("-- simulated cache: miss cost vs hit --");
+        var cache = new Dictionary<string, (string input, string output)>(StringComparer.Ordinal);
+        int misses = 0, hits = 0;
 
         string RunStage(string key, string input)
         {
-            if (cache.TryGetValue(key, out string? hit) && hit == input)
+            if (cache.TryGetValue(key, out var hit) && hit.input == input)
             {
-                Console.WriteLine($"  cache HIT for {key}");
-                return "cached-output";
+                hits++;
+                return hit.output;
             }
 
-            cache[key] = input;
-            Console.WriteLine($"  cache MISS for {key} → recompute");
-            return "fresh-output";
+            misses++;
+            // Fake "semantic work"
+            string output = "gen:" + input.GetHashCode(StringComparison.Ordinal);
+            cache[key] = (input, output);
+            return output;
         }
 
-        string r1 = RunStage("A", inputA);
-        string r2 = RunStage("A", inputA); // hit
-        string r3 = RunStage("B", inputB);
-        string r4 = RunStage("A", "class A changed"); // miss
-        Debug.Assert(r1 == "fresh-output" && r2 == "cached-output");
-        Debug.Assert(r3 == "fresh-output" && r4 == "fresh-output");
-        Console.WriteLine("  Unrelated edits leave other stages cached (ccache/Ninja intuition).");
+        long t0 = Stopwatch.GetTimestamp();
+        for (int i = 0; i < 1_000; i++)
+        {
+            _ = RunStage("A", "class A"); // mostly hits after first
+            _ = RunStage("B", "class B");
+            if (i % 100 == 0)
+                _ = RunStage("A", "class A v" + i); // occasional invalidation
+        }
+
+        double ms = Stopwatch.GetElapsedTime(t0).TotalMilliseconds;
+        Console.WriteLine($"  1000 iterations: hits={hits}, misses={misses}, {ms:F3}ms");
+        Debug.Assert(hits > misses);
+        Debug.Assert(misses >= 2);
+        Console.WriteLine("  Unrelated edits leave other stages cached.");
     }
 
-    private static void DemoSkeletonConcept()
+    private static void DemoRealJsonContextAsGeneratedArtifact()
     {
-        Console.WriteLine("-- minimal IIncrementalGenerator shape (educational, not a real generator project) --");
-        Console.WriteLine("  [Generator] class X : IIncrementalGenerator {");
-        Console.WriteLine("    void Initialize(IncrementalGeneratorInitializationContext ctx) {");
-        Console.WriteLine("      // 1) RegisterPostInitializationOutput → emit marker attribute");
-        Console.WriteLine("      // 2) SyntaxProvider.ForAttributeWithMetadataName → ClassInfo records");
-        Console.WriteLine("      // 3) RegisterSourceOutput → AddSource(\"{Name}.g.cs\", ...)");
-        Console.WriteLine("    }");
-        Console.WriteLine("  }");
-        Console.WriteLine("  ClassInfo must be value-equal (record) so cache comparisons work.");
-
-        ClassInfo a = new("Foo", "MyApp");
-        ClassInfo b = new("Foo", "MyApp");
-        Debug.Assert(a.Equals(b));
-        Console.WriteLine($"  sample ClassInfo equality: {a.Equals(b)}");
+        Console.WriteLine("-- real generated artifact: JsonSerializerContext --");
+        var row = new CacheRow { Key = "A", Value = 1 };
+        string json = JsonSerializer.Serialize(row, IncJsonContext.Default.CacheRow);
+        CacheRow? back = JsonSerializer.Deserialize(json, IncJsonContext.Default.CacheRow);
+        Debug.Assert(back is { Key: "A", Value: 1 });
+        Console.WriteLine($"  {json}");
+        Console.WriteLine("  STJ source gen is an incremental generator in the SDK.");
     }
 
-    private readonly record struct ClassInfo(string Name, string Namespace);
+    private sealed class CacheRow
+    {
+        public string Key { get; set; } = "";
+        public int Value { get; set; }
+    }
+
+    [JsonSerializable(typeof(CacheRow))]
+    private partial class IncJsonContext : JsonSerializerContext;
 }

@@ -21,25 +21,38 @@ internal static class WhyJitVsAot
     {
         _ = args;
         Console.WriteLine("=== WhyJitVsAot ===");
-        DemoTradeoffs();
+        DemoTradeoffsWithTiming();
         DemoRuntimeCapabilities();
         DemoHybrid();
         return 0;
     }
 
-    private static void DemoTradeoffs()
+    private static void DemoTradeoffsWithTiming()
     {
-        Console.WriteLine("-- JIT vs AOT tradeoffs --");
+        Console.WriteLine("-- JIT vs AOT tradeoffs + multi-run microbench --");
         Console.WriteLine("  JIT: CPU-specific codegen, Dynamic PGO, full reflection flexibility");
-        Console.WriteLine("  AOT: fast startup, smaller working set options, no runtime JIT cost");
-        Console.WriteLine("  AOT cost: trim/root analysis, limited dynamic code, longer publish");
-        long t0 = Stopwatch.GetTimestamp();
-        int s = 0;
-        for (int i = 0; i < 100_000; i++)
-            s += i;
-        long us = Stopwatch.GetElapsedTime(t0).Microseconds;
-        Debug.Assert(s > 0);
-        Console.WriteLine($"  micro loop sum={s}, ~{us}µs (already JIT-compiled after first call)");
+        Console.WriteLine("  AOT: fast startup, smaller options, no runtime JIT cost");
+
+        // Warmup
+        long warm = 0;
+        for (int i = 0; i < 20_000; i++)
+            warm += Work(i);
+        Debug.Assert(warm != 0);
+
+        double[] samples = new double[9];
+        long sink = 0;
+        for (int s = 0; s < samples.Length; s++)
+        {
+            long t0 = Stopwatch.GetTimestamp();
+            for (int i = 0; i < 100_000; i++)
+                sink += Work(i);
+            samples[s] = Stopwatch.GetElapsedTime(t0).TotalMilliseconds;
+        }
+
+        Array.Sort(samples);
+        Console.WriteLine($"  Work×100k median={samples[4]:F3}ms min={samples[0]:F3} max={samples[^1]:F3} sink={sink}");
+        Debug.Assert(sink != 0);
+        Debug.Assert(samples[4] >= 0);
     }
 
     private static void DemoRuntimeCapabilities()
@@ -52,13 +65,20 @@ internal static class WhyJitVsAot
         Console.WriteLine($"  IsDynamicCodeSupported={dynCode}");
         Console.WriteLine($"  IsDynamicCodeCompiled={dynCompiled}");
         Debug.Assert(RuntimeInformation.FrameworkDescription.Length > 0);
+        // On normal CoreCLR JIT host, dynamic code is supported/compiled.
+        Debug.Assert(dynCode);
+        Console.WriteLine($"  IsReferenceOrContainsReferences<Guid>={RuntimeHelpers.IsReferenceOrContainsReferences<Guid>()}");
+        Debug.Assert(!RuntimeHelpers.IsReferenceOrContainsReferences<Guid>());
     }
 
     private static void DemoHybrid()
     {
         Console.WriteLine("-- hybrid world --");
         Console.WriteLine("  R2R: pre-JIT images for faster startup, still re-JIT with tiering/PGO");
-        Console.WriteLine("  NativeAOT: full AOT, no IL JIT");
-        Console.WriteLine("  Choose per app: servers often JIT+PGO; mobile/CLI tools often AOT-friendly");
+        Console.WriteLine("  NativeAOT: full AOT, no IL JIT (IsDynamicCodeCompiled often false)");
+        Console.WriteLine("  Choose per app: servers often JIT+PGO; tools/mobile often AOT-friendly");
     }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static int Work(int i) => (i * 31) ^ (i + 7);
 }

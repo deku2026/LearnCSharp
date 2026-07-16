@@ -8,6 +8,7 @@
 // Lesson: MemoryDiagnoser / DisassemblyDiagnoser / hardware counters — shapes + local alloc demos.
 
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Text;
 using LearnCSharp.Topics;
 
@@ -21,7 +22,7 @@ internal static class DiagnosersMemoryDisasm
         _ = args;
         Console.WriteLine("=== DiagnosersMemoryDisasm ===");
         DemoDiagnoserAttributes();
-        DemoAllocContrast();
+        DemoAllocContrastMeasured();
         DemoDisasmNotes();
         return 0;
     }
@@ -29,43 +30,67 @@ internal static class DiagnosersMemoryDisasm
     private static void DemoDiagnoserAttributes()
     {
         Console.WriteLine("-- BDN diagnoser attributes (package shapes) --");
-        Console.WriteLine("  [MemoryDiagnoser]     // Gen0/1/2, Allocated bytes per op");
-        Console.WriteLine("  [DisassemblyDiagnoser] // native asm for the hot method");
-        Console.WriteLine("  [HardwareCounters(...)] // PMC if OS/CPU support (advanced)");
-        Console.WriteLine("  Compare jobs: [SimpleJob(RuntimeMoniker.Net80)] vs Net10, etc.");
-        Console.WriteLine("  MemoryDiagnoser is the default first stop for GC pressure.");
+        Console.WriteLine("  [MemoryDiagnoser] [DisassemblyDiagnoser] [HardwareCounters(...)]");
+        Console.WriteLine("  MemoryDiagnoser: Gen0/1/2 + Allocated bytes per op.");
     }
 
-    private static void DemoAllocContrast()
+    private static void DemoAllocContrastMeasured()
     {
-        Console.WriteLine("-- local alloc contrast (what MemoryDiagnoser would rank) --");
-        long beforeConcat = GC.GetTotalAllocatedBytes(precise: true);
-        string concat = "";
-        for (int i = 0; i < 50; i++)
-            concat += i.ToString();
-        long afterConcat = GC.GetTotalAllocatedBytes(precise: true);
+        Console.WriteLine("-- alloc contrast with multi-sample means (MemoryDiagnoser-like) --");
+        // Warm
+        _ = ConcatPath();
+        _ = StringBuilderPath();
 
-        long beforeSb = GC.GetTotalAllocatedBytes(precise: true);
-        StringBuilder sb = new(128);
-        for (int i = 0; i < 50; i++)
-            sb.Append(i);
-        string built = sb.ToString();
-        long afterSb = GC.GetTotalAllocatedBytes(precise: true);
+        long[] concatSamples = new long[5];
+        long[] sbSamples = new long[5];
+        for (int s = 0; s < 5; s++)
+        {
+            long b = GC.GetTotalAllocatedBytes(precise: true);
+            string c = ConcatPath();
+            concatSamples[s] = GC.GetTotalAllocatedBytes(precise: true) - b;
+            Debug.Assert(c.Length > 0);
 
-        Debug.Assert(concat.Length > 0 && built.Length > 0);
-        Console.WriteLine($"  string += loop Δalloc≈{afterConcat - beforeConcat} bytes");
-        Console.WriteLine($"  StringBuilder   Δalloc≈{afterSb - beforeSb} bytes");
+            b = GC.GetTotalAllocatedBytes(precise: true);
+            string built = StringBuilderPath();
+            sbSamples[s] = GC.GetTotalAllocatedBytes(precise: true) - b;
+            Debug.Assert(built.Length > 0);
+        }
+
+        long concatMean = (long)concatSamples.Average();
+        long sbMean = (long)sbSamples.Average();
+        Console.WriteLine($"  string += mean Δalloc≈{concatMean} bytes");
+        Console.WriteLine($"  StringBuilder mean Δalloc≈{sbMean} bytes");
+        Debug.Assert(concatMean > sbMean, "string += should allocate more than StringBuilder");
         Console.WriteLine("  BDN MemoryDiagnoser reports Gen collections + Allocated/op cleanly.");
     }
 
     private static void DemoDisasmNotes()
     {
         Console.WriteLine("-- DisassemblyDiagnoser purpose --");
-        Console.WriteLine("  Verify: inlining, bounds-check elimination, SIMD codegen, dead branches.");
-        Console.WriteLine("  Complements SharpLab / godbolt-style inspection for managed methods.");
-        Console.WriteLine("  Always pair with Release + real workload; Debug asm is not representative.");
-        int x = Environment.TickCount;
+        Console.WriteLine("  Verify inlining, BCE, SIMD, dead branches — Release only.");
+        int x = NoInlineTick();
+        Console.WriteLine($"  NoInlineTick={x}");
         Debug.Assert(x != int.MinValue || x == int.MinValue);
-        Console.WriteLine($"  tick={x} (keep process alive; no real disasm dump in this demo)");
     }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static string ConcatPath()
+    {
+        string concat = "";
+        for (int i = 0; i < 50; i++)
+            concat += i.ToString();
+        return concat;
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static string StringBuilderPath()
+    {
+        StringBuilder sb = new(128);
+        for (int i = 0; i < 50; i++)
+            sb.Append(i);
+        return sb.ToString();
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static int NoInlineTick() => Environment.TickCount;
 }

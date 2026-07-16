@@ -22,50 +22,107 @@ internal static class IlToolingAndWalkthrough
         _ = args;
         Console.WriteLine("=== IlToolingAndWalkthrough ===");
         DemoToolingList();
-        DemoWalkthrough();
-        DemoCompareReleaseDebugNote();
+        DemoWalkthroughRealIl();
+        DemoCallOpcode();
         return 0;
     }
 
     private static void DemoToolingList()
     {
-        Console.WriteLine("-- IL tooling (not run here; no external tools required) --");
-        Console.WriteLine("  ildasm / ilasm          — classic disassembler/assembler");
-        Console.WriteLine("  ILSpy / ilspycmd        — modern decompiler");
-        Console.WriteLine("  SharpLab.io             — C# ↔ IL in browser");
-        Console.WriteLine("  dotnet tool: ilspycmd, ildasm packages");
-        Console.WriteLine("  System.Reflection.Metadata — read PE tables programmatically");
+        Console.WriteLine("-- IL tooling (external; this demo uses Reflection in-process) --");
+        Console.WriteLine("  ildasm / ilasm, ILSpy / ilspycmd, SharpLab.io");
+        Console.WriteLine("  MethodBody.GetILAsByteArray + manual decode (below)");
+        Console.WriteLine("  System.Reflection.Metadata for PE tables");
     }
 
-    private static void DemoWalkthrough()
+    private static void DemoWalkthroughRealIl()
     {
-        Console.WriteLine("-- walkthrough: AbsDiff IL shape --");
-        Console.WriteLine("  int AbsDiff(int a,int b) => a>b ? a-b : b-a;");
-        Console.WriteLine("  Rough IL:");
-        Console.WriteLine("    ldarg.0 / ldarg.1 / ble.s else");
-        Console.WriteLine("    ldarg.0 / ldarg.1 / sub / ret");
-        Console.WriteLine("  else:");
-        Console.WriteLine("    ldarg.1 / ldarg.0 / sub / ret");
+        Console.WriteLine("-- walkthrough: AbsDiff real IL --");
         int r1 = AbsDiff(10, 3);
         int r2 = AbsDiff(3, 10);
         Debug.Assert(r1 == 7 && r2 == 7);
-        MethodInfo m = typeof(IlToolingAndWalkthrough).GetMethod(nameof(AbsDiff), BindingFlags.NonPublic | BindingFlags.Static)!;
-        MethodBody? body = m.GetMethodBody();
-        byte[]? il = body?.GetILAsByteArray();
-        Console.WriteLine($"  AbsDiff(10,3)={r1}, AbsDiff(3,10)={r2}, IL len={il?.Length}");
-        if (il is not null)
-            Console.WriteLine($"  raw: {ToHex(il)}");
+
+        MethodInfo m = typeof(IlToolingAndWalkthrough).GetMethod(
+            nameof(AbsDiff), BindingFlags.NonPublic | BindingFlags.Static)!;
+        MethodBody body = m.GetMethodBody()!;
+        byte[] il = body.GetILAsByteArray()!;
+        Console.WriteLine($"  AbsDiff(10,3)={r1}, AbsDiff(3,10)={r2}");
+        Console.WriteLine($"  MaxStackSize={body.MaxStackSize}, InitLocals={body.InitLocals}");
+        Console.WriteLine($"  Local count={body.LocalVariables.Count}, IL len={il.Length}");
+        Console.WriteLine($"  raw: {ToHex(il)}");
+        Debug.Assert(body.MaxStackSize >= 2);
+        Debug.Assert(il.Length > 0);
+
+        Console.WriteLine("  decoded:");
+        int i = 0;
+        while (i < il.Length)
+        {
+            (string name, int size) = DecodeOp(il, i);
+            Console.WriteLine($"    IL_{i:X4}: {name}");
+            i += size;
+        }
+
+        // Expect ldarg and a branch or conditional compare
+        Debug.Assert(il.Contains((byte)0x02) || il.Contains((byte)0x03), "expect ldarg.0/1");
     }
 
-    private static void DemoCompareReleaseDebugNote()
+    private static void DemoCallOpcode()
     {
-        Console.WriteLine("-- Debug vs Release IL --");
-        Console.WriteLine("  Debug: more locals, nop, sequence points for PDB.");
-        Console.WriteLine("  Release: tighter IL; JIT still does the heavy optimization.");
-        Console.WriteLine($"  This process bitness={IntPtr.Size * 8}-bit, build config via debugger attached={Debugger.IsAttached}");
+        Console.WriteLine("-- call opcode (0x28) in CallerOfAbs --");
+        MethodInfo m = typeof(IlToolingAndWalkthrough).GetMethod(
+            nameof(CallerOfAbs), BindingFlags.NonPublic | BindingFlags.Static)!;
+        byte[] il = m.GetMethodBody()!.GetILAsByteArray()!;
+        int v = CallerOfAbs(8, 3);
+        Debug.Assert(v == 5);
+        Console.WriteLine($"  CallerOfAbs(8,3)={v}");
+        Console.WriteLine($"  IL: {ToHex(il)}");
+        bool hasCall = il.Contains((byte)0x28);
+        Console.WriteLine($"  contains call (0x28): {hasCall}");
+        Debug.Assert(hasCall, "CallerOfAbs should emit call AbsDiff");
+        int idx = Array.IndexOf(il, (byte)0x28);
+        if (idx >= 0 && idx + 4 < il.Length)
+        {
+            int token = BitConverter.ToInt32(il, idx + 1);
+            Console.WriteLine($"  call metadata token=0x{token:X8}");
+        }
     }
 
     private static int AbsDiff(int a, int b) => a > b ? a - b : b - a;
+
+    private static int CallerOfAbs(int a, int b) => AbsDiff(a, b);
+
+    private static (string name, int size) DecodeOp(byte[] il, int i)
+    {
+        byte op = il[i];
+        return op switch
+        {
+            0x00 => ("nop", 1),
+            0x02 => ("ldarg.0", 1),
+            0x03 => ("ldarg.1", 1),
+            0x04 => ("ldarg.2", 1),
+            0x06 => ("ldloc.0", 1),
+            0x0A => ("stloc.0", 1),
+            0x16 => ("ldc.i4.0", 1),
+            0x17 => ("ldc.i4.1", 1),
+            0x25 => ("dup", 1),
+            0x28 => ($"call token=0x{BitConverter.ToInt32(il, i + 1):X8}", 5),
+            0x2A => ("ret", 1),
+            0x2B => ($"br.s +{unchecked((sbyte)il[i + 1])}", 2),
+            0x2C => ($"brfalse.s +{unchecked((sbyte)il[i + 1])}", 2),
+            0x2D => ($"brtrue.s +{unchecked((sbyte)il[i + 1])}", 2),
+            0x2F => ($"bge.s +{unchecked((sbyte)il[i + 1])}", 2),
+            0x30 => ($"bgt.s +{unchecked((sbyte)il[i + 1])}", 2),
+            0x31 => ($"ble.s +{unchecked((sbyte)il[i + 1])}", 2),
+            0x32 => ($"blt.s +{unchecked((sbyte)il[i + 1])}", 2),
+            0x58 => ("add", 1),
+            0x59 => ("sub", 1),
+            0x5A => ("mul", 1),
+            0xFE when i + 1 < il.Length && il[i + 1] == 0x01 => ("ceq", 2),
+            0xFE when i + 1 < il.Length && il[i + 1] == 0x02 => ("cgt", 2),
+            0xFE when i + 1 < il.Length && il[i + 1] == 0x04 => ("clt", 2),
+            _ => ($"op_0x{op:X2}", 1)
+        };
+    }
 
     private static string ToHex(byte[] il)
     {

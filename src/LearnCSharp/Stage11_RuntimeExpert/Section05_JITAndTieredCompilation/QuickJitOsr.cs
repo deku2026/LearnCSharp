@@ -20,37 +20,40 @@ internal static class QuickJitOsr
     {
         _ = args;
         Console.WriteLine("=== QuickJitOsr ===");
-        DemoQuickJit();
-        DemoOsrConcept();
-        DemoLongLoop();
+        DemoQuickJitAndOsrNotes();
+        DemoLongLoopMultiRun();
         return 0;
     }
 
-    private static void DemoQuickJit()
+    private static void DemoQuickJitAndOsrNotes()
     {
-        Console.WriteLine("-- Quick JIT --");
-        Console.WriteLine("  Tier 0 uses faster, less-optimized codegen to reduce pause on first call.");
-        Console.WriteLine("  Loops may get special handling so startup stays snappy.");
-        Console.WriteLine("  DOTNET_TC_QuickJitForLoops controls loop QuickJIT.");
-    }
-
-    private static void DemoOsrConcept()
-    {
-        Console.WriteLine("-- On-Stack Replacement (OSR) --");
-        Console.WriteLine("  A method stuck in a long loop can be recompiled optimized");
-        Console.WriteLine("  and continue from a patch point without waiting for method exit.");
+        Console.WriteLine("-- Quick JIT + OSR --");
+        Console.WriteLine("  Tier0: faster, less-optimized codegen (DOTNET_TC_QuickJitForLoops).");
+        Console.WriteLine("  OSR: long-running loop can be replaced with optimized code mid-method.");
         Console.WriteLine("  Critical for benchmarks/servers with long-lived hot loops.");
     }
 
-    private static void DemoLongLoop()
+    private static void DemoLongLoopMultiRun()
     {
-        Console.WriteLine("-- long loop (OSR candidate on real runtimes) --");
-        long t0 = Stopwatch.GetTimestamp();
-        long acc = TightLoop(200_000);
-        TimeSpan e = Stopwatch.GetElapsedTime(t0);
+        Console.WriteLine("-- long loop multi-run (OSR candidate) --");
+        // Warm
+        long warm = TightLoop(50_000);
+        Debug.Assert(warm > 0);
+
+        double[] samples = new double[5];
+        long acc = 0;
+        for (int r = 0; r < samples.Length; r++)
+        {
+            long t0 = Stopwatch.GetTimestamp();
+            acc = TightLoop(300_000);
+            samples[r] = Stopwatch.GetElapsedTime(t0).TotalMilliseconds;
+        }
+
+        Array.Sort(samples);
+        Console.WriteLine($"  TightLoop(300000) acc={acc}, median={samples[2]:F3}ms");
         Debug.Assert(acc > 0);
-        Console.WriteLine($"  TightLoop(200000) acc={acc}, {e.TotalMilliseconds:F2}ms");
-        Console.WriteLine("  Use tools (perfview / jitdisasm) to confirm OSR in production diagnosis.");
+        Debug.Assert(samples[2] > 0 || samples[2] == 0);
+        Console.WriteLine("  Observe OSR with PerfView / DOTNET_JitDisasm in real labs.");
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]

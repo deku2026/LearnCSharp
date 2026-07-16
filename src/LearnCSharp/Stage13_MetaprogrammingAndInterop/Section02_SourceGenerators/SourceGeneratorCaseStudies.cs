@@ -23,44 +23,53 @@ internal static partial class SourceGeneratorCaseStudies
     {
         _ = args;
         Console.WriteLine("=== SourceGeneratorCaseStudies ===");
-        DemoStj();
+        DemoStjRoundTripAndAlloc();
         DemoLoggerMessageConcept();
         DemoGeneratedRegex();
         DemoLibraryImport();
         return 0;
     }
 
-    private static void DemoStj()
+    private static void DemoStjRoundTripAndAlloc()
     {
-        Console.WriteLine("-- System.Text.Json source gen --");
+        Console.WriteLine("-- System.Text.Json source gen (round-trip + alloc sample) --");
         var person = new PersonDto { Name = "Ada", Age = 36 };
+        long before = GC.GetAllocatedBytesForCurrentThread();
         string json = JsonSerializer.Serialize(person, Stage13PersonJsonContext.Default.PersonDto);
         PersonDto? back = JsonSerializer.Deserialize(json, Stage13PersonJsonContext.Default.PersonDto);
+        long after = GC.GetAllocatedBytesForCurrentThread();
         Debug.Assert(back is { Name: "Ada", Age: 36 });
         Console.WriteLine($"  {json}");
+        Console.WriteLine($"  round-trip Δalloc={after - before} (source-gen path; still may alloc strings)");
         Console.WriteLine("  [JsonSerializable] + JsonSerializerContext → compile-time metadata.");
     }
 
     private static void DemoLoggerMessageConcept()
     {
-        Console.WriteLine("-- LoggerMessage (concept; needs Microsoft.Extensions.Logging package) --");
-        Console.WriteLine("  [LoggerMessage(EventId=1, Level=Information, Message=\"Hello {Name}\")]");
-        Console.WriteLine("  partial void LogHello(ILogger logger, string name);");
-        Console.WriteLine("  Generator emits: high-perf Write with cached EventId (no runtime template parse).");
-        // Educational stand-in of generated body
-        LogHelloStandIn("Ada");
+        Console.WriteLine("-- LoggerMessage (concept; needs MEL package for real generator) --");
+        Console.WriteLine("  [LoggerMessage(...)] partial void LogHello(ILogger logger, string name);");
+        string msg = LogHelloStandIn("Ada");
+        Debug.Assert(msg.Contains("Ada", StringComparison.Ordinal));
     }
 
-    private static void LogHelloStandIn(string name)
-        => Console.WriteLine($"  [Info] Hello {name}  (simulated LoggerMessage body)");
+    private static string LogHelloStandIn(string name)
+    {
+        string msg = $"[Info] Hello {name}  (simulated LoggerMessage body)";
+        Console.WriteLine($"  {msg}");
+        return msg;
+    }
 
     private static void DemoGeneratedRegex()
     {
-        Console.WriteLine("-- GeneratedRegex --");
+        Console.WriteLine("-- GeneratedRegex (real source generator) --");
         Match m = DigitsOnly().Match("id=42");
         Debug.Assert(m.Success && m.Value == "42");
-        Console.WriteLine($"  DigitsOnly on \"id=42\" => {m.Value}");
-        Console.WriteLine("  Regex compiled into methods at build time (AOT-safe).");
+        // Multi match
+        int count = 0;
+        foreach (Match x in DigitsOnly().Matches("a1 b22 c333"))
+            count++;
+        Debug.Assert(count == 3);
+        Console.WriteLine($"  DigitsOnly: first={m.Value}, matches in sample={count}");
     }
 
     private static void DemoLibraryImport()

@@ -8,12 +8,14 @@
 // Lesson: SyntaxTree vs SemanticModel; cheap predicate → expensive transform; cache iron rules.
 
 using System.Diagnostics;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage13.Section02;
 
-internal static class PipelineSyntaxSemantic
+internal static partial class PipelineSyntaxSemantic
 {
     [LearnTopic("stage13/section02/pipeline_syntax_semantic")]
     internal static int Run(string[] args)
@@ -21,41 +23,39 @@ internal static class PipelineSyntaxSemantic
         _ = args;
         Console.WriteLine("=== PipelineSyntaxSemantic ===");
         DemoSyntaxVsSemantic();
-        DemoTwoPhasePipeline();
-        DemoCacheIronRules();
+        DemoTwoPhasePipelineMeasured();
+        DemoCacheIronRulesAndJson();
         return 0;
     }
 
     private static void DemoSyntaxVsSemantic()
     {
         Console.WriteLine("-- SyntaxTree vs SemanticModel --");
-        Console.WriteLine("  SyntaxTree: pure structure (ClassDeclarationSyntax, tokens, trivia)");
-        Console.WriteLine("    knows \"there is a class named Foo\" — not base types or symbol identity");
-        Console.WriteLine("  SemanticModel: symbols (INamedTypeSymbol, IMethodSymbol) — resolved meaning");
-        Console.WriteLine("    GetDeclaredSymbol(node) → full type graph, attributes, members");
-        Console.WriteLine("  Clang AST + Sema / libTooling ≈ same split.");
+        Console.WriteLine("  SyntaxTree: structure only; SemanticModel: resolved symbols.");
+        Console.WriteLine("  Pipeline: cheap syntax filter → expensive semantic extract.");
     }
 
-    private static void DemoTwoPhasePipeline()
+    private static void DemoTwoPhasePipelineMeasured()
     {
-        Console.WriteLine("-- two-phase: cheap syntax filter → semantic extract --");
-        // Simulate SyntaxProvider: scan "source files" as strings.
+        Console.WriteLine("-- two-phase pipeline with measured filter savings --");
         string[] files =
         [
             "public class Untagged { }",
             "[GenerateHello] public class Greeter { }",
             "public struct Point { }",
             "[GenerateHello] public class Logger { }",
+            "namespace X { class Y { } }",
+            "[GenerateHello] public class Metrics { }",
         ];
 
         int syntaxChecks = 0;
         int semanticExtracts = 0;
         var extracted = new List<string>();
 
+        long t0 = Stopwatch.GetTimestamp();
         foreach (string file in files)
         {
             syntaxChecks++;
-            // predicate: only class declarations that look attribute-marked (cheap)
             if (!file.Contains("[GenerateHello]", StringComparison.Ordinal) ||
                 !file.Contains("class ", StringComparison.Ordinal))
                 continue;
@@ -66,38 +66,39 @@ internal static class PipelineSyntaxSemantic
                 extracted.Add(m.Groups[1].Value);
         }
 
-        Debug.Assert(extracted is ["Greeter", "Logger"]);
-        Console.WriteLine($"  files={files.Length}, syntaxChecks={syntaxChecks}, semanticExtracts={semanticExtracts}");
+        double us = Stopwatch.GetElapsedTime(t0).TotalMicroseconds;
+        Debug.Assert(extracted is ["Greeter", "Logger", "Metrics"]);
+        Console.WriteLine($"  files={files.Length}, syntax={syntaxChecks}, semantic={semanticExtracts}, {us:F1}µs");
         Console.WriteLine($"  extracted: {string.Join(", ", extracted)}");
-        Console.WriteLine("  ForAttributeWithMetadataName: skip whole files without the attribute (fast path).");
+        Debug.Assert(semanticExtracts < syntaxChecks);
     }
 
-    private static void DemoCacheIronRules()
+    private static void DemoCacheIronRulesAndJson()
     {
-        Console.WriteLine("-- cache correctness iron rules --");
-        Console.WriteLine("  ✅ IIncrementalGenerator (not classic ISourceGenerator)");
-        Console.WriteLine("  ✅ attribute-driven → ForAttributeWithMetadataName");
-        Console.WriteLine("  ✅ pipeline models: IEquatable / record (value equality)");
-        Console.WriteLine("  ❌ never capture Compilation / ISymbol in transform output");
-        Console.WriteLine("     (they change every compile → cache always misses)");
-        Console.WriteLine("  ✅ extract minimal strings/names only; static lambdas");
-
-        // Bad model: identity equality on a "symbol-like" wrapper → always miss
-        var bad1 = new NonEquatableBag("A");
-        var bad2 = new NonEquatableBag("A");
-        Debug.Assert(!ReferenceEquals(bad1, bad2));
-        Console.WriteLine($"  non-equatable models: equal content but not equal → {bad1.Equals(bad2)} (cache thrash)");
+        Console.WriteLine("-- cache iron rules + real STJ context --");
+        Console.WriteLine("  ✅ IIncrementalGenerator, ForAttributeWithMetadataName, record models");
+        Console.WriteLine("  ❌ never capture Compilation/ISymbol in transform output");
 
         GoodInfo g1 = new("A", "N");
         GoodInfo g2 = new("A", "N");
         Debug.Assert(g1.Equals(g2));
-        Console.WriteLine($"  record models: value equal → {g1.Equals(g2)} (cache can hit)");
-    }
+        Console.WriteLine($"  record equality: {g1.Equals(g2)}");
 
-    private sealed class NonEquatableBag(string name)
-    {
-        public string Name { get; } = name;
+        var node = new PipelineNode { Name = "Greeter", Namespace = "App" };
+        string json = JsonSerializer.Serialize(node, PipeJsonContext.Default.PipelineNode);
+        PipelineNode? back = JsonSerializer.Deserialize(json, PipeJsonContext.Default.PipelineNode);
+        Debug.Assert(back is { Name: "Greeter", Namespace: "App" });
+        Console.WriteLine($"  model as STJ source-gen DTO: {json}");
     }
 
     private readonly record struct GoodInfo(string Name, string Namespace);
+
+    private sealed class PipelineNode
+    {
+        public string Name { get; set; } = "";
+        public string Namespace { get; set; } = "";
+    }
+
+    [JsonSerializable(typeof(PipelineNode))]
+    private partial class PipeJsonContext : JsonSerializerContext;
 }

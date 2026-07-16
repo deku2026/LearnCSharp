@@ -8,6 +8,7 @@
 // Lesson: generated static code = zero runtime reflection + trimmer/AOT can see it.
 
 using System.Diagnostics;
+using System.Reflection.Emit;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using LearnCSharp.Topics;
@@ -21,51 +22,68 @@ internal static partial class AotFriendlyZeroRuntime
     {
         _ = args;
         Console.WriteLine("=== AotFriendlyZeroRuntime ===");
-        DemoZeroRuntimeCost();
-        DemoAotVisibility();
+        DemoStaticVsReflectionTiming();
         DemoBuiltInJsonSourceGen();
+        DemoRuntimeEmitContrast();
         return 0;
     }
 
-    private static void DemoZeroRuntimeCost()
+    private static void DemoStaticVsReflectionTiming()
     {
-        Console.WriteLine("-- zero runtime cost --");
-        Console.WriteLine("  Generated C# is ordinary IL: no GetMethod, no Invoke, no discovery.");
-        Console.WriteLine("  Startup: no reflection warm-up; hot path: direct calls, often zero alloc.");
-
-        // Hand-written static path vs reflection path for the same shape
+        Console.WriteLine("-- static path vs reflection path (measured) --");
         var p = new Point(1, 2);
-        string staticJson = StaticSerialize(p);
-        string reflectJson = ReflectSerialize(p);
-        Debug.Assert(staticJson == reflectJson);
-        Console.WriteLine($"  static serialize: {staticJson}");
-        Console.WriteLine($"  reflect serialize: {reflectJson} (same result; reflect pays discovery/Invoke)");
-    }
+        // Warm
+        _ = StaticSerialize(p);
+        _ = ReflectSerialize(p);
 
-    private static void DemoAotVisibility()
-    {
-        Console.WriteLine("-- AOT / trimmer visibility --");
-        Console.WriteLine("  Static generated methods are call-graph visible → not trimmed away.");
-        Console.WriteLine("  No DynamicallyAccessedMembers needed for pure generated paths.");
-        Console.WriteLine("  Native AOT: no runtime IL stubs / no dynamic code gen required.");
+        const int N = 20_000;
+        long t0 = Stopwatch.GetTimestamp();
+        string lastStatic = "";
+        for (int i = 0; i < N; i++)
+            lastStatic = StaticSerialize(p);
+        double staticMs = Stopwatch.GetElapsedTime(t0).TotalMilliseconds;
+
+        t0 = Stopwatch.GetTimestamp();
+        string lastReflect = "";
+        for (int i = 0; i < N; i++)
+            lastReflect = ReflectSerialize(p);
+        double reflectMs = Stopwatch.GetElapsedTime(t0).TotalMilliseconds;
+
+        Debug.Assert(lastStatic == lastReflect);
+        Console.WriteLine($"  static  {N}×: {staticMs:F3}ms → {lastStatic}");
+        Console.WriteLine($"  reflect {N}×: {reflectMs:F3}ms → {lastReflect}");
+        Debug.Assert(staticMs >= 0 && reflectMs >= 0);
+        Console.WriteLine("  Generators emit the static path at compile time.");
     }
 
     private static void DemoBuiltInJsonSourceGen()
     {
-        Console.WriteLine("-- built-in STJ source generation (real, in-process) --");
+        Console.WriteLine("-- STJ source generation (real) --");
         var dto = new WeatherForecast { TemperatureC = 22, Summary = "Mild" };
         string json = JsonSerializer.Serialize(dto, Stage13WeatherJsonContext.Default.WeatherForecast);
         WeatherForecast? back = JsonSerializer.Deserialize(json, Stage13WeatherJsonContext.Default.WeatherForecast);
         Debug.Assert(back is { TemperatureC: 22, Summary: "Mild" });
-        Console.WriteLine($"  JsonSerializerContext path: {json}");
-        Console.WriteLine("  Metadata emitted at compile time → AOT-friendly serialization.");
+        Console.WriteLine($"  {json}");
+        Console.WriteLine("  Compile-time metadata → AOT-friendly; no runtime type graph walk.");
+    }
+
+    private static void DemoRuntimeEmitContrast()
+    {
+        Console.WriteLine("-- runtime emit exists but is not AOT-zero-cost --");
+        var dm = new DynamicMethod("Id", typeof(int), [typeof(int)], typeof(AotFriendlyZeroRuntime).Module, true);
+        ILGenerator il = dm.GetILGenerator();
+        il.Emit(OpCodes.Ldarg_0);
+        il.Emit(OpCodes.Ret);
+        Func<int, int> id = dm.CreateDelegate<Func<int, int>>();
+        Debug.Assert(id(9) == 9);
+        Console.WriteLine($"  DynamicMethod Id(9)={id(9)} (requires IsDynamicCodeCompiled)");
+        Console.WriteLine($"  RuntimeFeature.IsDynamicCodeCompiled={System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeCompiled}");
     }
 
     private static string StaticSerialize(Point p) => $"{{\"X\":{p.X},\"Y\":{p.Y}}}";
 
     private static string ReflectSerialize(Point p)
     {
-        // educational contrast only
         System.Reflection.PropertyInfo x = typeof(Point).GetProperty(nameof(Point.X))!;
         System.Reflection.PropertyInfo y = typeof(Point).GetProperty(nameof(Point.Y))!;
         return $"{{\"X\":{x.GetValue(p)},\"Y\":{y.GetValue(p)}}}";

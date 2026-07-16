@@ -21,50 +21,71 @@ internal static class Inlining
         _ = args;
         Console.WriteLine("=== Inlining ===");
         DemoWhyInline();
-        DemoAttributes();
-        DemoMeasure();
+        DemoAttributesAndCorrectness();
+        DemoMultiRunMeasure();
         return 0;
     }
 
     private static void DemoWhyInline()
     {
         Console.WriteLine("-- why inlining matters --");
-        Console.WriteLine("  Removes call/ret, enables constant prop, CSE, better register use.");
-        Console.WriteLine("  Enables devirtualization of callees after type is known.");
-        // f(x) = x ^ (x << 1); f(3)=3^6=5; sum=10
+        Console.WriteLine("  Removes call/ret, enables constant prop, CSE, better registers.");
         int x = Aggressive(3) + NoInline(3);
         Debug.Assert(x == 10);
-        Console.WriteLine($"  Aggressive(3)+NoInline(3)={x}");
+        Console.WriteLine($"  Aggressive(3)+NoInline(3)={x} (same IL body, different MethodImpl)");
     }
 
-    private static void DemoAttributes()
+    private static void DemoAttributesAndCorrectness()
     {
-        Console.WriteLine("-- MethodImpl attributes --");
-        Console.WriteLine("  AggressiveInlining: hint to inline");
-        Console.WriteLine("  NoInlining: force call boundary");
-        Console.WriteLine("  AggressiveOptimization: prefer speed (less tiering friendliness historically)");
-        Console.WriteLine("  JIT still decides based on size/budget/EH/virtual etc.");
+        Console.WriteLine("-- MethodImpl options (observable correctness) --");
+        Console.WriteLine("  AggressiveInlining | NoInlining | AggressiveOptimization | NoOptimization");
+        int a = Aggressive(100);
+        int n = NoInline(100);
+        int o = NoOpt(100);
+        Debug.Assert(a == n && n == o);
+        Console.WriteLine($"  Aggressive/NoInline/NoOpt(100) all={a}");
+        Console.WriteLine($"  IsReferenceOrContainsReferences<int>={RuntimeHelpers.IsReferenceOrContainsReferences<int>()}");
+        Debug.Assert(!RuntimeHelpers.IsReferenceOrContainsReferences<int>());
     }
 
-    private static void DemoMeasure()
+    private static void DemoMultiRunMeasure()
     {
-        Console.WriteLine("-- micro timing (illustrative only) --");
-        const int N = 200_000;
-        long t0 = Stopwatch.GetTimestamp();
-        int s1 = 0;
-        for (int i = 0; i < N; i++)
-            s1 += Aggressive(i);
-        TimeSpan a = Stopwatch.GetElapsedTime(t0);
+        Console.WriteLine("-- multi-run micro timing AggressiveInlining vs NoInlining --");
+        const int N = 300_000;
+        // Warmup both
+        int w = 0;
+        for (int i = 0; i < 50_000; i++)
+        {
+            w += Aggressive(i);
+            w += NoInline(i);
+        }
 
-        t0 = Stopwatch.GetTimestamp();
-        int s2 = 0;
-        for (int i = 0; i < N; i++)
-            s2 += NoInline(i);
-        TimeSpan b = Stopwatch.GetElapsedTime(t0);
+        Debug.Assert(w != 0);
 
-        Debug.Assert(s1 == s2);
-        Console.WriteLine($"  Aggressive loop {a.TotalMilliseconds:F2}ms, NoInline {b.TotalMilliseconds:F2}ms, sum={s1}");
-        Console.WriteLine("  Prefer BenchmarkDotNet for real numbers; this is educational.");
+        double[] ag = new double[5];
+        double[] ni = new double[5];
+        long sAg = 0, sNi = 0;
+        for (int r = 0; r < 5; r++)
+        {
+            long t0 = Stopwatch.GetTimestamp();
+            for (int i = 0; i < N; i++)
+                sAg += Aggressive(i);
+            ag[r] = Stopwatch.GetElapsedTime(t0).TotalMilliseconds;
+
+            t0 = Stopwatch.GetTimestamp();
+            for (int i = 0; i < N; i++)
+                sNi += NoInline(i);
+            ni[r] = Stopwatch.GetElapsedTime(t0).TotalMilliseconds;
+        }
+
+        Array.Sort(ag);
+        Array.Sort(ni);
+        Console.WriteLine($"  Aggressive median={ag[2]:F3}ms, NoInline median={ni[2]:F3}ms, N={N}");
+        Console.WriteLine($"  sums equal: {sAg == sNi} (sAg={sAg})");
+        Debug.Assert(sAg == sNi);
+        // Structure assert: both produced positive times; relative speed is environment-dependent
+        Debug.Assert(ag[2] >= 0 && ni[2] >= 0);
+        Console.WriteLine("  Prefer BenchmarkDotNet for publishable numbers; call overhead often visible here.");
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -72,4 +93,7 @@ internal static class Inlining
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     private static int NoInline(int x) => x ^ (x << 1);
+
+    [MethodImpl(MethodImplOptions.NoOptimization)]
+    private static int NoOpt(int x) => x ^ (x << 1);
 }

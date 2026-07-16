@@ -21,7 +21,7 @@ internal static class DynamicPgo
         _ = args;
         Console.WriteLine("=== DynamicPgo ===");
         DemoWhatIsPgo();
-        DemoBiasedBranch();
+        DemoBiasedBranchMultiRun();
         DemoConfig();
         return 0;
     }
@@ -29,42 +29,64 @@ internal static class DynamicPgo
     private static void DemoWhatIsPgo()
     {
         Console.WriteLine("-- Dynamic Profile-Guided Optimization --");
-        Console.WriteLine("  Instrumentation records: branch likelihood, virtual targets, block counts.");
-        Console.WriteLine("  Tier1 uses profile for better layout, GDV, inlining budget.");
-        Console.WriteLine("  Default on recent .NET; DOTNET_TieredPGO=1");
+        Console.WriteLine("  Instrumentation: branch likelihood, virtual targets, block counts.");
+        Console.WriteLine("  Tier1 uses profile for layout, GDV, inlining budget.");
+        Console.WriteLine("  DOTNET_TieredPGO=1 (default on recent .NET)");
     }
 
-    private static void DemoBiasedBranch()
+    private static void DemoBiasedBranchMultiRun()
     {
-        Console.WriteLine("-- biased branch (profile should favor true path) --");
+        Console.WriteLine("-- biased branch multi-run timing --");
+        // Warm
         int hits = 0;
-        for (int i = 0; i < 20_000; i++)
+        for (int i = 0; i < 50_000; i++)
         {
             if (Likely(i))
                 hits++;
         }
 
-        Debug.Assert(hits > 19_000);
-        Console.WriteLine($"  Likely() true hits={hits}/20000");
-        Console.WriteLine("  JIT can place hot path fall-through after PGO.");
+        Debug.Assert(hits > 49_000);
+
+        double[] samples = new double[6];
+        long sink = 0;
+        for (int r = 0; r < samples.Length; r++)
+        {
+            long t0 = Stopwatch.GetTimestamp();
+            int h = 0;
+            for (int i = 0; i < 200_000; i++)
+            {
+                if (Likely(i))
+                    h++;
+                sink += h;
+            }
+
+            samples[r] = Stopwatch.GetElapsedTime(t0).TotalMilliseconds;
+            hits = h;
+        }
+
+        Array.Sort(samples);
+        Console.WriteLine($"  Likely() hits={hits}/200000, median={samples[2]:F3}ms");
+        Debug.Assert(hits > 199_000);
+        Debug.Assert(sink != 0);
+        Console.WriteLine("  After PGO, JIT can place hot path as fall-through.");
     }
 
     private static void DemoConfig()
     {
-        Console.WriteLine("-- related knobs --");
-        Console.WriteLine("  DOTNET_TieredPGO, DOTNET_ReadyToRun, DOTNET_TC_CallCounting");
+        Console.WriteLine("-- knobs + polymorphic-ish work --");
         string? pgo = Environment.GetEnvironmentVariable("DOTNET_TieredPGO");
         Console.WriteLine($"  DOTNET_TieredPGO={pgo ?? "(default)"}");
-        // Keep a hot polymorphic-ish call for documentation
         long sum = 0;
-        for (int i = 0; i < 5000; i++)
+        for (int i = 0; i < 20_000; i++)
             sum += Work(i % 2 == 0 ? "a" : "bb");
         Debug.Assert(sum > 0);
         Console.WriteLine($"  Work sum lengths={sum}");
+        Console.WriteLine($"  IsReferenceOrContainsReferences<string>={RuntimeHelpers.IsReferenceOrContainsReferences<string>()}");
+        Debug.Assert(RuntimeHelpers.IsReferenceOrContainsReferences<string>());
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    private static bool Likely(int i) => i != 12345; // almost always true
+    private static bool Likely(int i) => i != 12345;
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     private static int Work(string s) => s.Length;

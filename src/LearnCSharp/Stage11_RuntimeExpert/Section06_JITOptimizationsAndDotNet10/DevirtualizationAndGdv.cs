@@ -21,44 +21,65 @@ internal static class DevirtualizationAndGdv
         _ = args;
         Console.WriteLine("=== DevirtualizationAndGdv ===");
         DemoDevirtSealed();
-        DemoGdvIdea();
-        DemoPolymorphic();
+        DemoMonomorphicVsPolymorphicTiming();
         return 0;
     }
 
     private static void DemoDevirtSealed()
     {
         Console.WriteLine("-- classic devirtualization --");
-        Console.WriteLine("  When exact type is known (sealed, newobj SSA), virtual → direct call/inline.");
-        Animal a = new Dog(); // type often proven
+        Animal a = new Dog();
         string s = a.Speak();
         Debug.Assert(s == "dog");
         Console.WriteLine($"  Animal a = new Dog(); a.Speak() → {s}");
+        Console.WriteLine("  When exact type known (sealed/newobj SSA), virtual → direct/inline.");
     }
 
-    private static void DemoGdvIdea()
+    private static void DemoMonomorphicVsPolymorphicTiming()
     {
-        Console.WriteLine("-- Guarded Devirtualization (GDV) --");
-        Console.WriteLine("  if (obj.MT == expected) direct_call; else fallback virtual stub;");
-        Console.WriteLine("  Profile (Dynamic PGO) picks the expected type for hot sites.");
-        IShape shape = new Circle();
-        double area = 0;
-        for (int i = 0; i < 10_000; i++)
-            area += Measure(shape);
-        Debug.Assert(area > 0);
-        Console.WriteLine($"  monomorphic IShape loop sum areas≈{area:F1}");
-    }
+        Console.WriteLine("-- monomorphic vs polymorphic interface calls (multi-run) --");
+        IShape mono = new Circle();
+        IShape[] poly = [new Circle(), new Square(), new Circle(), new Square()];
 
-    private static void DemoPolymorphic()
-    {
-        Console.WriteLine("-- polymorphic sites resist single-type GDV --");
-        IShape[] shapes = [new Circle(), new Square(), new Circle()];
-        double sum = 0;
-        for (int i = 0; i < 3000; i++)
-            sum += Measure(shapes[i % shapes.Length]);
-        Debug.Assert(sum > 0);
-        Console.WriteLine($"  mixed shapes sum≈{sum:F1}");
-        Console.WriteLine("  Too many types → megamorphic; keep interfaces but reduce type churn if hot.");
+        // Warmup
+        double w = 0;
+        for (int i = 0; i < 20_000; i++)
+        {
+            w += Measure(mono);
+            w += Measure(poly[i % poly.Length]);
+        }
+
+        Debug.Assert(w > 0);
+
+        const int N = 200_000;
+        double[] monoMs = new double[5];
+        double[] polyMs = new double[5];
+        double monoSum = 0, polySum = 0;
+        for (int r = 0; r < 5; r++)
+        {
+            long t0 = Stopwatch.GetTimestamp();
+            double s = 0;
+            for (int i = 0; i < N; i++)
+                s += Measure(mono);
+            monoMs[r] = Stopwatch.GetElapsedTime(t0).TotalMilliseconds;
+            monoSum = s;
+
+            t0 = Stopwatch.GetTimestamp();
+            s = 0;
+            for (int i = 0; i < N; i++)
+                s += Measure(poly[i % poly.Length]);
+            polyMs[r] = Stopwatch.GetElapsedTime(t0).TotalMilliseconds;
+            polySum = s;
+        }
+
+        Array.Sort(monoMs);
+        Array.Sort(polyMs);
+        Console.WriteLine($"  monomorphic median={monoMs[2]:F3}ms sum≈{monoSum:F0}");
+        Console.WriteLine($"  polymorphic  median={polyMs[2]:F3}ms sum≈{polySum:F0}");
+        Debug.Assert(monoSum > 0 && polySum > 0);
+        Debug.Assert(monoMs[2] >= 0 && polyMs[2] >= 0);
+        Console.WriteLine("  GDV: if (obj.MT == expected) direct; else virtual. PGO picks expected type.");
+        Console.WriteLine("  Megamorphic sites resist single-type GDV.");
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]

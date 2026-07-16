@@ -22,37 +22,43 @@ internal static class LohAndPoh
     {
         _ = args;
         Console.WriteLine("=== LohAndPoh ===");
-        DemoLoh();
-        DemoPohConcept();
+        DemoLohGeneration();
+        DemoPoh();
         DemoCompactLohNote();
         return 0;
     }
 
-    private static void DemoLoh()
+    private static void DemoLohGeneration()
     {
-        Console.WriteLine("-- Large Object Heap --");
-        Console.WriteLine($"  Threshold typically {LohThreshold} bytes (array payload)");
+        Console.WriteLine("-- Large Object Heap: gen of large array --");
+        Console.WriteLine($"  LOH threshold typically {LohThreshold} bytes (array payload)");
         byte[] small = new byte[1024];
         byte[] large = new byte[LohThreshold];
-        Console.WriteLine($"  small gen={GC.GetGeneration(small)}, large gen={GC.GetGeneration(large)}");
-        // LOH objects are gen 2 from allocation perspective for collection frequency
+        int genSmall = GC.GetGeneration(small);
+        int genLarge = GC.GetGeneration(large);
+        Console.WriteLine($"  small ({small.Length} B) gen={genSmall}");
+        Console.WriteLine($"  large ({large.Length} B) gen={genLarge}");
         Debug.Assert(large.Length >= LohThreshold);
         Debug.Assert(small.Length < LohThreshold);
+        // LOH allocations are treated as gen 2 for collection purposes.
+        Debug.Assert(genLarge == 2, "LOH object should report generation 2");
+        Debug.Assert(genSmall is 0 or 1 or 2);
         GC.KeepAlive(small);
         GC.KeepAlive(large);
     }
 
-    private static void DemoPohConcept()
+    private static void DemoPoh()
     {
         Console.WriteLine("-- Pinned Object Heap (.NET 5+) --");
-        Console.WriteLine("  GC.AllocateArray<T>(..., pinned: true) places on POH");
         byte[] pinned = GC.AllocateArray<byte>(256, pinned: true);
         GCHandle h = GCHandle.Alloc(pinned, GCHandleType.Pinned);
         try
         {
             IntPtr addr = h.AddrOfPinnedObject();
-            Console.WriteLine($"  pinned array addr=0x{addr:X}, len={pinned.Length}");
+            Console.WriteLine($"  GC.AllocateArray(pinned:true) addr=0x{addr:X}, len={pinned.Length}");
             Debug.Assert(addr != IntPtr.Zero);
+            pinned[0] = 0xAB;
+            Debug.Assert(pinned[0] == 0xAB);
         }
         finally
         {
@@ -64,11 +70,10 @@ internal static class LohAndPoh
 
     private static void DemoCompactLohNote()
     {
-        Console.WriteLine("-- LOH compaction --");
-        Console.WriteLine("  Default: LOH often swept not compacted (fragmentation risk).");
-        Console.WriteLine("  GCSettings.LargeObjectHeapCompactionMode can force compact next full GC.");
+        Console.WriteLine("-- LOH compaction mode --");
         var mode = System.Runtime.GCSettings.LargeObjectHeapCompactionMode;
-        Console.WriteLine($"  Current LargeObjectHeapCompactionMode={mode}");
+        Console.WriteLine($"  LargeObjectHeapCompactionMode={mode}");
         Debug.Assert(Enum.IsDefined(mode));
+        Console.WriteLine("  Default: LOH often swept not compacted; can force compact next full GC.");
     }
 }
