@@ -31,13 +31,13 @@ internal static class CentralPackageManagement
     private static void DemoVersionScatterProblem()
     {
         Console.WriteLine("-- problem: versions scattered in every csproj --");
-        var scatter = new Dictionary<string, string>
+        Dictionary<string, string> scatter = new Dictionary<string, string>
         {
             ["App.csproj"] = "Newtonsoft.Json 13.0.1",
             ["Tests.csproj"] = "Newtonsoft.Json 12.0.3",
             ["Worker.csproj"] = "Newtonsoft.Json 13.0.3",
         };
-        foreach (var kv in scatter)
+        foreach (KeyValuePair<string, string> kv in scatter)
             Console.WriteLine($"  {kv.Key}: {kv.Value}");
         int distinct = scatter.Values.Distinct(StringComparer.Ordinal).Count();
         Debug.Assert(distinct == 3);
@@ -79,7 +79,7 @@ internal static class CentralPackageManagement
     {
         Console.WriteLine("-- transitive pinning concept --");
         Console.WriteLine("  CentralPackageTransitivePinningEnabled: 也可在 Packages.props 钉传递包");
-        var central = new HashSet<string>(StringComparer.Ordinal)
+        HashSet<string> central = new HashSet<string>(StringComparer.Ordinal)
         {
             "Microsoft.Extensions.Hosting",
             "Microsoft.Extensions.Http",

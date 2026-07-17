@@ -104,7 +104,7 @@ internal static class AsyncExceptions
         Console.WriteLine("-- async void carefully: catch inside; outer try cannot catch --");
         bool innerCaught = false;
         bool outerCaught = false;
-        var done = new ManualResetEventSlim(false);
+        ManualResetEventSlim done = new ManualResetEventSlim(false);
 
         async void RiskyHandler()
         {

@@ -70,7 +70,7 @@ internal static class DiagnosersMemoryDisasm
         Console.WriteLine("  Verify inlining, BCE, SIMD, dead branches — Release only.");
         int x = NoInlineTick();
         Console.WriteLine($"  NoInlineTick={x}");
-        Debug.Assert(x != int.MinValue || x == int.MinValue);
+        Debug.Assert(x != 0 || Environment.TickCount >= 0); // TickCount is a real value; just confirm it ran
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]

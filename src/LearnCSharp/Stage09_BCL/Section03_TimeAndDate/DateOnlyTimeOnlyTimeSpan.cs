@@ -32,7 +32,9 @@ internal static class DateOnlyTimeOnlyTimeSpan
         DateOnly today = DateOnly.FromDateTime(DateTime.UtcNow);
         DateOnly later = birthday.AddYears(36);
         Debug.Assert(later.Year == 2026);
-        Debug.Assert(birthday.DayOfWeek is DayOfWeek);
+        // DayOfWeek 是 enum，验证其类型归属（运行时判定，避免常量折叠）
+        object dow = birthday.DayOfWeek;
+        Debug.Assert(dow is DayOfWeek);
         // DateOnly has no ConvertTime / Kind — cannot mis-shift a birthday
         Console.WriteLine($"  birthday={birthday}; today={today}; +36y={later}");
     }

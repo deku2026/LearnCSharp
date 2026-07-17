@@ -37,7 +37,7 @@ internal static class DotnetPublishModes
             ("self-contained", "app + 完整运行时", "无需预装 .NET"),
             ("single-file", "打成一个主文件（可叠加上两者）", "取决于是否 self-contained"),
         ];
-        foreach (var (mode, ships, needs) in modes)
+        foreach ((string? mode, string? ships, string? needs) in modes)
             Console.WriteLine($"  {mode}\n    ships: {ships}\n    target: {needs}");
         Debug.Assert(modes.Length == 3);
     }
@@ -49,7 +49,7 @@ internal static class DotnetPublishModes
         Console.WriteLine("  SCD: ~60–100MB+；必须指定 RID");
         Console.WriteLine("  single-file: 便于分发；解压/捆绑策略影响启动与诊断");
         (string Mode, int ApproxMb)[] sizes = [("FDD", 2), ("SCD", 80), ("SCD+trim", 30)];
-        foreach (var (mode, mb) in sizes)
+        foreach ((string? mode, int mb) in sizes)
             Console.WriteLine($"  ~{mode}: {mb} MB (order-of-magnitude demo)");
         Debug.Assert(sizes[0].ApproxMb < sizes[1].ApproxMb);
     }
@@ -91,7 +91,7 @@ internal static class DotnetPublishModes
             ("容器基础镜像含 aspnet 运行时", "FDD 更小"),
             ("最小依赖原生部署", "Native AOT（另专题）"),
         ];
-        foreach (var (scenario, choice) in table)
+        foreach ((string? scenario, string? choice) in table)
             Console.WriteLine($"  {scenario,-28} → {choice}");
         Debug.Assert(table.Length == 4);
     }

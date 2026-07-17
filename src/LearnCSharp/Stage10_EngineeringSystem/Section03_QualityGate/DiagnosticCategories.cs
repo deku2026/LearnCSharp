@@ -38,7 +38,7 @@ internal static class DiagnosticCategories
             ("Build props", "TreatWarningsAsErrors 等", "警告提升为错误"),
             ("Runtime", "跑起来才发现", "NullReferenceException"),
         ];
-        foreach (var (kind, when, example) in rows)
+        foreach ((string? kind, string? when, string? example) in rows)
             Console.WriteLine($"  {kind,-22} | {when,-24} | {example}");
         Debug.Assert(rows.Length == 5);
     }
@@ -54,7 +54,7 @@ internal static class DiagnosticCategories
             ("SYSLIB", "BCL 过时/安全相关"),
             ("NU", "NuGet 还原/审计"),
         ];
-        foreach (var (prefix, source) in prefixes)
+        foreach ((string? prefix, string? source) in prefixes)
             Console.WriteLine($"  {prefix,-8} {source}");
         Debug.Assert(prefixes.All(p => p.Prefix.Length >= 2));
     }

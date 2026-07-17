@@ -43,7 +43,7 @@ internal static class LambdasAndClosures
     private static void DemoClosureKeepsState()
     {
         Console.WriteLine("-- 闭包保活外层变量 --");
-        var counter = MakeCounter();
+        Func<int> counter = MakeCounter();
         Debug.Assert(counter() == 1);
         Debug.Assert(counter() == 2);
         Debug.Assert(counter() == 3);

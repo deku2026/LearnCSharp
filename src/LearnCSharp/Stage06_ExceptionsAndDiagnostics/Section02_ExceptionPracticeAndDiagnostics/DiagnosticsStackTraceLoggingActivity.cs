@@ -44,7 +44,7 @@ internal static class DiagnosticsStackTraceLoggingActivity
             Debug.Assert(full.Contains(ex.Message, StringComparison.Ordinal));
             Debug.Assert(full.Contains(nameof(LayerC), StringComparison.Ordinal));
 
-            var st = new StackTrace(ex, fNeedFileInfo: false);
+            StackTrace st = new StackTrace(ex, fNeedFileInfo: false);
             Debug.Assert(st.FrameCount > 0);
 
             Console.WriteLine($"  Message   : {ex.Message}");
@@ -85,7 +85,7 @@ internal static class DiagnosticsStackTraceLoggingActivity
             Console.WriteLine("  GOOD: \"user {UserId}\", userId");
 
             // BCL EventSource: structured payloads without Microsoft.Extensions.Logging.
-            using var listener = new DemoEventListener();
+            using DemoEventListener listener = new DemoEventListener();
             DemoOrderEventSource.Log.OrderFailed(userId, orderId, ex.GetType().Name);
             Debug.Assert(listener.LastPayload is not null);
             Debug.Assert(listener.LastPayload.Contains("42", StringComparison.Ordinal));

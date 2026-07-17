@@ -30,7 +30,7 @@ internal static class DateTimeOffsetDemo
         Console.WriteLine("-- Now / UtcNow / explicit offset --");
         DateTimeOffset now = DateTimeOffset.Now;
         DateTimeOffset utc = DateTimeOffset.UtcNow;
-        var dto = new DateTimeOffset(2026, 6, 14, 15, 30, 0, TimeSpan.FromHours(8));
+        DateTimeOffset dto = new DateTimeOffset(2026, 6, 14, 15, 30, 0, TimeSpan.FromHours(8));
         Debug.Assert(utc.Offset == TimeSpan.Zero);
         Debug.Assert(dto.Offset == TimeSpan.FromHours(8));
         DateTime utcDt = dto.UtcDateTime;
@@ -41,8 +41,8 @@ internal static class DateTimeOffsetDemo
     private static void DemoEqualityAcrossOffsets()
     {
         Console.WriteLine("-- comparison normalizes to UTC --");
-        var a = new DateTimeOffset(2026, 6, 14, 15, 0, 0, TimeSpan.FromHours(8));
-        var b = new DateTimeOffset(2026, 6, 14, 7, 0, 0, TimeSpan.Zero); // same instant
+        DateTimeOffset a = new DateTimeOffset(2026, 6, 14, 15, 0, 0, TimeSpan.FromHours(8));
+        DateTimeOffset b = new DateTimeOffset(2026, 6, 14, 7, 0, 0, TimeSpan.Zero); // same instant
         Debug.Assert(a == b);
         Debug.Assert(a.UtcTicks == b.UtcTicks);
         Console.WriteLine($"  +08:00 15:00 == UTC 07:00 → {a == b}");
@@ -52,7 +52,7 @@ internal static class DateTimeOffsetDemo
     {
         Console.WriteLine("-- offset is a snapshot; not DST rules --");
         // +08:00 could be Beijing, Singapore, etc. — no zone identity retained
-        var snap = new DateTimeOffset(2026, 1, 1, 12, 0, 0, TimeSpan.FromHours(8));
+        DateTimeOffset snap = new DateTimeOffset(2026, 1, 1, 12, 0, 0, TimeSpan.FromHours(8));
         Debug.Assert(snap.Offset.TotalHours == 8);
         Console.WriteLine("  for future local wall times + DST, use TimeZoneInfo");
     }

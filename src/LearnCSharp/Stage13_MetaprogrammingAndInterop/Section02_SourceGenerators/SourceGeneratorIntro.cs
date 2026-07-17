@@ -38,7 +38,7 @@ internal static partial class SourceGeneratorIntro
     private static void DemoRealJsonSourceGen()
     {
         Console.WriteLine("-- real System.Text.Json source generation --");
-        var dto = new IntroDto { Id = 7, Name = "Ada" };
+        IntroDto dto = new IntroDto { Id = 7, Name = "Ada" };
         string json = JsonSerializer.Serialize(dto, IntroJsonContext.Default.IntroDto);
         IntroDto? back = JsonSerializer.Deserialize(json, IntroJsonContext.Default.IntroDto);
         Debug.Assert(back is { Id: 7, Name: "Ada" });
@@ -55,7 +55,7 @@ internal static partial class SourceGeneratorIntro
         Console.WriteLine($"  compile-time partial: {compileTime}");
 
         // Runtime: emit a method that returns 42
-        var dm = new DynamicMethod("FortyTwo", typeof(int), Type.EmptyTypes, typeof(SourceGeneratorIntro).Module, true);
+        DynamicMethod dm = new DynamicMethod("FortyTwo", typeof(int), Type.EmptyTypes, typeof(SourceGeneratorIntro).Module, true);
         ILGenerator il = dm.GetILGenerator();
         il.Emit(OpCodes.Ldc_I4_S, (byte)42);
         il.Emit(OpCodes.Ret);

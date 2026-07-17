@@ -57,7 +57,7 @@ internal static class StringInterpolationCulture
     private static void DemoHandlerWithStringBuilder()
     {
         Console.WriteLine("-- StringBuilder.Append($\"...\") uses interpolated string handler --");
-        var sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         int x = 7;
         sb.Append($"value={x}");
         Debug.Assert(sb.ToString() == "value=7");

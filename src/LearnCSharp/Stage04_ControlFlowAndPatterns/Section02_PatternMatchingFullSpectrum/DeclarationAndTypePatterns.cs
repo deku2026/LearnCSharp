@@ -36,8 +36,9 @@ internal static class DeclarationAndTypePatterns
 
         object? n = null;
         Debug.Assert(n is not string);
-        // null is string s → false
-        Debug.Assert(!(null is string));
+        // null is string s → false（用 object? 变量承载，避免常量折叠警告）
+        object? nullBox = null;
+        Debug.Assert(!(nullBox is string));
         Console.WriteLine("  null is string → false（声明模式拒 null）");
     }
 

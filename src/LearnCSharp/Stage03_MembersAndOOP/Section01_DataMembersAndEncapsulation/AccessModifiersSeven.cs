@@ -30,7 +30,7 @@ internal static class AccessModifiersSeven
     private static void DemoDefaultsAndPublicPrivate()
     {
         Console.WriteLine("-- 默认：成员 private / 顶级类型 internal --");
-        var box = new VisibilityBox();
+        VisibilityBox box = new VisibilityBox();
         Debug.Assert(box.PublicValue == 1);
         // box._privateValue; // ❌
         Console.WriteLine($"  PublicValue={box.PublicValue}");
@@ -39,7 +39,7 @@ internal static class AccessModifiersSeven
     private static void DemoProtectedFamily()
     {
         Console.WriteLine("-- protected：本类型 + 派生类 --");
-        var child = new DerivedVisibility();
+        DerivedVisibility child = new DerivedVisibility();
         Debug.Assert(child.ReadProtected() == 42);
         Console.WriteLine($"  Derived reads protected={child.ReadProtected()}");
     }
@@ -47,11 +47,11 @@ internal static class AccessModifiersSeven
     private static void DemoInternalCombinations()
     {
         Console.WriteLine("-- internal / protected internal / private protected --");
-        var same = new SameAssemblyPeer();
+        SameAssemblyPeer same = new SameAssemblyPeer();
         Debug.Assert(same.ReadInternal() == 7);
         Debug.Assert(same.ReadProtectedInternal() == 8);
         // private protected：仅同程序集派生类
-        var derived = new DerivedVisibility();
+        DerivedVisibility derived = new DerivedVisibility();
         Debug.Assert(derived.ReadPrivateProtected() == 9);
         Console.WriteLine("  same-assembly peer: internal+protected internal OK");
         Console.WriteLine("  same-assembly derived: private protected OK");
@@ -60,7 +60,7 @@ internal static class AccessModifiersSeven
     private static void DemoFileScopedType()
     {
         Console.WriteLine("-- file 修饰符：仅本源文件可见 --");
-        var helper = new FileOnlyHelper(99);
+        FileOnlyHelper helper = new FileOnlyHelper(99);
         Debug.Assert(helper.Value == 99);
         Console.WriteLine($"  FileOnlyHelper.Value={helper.Value}");
     }
@@ -68,7 +68,7 @@ internal static class AccessModifiersSeven
     private static void DemoStructNoProtected()
     {
         Console.WriteLine("-- struct 成员：仅 public/internal/private --");
-        var s = new PointLike(3, 4);
+        PointLike s = new PointLike(3, 4);
         Debug.Assert(s.X == 3 && s.Y == 4);
         Console.WriteLine($"  PointLike=({s.X},{s.Y})");
         // struct 不能有 protected 成员（不能被继承）
@@ -99,13 +99,13 @@ internal static class AccessModifiersSeven
     {
         public int ReadInternal()
         {
-            var b = new BaseVisibility();
+            BaseVisibility b = new BaseVisibility();
             return b.InternalValue;
         }
 
         public int ReadProtectedInternal()
         {
-            var b = new BaseVisibility();
+            BaseVisibility b = new BaseVisibility();
             return b.ProtectedInternalValue;
         }
         // b.PrivateProtectedValue; // ❌ 非派生

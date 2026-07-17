@@ -37,7 +37,7 @@ internal static class CpuProfilingDotnetTrace
     private static void DemoCustomEventSourceDuringCpuBurn()
     {
         Console.WriteLine("-- EventSource markers around a CPU burn (in-process listener) --");
-        using var listener = new CountingListener();
+        using CountingListener listener = new CountingListener();
         listener.EnableEvents(CpuLabEventSource.Log, EventLevel.Informational);
 
         CpuLabEventSource.Log.BurnStart(200_000);

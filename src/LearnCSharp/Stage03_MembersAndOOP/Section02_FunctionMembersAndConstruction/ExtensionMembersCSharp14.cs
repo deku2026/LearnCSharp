@@ -83,7 +83,7 @@ file static class Stage03Section02Extensions
 
         public T? SecondOrDefault()
         {
-            using var e = source.GetEnumerator();
+            using IEnumerator<T> e = source.GetEnumerator();
             if (!e.MoveNext()) return default;
             if (!e.MoveNext()) return default;
             return e.Current;

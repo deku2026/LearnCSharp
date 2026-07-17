@@ -37,13 +37,13 @@ internal static class VolatileAndMemoryBarriers
         Console.WriteLine("-- volatile flag publication --");
         s_ready = false;
         s_data = 0;
-        var t = new Thread(() =>
+        Thread t = new Thread(() =>
         {
             s_data = 123;
             s_ready = true; // volatile write: release semantics for prior stores
         });
         t.Start();
-        var sw = Stopwatch.StartNew();
+        Stopwatch sw = Stopwatch.StartNew();
         while (!s_ready && sw.ElapsedMilliseconds < 2000)
             Thread.Yield();
         bool joined = t.Join(2000);
@@ -66,7 +66,7 @@ internal static class VolatileAndMemoryBarriers
         // Multi-thread stop flag without declaring field volatile
         int stop = 0;
         int ticks = 0;
-        var worker = new Thread(() =>
+        Thread worker = new Thread(() =>
         {
             while (Volatile.Read(ref stop) == 0)
                 ticks++;
@@ -84,7 +84,7 @@ internal static class VolatileAndMemoryBarriers
         Console.WriteLine("-- Interlocked proof (portable) vs plain field risk --");
         // Portable assert: Interlocked.Increment is atomic
         int counter = 0;
-        var threads = new Thread[4];
+        Thread[] threads = new Thread[4];
         for (int t = 0; t < threads.Length; t++)
         {
             threads[t] = new Thread(() =>
@@ -103,7 +103,7 @@ internal static class VolatileAndMemoryBarriers
 
         // Plain ++ races (may or may not lose counts — document, soft check)
         int plain = 0;
-        var plainThreads = new Thread[4];
+        Thread[] plainThreads = new Thread[4];
         for (int t = 0; t < plainThreads.Length; t++)
         {
             plainThreads[t] = new Thread(() =>
@@ -123,13 +123,13 @@ internal static class VolatileAndMemoryBarriers
         // One-shot Interlocked publish
         s_plainData = 0;
         s_plainFlag = 0;
-        var pub = new Thread(() =>
+        Thread pub = new Thread(() =>
         {
             s_plainData = 777;
             Interlocked.Exchange(ref s_plainFlag, 1);
         });
         pub.Start();
-        var sw = Stopwatch.StartNew();
+        Stopwatch sw = Stopwatch.StartNew();
         while (Interlocked.CompareExchange(ref s_plainFlag, 0, 0) == 0 && sw.ElapsedMilliseconds < 2000)
             Thread.Yield();
         pub.Join(2000);

@@ -29,7 +29,7 @@ internal static class AccessAndLiteralKeywords
     private static void DemoThisAndIndexer()
     {
         Console.WriteLine("-- this / 索引器 --");
-        var bag = new NumberBag(1, 2, 3);
+        NumberBag bag = new NumberBag(1, 2, 3);
         Debug.Assert(bag[0] == 1);
         bag[1] = 20;
         Debug.Assert(bag[1] == 20);
@@ -40,7 +40,7 @@ internal static class AccessAndLiteralKeywords
     private static void DemoBase()
     {
         Console.WriteLine("-- base --");
-        var d = new Child("kid");
+        Child d = new Child("kid");
         Debug.Assert(d.Describe() == "Parent:kid|Child:kid");
         Console.WriteLine($"  Describe={d.Describe()}");
     }

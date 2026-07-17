@@ -82,7 +82,7 @@ internal static class ConfigurationAndOptions
             })
             .Build();
 
-        var services = new ServiceCollection();
+        ServiceCollection services = new ServiceCollection();
         services.AddSingleton<IConfiguration>(config);
         services.AddOptions<AppOptions>()
             .Bind(config.GetSection(AppOptions.SectionName));

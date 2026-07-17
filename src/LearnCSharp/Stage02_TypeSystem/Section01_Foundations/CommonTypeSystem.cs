@@ -73,7 +73,7 @@ internal static class CommonTypeSystem
         Console.WriteLine("-- GetType 练习链 --");
         int n = 1;
         string s = "x";
-        var p = new PointR { X = 1 };
+        PointR p = new PointR { X = 1 };
 
         PrintChain(n);
         PrintChain(s);
@@ -95,10 +95,11 @@ internal static class CommonTypeSystem
 
     private static void PrintChain(object o)
     {
-        var t = o.GetType();
+        Type t = o.GetType();
         Console.WriteLine($"  {t.Name} → {t.BaseType?.Name ?? "(root)"}");
     }
 
+#pragma warning disable CS0649 // 演示默认值初始化：字段故意不赋值
     private struct PointV
     {
         public int X, Y;
@@ -108,4 +109,5 @@ internal static class CommonTypeSystem
     {
         public int X, Y;
     }
+#pragma warning restore CS0649
 }

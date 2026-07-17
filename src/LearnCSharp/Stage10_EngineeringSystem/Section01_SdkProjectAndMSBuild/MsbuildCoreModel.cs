@@ -37,7 +37,7 @@ internal static class MsbuildCoreModel
             ("Target", "有序工作单元 + 条件", "BeforeTargets/AfterTargets"),
             ("Task", "可执行原子操作（.NET 类）", "Csc / Copy / Message"),
         ];
-        foreach (var (name, role, syntax) in concepts)
+        foreach ((string? name, string? role, string? syntax) in concepts)
             Console.WriteLine($"  {name,-8} {role,-28} {syntax}");
         Debug.Assert(concepts.Length == 4);
     }
@@ -46,7 +46,7 @@ internal static class MsbuildCoreModel
     {
         Console.WriteLine("-- property: later wins (evaluation order) --");
         // 模拟 MSBuild：同名属性后写覆盖前写
-        var bag = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        Dictionary<string, string> bag = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             ["TargetFramework"] = "net8.0",
             ["MyFlag"] = "false",
@@ -62,13 +62,13 @@ internal static class MsbuildCoreModel
     private static void DemoItemMetadata()
     {
         Console.WriteLine("-- item list + metadata --");
-        var items = new List<(string Include, string? CopyToOutput)>
+        List<(string Include, string? CopyToOutput)> items = new List<(string Include, string? CopyToOutput)>
         {
             ("Program.cs", null),
             ("appsettings.json", "PreserveNewest"),
             ("Serilog", "PackageReference"),
         };
-        foreach (var (include, meta) in items)
+        foreach ((string? include, string? meta) in items)
             Console.WriteLine($"  Include={include}, Meta={meta ?? "(none)"}");
         Debug.Assert(items.Count == 3);
         Console.WriteLine("  常见 Item: Compile / PackageReference / ProjectReference / None / Content");
@@ -89,7 +89,7 @@ internal static class MsbuildCoreModel
     {
         Console.WriteLine("-- two-phase: evaluation then execution --");
         // 模拟：求值阶段展开属性；执行阶段才跑 Target
-        var props = new Dictionary<string, string> { ["Later"] = "" };
+        Dictionary<string, string> props = new Dictionary<string, string> { ["Later"] = "" };
         // phase 1: Later 尚未定义时引用 → 空
         string early = props.GetValueOrDefault("Out") ?? $"prefix-{props["Later"]}";
         props["Later"] = "value";

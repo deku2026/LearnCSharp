@@ -31,7 +31,7 @@ internal static class JumpStatements
     {
         Console.WriteLine("-- break：终止最近循环 --");
         int[] nums = [1, 2, -1, 4];
-        var taken = new List<int>();
+        List<int> taken = new List<int>();
         foreach (int n in nums)
         {
             if (n < 0)
@@ -45,7 +45,7 @@ internal static class JumpStatements
     private static void DemoContinue()
     {
         Console.WriteLine("-- continue：跳过本次迭代 --");
-        var odds = new List<int>();
+        List<int> odds = new List<int>();
         for (int i = 0; i < 10; i++)
         {
             if (i % 2 == 0)
@@ -79,7 +79,7 @@ internal static class JumpStatements
     {
         Console.WriteLine("-- goto 标签（慎用） --");
         int j = 0;
-        var buf = new List<int>();
+        List<int> buf = new List<int>();
     loop:
         if (j < 3)
         {

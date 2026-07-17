@@ -54,7 +54,7 @@ internal static class CompositeFormatAndFormatStrings
         CultureInfo inv = CultureInfo.InvariantCulture;
         string num = 42.ToString("0000", inv);
         Debug.Assert(num == "0042");
-        var dt = new DateTime(2026, 7, 16, 14, 30, 0, DateTimeKind.Utc);
+        DateTime dt = new DateTime(2026, 7, 16, 14, 30, 0, DateTimeKind.Utc);
         string iso = dt.ToString("yyyy-MM-dd'T'HH:mm:ss'Z'", inv);
         Debug.Assert(iso == "2026-07-16T14:30:00Z");
         Console.WriteLine($"  custom num={num}; ISO-ish={iso}");

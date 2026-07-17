@@ -8,6 +8,7 @@
 // Lesson: LOH for large objects (~85KB+); POH for pinned; compaction rules differ.
 
 using System.Diagnostics;
+using System.Runtime;
 using System.Runtime.InteropServices;
 using LearnCSharp.Topics;
 
@@ -71,7 +72,7 @@ internal static class LohAndPoh
     private static void DemoCompactLohNote()
     {
         Console.WriteLine("-- LOH compaction mode --");
-        var mode = System.Runtime.GCSettings.LargeObjectHeapCompactionMode;
+        GCLargeObjectHeapCompactionMode mode = System.Runtime.GCSettings.LargeObjectHeapCompactionMode;
         Console.WriteLine($"  LargeObjectHeapCompactionMode={mode}");
         Debug.Assert(Enum.IsDefined(mode));
         Console.WriteLine("  Default: LOH often swept not compacted; can force compact next full GC.");

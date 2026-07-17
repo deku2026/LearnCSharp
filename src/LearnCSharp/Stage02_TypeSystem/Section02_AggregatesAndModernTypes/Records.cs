@@ -30,9 +30,9 @@ internal static class Records
     private static void DemoValueEquality()
     {
         Console.WriteLine("-- record 默认值相等 --");
-        var a = new Person("Ada", 36);
-        var b = new Person("Ada", 36);
-        var c = new Person("Grace", 85);
+        Person a = new Person("Ada", 36);
+        Person b = new Person("Ada", 36);
+        Person c = new Person("Grace", 85);
         Debug.Assert(a == b);
         Debug.Assert(a.Equals(b));
         Debug.Assert(a != c);
@@ -43,8 +43,8 @@ internal static class Records
     private static void DemoWithNonDestructive()
     {
         Console.WriteLine("-- with 非破坏性修改 --");
-        var p = new Person("Ada", 36);
-        var older = p with { Age = 37 };
+        Person p = new Person("Ada", 36);
+        Person older = p with { Age = 37 };
         Debug.Assert(p.Age == 36 && older.Age == 37);
         Debug.Assert(p.Name == older.Name);
         Console.WriteLine($"  p={p}; older={older}");
@@ -53,11 +53,11 @@ internal static class Records
     private static void DemoPositionalAndDeconstruct()
     {
         Console.WriteLine("-- positional record 自动 Deconstruct --");
-        var p = new Person("Ada", 36);
-        var (name, age) = p;
+        Person p = new Person("Ada", 36);
+        (string? name, int age) = p;
         Debug.Assert(name == "Ada" && age == 36);
 
-        var mutableInit = new MutablePoint { X = 1, Y = 2 };
+        MutablePoint mutableInit = new MutablePoint { X = 1, Y = 2 };
         Debug.Assert(mutableInit.X == 1);
         // mutableInit.X = 3; // init-only 之后只读
         Console.WriteLine($"  deconstruct=({name},{age})");
@@ -66,10 +66,10 @@ internal static class Records
     private static void DemoRecordStruct()
     {
         Console.WriteLine("-- record struct：值类型 + 值相等 --");
-        var a = new Point(1, 2);
-        var b = new Point(1, 2);
+        Point a = new Point(1, 2);
+        Point b = new Point(1, 2);
         Debug.Assert(a == b);
-        var c = a with { X = 9 };
+        Point c = a with { X = 9 };
         Debug.Assert(a.X == 1 && c.X == 9);
         Console.WriteLine($"  Point record struct a==b={a == b}");
     }

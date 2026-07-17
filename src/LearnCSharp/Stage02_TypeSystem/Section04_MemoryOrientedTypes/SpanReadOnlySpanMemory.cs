@@ -101,7 +101,7 @@ internal static class SpanReadOnlySpanMemory
     private static void DemoArrayPool()
     {
         Console.WriteLine("-- ArrayPool 复用大缓冲 --");
-        var pool = ArrayPool<byte>.Shared;
+        ArrayPool<byte> pool = ArrayPool<byte>.Shared;
         byte[] rented = pool.Rent(1024);
         try
         {
@@ -122,7 +122,7 @@ internal static class SpanReadOnlySpanMemory
         Console.WriteLine("-- ArrayPool clear-on-return 陷阱 --");
         // Return(array, clearArray: false) 默认不清空 → 下一租户可能读到旧敏感数据
         // clearArray: true 会在归还时清零（更安全，略慢）
-        var pool = ArrayPool<byte>.Shared;
+        ArrayPool<byte> pool = ArrayPool<byte>.Shared;
         const int size = 64;
         byte[] first = pool.Rent(size);
         try
@@ -174,7 +174,7 @@ internal static class SpanReadOnlySpanMemory
     private static int Sum(ReadOnlySpan<int> data)
     {
         int acc = 0;
-        foreach (var n in data) acc += n;
+        foreach (int n in data) acc += n;
         return acc;
     }
 }

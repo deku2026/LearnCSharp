@@ -43,14 +43,14 @@ internal static class NamespaceConcurrencyInterop
     {
         Console.WriteLine("-- using 语句 / 声明（确定性释放） --");
         int disposed = 0;
-        using (var r = new ProbeResource(() => disposed++))
+        using (ProbeResource r = new ProbeResource(() => disposed++))
         {
             Debug.Assert(!r.IsDisposed);
             r.Touch();
         }
         Debug.Assert(disposed == 1);
 
-        using var r2 = new ProbeResource(() => disposed++);
+        using ProbeResource r2 = new ProbeResource(() => disposed++);
         r2.Touch();
         // 方法结束时释放
         Console.WriteLine($"  disposed count after block={disposed} (r2 still open until return)");
@@ -59,9 +59,9 @@ internal static class NamespaceConcurrencyInterop
     private static void DemoLock()
     {
         Console.WriteLine("-- lock 互斥 --");
-        var gate = new object();
+        object gate = new();
         int counter = 0;
-        var threads = new Thread[4];
+        Thread[] threads = new Thread[4];
         for (int t = 0; t < threads.Length; t++)
         {
             threads[t] = new Thread(() =>
@@ -76,7 +76,7 @@ internal static class NamespaceConcurrencyInterop
             });
             threads[t].Start();
         }
-        foreach (var th in threads) th.Join();
+        foreach (Thread th in threads) th.Join();
         Debug.Assert(counter == 4000);
         Console.WriteLine($"  lock counter={counter}");
     }

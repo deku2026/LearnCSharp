@@ -9,6 +9,7 @@
 
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage13.Section01;
@@ -32,7 +33,14 @@ internal static class ReflectionAotTrimLimits
         Console.WriteLine("  Trimmer/AOT: static analysis deletes unused types/members.");
         Console.WriteLine("  Reflection: accesses by string/Type at runtime — invisible to analysis.");
         Console.WriteLine("  Result: MissingMethodException etc. after publish/trim.");
-        Console.WriteLine("  Worst: Type.GetType(string), GetTypes(), fully dynamic MakeGenericType.");
+        // The "worst" fully-dynamic reflection the doc flags: type loaded from a string.
+        // This works now (non-trimmed) but would emit IL2xxx warnings / throw under AOT publish.
+        Type? t = Type.GetType("System.Text.StringBuilder, System.Runtime");
+        Debug.Assert(t is not null, "Type.GetType(string) works in a non-trimmed build");
+        object? sb = Activator.CreateInstance(t);
+        Debug.Assert(sb is not null);
+        Console.WriteLine($"  Type.GetType(\"...StringBuilder...\") → {t!.Name}; Activator.CreateInstance → {sb!.GetType().Name}");
+        Console.WriteLine("  Under PublishAot/trim this would warn IL2075 / throw MissingMethodException.");
     }
 
     private static void DemoDynamicallyAccessedMembers()
@@ -41,7 +49,27 @@ internal static class ReflectionAotTrimLimits
         object o = Create(typeof(Service));
         Debug.Assert(o is Service);
         Console.WriteLine($"  Create(typeof(Service)) => {o.GetType().Name}");
-        Console.WriteLine("  Annotation propagates along call graph; be precise (too much = bloat).");
+
+        // Observable proof the annotation is present: reflect-read the attribute off the
+        // parameter so the otherwise-invisible trimmer contract becomes visible at runtime.
+        MethodInfo create = typeof(ReflectionAotTrimLimits).GetMethod(nameof(Create), BindingFlags.NonPublic | BindingFlags.Static)!;
+        ParameterInfo p = create.GetParameters()[0];
+        IList<CustomAttributeData> attrs = p.GetCustomAttributesData();
+        bool hasDam = attrs.Any(a => a.AttributeType == typeof(DynamicallyAccessedMembersAttribute));
+        Console.WriteLine($"  Create parameter has [DynamicallyAccessedMembers]: {hasDam}");
+        Debug.Assert(hasDam, "the parameter must carry the DAM annotation");
+        if (hasDam)
+        {
+            DynamicallyAccessedMembersAttribute dam = (DynamicallyAccessedMembersAttribute)p.GetCustomAttributes(typeof(DynamicallyAccessedMembersAttribute), false)[0];
+            Console.WriteLine($"  MemberTypes requested: {dam.MemberTypes}");
+        }
+
+        // Contrast: an un-annotated Create also works now, but the trimmer would NOT keep
+        // the constructor → MissingMethodException after trimming. Both succeed identically
+        // here; the annotation only matters at publish time (made concrete as text).
+        object o2 = CreateUnannotated(typeof(Service));
+        Debug.Assert(o2 is Service);
+        Console.WriteLine($"  CreateUnannotated(typeof(Service)) => {o2.GetType().Name} (works now; trimmer would drop the ctor)");
     }
 
     private static void DemoPreferSourceGenerators()
@@ -62,6 +90,9 @@ internal static class ReflectionAotTrimLimits
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
         Type type)
         => Activator.CreateInstance(type)!;
+
+    // No DAM annotation → the trimmer is free to delete the public ctor under AOT/trim.
+    private static object CreateUnannotated(Type type) => Activator.CreateInstance(type)!;
 
     private static string ManualSerialize(Point p)
         => $"{{\"X\":{p.X},\"Y\":{p.Y}}}";

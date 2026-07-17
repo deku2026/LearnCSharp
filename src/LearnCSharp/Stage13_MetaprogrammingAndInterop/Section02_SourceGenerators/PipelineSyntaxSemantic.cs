@@ -50,7 +50,7 @@ internal static partial class PipelineSyntaxSemantic
 
         int syntaxChecks = 0;
         int semanticExtracts = 0;
-        var extracted = new List<string>();
+        List<string> extracted = new List<string>();
 
         long t0 = Stopwatch.GetTimestamp();
         foreach (string file in files)
@@ -84,7 +84,7 @@ internal static partial class PipelineSyntaxSemantic
         Debug.Assert(g1.Equals(g2));
         Console.WriteLine($"  record equality: {g1.Equals(g2)}");
 
-        var node = new PipelineNode { Name = "Greeter", Namespace = "App" };
+        PipelineNode node = new PipelineNode { Name = "Greeter", Namespace = "App" };
         string json = JsonSerializer.Serialize(node, PipeJsonContext.Default.PipelineNode);
         PipelineNode? back = JsonSerializer.Deserialize(json, PipeJsonContext.Default.PipelineNode);
         Debug.Assert(back is { Name: "Greeter", Namespace: "App" });

@@ -28,7 +28,7 @@ internal static class ControlFlowJumps
     private static void DemoBreakContinue()
     {
         Console.WriteLine("-- break / continue --");
-        var kept = new List<int>();
+        List<int> kept = new List<int>();
         for (int i = 0; i < 10; i++)
         {
             if (i % 2 == 0) continue; // 跳过偶数

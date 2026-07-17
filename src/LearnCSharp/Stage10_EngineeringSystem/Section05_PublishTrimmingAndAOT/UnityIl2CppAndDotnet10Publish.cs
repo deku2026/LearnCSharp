@@ -52,7 +52,7 @@ internal static class UnityIl2CppAndDotnet10Publish
             ("source generators", "避免运行时 emit/反射"),
             ("RID-specific publish", "按玩家平台出包"),
         ];
-        foreach (var (dotnet, unity) in map)
+        foreach ((string? dotnet, string? unity) in map)
             Console.WriteLine($"  {dotnet,-32} ≈ {unity}");
         Debug.Assert(map.Length >= 5);
     }

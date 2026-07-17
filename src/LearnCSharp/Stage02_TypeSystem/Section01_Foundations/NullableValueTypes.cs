@@ -47,7 +47,9 @@ internal static class NullableValueTypes
 
         try
         {
+#pragma warning disable CS8629 // 演示无值取 .Value 抛异常
             _ = empty.Value;
+#pragma warning restore CS8629
             Debug.Assert(false);
         }
         catch (InvalidOperationException)

@@ -105,7 +105,7 @@ internal static class ReducingGcPressure
         Console.WriteLine($"  CollectionCount(0): {before} → {after}");
         Debug.Assert(after > before);
 
-        var sb = new StringBuilder(64);
+        StringBuilder sb = new StringBuilder(64);
         for (int i = 0; i < 10; i++)
         {
             sb.Clear();

@@ -56,7 +56,7 @@ internal static class LocalFunctions
             Console.WriteLine("  EvensUpTo(-1) throws at call site (not on enumerate)");
         }
 
-        var list = EvensUpTo(6).ToList();
+        List<int> list = EvensUpTo(6).ToList();
         Debug.Assert(list is [0, 2, 4, 6]);
         Console.WriteLine($"  EvensUpTo(6)=[{string.Join(',', list)}]");
     }

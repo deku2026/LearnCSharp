@@ -64,7 +64,7 @@ internal static class StandardQueryOperators
             new("Bob", 17, "Sales", []),
             new("Cara", 40, "Eng", []),
         ];
-        var byDept = people.GroupBy(p => p.Department).ToList();
+        List<IGrouping<string, Person>> byDept = people.GroupBy(p => p.Department).ToList();
         Debug.Assert(byDept.Count == 2);
         Debug.Assert(byDept.Single(g => g.Key == "Eng").Count() == 2);
 

@@ -30,7 +30,7 @@ internal static class PropertyPatterns
     private static void DemoBasicProperty()
     {
         Console.WriteLine("-- { Prop: 模式 } --");
-        var p = new Person("Ada", 30, new Address("北京", "中国"));
+        Person p = new Person("Ada", 30, new Address("北京", "中国"));
         Debug.Assert(p is { Age: >= 18 });
         Debug.Assert(!(p is { Age: < 18 }));
         Console.WriteLine($"  Age>=18 → {p is { Age: >= 18 }}");
@@ -39,7 +39,7 @@ internal static class PropertyPatterns
     private static void DemoExtendedDotNotation()
     {
         Console.WriteLine("-- C# 10 嵌套点记法 --");
-        var p = new Person("Bob", 40, new Address("上海", "中国"));
+        Person p = new Person("Bob", 40, new Address("上海", "中国"));
         Debug.Assert(p is { Name.Length: > 0 });
         Debug.Assert(p is { Address.City: "上海" });
         // 旧写法等价
@@ -50,7 +50,7 @@ internal static class PropertyPatterns
     private static void DemoMultiProperty()
     {
         Console.WriteLine("-- 多属性逗号 = and --");
-        var p = new Person("Chen", 70, new Address("广州", "中国"));
+        Person p = new Person("Chen", 70, new Address("广州", "中国"));
         Debug.Assert(p is { Age: >= 65, Address.Country: "中国" });
         Console.WriteLine("  { Age: >=65, Address.Country: \"中国\" }");
     }

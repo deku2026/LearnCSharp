@@ -30,7 +30,7 @@ internal static class FinallyUsingAndRaiiCompare
     private static void DemoFinallyOnThrowReturnNormal()
     {
         Console.WriteLine("-- finally runs for throw / return / normal --");
-        var log = new List<string>();
+        List<string> log = new List<string>();
 
         try
         {
@@ -80,7 +80,7 @@ internal static class FinallyUsingAndRaiiCompare
     private static void DemoUsingDisposesOnException()
     {
         Console.WriteLine("-- using disposes even when body throws --");
-        var resource = new TrackedResource("fs");
+        TrackedResource resource = new TrackedResource("fs");
         try
         {
             using (resource)
@@ -101,11 +101,11 @@ internal static class FinallyUsingAndRaiiCompare
     private static void DemoUsingDeclaration()
     {
         Console.WriteLine("-- using declaration (C# 8) --");
-        var a = new TrackedResource("a");
-        var b = new TrackedResource("b");
+        TrackedResource a = new TrackedResource("a");
+        TrackedResource b = new TrackedResource("b");
         {
-            using var ua = a;
-            using var ub = b;
+            using TrackedResource ua = a;
+            using TrackedResource ub = b;
             Debug.Assert(!a.Disposed && !b.Disposed);
         }
 
@@ -144,7 +144,7 @@ internal static class FinallyUsingAndRaiiCompare
         Console.WriteLine("-- C# using/finally vs C++ RAII --");
         // C++: stack objects destruct automatically on unwind (no finally needed).
         // C#: GC is non-deterministic → opt-in IDisposable + using/finally for cleanup.
-        using var r = new TrackedResource("raii-like");
+        using TrackedResource r = new TrackedResource("raii-like");
         Debug.Assert(!r.Disposed);
         Console.WriteLine("  C# using ≈ C++ RAII scope guard; C++ has no finally");
     }

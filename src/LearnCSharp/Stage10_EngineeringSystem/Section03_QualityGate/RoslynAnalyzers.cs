@@ -7,8 +7,8 @@
 //
 // Roslyn 分析器：编译管线内静态检查；内置 CA 与包分析器。
 
-using System.Diagnostics;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage10.Section03;
@@ -63,7 +63,7 @@ internal static class RoslynAnalyzers
             ("CA1860", "优先 Count/Length 而非 Any()"),
             ("CA1822", "可标记 static 的成员"),
         ];
-        foreach (var (id, theme) in rules)
+        foreach ((string? id, string? theme) in rules)
             Console.WriteLine($"  {id}: {theme}");
         Debug.Assert(rules.All(r => r.Id.StartsWith("CA", StringComparison.Ordinal)));
     }

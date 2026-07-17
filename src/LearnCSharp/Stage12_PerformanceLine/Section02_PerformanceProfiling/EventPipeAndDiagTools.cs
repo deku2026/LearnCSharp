@@ -45,7 +45,7 @@ internal static class EventPipeAndDiagTools
     private static void DemoEventSourceListener()
     {
         Console.WriteLine("-- custom EventSource + EventListener (real EventPipe-family API) --");
-        using var listener = new DiagCountingListener();
+        using DiagCountingListener listener = new DiagCountingListener();
         // Enable via OnEventSourceCreated and explicit call
         listener.EnableEvents(DiagLabEventSource.Log, EventLevel.Verbose);
 

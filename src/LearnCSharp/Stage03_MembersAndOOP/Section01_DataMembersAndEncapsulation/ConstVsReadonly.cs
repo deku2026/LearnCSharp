@@ -47,8 +47,8 @@ internal static class ConstVsReadonly
     private static void DemoInstanceReadonly()
     {
         Console.WriteLine("-- 实例 readonly：每对象构造时定值 --");
-        var a = new Stamp();
-        var b = new Stamp();
+        Stamp a = new Stamp();
+        Stamp b = new Stamp();
         Debug.Assert(a.Created <= b.Created);
         Console.WriteLine($"  a.Created={a.Created:O}");
         Console.WriteLine($"  b.Created={b.Created:O}");
@@ -57,7 +57,7 @@ internal static class ConstVsReadonly
     private static void DemoReadonlyReferenceShallow()
     {
         Console.WriteLine("-- readonly 引用类型：引用不可改，对象可变(非深 const) --");
-        var bag = new Bag();
+        Bag bag = new Bag();
         bag.Items.Add(1);
         bag.Items.Add(2);
         Debug.Assert(bag.Items.Count == 2);

@@ -50,7 +50,7 @@ internal static class DotnetToolsDnx
             ("global", "用户机器"),
             ("local", "仓库/目录清单"),
         ];
-        foreach (var (kind, scope) in rows)
+        foreach ((string? kind, string? scope) in rows)
             Console.WriteLine($"  {kind,-8} → {scope}");
         Debug.Assert(rows.Length == 2);
     }
@@ -100,7 +100,7 @@ internal static class DotnetToolsDnx
             ("README 一次性示例", "dnx / tool exec"),
             ("库依赖 API", "PackageReference（不是 tool）"),
         ];
-        foreach (var (scenario, choice) in table)
+        foreach ((string? scenario, string? choice) in table)
             Console.WriteLine($"  {scenario,-22} → {choice}");
         Debug.Assert(table.Length == 4);
     }

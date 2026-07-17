@@ -9,7 +9,6 @@
 
 using System.Diagnostics;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using LearnCSharp.Topics;
 
@@ -54,12 +53,12 @@ internal static class HttpClientBasics
         Console.WriteLine("-- PostAsync + SendAsync with HttpRequestMessage --");
         try
         {
-            using var content = new StringContent("""{"ping":true}""", Encoding.UTF8, "application/json");
+            using StringContent content = new StringContent("""{"ping":true}""", Encoding.UTF8, "application/json");
             // httpbin may be flaky; treat any network failure as soft skip
             using HttpResponseMessage post = await s_client.PostAsync("https://httpbin.org/post", content);
             Console.WriteLine($"  POST status={(int)post.StatusCode}");
 
-            using var request = new HttpRequestMessage(HttpMethod.Get, "https://example.com/");
+            using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://example.com/");
             request.Headers.TryAddWithoutValidation("X-Demo", "LearnCSharp");
             using HttpResponseMessage sent = await s_client.SendAsync(request);
             Console.WriteLine($"  SendAsync status={(int)sent.StatusCode}");

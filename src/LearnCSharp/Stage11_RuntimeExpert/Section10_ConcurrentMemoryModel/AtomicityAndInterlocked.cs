@@ -59,8 +59,8 @@ internal static class AtomicityAndInterlocked
                 counter++; // non-atomic RMW
         }
 
-        var t1 = new Thread(Bump);
-        var t2 = new Thread(Bump);
+        Thread t1 = new Thread(Bump);
+        Thread t2 = new Thread(Bump);
         t1.Start();
         t2.Start();
         t1.Join();

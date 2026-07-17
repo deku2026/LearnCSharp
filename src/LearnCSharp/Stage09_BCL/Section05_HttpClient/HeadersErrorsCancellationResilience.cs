@@ -52,7 +52,7 @@ internal static class HeadersErrorsCancellationResilience
 
         private static HttpRequestMessage CloneRequest(HttpRequestMessage original)
         {
-            var clone = new HttpRequestMessage(original.Method, original.RequestUri);
+            HttpRequestMessage clone = new HttpRequestMessage(original.Method, original.RequestUri);
             foreach (KeyValuePair<string, IEnumerable<string>> header in original.Headers)
                 clone.Headers.TryAddWithoutValidation(header.Key, header.Value);
             return clone;
@@ -87,10 +87,10 @@ internal static class HeadersErrorsCancellationResilience
     private static async Task DemoHeaders()
     {
         Console.WriteLine("-- DefaultRequestHeaders + per-request headers --");
-        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(2) };
+        using HttpClient client = new HttpClient { Timeout = TimeSpan.FromSeconds(2) };
         try
         {
-            using var request = new HttpRequestMessage(HttpMethod.Get, "https://example.com/");
+            using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://example.com/");
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("text/html"));
             request.Headers.TryAddWithoutValidation("X-Request-Id", Guid.NewGuid().ToString("N"));
             using HttpResponseMessage response = await client.SendAsync(request);
@@ -105,8 +105,8 @@ internal static class HeadersErrorsCancellationResilience
     private static async Task DemoErrorsAndEnsureSuccess()
     {
         Console.WriteLine("-- status codes: check vs EnsureSuccessStatusCode (offline stub) --");
-        using var handler = new StubFailHandler();
-        using var client = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(1) };
+        using StubFailHandler handler = new StubFailHandler();
+        using HttpClient client = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(1) };
         using HttpResponseMessage response = await client.GetAsync("https://offline.test/status");
         Debug.Assert(response.StatusCode == HttpStatusCode.ServiceUnavailable);
         Console.WriteLine($"  expected non-success: {(int)response.StatusCode} {response.ReasonPhrase}");
@@ -124,8 +124,8 @@ internal static class HeadersErrorsCancellationResilience
     private static async Task DemoCancellation()
     {
         Console.WriteLine("-- CancellationToken + short timeout --");
-        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(2) };
-        using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(1));
+        using HttpClient client = new HttpClient { Timeout = TimeSpan.FromSeconds(2) };
+        using CancellationTokenSource cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(1));
         try
         {
             _ = await client.GetAsync("https://example.com/", cts.Token);
@@ -140,14 +140,14 @@ internal static class HeadersErrorsCancellationResilience
     private static async Task DemoDelegatingHandlerRetry()
     {
         Console.WriteLine("-- DelegatingHandler retry (offline-safe, no hang) --");
-        var retry = new RetryOnceHandler { InnerHandler = new StubFailHandler() };
-        var services = new ServiceCollection();
+        RetryOnceHandler retry = new RetryOnceHandler { InnerHandler = new StubFailHandler() };
+        ServiceCollection services = new ServiceCollection();
         services.AddHttpClient("resilient", c => c.Timeout = TimeSpan.FromSeconds(1))
             .ConfigurePrimaryHttpMessageHandler(() => new StubFailHandler())
             .AddHttpMessageHandler(() => new RetryOnceHandler());
 
         // Also exercise the standalone pipeline for attempt counting
-        using var pipeline = new HttpClient(retry) { Timeout = TimeSpan.FromSeconds(1) };
+        using HttpClient pipeline = new HttpClient(retry) { Timeout = TimeSpan.FromSeconds(1) };
         using HttpResponseMessage response = await pipeline.GetAsync("https://offline.test/retry");
         Debug.Assert(response.StatusCode == HttpStatusCode.ServiceUnavailable);
         Debug.Assert(retry.Attempts >= 2);

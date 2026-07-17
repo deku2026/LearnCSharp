@@ -52,7 +52,7 @@ internal static class MetadataSelfDescribing
         foreach (object a in attrs)
             Console.WriteLine($"    [{a.GetType().Name}]");
         Debug.Assert(attrs.OfType<ObsoleteAttribute>().Any());
-        var obs = (ObsoleteAttribute)attrs.OfType<ObsoleteAttribute>().First();
+        ObsoleteAttribute obs = (ObsoleteAttribute)attrs.OfType<ObsoleteAttribute>().First();
         Console.WriteLine($"  Obsolete message: {obs.Message}");
     }
 
@@ -77,6 +77,8 @@ internal static class MetadataSelfDescribing
         [Obsolete("demo attribute for metadata walk")]
         public string Describe() => $"count={_count}";
 
+#pragma warning disable CS0618 // 演示元数据遍历：故意调用标记 Obsolete 的成员
         public string ToString(string? format, IFormatProvider? formatProvider) => Describe();
+#pragma warning restore CS0618
     }
 }

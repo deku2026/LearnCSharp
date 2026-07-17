@@ -64,7 +64,7 @@ internal static class RuntimeIdentifierRid
             ("osx-arm64", "Apple Silicon"),
             ("any", "纯托管 / 未知平台资产"),
         ];
-        foreach (var (rid, note) in portable)
+        foreach ((string? rid, string? note) in portable)
             Console.WriteLine($"  {rid,-16} {note}");
         Debug.Assert(portable.Any(p => p.Rid == "any"));
     }

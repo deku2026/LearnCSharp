@@ -31,7 +31,7 @@ internal static partial class AotFriendlyZeroRuntime
     private static void DemoStaticVsReflectionTiming()
     {
         Console.WriteLine("-- static path vs reflection path (measured) --");
-        var p = new Point(1, 2);
+        Point p = new Point(1, 2);
         // Warm
         _ = StaticSerialize(p);
         _ = ReflectSerialize(p);
@@ -59,7 +59,7 @@ internal static partial class AotFriendlyZeroRuntime
     private static void DemoBuiltInJsonSourceGen()
     {
         Console.WriteLine("-- STJ source generation (real) --");
-        var dto = new WeatherForecast { TemperatureC = 22, Summary = "Mild" };
+        WeatherForecast dto = new WeatherForecast { TemperatureC = 22, Summary = "Mild" };
         string json = JsonSerializer.Serialize(dto, Stage13WeatherJsonContext.Default.WeatherForecast);
         WeatherForecast? back = JsonSerializer.Deserialize(json, Stage13WeatherJsonContext.Default.WeatherForecast);
         Debug.Assert(back is { TemperatureC: 22, Summary: "Mild" });
@@ -70,7 +70,7 @@ internal static partial class AotFriendlyZeroRuntime
     private static void DemoRuntimeEmitContrast()
     {
         Console.WriteLine("-- runtime emit exists but is not AOT-zero-cost --");
-        var dm = new DynamicMethod("Id", typeof(int), [typeof(int)], typeof(AotFriendlyZeroRuntime).Module, true);
+        DynamicMethod dm = new DynamicMethod("Id", typeof(int), [typeof(int)], typeof(AotFriendlyZeroRuntime).Module, true);
         ILGenerator il = dm.GetILGenerator();
         il.Emit(OpCodes.Ldarg_0);
         il.Emit(OpCodes.Ret);

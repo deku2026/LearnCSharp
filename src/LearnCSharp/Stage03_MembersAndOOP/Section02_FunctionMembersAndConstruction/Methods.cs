@@ -29,7 +29,7 @@ internal static class Methods
     private static void DemoOverloads()
     {
         Console.WriteLine("-- 方法重载：参数列表区分 --");
-        var c = new Calculator();
+        Calculator c = new Calculator();
         Debug.Assert(c.Add(1, 2) == 3);
         Debug.Assert(Math.Abs(c.Add(1.5, 2.5) - 4.0) < 1e-9);
         Debug.Assert(c.Add(1, 2, 3) == 6);
@@ -66,7 +66,7 @@ internal static class Methods
     private static void DemoExpressionBodiedAndRef()
     {
         Console.WriteLine("-- 表达式主体 + ref/in/out --");
-        var util = new Util();
+        Util util = new Util();
         Debug.Assert(util.Square(5) == 25);
         int x = 10;
         util.Double(ref x);
@@ -84,14 +84,14 @@ internal static class Methods
     private static int SumArray(params int[] nums)
     {
         int s = 0;
-        foreach (var n in nums) s += n;
+        foreach (int n in nums) s += n;
         return s;
     }
 
     private static int SumSpan(params ReadOnlySpan<int> nums)
     {
         int s = 0;
-        foreach (var n in nums) s += n;
+        foreach (int n in nums) s += n;
         return s;
     }
 

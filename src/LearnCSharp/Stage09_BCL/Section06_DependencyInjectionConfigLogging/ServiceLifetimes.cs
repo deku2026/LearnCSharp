@@ -44,7 +44,7 @@ internal static class ServiceLifetimes
     {
         Console.WriteLine("-- Transient vs Scoped vs Singleton --");
 
-        var transient = new ServiceCollection();
+        ServiceCollection transient = new ServiceCollection();
         transient.AddTransient<IId, IdService>();
         using (ServiceProvider p = transient.BuildServiceProvider())
         {
@@ -54,7 +54,7 @@ internal static class ServiceLifetimes
             Console.WriteLine($"  Transient: {t1:N} != {t2:N}");
         }
 
-        var scoped = new ServiceCollection();
+        ServiceCollection scoped = new ServiceCollection();
         scoped.AddScoped<IId, IdService>();
         using (ServiceProvider p = scoped.BuildServiceProvider())
         {
@@ -71,7 +71,7 @@ internal static class ServiceLifetimes
             Console.WriteLine($"  Scoped new scope: {s3:N}");
         }
 
-        var single = new ServiceCollection();
+        ServiceCollection single = new ServiceCollection();
         single.AddSingleton<IId, IdService>();
         using (ServiceProvider p = single.BuildServiceProvider())
         {
@@ -85,7 +85,7 @@ internal static class ServiceLifetimes
     private static void DemoCaptiveDependencyValidation()
     {
         Console.WriteLine("-- captive dependency: ValidateScopes catches Singleton→Scoped --");
-        var services = new ServiceCollection();
+        ServiceCollection services = new ServiceCollection();
         services.AddScoped<IId, IdService>();
         services.AddSingleton<CapturingSingleton>();
 

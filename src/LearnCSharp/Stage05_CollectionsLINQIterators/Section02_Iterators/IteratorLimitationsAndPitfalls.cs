@@ -77,14 +77,14 @@ internal static class IteratorLimitationsAndPitfalls
 
         // Runtime danger: Monitor.Enter then yield holds the lock while the consumer runs.
         bool otherThreadBlocked = false;
-        var enteredConsumer = new ManualResetEventSlim(false);
-        var releaseConsumer = new ManualResetEventSlim(false);
+        ManualResetEventSlim enteredConsumer = new ManualResetEventSlim(false);
+        ManualResetEventSlim releaseConsumer = new ManualResetEventSlim(false);
 
         IEnumerator<int> e = HoldLockAcrossYield().GetEnumerator();
         Debug.Assert(e.MoveNext()); // acquires lock, yields 1 — lock still held
         Debug.Assert(e.Current == 1);
 
-        var probe = Task.Run(() =>
+        Task probe = Task.Run(() =>
         {
             // TryEnter should fail while enumerator holds the lock between yields.
             bool got = Monitor.TryEnter(Gate, TimeSpan.FromMilliseconds(80));

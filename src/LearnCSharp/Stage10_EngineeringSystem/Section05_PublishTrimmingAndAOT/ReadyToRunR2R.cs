@@ -46,7 +46,7 @@ internal static class ReadyToRunR2R
             ("R2R", "publish 时预生成 + 运行时可 JIT", "CoreCLR"),
             ("Native AOT", "publish 时全量原生", "无 JIT 的原生宿主"),
         ];
-        foreach (var (mode, when, rt) in rows)
+        foreach ((string? mode, string? when, string? rt) in rows)
             Console.WriteLine($"  {mode,-12} | {when,-28} | {rt}");
         Debug.Assert(rows.Length == 3);
     }

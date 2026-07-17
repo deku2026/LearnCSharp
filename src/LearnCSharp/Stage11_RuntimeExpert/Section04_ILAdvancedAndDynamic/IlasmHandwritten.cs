@@ -49,7 +49,7 @@ internal static class IlasmHandwritten
     private static void DemoEmitEquivalent()
     {
         Console.WriteLine("-- same Max via DynamicMethod (no ilasm dependency) --");
-        var dm = new DynamicMethod("Max", typeof(int), [typeof(int), typeof(int)], typeof(IlasmHandwritten).Module, true);
+        DynamicMethod dm = new DynamicMethod("Max", typeof(int), [typeof(int), typeof(int)], typeof(IlasmHandwritten).Module, true);
         ILGenerator il = dm.GetILGenerator();
         Label useB = il.DefineLabel();
         il.Emit(OpCodes.Ldarg_0);

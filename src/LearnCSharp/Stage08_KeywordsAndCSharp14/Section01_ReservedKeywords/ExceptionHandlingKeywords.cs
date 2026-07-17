@@ -58,7 +58,7 @@ internal static class ExceptionHandlingKeywords
             {
                 DeepThrow();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // rethrow without reset
                 throw;
@@ -78,11 +78,13 @@ internal static class ExceptionHandlingKeywords
             {
                 DeepThrow();
             }
+#pragma warning disable CA2200 // 故意演示反模式：throw ex 重置调用栈
             catch (Exception ex)
             {
                 // BAD: resets stack to this catch site (DeepThrow often disappears).
                 throw ex;
             }
+#pragma warning restore CA2200
         }
         catch (Exception ex)
         {

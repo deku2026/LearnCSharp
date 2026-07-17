@@ -40,7 +40,7 @@ internal static class SynchronizationContextConfigureAwait
     private static void DemoDefaultAwaitPostsBackToContext()
     {
         Console.WriteLine("-- default await posts continuation back to captured SyncContext --");
-        var ctx = new RecordingSynchronizationContext();
+        RecordingSynchronizationContext ctx = new RecordingSynchronizationContext();
         SynchronizationContext? previous = SynchronizationContext.Current;
         SynchronizationContext.SetSynchronizationContext(ctx);
         try
@@ -65,14 +65,14 @@ internal static class SynchronizationContextConfigureAwait
     private static void DemoConfigureAwaitFalseDoesNotPostBack()
     {
         Console.WriteLine("-- ConfigureAwait(false): does NOT post back to SyncContext --");
-        var ctx = new RecordingSynchronizationContext();
+        RecordingSynchronizationContext ctx = new RecordingSynchronizationContext();
         SynchronizationContext? previous = SynchronizationContext.Current;
         SynchronizationContext.SetSynchronizationContext(ctx);
         try
         {
             int postsBefore = ctx.PostCount;
             bool resumedOnContext = true;
-            var done = new ManualResetEventSlim(false);
+            ManualResetEventSlim done = new ManualResetEventSlim(false);
 
             async Task WorkAsync()
             {

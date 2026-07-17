@@ -177,7 +177,7 @@ internal static class IlInstructionCategories
 
     private static string ToHex(byte[] il)
     {
-        var sb = new StringBuilder(il.Length * 3);
+        StringBuilder sb = new StringBuilder(il.Length * 3);
         for (int i = 0; i < il.Length; i++)
         {
             if (i > 0) sb.Append(' ');

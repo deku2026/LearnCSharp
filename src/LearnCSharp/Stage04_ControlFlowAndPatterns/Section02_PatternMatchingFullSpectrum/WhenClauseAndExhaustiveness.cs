@@ -30,7 +30,7 @@ internal static class WhenClauseAndExhaustiveness
     private static void DemoWhenOnSwitchExpression()
     {
         Console.WriteLine("-- when：模式后任意运行时条件 --");
-        var now = new DateTime(2026, 7, 16);
+        DateTime now = new DateTime(2026, 7, 16);
         static string Check(Order o, DateTime now) => o switch
         {
             { Total: > 1000 } when o.Date > now.AddDays(-30) => "近期大额",
@@ -38,9 +38,9 @@ internal static class WhenClauseAndExhaustiveness
             _ => "普通",
         };
 
-        var recentBig = new Order(1500m, now.AddDays(-5));
-        var oldBig = new Order(1500m, now.AddDays(-60));
-        var small = new Order(50m, now);
+        Order recentBig = new Order(1500m, now.AddDays(-5));
+        Order oldBig = new Order(1500m, now.AddDays(-60));
+        Order small = new Order(50m, now);
         Debug.Assert(Check(recentBig, now) == "近期大额");
         Debug.Assert(Check(oldBig, now) == "大额");
         Debug.Assert(Check(small, now) == "普通");

@@ -56,7 +56,7 @@ internal static class JsonAttributes
     private static void DemoPropertyNameAndIgnore()
     {
         Console.WriteLine("-- JsonPropertyName + JsonIgnore --");
-        var p = new Person { Name = "Ada", Age = 36, Password = "secret", Nickname = null };
+        Person p = new Person { Name = "Ada", Age = 36, Password = "secret", Nickname = null };
         string json = JsonSerializer.Serialize(p);
         Debug.Assert(json.Contains("full_name", StringComparison.Ordinal));
         Debug.Assert(!json.Contains("Password", StringComparison.OrdinalIgnoreCase));

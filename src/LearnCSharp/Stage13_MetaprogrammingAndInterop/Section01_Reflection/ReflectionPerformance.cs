@@ -8,6 +8,7 @@
 // Lesson: reflection cost = discovery + Invoke; ladder: cache → CreateDelegate → generators.
 
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using LearnCSharp.Topics;
@@ -21,6 +22,22 @@ internal static class ReflectionPerformance
 
     private static readonly Func<string, int, string> SubstringDelegate =
         (Func<string, int, string>)CachedSubstring.CreateDelegate(typeof(Func<string, int, string>));
+
+    // The doc's 优化阶梯 rung ④: expression tree → Compile() → Func (AST→IL without hand-Emit).
+    private static readonly Func<string, int, string> SubstringExprCompiled = BuildSubstringExpr();
+
+    private static Func<string, int, string> BuildSubstringExpr()
+    {
+        ParameterExpression sParam = Expression.Parameter(typeof(string), "s");
+        ParameterExpression iParam = Expression.Parameter(typeof(int), "i");
+        MethodCallExpression call = Expression.Call(
+            sParam,
+            typeof(string).GetMethod(nameof(string.Substring), [typeof(int)])!,
+            iParam);
+        Expression<Func<string, int, string>> lambda =
+            Expression.Lambda<Func<string, int, string>>(call, sParam, iParam);
+        return lambda.Compile();
+    }
 
     [LearnTopic("stage13/section01/reflection_performance")]
     internal static int Run(string[] args)
@@ -70,16 +87,23 @@ internal static class ReflectionPerformance
                 _ = SubstringDelegate(s, 6);
         });
 
+        long expr = Time(() =>
+        {
+            for (int i = 0; i < n; i++)
+                _ = SubstringExprCompiled(s, 6);
+        });
+
         Debug.Assert(Equals(CachedSubstring.Invoke(s, [6]), "world"));
         Debug.Assert(SubstringDelegate(s, 6) == "world");
-        Console.WriteLine($"  {n} calls: direct≈{direct}ms, cached Invoke≈{cachedInvoke}ms, CreateDelegate≈{del}ms");
-        Console.WriteLine("  Ladder: direct reflect → cache MethodInfo → CreateDelegate → expr tree → source gen → UnsafeAccessor");
+        Debug.Assert(SubstringExprCompiled(s, 6) == "world");
+        Console.WriteLine($"  {n} calls: direct≈{direct}ms, cached Invoke≈{cachedInvoke}ms, CreateDelegate≈{del}ms, expr Compile≈{expr}ms");
+        Console.WriteLine("  Ladder: direct reflect → cache MethodInfo → CreateDelegate → expr tree(Compile) → source gen → UnsafeAccessor");
     }
 
     private static void DemoUnsafeAccessor()
     {
         Console.WriteLine("-- [UnsafeAccessor] (.NET 8): native-speed private access --");
-        var p = new Widget(7);
+        Widget p = new Widget(7);
         ref int secret = ref SecretOf(p);
         Debug.Assert(secret == 7);
         secret = 11;

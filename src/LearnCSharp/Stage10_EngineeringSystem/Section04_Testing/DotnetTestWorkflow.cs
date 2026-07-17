@@ -93,7 +93,7 @@ internal static class DotnetTestWorkflow
     private static void DemoEducationalRunnerExitCodes()
     {
         Console.WriteLine("-- educational runner exit codes --");
-        var results = new[] { ("pass", true), ("pass", true), ("fail", false) };
+        (string, bool)[] results = new[] { ("pass", true), ("pass", true), ("fail", false) };
         int failed = results.Count(r => !r.Item2);
         int exit = failed == 0 ? 0 : 1;
         Debug.Assert(exit == 1);

@@ -8,6 +8,7 @@
 // xUnit/NUnit/MSTest + VSTest vs Microsoft.Testing.Platform；.NET 10 默认 MTP。
 
 using System.Diagnostics;
+using System.Reflection;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage10.Section04;
@@ -36,7 +37,7 @@ internal static class TestFrameworksAndMtp
             ("NUnit", "[Test]/[TestCase]", "Assert.That"),
             ("MSTest", "[TestMethod]", "Assert.AreEqual"),
         ];
-        foreach (var (fw, attr, assert) in fws)
+        foreach ((string? fw, string? attr, string? assert) in fws)
             Console.WriteLine($"  {fw,-8} {attr,-24} {assert}");
         Debug.Assert(fws.Length == 3);
         Console.WriteLine("  框架 ≠ 运行平台：框架提供属性/断言；平台负责发现与执行");
@@ -54,7 +55,7 @@ internal static class TestFrameworksAndMtp
             ("扩展", "Test Adapter", "MTP extensions"),
             ("过滤", "--filter 表达式", "框架相关；xUnit v3 语法有演进"),
         ];
-        foreach (var (aspect, vst, mtp) in cmp)
+        foreach ((string? aspect, string? vst, string? mtp) in cmp)
             Console.WriteLine($"  {aspect,-6} | VSTest: {vst,-18} | MTP: {mtp}");
         Debug.Assert(cmp.Length == 3);
     }
@@ -88,8 +89,8 @@ internal static class TestFrameworksAndMtp
     {
         Console.WriteLine("-- discovery mental model --");
         // 不用 xunit 包，用自研“发现”演示
-        var catalog = new List<string>();
-        foreach (var m in typeof(SampleTests).GetMethods())
+        List<string> catalog = new List<string>();
+        foreach (MethodInfo m in typeof(SampleTests).GetMethods())
         {
             if (m.GetCustomAttributes(typeof(MiniFactAttribute), false).Length > 0)
                 catalog.Add(m.Name);

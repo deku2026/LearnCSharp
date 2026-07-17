@@ -48,7 +48,7 @@ internal static class WarningGovernance
             ("NoWarn", "完全压制某些 ID（慎用）"),
             ("WarningLevel", "编译器警告等级 0–5"),
         ];
-        foreach (var (prop, role) in knobs)
+        foreach ((string? prop, string? role) in knobs)
             Console.WriteLine($"  {prop,-22} {role}");
         Debug.Assert(knobs.Length == 4);
         Console.WriteLine("  例: <WarningsAsErrors>CS8618;CA1062</WarningsAsErrors>");
@@ -85,7 +85,7 @@ internal static class WarningGovernance
     private static void DemoMiniGateSimulator()
     {
         Console.WriteLine("-- mini gate simulator --");
-        var findings = new List<(string Id, string Severity)>
+        List<(string Id, string Severity)> findings = new List<(string Id, string Severity)>
         {
             ("CS0219", "warning"),
             ("CA1822", "warning"),

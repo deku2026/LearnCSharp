@@ -43,14 +43,14 @@ internal static class SynchronizationContextAndConfigureAwait
     private static async Task DemoCustomContextCaptureAsync()
     {
         Console.WriteLine("-- custom SyncContext: await captures and resumes on it --");
-        var ctx = new SingleThreadSyncContext();
+        SingleThreadSyncContext ctx = new SingleThreadSyncContext();
         SynchronizationContext? previous = SynchronizationContext.Current;
         SynchronizationContext.SetSynchronizationContext(ctx);
         try
         {
             int pumpId = Environment.CurrentManagedThreadId;
             // Run the async work on the pump thread so Current is our context at await.
-            var tcs = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
+            TaskCompletionSource<int> tcs = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
             ctx.Post(_ =>
             {
                 ResumeOnContextAsync(tcs).ContinueWith(
@@ -89,12 +89,12 @@ internal static class SynchronizationContextAndConfigureAwait
     private static async Task DemoConfigureAwaitFalseSkipsContextAsync()
     {
         Console.WriteLine("-- ConfigureAwait(false): skip captured SyncContext --");
-        var ctx = new SingleThreadSyncContext();
+        SingleThreadSyncContext ctx = new SingleThreadSyncContext();
         SynchronizationContext? previous = SynchronizationContext.Current;
         SynchronizationContext.SetSynchronizationContext(ctx);
         try
         {
-            var tcs = new TaskCompletionSource<(bool hadContext, string? typeName)>(
+            TaskCompletionSource<(bool hadContext, string? typeName)> tcs = new TaskCompletionSource<(bool hadContext, string? typeName)>(
                 TaskCreationOptions.RunContinuationsAsynchronously);
             ctx.Post(_ =>
             {
@@ -151,7 +151,7 @@ internal static class SynchronizationContextAndConfigureAwait
                 return;
             }
 
-            using var done = new ManualResetEventSlim(false);
+            using ManualResetEventSlim done = new ManualResetEventSlim(false);
             Exception? error = null;
             Post(_ =>
             {

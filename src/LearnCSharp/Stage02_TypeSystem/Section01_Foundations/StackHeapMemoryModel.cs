@@ -45,7 +45,7 @@ internal static class StackHeapMemoryModel
         });
         long withHeapObj = MeasureAlloc(static () =>
         {
-            var h = new Holder { P = new PointV { X = 1, Y = 2 } };
+            Holder h = new Holder { P = new PointV { X = 1, Y = 2 } };
             Consume(h);
         });
         Debug.Assert(withHeapObj > pureValue);
@@ -56,7 +56,7 @@ internal static class StackHeapMemoryModel
     private static void DemoStructFieldOnHeap()
     {
         Console.WriteLine("-- class 字段中的 struct：内联在堆对象里 --");
-        var holder = new Holder { P = new PointV { X = 7, Y = 8 } };
+        Holder holder = new Holder { P = new PointV { X = 7, Y = 8 } };
         Debug.Assert(holder.P.X == 7);
         // holder 在 GC 堆；P 作为字段内联在 holder 对象布局中，不在独立栈槽
         Console.WriteLine($"  Holder.P=({holder.P.X},{holder.P.Y}) —— 值类型字段跟着堆对象走");

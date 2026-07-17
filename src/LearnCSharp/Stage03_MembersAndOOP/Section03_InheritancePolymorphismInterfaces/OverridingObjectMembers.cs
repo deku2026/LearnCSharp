@@ -30,9 +30,9 @@ internal static class OverridingObjectMembers
     private static void DemoToStringEqualsHashCode()
     {
         Console.WriteLine("-- 手动重写三件套 --");
-        var a = new Money(10m, "USD");
-        var b = new Money(10m, "USD");
-        var c = new Money(20m, "USD");
+        Money a = new Money(10m, "USD");
+        Money b = new Money(10m, "USD");
+        Money c = new Money(20m, "USD");
         Debug.Assert(a.ToString() == "10 USD");
         Debug.Assert(a.Equals(b));
         Debug.Assert(!a.Equals(c));
@@ -43,9 +43,9 @@ internal static class OverridingObjectMembers
     private static void DemoIEquatableAndOperators()
     {
         Console.WriteLine("-- IEquatable<T> + == / != --");
-        var a = new Money(10m, "USD");
-        var b = new Money(10m, "USD");
-        var c = new Money(20m, "USD");
+        Money a = new Money(10m, "USD");
+        Money b = new Money(10m, "USD");
+        Money c = new Money(20m, "USD");
         IEquatable<Money> eq = a;
         Debug.Assert(eq.Equals(b));
         Debug.Assert(a == b);
@@ -64,7 +64,7 @@ internal static class OverridingObjectMembers
     private static void DemoDictionaryKey()
     {
         Console.WriteLine("-- 作 Dictionary key --");
-        var map = new Dictionary<Money, string>
+        Dictionary<Money, string> map = new Dictionary<Money, string>
         {
             [new Money(5m, "EUR")] = "five",
         };
@@ -75,8 +75,8 @@ internal static class OverridingObjectMembers
     private static void DemoRecordAutoOverrides()
     {
         Console.WriteLine("-- record 自动 ToString/Equals/GetHashCode/== --");
-        var p1 = new PointRec(1, 2);
-        var p2 = new PointRec(1, 2);
+        PointRec p1 = new PointRec(1, 2);
+        PointRec p2 = new PointRec(1, 2);
         Debug.Assert(p1 == p2);
         Debug.Assert(p1.ToString().Contains("1"));
         Debug.Assert(p1.GetHashCode() == p2.GetHashCode());

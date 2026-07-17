@@ -53,7 +53,7 @@ internal static class AnonymousTypes
     private static void DemoLinqProjection()
     {
         Console.WriteLine("-- LINQ Select 投影 --");
-        var people = new[]
+        Person[] people = new[]
         {
             new Person("Ada", 36),
             new Person("Grace", 85)
@@ -80,8 +80,8 @@ internal static class AnonymousTypes
     {
         Console.WriteLine("-- 取舍：匿名类型 vs 元组 vs record --");
         var anon = new { Name = "A", Age = 1 };
-        var tuple = (Name: "A", Age: 1);
-        var rec = new PersonDto("A", 1);
+        (string Name, int Age) tuple = (Name: "A", Age: 1);
+        PersonDto rec = new PersonDto("A", 1);
         Debug.Assert(anon.Name == tuple.Name && rec.Name == tuple.Name);
         Console.WriteLine("  匿名：LINQ 投影；元组：多返回值；record：领域数据 + with");
     }

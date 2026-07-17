@@ -41,7 +41,7 @@ internal static partial class JsonSourceGenerator
     private static void DemoSourceGenSerialize()
     {
         Console.WriteLine("-- Serialize with Context.Default.Product --");
-        var product = new Product { Id = 1, Name = "Widget", Price = 9.99m };
+        Product product = new Product { Id = 1, Name = "Widget", Price = 9.99m };
         string json = JsonSerializer.Serialize(product, AppJsonContext.Default.Product);
         Debug.Assert(json.Contains("\"id\"", StringComparison.Ordinal));
         Debug.Assert(json.Contains("widget", StringComparison.OrdinalIgnoreCase)
@@ -54,7 +54,7 @@ internal static partial class JsonSourceGenerator
     private static void DemoViaTypeInfoResolver()
     {
         Console.WriteLine("-- options.TypeInfoResolver = Context.Default --");
-        var options = new JsonSerializerOptions { TypeInfoResolver = AppJsonContext.Default };
+        JsonSerializerOptions options = new JsonSerializerOptions { TypeInfoResolver = AppJsonContext.Default };
         Product[] list = [new() { Id = 2, Name = "Gadget", Price = 1m }];
         string json = JsonSerializer.Serialize(list, options);
         Product[]? back = JsonSerializer.Deserialize<Product[]>(json, options);

@@ -38,7 +38,7 @@ internal static class BuildPipelineAndOutputs
             ("pack", "打 nupkg（库）"),
             ("publish", "为部署整理输出（可含运行时/裁剪/AOT）"),
         ];
-        foreach (var (stage, what) in stages)
+        foreach ((string? stage, string? what) in stages)
             Console.WriteLine($"  {stage,-8} {what}");
         Debug.Assert(stages[0].Stage == "restore");
     }
@@ -73,7 +73,7 @@ internal static class BuildPipelineAndOutputs
         Console.WriteLine("  源未改 → 第二次 build 几乎只检查依赖图 → 很快");
         Console.WriteLine("  改 csproj/包版本/条件编译 → 可能全量重编");
         // 微型“缓存”模型
-        var cache = new Dictionary<string, DateTimeOffset>();
+        Dictionary<string, DateTimeOffset> cache = new Dictionary<string, DateTimeOffset>();
         DateTimeOffset t0 = DateTimeOffset.UtcNow;
         cache["Program.cs"] = t0;
         DateTimeOffset outTime = t0.AddSeconds(1);
@@ -95,7 +95,9 @@ internal static class BuildPipelineAndOutputs
 #endif
         Console.WriteLine($"  当前编译符号模式: {mode}");
         Console.WriteLine($"  Debugger.IsAttached={Debugger.IsAttached}");
-        Debug.Assert(mode is "DEBUG" or "RELEASE");
+        // mode 受 #if 切换为 DEBUG/RELEASE 之一；用变量承载避免常量折叠 (CS8793)
+        string modeValue = mode;
+        Debug.Assert(modeValue is "DEBUG" or "RELEASE");
     }
 
     private static void DemoCliCommands()

@@ -50,6 +50,16 @@ internal static class AppStartupAndHost
         Console.WriteLine($"  DOTNET_TieredPGO={pgo ?? "(default)"}");
         Console.WriteLine($"  GCSettings.IsServerGC={System.Runtime.GCSettings.IsServerGC}");
         Console.WriteLine($"  GCSettings.LatencyMode={System.Runtime.GCSettings.LatencyMode}");
+
+        // The host surfaces real runtimeconfig/deps.json data to managed code via
+        // AppContext.GetData — these are observable, not just text descriptions.
+        string? depsFile = AppContext.GetData("FX_DEPS_FILE") as string;
+        string? appBase = AppContext.GetData("APP_CONTEXT_BASE_DIRECTORY") as string;
+        Console.WriteLine($"  AppContext.GetData(FX_DEPS_FILE)={depsFile ?? "(null)"}");
+        Console.WriteLine($"  AppContext.GetData(APP_CONTEXT_BASE_DIRECTORY)={appBase ?? "(null)"}");
+        Console.WriteLine($"  RuntimeInformation.FrameworkDescription={RuntimeInformation.FrameworkDescription}");
+        Debug.Assert(!string.IsNullOrEmpty(appBase), "APP_CONTEXT_BASE_DIRECTORY must be surfaced by the host");
+        Debug.Assert(AppContext.BaseDirectory == appBase);
     }
 
     private static void DemoCommandLineAndMain()

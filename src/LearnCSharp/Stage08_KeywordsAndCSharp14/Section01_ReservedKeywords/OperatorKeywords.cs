@@ -30,7 +30,7 @@ internal static class OperatorKeywords
     {
         Console.WriteLine("-- new / as / is / typeof --");
         object o = new Sample(9);
-        var s = o as Sample;
+        Sample? s = o as Sample;
         Debug.Assert(s is not null && s.Value == 9);
         Debug.Assert(o is Sample sample && sample.Value == 9);
         Debug.Assert(typeof(Sample) == o.GetType());
@@ -73,9 +73,9 @@ internal static class OperatorKeywords
     private static void DemoOperatorOverloadAndConversions()
     {
         Console.WriteLine("-- operator / explicit / implicit --");
-        var a = new Meter(2);
-        var b = new Meter(3);
-        var sum = a + b;
+        Meter a = new Meter(2);
+        Meter b = new Meter(3);
+        Meter sum = a + b;
         Debug.Assert(sum.Value == 5);
         double d = a; // implicit
         Debug.Assert(Math.Abs(d - 2) < 1e-9);

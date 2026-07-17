@@ -28,7 +28,7 @@ internal static class LockInternalsMonitor
     private static void DemoLockStatement()
     {
         Console.WriteLine("-- lock expands to Monitor --");
-        var gate = new object();
+        object gate = new();
         int value = 0;
         lock (gate)
         {
@@ -45,7 +45,7 @@ internal static class LockInternalsMonitor
     private static void DemoTryEnter()
     {
         Console.WriteLine("-- Monitor.TryEnter timeout --");
-        var gate = new object();
+        object gate = new();
         bool taken = false;
         try
         {
@@ -65,10 +65,10 @@ internal static class LockInternalsMonitor
     private static void DemoWaitPulse()
     {
         Console.WriteLine("-- Wait / Pulse condition variable style --");
-        var gate = new object();
+        object gate = new();
         bool ready = false;
         int payload = 0;
-        var worker = new Thread(() =>
+        Thread worker = new Thread(() =>
         {
             Thread.Sleep(5);
             lock (gate)

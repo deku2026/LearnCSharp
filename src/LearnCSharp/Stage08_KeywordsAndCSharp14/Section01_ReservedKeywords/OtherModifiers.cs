@@ -34,7 +34,7 @@ internal static class OtherModifiers
         Console.WriteLine("-- static / const / readonly --");
         Debug.Assert(MathUtil.Double(3) == 6);
         Debug.Assert(MathUtil.PiApprox == 3.14);
-        var r = new ReadonlyHolder(7);
+        ReadonlyHolder r = new ReadonlyHolder(7);
         Debug.Assert(r.Value == 7);
         Debug.Assert(r.Id == 100);
         Console.WriteLine($"  Double(3)={MathUtil.Double(3)}, PiApprox={MathUtil.PiApprox}, Readonly={r.Value}");
@@ -57,7 +57,7 @@ internal static class OtherModifiers
     private static void DemoEvent()
     {
         Console.WriteLine("-- event --");
-        var pub = new Publisher();
+        Publisher pub = new Publisher();
         int count = 0;
         pub.Changed += (_, e) => count += e;
         pub.Raise(3);
@@ -69,7 +69,7 @@ internal static class OtherModifiers
     private static void DemoVolatileAndExtern()
     {
         Console.WriteLine("-- volatile / extern --");
-        var box = new VolatileBox();
+        VolatileBox box = new VolatileBox();
         box.Flag = 1;
         Debug.Assert(box.Flag == 1);
         // extern + DllImport：声明外部实现（此处仅验证方法存在）

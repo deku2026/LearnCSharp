@@ -30,7 +30,7 @@ internal static class MethodTableAndEEClass
     private static void DemoTypeHandleAndIdentity()
     {
         Console.WriteLine("-- TypeHandle ≈ MethodTable pointer --");
-        var dog = new Dog("Rex");
+        Dog dog = new Dog("Rex");
         Type t1 = dog.GetType();
         Type t2 = typeof(Dog);
         RuntimeTypeHandle h1 = t1.TypeHandle;
@@ -44,7 +44,7 @@ internal static class MethodTableAndEEClass
         Debug.Assert(Type.GetTypeHandle(dog).Value == h1.Value);
 
         // Two instances share the same MethodTable (type identity)
-        var dog2 = new Dog("Sam");
+        Dog dog2 = new Dog("Sam");
         Debug.Assert(Type.GetTypeHandle(dog).Value == Type.GetTypeHandle(dog2).Value);
         Console.WriteLine("  Two Dog instances share one TypeHandle (one MethodTable).");
     }
@@ -58,11 +58,11 @@ internal static class MethodTableAndEEClass
         _ = new WithFields(1, 2, "w");
 
         long before = GC.GetAllocatedBytesForCurrentThread();
-        var e = new Empty();
+        Empty e = new Empty();
         long afterEmpty = GC.GetAllocatedBytesForCurrentThread();
-        var d = new Dog("Rex");
+        Dog d = new Dog("Rex");
         long afterDog = GC.GetAllocatedBytesForCurrentThread();
-        var f = new WithFields(1, 2, "name");
+        WithFields f = new WithFields(1, 2, "name");
         long afterFields = GC.GetAllocatedBytesForCurrentThread();
 
         long emptyCost = afterEmpty - before;

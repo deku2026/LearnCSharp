@@ -33,7 +33,7 @@ internal static class IHttpClientFactoryDemo
     private static void DemoNamedAndTypedPatterns()
     {
         Console.WriteLine("-- AddHttpClient / named / typed --");
-        var services = new ServiceCollection();
+        ServiceCollection services = new ServiceCollection();
         services.AddHttpClient("example", c =>
         {
             c.BaseAddress = new Uri("https://example.com/");
@@ -58,7 +58,7 @@ internal static class IHttpClientFactoryDemo
     private static async Task DemoFactoryCreate()
     {
         Console.WriteLine("-- factory CreateClient GET (network soft-skip) --");
-        var services = new ServiceCollection();
+        ServiceCollection services = new ServiceCollection();
         services.AddHttpClient("example", c =>
         {
             c.BaseAddress = new Uri("https://example.com/");

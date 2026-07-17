@@ -43,7 +43,7 @@ internal static class GenericConstraints
     private static void DemoNewConstraint()
     {
         Console.WriteLine("-- where T : new() --");
-        var p = Create<Plain>();
+        Plain? p = Create<Plain>();
         Debug.Assert(p is not null);
         Console.WriteLine($"  Create<Plain>() type={p.GetType().Name}");
     }
@@ -97,7 +97,7 @@ internal static class GenericConstraints
     private static void DemoMultiWhereClauses()
     {
         Console.WriteLine("-- 多 where：多个类型参数各自约束 --");
-        var factory = CreatePair<Plain, int>();
+        (Plain Left, int Right) factory = CreatePair<Plain, int>();
         Debug.Assert(factory.Item1 is not null);
         Debug.Assert(factory.Item2 == 0);
         string named = NameAndSize<Dog, Point>(new Dog("Rex"));
@@ -109,7 +109,7 @@ internal static class GenericConstraints
     private static void DemoInterfaceAndBase()
     {
         Console.WriteLine("-- 基类/接口约束 --");
-        var d = new Dog("Rex");
+        Dog d = new Dog("Rex");
         Debug.Assert(Describe(d) == "Dog:Rex");
         Console.WriteLine($"  Describe(Dog)={Describe(d)}");
     }
@@ -177,8 +177,10 @@ internal static class GenericConstraints
 
     private sealed class Dog(string name) : Animal(name);
 
+#pragma warning disable CS0649 // 演示默认值：字段故意不赋值
     private struct Point
     {
         public int X, Y;
     }
+#pragma warning restore CS0649
 }

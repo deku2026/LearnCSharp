@@ -43,7 +43,7 @@ internal static class AsyncPitfallsDeadlockVoid
     {
         Console.WriteLine("-- sync-over-async deadlock (custom single-thread SyncContext + timeout) --");
         // UI-like: one thread owns the context queue. Blocking that thread with Wait prevents pumping.
-        var ctx = new SingleThreadSynchronizationContext();
+        SingleThreadSynchronizationContext ctx = new SingleThreadSynchronizationContext();
         SynchronizationContext? previous = SynchronizationContext.Current;
         SynchronizationContext.SetSynchronizationContext(ctx);
         try
@@ -81,7 +81,7 @@ internal static class AsyncPitfallsDeadlockVoid
         Console.WriteLine("-- async void: catch INSIDE method; outer try cannot catch --");
         bool innerCaught = false;
         bool outerCaught = false;
-        var done = new ManualResetEventSlim(false);
+        ManualResetEventSlim done = new ManualResetEventSlim(false);
 
         async void EventHandlerStyle()
         {
@@ -125,7 +125,7 @@ internal static class AsyncPitfallsDeadlockVoid
         bool observed = false;
         bool completedOk = false;
         Exception? fault = null;
-        var gate = new ManualResetEventSlim(false);
+        ManualResetEventSlim gate = new ManualResetEventSlim(false);
 
         Task background = BackgroundWorkAsync();
         // Intentionally not: await background;  — that would be the "success path"

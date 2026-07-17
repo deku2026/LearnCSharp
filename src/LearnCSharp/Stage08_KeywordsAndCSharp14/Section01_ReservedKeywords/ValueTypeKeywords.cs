@@ -59,7 +59,7 @@ internal static class ValueTypeKeywords
         // 二进制浮点不精确；decimal 十进制精确（金额用）
         Debug.Assert(f + f + f != 0.3f || true); // may or may not equal; demo point is binary vs decimal
         Debug.Assert(m + m + m == 0.3m);
-        Console.WriteLine($"  0.1f+0.1f+0.1f={f + f + f}, 0.1m*3={m + m + m}");
+        Console.WriteLine($"  0.1f+0.1f+0.1f={f + f + f}, 0.1d+0.1d+0.1d={d + d + d}, 0.1m*3={m + m + m}");
     }
 
     private static void DemoBoolCharEnum()
@@ -79,8 +79,8 @@ internal static class ValueTypeKeywords
     private static void DemoStructValueSemantics()
     {
         Console.WriteLine("-- struct 值语义 --");
-        var a = new Point(1, 2);
-        var b = a; // 拷贝
+        Point a = new Point(1, 2);
+        Point b = a; // 拷贝
         b.X = 99;
         Debug.Assert(a.X == 1);
         Debug.Assert(b.X == 99);

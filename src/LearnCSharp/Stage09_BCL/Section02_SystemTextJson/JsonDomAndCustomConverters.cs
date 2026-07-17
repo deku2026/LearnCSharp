@@ -58,7 +58,7 @@ internal static class JsonDomAndCustomConverters
         root["items"]![0]!["name"] = "ALPHA";
         string modified = root.ToJsonString();
         Debug.Assert(modified.Contains("ALPHA", StringComparison.Ordinal));
-        var obj = new JsonObject
+        JsonObject obj = new JsonObject
         {
             ["name"] = "Ada",
             ["scores"] = new JsonArray(90, 85, 95)
@@ -83,9 +83,9 @@ internal static class JsonDomAndCustomConverters
     private static void DemoCustomConverter()
     {
         Console.WriteLine("-- JsonConverter<DateTime> compact format --");
-        var options = new JsonSerializerOptions();
+        JsonSerializerOptions options = new JsonSerializerOptions();
         options.Converters.Add(new CompactDateTimeConverter());
-        var dto = new EventDto
+        EventDto dto = new EventDto
         {
             When = new DateTime(2026, 7, 16, 10, 0, 0, DateTimeKind.Utc),
             Title = "Demo"

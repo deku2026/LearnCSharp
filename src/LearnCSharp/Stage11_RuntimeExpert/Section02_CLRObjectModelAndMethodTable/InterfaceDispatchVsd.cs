@@ -39,7 +39,7 @@ internal static class InterfaceDispatchVsd
     private static void DemoDiamondLikeExplicitImpl()
     {
         Console.WriteLine("-- explicit interface implementation --");
-        var dual = new Dual();
+        Dual dual = new Dual();
         IAlpha a = dual;
         IBeta b = dual;
         Console.WriteLine($"  IAlpha.Name={a.Name}, IBeta.Name={b.Name}");

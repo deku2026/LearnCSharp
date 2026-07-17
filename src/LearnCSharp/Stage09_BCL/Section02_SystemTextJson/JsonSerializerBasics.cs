@@ -36,7 +36,7 @@ internal static class JsonSerializerBasics
     private static void DemoSerializeDeserialize()
     {
         Console.WriteLine("-- Serialize / Deserialize --");
-        var forecast = new WeatherForecast
+        WeatherForecast forecast = new WeatherForecast
         {
             Date = new DateTime(2026, 6, 14, 0, 0, 0, DateTimeKind.Utc),
             TemperatureC = 25,
@@ -55,7 +55,7 @@ internal static class JsonSerializerBasics
         string path = Path.Combine(Path.GetTempPath(), $"learn-stj-{Guid.NewGuid():N}.json");
         try
         {
-            var forecast = new WeatherForecast { Date = DateTime.UtcNow, TemperatureC = 18, Summary = "Cool" };
+            WeatherForecast forecast = new WeatherForecast { Date = DateTime.UtcNow, TemperatureC = 18, Summary = "Cool" };
             await using (FileStream fs = File.Create(path))
                 await JsonSerializer.SerializeAsync(fs, forecast);
 
@@ -85,7 +85,7 @@ internal static class JsonSerializerBasics
                 await JsonSerializer.SerializeAsync(ws, items);
 
             await using FileStream rs = File.OpenRead(path);
-            var list = new List<int>();
+            List<int> list = new List<int>();
             await foreach (WeatherForecast? item in JsonSerializer.DeserializeAsyncEnumerable<WeatherForecast>(rs))
             {
                 if (item is not null)

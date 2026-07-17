@@ -54,9 +54,9 @@ internal static class GenericsInIl
     private static void DemoSharedVsReified()
     {
         Console.WriteLine("-- code sharing --");
-        var listStr = new Box<string>("a");
-        var listObj = new Box<object>("b");
-        var listInt = new Box<int>(3);
+        Box<string> listStr = new Box<string>("a");
+        Box<object> listObj = new Box<object>("b");
+        Box<int> listInt = new Box<int>(3);
         Console.WriteLine($"  Box<string>={listStr.Value}, Box<object>={listObj.Value}, Box<int>={listInt.Value}");
         Debug.Assert(listInt.Value == 3);
         Console.WriteLine("  Reference-type instantiations often share native code;");

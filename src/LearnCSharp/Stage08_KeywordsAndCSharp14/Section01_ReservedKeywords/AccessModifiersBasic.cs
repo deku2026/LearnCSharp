@@ -29,11 +29,11 @@ internal static class AccessModifiersBasic
     private static void DemoFourBasics()
     {
         Console.WriteLine("-- public / private / protected / internal --");
-        var baseObj = new BaseBox(10);
+        BaseBox baseObj = new BaseBox(10);
         Debug.Assert(baseObj.PublicValue == 10);
         Debug.Assert(baseObj.InternalValue == 10);
         // private / protected 从外部不可见
-        var derived = new DerivedBox(20);
+        DerivedBox derived = new DerivedBox(20);
         Debug.Assert(derived.ReadProtected() == 20);
         Console.WriteLine($"  Public={baseObj.PublicValue}, Internal={baseObj.InternalValue}, Protected via derived={derived.ReadProtected()}");
     }

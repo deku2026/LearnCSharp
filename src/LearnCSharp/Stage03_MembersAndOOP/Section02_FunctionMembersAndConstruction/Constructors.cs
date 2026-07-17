@@ -29,9 +29,9 @@ internal static class Constructors
     private static void DemoCtorChainAndInitializers()
     {
         Console.WriteLine("-- 构造链 this + 对象初始化器 --");
-        var p = new Person("Ada", "Lovelace", 36);
+        Person p = new Person("Ada", "Lovelace", 36);
         Debug.Assert(p.First == "Ada" && p.Last == "Lovelace" && p.Age == 36);
-        var p2 = new Person("Grace", "Hopper") { Age = 85 };
+        Person p2 = new Person("Grace", "Hopper") { Age = 85 };
         Debug.Assert(p2.Age == 85);
         Console.WriteLine($"  {p.First} {p.Last}, age={p.Age}");
         Console.WriteLine($"  {p2.First} age via initializer={p2.Age}");
@@ -40,10 +40,10 @@ internal static class Constructors
     private static void DemoPrimaryConstructor()
     {
         Console.WriteLine("-- 主构造(C#12)：参数全类型可见 --");
-        var item = new NamedItem("widget");
+        NamedItem item = new NamedItem("widget");
         Debug.Assert(item.Name == "widget");
         Debug.Assert(item.Shout() == "WIDGET");
-        var student = new Student("Lin", 42);
+        Student student = new Student("Lin", 42);
         Debug.Assert(student.Name == "Lin" && student.Id == 42);
         Console.WriteLine($"  NamedItem={item.Name}, Student={student.Name}#{student.Id}");
     }
@@ -51,12 +51,12 @@ internal static class Constructors
     private static void DemoPrimaryStructAndObjectInit()
     {
         Console.WriteLine("-- 主构造 struct + 显式无参 : this --");
-        var d = new Distance(3, 4);
+        Distance d = new Distance(3, 4);
         Debug.Assert(Math.Abs(d.Magnitude - 5) < 1e-9);
-        var z = new Distance();
+        Distance z = new Distance();
         Debug.Assert(Math.Abs(d.Magnitude - 5) < 1e-9);
         Debug.Assert(Math.Abs(z.Magnitude) < 1e-9);
-        var r = new MutableRect { Width = 2, Height = 5 };
+        MutableRect r = new MutableRect { Width = 2, Height = 5 };
         Debug.Assert(r.Area == 10);
         Console.WriteLine($"  Distance(3,4).Magnitude={d.Magnitude}, empty={z.Magnitude}");
     }
@@ -64,7 +64,7 @@ internal static class Constructors
     private static void DemoPartialConstructor()
     {
         Console.WriteLine("-- partial 实例构造(C#14) --");
-        var g = new GeneratedReady("token-1");
+        GeneratedReady g = new GeneratedReady("token-1");
         Debug.Assert(g.Token == "token-1");
         Debug.Assert(g.Ready);
         Console.WriteLine($"  GeneratedReady Token={g.Token}, Ready={g.Ready}");

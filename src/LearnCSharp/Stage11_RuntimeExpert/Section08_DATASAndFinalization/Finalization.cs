@@ -57,7 +57,7 @@ internal static class Finalization
         Console.WriteLine("-- prefer deterministic Dispose --");
         Console.WriteLine("  Finalizer = safety net for unmanaged resources; timing uncertain.");
         Console.WriteLine("  IDisposable + SuppressFinalize is the standard pattern (next topic).");
-        using var d = new QuickDisposable();
+        using QuickDisposable d = new QuickDisposable();
         Debug.Assert(!d.Disposed);
         d.Dispose();
         Debug.Assert(d.Disposed);

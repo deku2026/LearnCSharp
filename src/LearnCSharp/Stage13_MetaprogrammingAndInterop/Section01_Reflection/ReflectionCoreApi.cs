@@ -48,7 +48,7 @@ internal static class ReflectionCoreApi
         Debug.Assert(Equals(result, "world"));
         Console.WriteLine($"  Invoke Substring(6) on \"hello world\" => {result}");
 
-        var person = new Person();
+        Person person = new Person();
         PropertyInfo name = typeof(Person).GetProperty(nameof(Person.Name))!;
         name.SetValue(person, "Alice");
         string n = (string)name.GetValue(person)!;
@@ -78,7 +78,9 @@ internal static class ReflectionCoreApi
 
     private sealed class Person
     {
+#pragma warning disable CS0414 // 通过反射读取，编译器看不到使用
         private int _secret = 42;
+#pragma warning restore CS0414
         public string Name { get; set; } = "anon";
         public int Age { get; set; }
 

@@ -86,7 +86,7 @@ internal static class EscapeAnalysisStackAlloc
     [MethodImpl(MethodImplOptions.NoInlining)]
     private static int NoEscapeSum()
     {
-        var t = new Tiny(1, 2);
+        Tiny t = new Tiny(1, 2);
         return t.A + t.B;
     }
 

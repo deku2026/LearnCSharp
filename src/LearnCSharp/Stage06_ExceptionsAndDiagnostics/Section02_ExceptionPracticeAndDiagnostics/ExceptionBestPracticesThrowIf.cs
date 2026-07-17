@@ -80,7 +80,7 @@ internal static class ExceptionBestPracticesThrowIf
         Console.WriteLine("-- use predefined types, not bare Exception --");
         try
         {
-            var svc = new Service();
+            Service svc = new Service();
             svc.RunBeforeInit();
             Debug.Assert(false);
         }
@@ -168,7 +168,9 @@ internal static class ExceptionBestPracticesThrowIf
 
     private sealed class Service
     {
+#pragma warning disable CS0649 // 演示未初始化守卫：字段故意保持默认 false
         private bool _ready;
+#pragma warning restore CS0649
 
         public void RunBeforeInit()
         {

@@ -29,11 +29,11 @@ internal static class UserDefinedOperators
     private static void DemoBinaryUnaryCompare()
     {
         Console.WriteLine("-- 二元/一元/比较运算符 --");
-        var a = new Vector2(1, 2);
-        var b = new Vector2(3, 4);
-        var sum = a + b;
-        var scaled = a * 2;
-        var neg = -a;
+        Vector2 a = new Vector2(1, 2);
+        Vector2 b = new Vector2(3, 4);
+        Vector2 sum = a + b;
+        Vector2 scaled = a * 2;
+        Vector2 neg = -a;
         Debug.Assert(sum == new Vector2(4, 6));
         Debug.Assert(scaled == new Vector2(2, 4));
         Debug.Assert(neg == new Vector2(-1, -2));
@@ -44,7 +44,7 @@ internal static class UserDefinedOperators
     private static void DemoConversionOperators()
     {
         Console.WriteLine("-- 用户定义转换 --");
-        var v = new Vector2(3, 4);
+        Vector2 v = new Vector2(3, 4);
         double len = v; // implicit
         Debug.Assert(Math.Abs(len - 5) < 1e-9);
         Vector2 fromInt = (Vector2)5; // explicit
@@ -55,10 +55,10 @@ internal static class UserDefinedOperators
     private static void DemoCompoundAssignmentInPlace()
     {
         Console.WriteLine("-- C#14 实例 += 就地 --");
-        var v = new Vector3(1, 2, 3);
+        Vector3 v = new Vector3(1, 2, 3);
         v += new Vector3(4, 5, 6);
         Debug.Assert(v == new Vector3(5, 7, 9));
-        var classic = new Vector3(1, 0, 0) + new Vector3(0, 1, 0);
+        Vector3 classic = new Vector3(1, 0, 0) + new Vector3(0, 1, 0);
         Debug.Assert(classic == new Vector3(1, 1, 0));
         Console.WriteLine($"  in-place += => {v}; static + => {classic}");
     }
@@ -66,7 +66,7 @@ internal static class UserDefinedOperators
     private static void DemoInstanceIncrement()
     {
         Console.WriteLine("-- C#14 实例 ++ 就地 --");
-        var c = new Counter(10);
+        Counter c = new Counter(10);
         c++;
         Debug.Assert(c.Value == 11);
         Console.WriteLine($"  Counter after ++ => {c.Value}");

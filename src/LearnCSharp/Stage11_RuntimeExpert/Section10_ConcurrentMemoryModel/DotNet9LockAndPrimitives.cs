@@ -28,7 +28,7 @@ internal static class DotNet9LockAndPrimitives
     private static void DemoSystemThreadingLock()
     {
         Console.WriteLine("-- System.Threading.Lock (.NET 9+) --");
-        var gate = new Lock();
+        Lock gate = new Lock();
         int n = 0;
         using (gate.EnterScope())
         {
@@ -50,11 +50,11 @@ internal static class DotNet9LockAndPrimitives
     private static void DemoOtherPrimitives()
     {
         Console.WriteLine("-- other primitives --");
-        using var sem = new SemaphoreSlim(1, 1);
+        using SemaphoreSlim sem = new SemaphoreSlim(1, 1);
         bool ok = sem.Wait(0);
         Debug.Assert(ok);
         sem.Release();
-        using var mre = new ManualResetEventSlim(false);
+        using ManualResetEventSlim mre = new ManualResetEventSlim(false);
         mre.Set();
         Debug.Assert(mre.IsSet);
         Console.WriteLine("  SemaphoreSlim, ManualResetEventSlim, Mutex, ReaderWriterLockSlim, channels…");
@@ -66,7 +66,7 @@ internal static class DotNet9LockAndPrimitives
         Console.WriteLine("-- guidance --");
         Console.WriteLine("  Do not lock(this)/lock(typeof(T))/lock(string) in library code.");
         Console.WriteLine("  Private readonly object _gate = new(); or private readonly Lock _gate = new();");
-        var classic = new object();
+        object classic = new();
         lock (classic)
         {
             Debug.Assert(Monitor.IsEntered(classic));

@@ -32,8 +32,8 @@ internal static class ReifiedVsTemplateMonomorphization
     private static void DemoRuntimeTypeInfo()
     {
         Console.WriteLine("-- reified：运行时保留类型参数 --");
-        var listInt = new List<int>();
-        var listStr = new List<string>();
+        List<int> listInt = new List<int>();
+        List<string> listStr = new List<string>();
         Type tInt = listInt.GetType();
         Type tStr = listStr.GetType();
         Debug.Assert(tInt.IsGenericType);
@@ -48,7 +48,7 @@ internal static class ReifiedVsTemplateMonomorphization
     private static void DemoValueTypeNoBoxing()
     {
         Console.WriteLine("-- 值类型 JIT 特化 → 零装箱（可测分配） --");
-        var holder = new Holder<int>(42);
+        Holder<int> holder = new Holder<int>(42);
         Debug.Assert(holder.Value == 42);
         Debug.Assert(holder.GetType().GetGenericArguments()[0] == typeof(int));
 
@@ -62,7 +62,7 @@ internal static class ReifiedVsTemplateMonomorphization
         });
         long genericBytes = MeasureAlloc(static () =>
         {
-            var list = new List<int>(64);
+            List<int> list = new List<int>(64);
             for (int i = 0; i < 64; i++)
                 list.Add(i); // 无装箱
             Consume(list);
@@ -75,8 +75,8 @@ internal static class ReifiedVsTemplateMonomorphization
     private static void DemoReferenceCodeSharingConcept()
     {
         Console.WriteLine("-- 引用类型共享一份本地代码（概念） --");
-        var a = new Holder<string>("x");
-        var b = new Holder<object>("y");
+        Holder<string> a = new Holder<string>("x");
+        Holder<object> b = new Holder<object>("y");
         Debug.Assert(a.Value == "x");
         Debug.Assert(b.Value is string);
         // 引用都是指针大小 → 机器码可共享；类型元数据仍各自不同
@@ -105,14 +105,14 @@ internal static class ReifiedVsTemplateMonomorphization
         // 可观察差异：非泛型 ArrayList.Add(int) 装箱；List<int> 不装箱
         long arrayListBox = MeasureAlloc(static () =>
         {
-            var al = new ArrayList(32);
+            ArrayList al = new ArrayList(32);
             for (int i = 0; i < 32; i++)
                 al.Add(i);
             Consume(al);
         });
         long listNoBox = MeasureAlloc(static () =>
         {
-            var list = new List<int>(32);
+            List<int> list = new List<int>(32);
             for (int i = 0; i < 32; i++)
                 list.Add(i);
             Consume(list);

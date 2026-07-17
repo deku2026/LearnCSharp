@@ -42,7 +42,7 @@ internal static class RegexBasics
     private static void DemoGroups()
     {
         Console.WriteLine("-- named groups --");
-        var re = new Regex(@"(?<area>\d{3})-(?<num>\d{4})", RegexOptions.CultureInvariant);
+        Regex re = new Regex(@"(?<area>\d{3})-(?<num>\d{4})", RegexOptions.CultureInvariant);
         Match m = re.Match("555-1212");
         Debug.Assert(m.Success);
         Debug.Assert(m.Groups["area"].Value == "555");

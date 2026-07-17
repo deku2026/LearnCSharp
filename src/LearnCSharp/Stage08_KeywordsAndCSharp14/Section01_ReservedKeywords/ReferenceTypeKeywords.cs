@@ -34,8 +34,8 @@ internal static class ReferenceTypeKeywords
         Debug.Assert(g.Greet() == "Hello, Ada");
         Debug.Assert(typeof(HelloGreeter).IsClass);
         Debug.Assert(typeof(IGreeter).IsInterface);
-        var a = new HelloGreeter("A");
-        var b = a; // 引用拷贝
+        HelloGreeter a = new HelloGreeter("A");
+        HelloGreeter b = a; // 引用拷贝
         Debug.Assert(ReferenceEquals(a, b));
         Console.WriteLine($"  Greet={g.Greet()}, IsClass={typeof(HelloGreeter).IsClass}");
     }

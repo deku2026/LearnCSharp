@@ -52,7 +52,7 @@ internal static class ParameterModifiers
     private static void DemoIn()
     {
         Console.WriteLine("-- in (只读引用，避免大 struct 拷贝) --");
-        var big = new BigPoint(1, 2, 3);
+        BigPoint big = new BigPoint(1, 2, 3);
         double d = DistanceFromOrigin(in big);
         Debug.Assert(Math.Abs(d - Math.Sqrt(14)) < 1e-9);
         Console.WriteLine($"  Distance={d:F3}");

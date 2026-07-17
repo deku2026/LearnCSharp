@@ -56,9 +56,9 @@ internal static class GenericMathStaticAbstract
     private static void DemoCustomNumericLike()
     {
         Console.WriteLine("-- 自定义实现 IAdditionOperators --");
-        var a = new Score(10);
-        var b = new Score(5);
-        var c = AddScores(a, b);
+        Score a = new Score(10);
+        Score b = new Score(5);
+        Score c = AddScores(a, b);
         Debug.Assert(c.Value == 15);
         Console.WriteLine($"  Score 10+5={c.Value}");
     }
@@ -66,7 +66,7 @@ internal static class GenericMathStaticAbstract
     private static T Sum<T>(params T[] values) where T : INumber<T>
     {
         T acc = T.Zero;
-        foreach (var v in values)
+        foreach (T v in values)
             acc += v;
         return acc;
     }

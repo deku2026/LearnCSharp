@@ -52,7 +52,7 @@ internal static class Enums
     private static void DemoFlags()
     {
         Console.WriteLine("-- [Flags] 位标志 --");
-        var p = FileAccess.Read | FileAccess.Write;
+        FileAccess p = FileAccess.Read | FileAccess.Write;
         Debug.Assert(p.HasFlag(FileAccess.Write));
         Debug.Assert((p & FileAccess.Write) == FileAccess.Write);
         Debug.Assert(!p.HasFlag(FileAccess.Execute));
@@ -72,7 +72,7 @@ internal static class Enums
     private static void DemoEnumApi()
     {
         Console.WriteLine("-- System.Enum API --");
-        var names = Enum.GetNames<Season>();
+        string[] names = Enum.GetNames<Season>();
         Debug.Assert(names.Length == 4);
         Debug.Assert(Enum.Parse<Season>("Autumn") == Season.Autumn);
         Debug.Assert(Enum.TryParse("Nope", out Season _) == false);

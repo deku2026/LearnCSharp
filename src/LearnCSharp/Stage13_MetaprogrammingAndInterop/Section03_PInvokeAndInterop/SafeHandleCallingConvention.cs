@@ -8,6 +8,7 @@
 // Lesson: SafeHandle RAII; UnmanagedCallConv; SetLastError; pinning vs GC moves.
 
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using LearnCSharp.Topics;
 using Microsoft.Win32.SafeHandles;
@@ -70,10 +71,25 @@ internal static partial class SafeHandleCallingConvention
                 Debug.Assert(!ok);
                 Console.WriteLine($"  CloseHandle(0) => {ok}, GetLastPInvokeError={err}");
                 Console.WriteLine("  Rule: check return first, then read error immediately (don't interleave).");
+
+                // Actually apply [UnmanagedCallConv] to a real P/Invoke and invoke it.
+                // msvcrt!strlen uses the C calling convention (Cdecl).
+                string sample = "learncsharp";
+                nint buf = Marshal.StringToHGlobalAnsi(sample);
+                try
+                {
+                    nuint len = StrlenCdecl(buf);
+                    Debug.Assert((int)len == sample.Length);
+                    Console.WriteLine($"  [UnmanagedCallConv(Cdecl)] strlen(\"{sample}\") = {(int)len} (asserted == {sample.Length})");
+                }
+                finally
+                {
+                    Marshal.FreeHGlobal(buf);
+                }
             }
             else
             {
-                Console.WriteLine("  (Windows CloseHandle/SetLastError demo skipped)");
+                Console.WriteLine("  (Windows CloseHandle/SetLastError/strlen demo skipped on this OS)");
             }
         }
         catch (DllNotFoundException ex)
@@ -113,4 +129,10 @@ internal static partial class SafeHandleCallingConvention
     [LibraryImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     private static partial bool CloseHandle(nint handle);
+
+    // .NET 7+ replacement for CallingConvention on source-generated P/Invoke:
+    // [UnmanagedCallConv] makes the calling convention an explicit, compiled attribute.
+    [LibraryImport("msvcrt.dll", EntryPoint = "strlen")]
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    private static partial nuint StrlenCdecl(nint s);
 }

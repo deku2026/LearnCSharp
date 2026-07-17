@@ -8,7 +8,6 @@
 // 步骤 4：HTTP + System.Text.Json（GetFromJsonAsync / PostAsJsonAsync / 手动）
 
 using System.Diagnostics;
-using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
@@ -49,11 +48,11 @@ internal static class JsonIntegration
     private static void DemoLocalRoundTrip()
     {
         Console.WriteLine("-- local STJ prepare body for PostAsJsonAsync --");
-        var todo = new Todo { UserId = 1, Title = "learn", Completed = false };
+        Todo todo = new Todo { UserId = 1, Title = "learn", Completed = false };
         string json = JsonSerializer.Serialize(todo, s_json);
         Todo? back = JsonSerializer.Deserialize<Todo>(json, s_json);
         Debug.Assert(back is { Title: "learn", UserId: 1 });
-        using var content = new StringContent(json, Encoding.UTF8, "application/json");
+        using StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
         Debug.Assert(content.Headers.ContentType?.MediaType == "application/json");
         Console.WriteLine($"  prepared JSON length={json.Length}");
     }

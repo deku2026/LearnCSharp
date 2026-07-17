@@ -52,7 +52,7 @@ internal static class DefaultInterfaceMembersAndStaticAbstract
         Console.WriteLine("-- static abstract + 泛型数学(C#11) --");
         Debug.Assert(AddAll(1, 2, 3) == 6);
         Debug.Assert(Math.Abs(AddAll(1.5, 2.5) - 4.0) < 1e-9);
-        var v = new Scale(2);
+        Scale v = new Scale(2);
         Debug.Assert(DoubleMe(v).Value == 4);
         Console.WriteLine($"  AddAll(1,2,3)={AddAll(1, 2, 3)}, DoubleMe(Scale(2))={DoubleMe(v).Value}");
     }
@@ -70,7 +70,7 @@ internal static class DefaultInterfaceMembersAndStaticAbstract
     private static T AddAll<T>(params T[] values) where T : INumber<T>
     {
         T sum = T.Zero;
-        foreach (var v in values) sum += v;
+        foreach (T v in values) sum += v;
         return sum;
     }
 

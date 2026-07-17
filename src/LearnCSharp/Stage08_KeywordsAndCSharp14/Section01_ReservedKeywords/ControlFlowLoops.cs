@@ -68,8 +68,8 @@ internal static class ControlFlowLoops
             sum += x;
         Debug.Assert(sum == 60);
 
-        var list = new List<string> { "a", "b" };
-        var joined = new List<string>();
+        List<string> list = new List<string> { "a", "b" };
+        List<string> joined = new List<string>();
         foreach (string s in list)
             joined.Add(s.ToUpperInvariant());
         Debug.Assert(joined is ["A", "B"]);
@@ -80,7 +80,7 @@ internal static class ControlFlowLoops
     {
         Console.WriteLine("-- foreach mutation → InvalidOperationException (caught) --");
         // Stage04 covers mechanism; here keyword-side: foreach enumerator version check.
-        var list = new List<int> { 1, 2, 3 };
+        List<int> list = new List<int> { 1, 2, 3 };
         bool threw = false;
         try
         {

@@ -22,6 +22,7 @@ internal static class RefStructAndScoped
         DemoCustomRefStruct();
         DemoScopedParameter();
         DemoParamsSpanAndAllows();
+        DemoParamsSpanZeroAlloc();
         return 0;
     }
 
@@ -44,10 +45,42 @@ internal static class RefStructAndScoped
         Span<char> stack = stackalloc char[6];
         "scoped".AsSpan().CopyTo(stack);
         int hash = HashScoped(stack);
-        Debug.Assert(hash != 0 || hash == 0);
-        Console.WriteLine($"  HashScoped(stackalloc)={hash}");
+        // The hash is deterministic for the fixed input "scoped"; verify stability.
+        int hashAgain = HashScoped(stack);
+        Debug.Assert(hash == hashAgain, "HashScoped must be deterministic");
+        Console.WriteLine($"  HashScoped(stackalloc \"scoped\")={hash}");
         Console.WriteLine("  Without scoped, compiler may reject stackalloc → method that might store.");
         Console.WriteLine("  CS8352/CS8350: escapes that outlive the referent are compile errors.");
+    }
+
+    // C# 13 params ReadOnlySpan<T>: the compiler synthesizes a stackalloc'd span for the
+    // call (no array allocation) when the callee takes params ReadOnlySpan<T>. Observable
+    // via GetAllocatedBytesForCurrentThread — contrast with a params int[] overload.
+    private static void DemoParamsSpanZeroAlloc()
+    {
+        Console.WriteLine("-- params ReadOnlySpan<T> zero-alloc vs params T[] --");
+        // Warm up.
+        for (int i = 0; i < 64; i++)
+        {
+            _ = SumParams(1, 2, 3, 4);
+            _ = SumParamsArray(1, 2, 3, 4);
+        }
+        long beforeSpan = GC.GetAllocatedBytesForCurrentThread();
+        for (int i = 0; i < 100_000; i++)
+        {
+            _ = SumParams(1, 2, 3, 4);
+        }
+        long spanAlloc = GC.GetAllocatedBytesForCurrentThread() - beforeSpan;
+        long beforeArr = GC.GetAllocatedBytesForCurrentThread();
+        for (int i = 0; i < 100_000; i++)
+        {
+            _ = SumParamsArray(1, 2, 3, 4);
+        }
+        long arrAlloc = GC.GetAllocatedBytesForCurrentThread() - beforeArr;
+        Console.WriteLine($"  100k SumParams(params ReadOnlySpan<int>): Δalloc={spanAlloc} bytes");
+        Console.WriteLine($"  100k SumParamsArray(params int[]):        Δalloc={arrAlloc} bytes");
+        Console.WriteLine("  params ReadOnlySpan → stackalloc-backed (≈0); params T[] → heap array each call.");
+        Debug.Assert(arrAlloc > 0, "params int[] must allocate a new array per call");
     }
 
     private static void DemoParamsSpanAndAllows()
@@ -70,6 +103,14 @@ internal static class RefStructAndScoped
     }
 
     private static int SumParams(params ReadOnlySpan<int> values)
+    {
+        int s = 0;
+        foreach (int v in values)
+            s += v;
+        return s;
+    }
+
+    private static int SumParamsArray(params int[] values)
     {
         int s = 0;
         foreach (int v in values)

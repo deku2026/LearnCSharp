@@ -28,7 +28,7 @@ internal static class CustomExceptionTypes
     private static void DemoThrowAndCatchDomainException()
     {
         Console.WriteLine("-- domain exception with structured data --");
-        var account = new Account(balance: 100m);
+        Account account = new Account(balance: 100m);
         try
         {
             account.Withdraw(1000m);
@@ -47,10 +47,10 @@ internal static class CustomExceptionTypes
     private static void DemoStandardConstructors()
     {
         Console.WriteLine("-- three standard constructors + domain ctor --");
-        var a = new InsufficientFundsException();
-        var b = new InsufficientFundsException("funds low");
-        var c = new InsufficientFundsException("funds low", new IOException("ledger io"));
-        var d = new InsufficientFundsException(50m, 10m);
+        InsufficientFundsException a = new InsufficientFundsException();
+        InsufficientFundsException b = new InsufficientFundsException("funds low");
+        InsufficientFundsException c = new InsufficientFundsException("funds low", new IOException("ledger io"));
+        InsufficientFundsException d = new InsufficientFundsException(50m, 10m);
 
         Debug.Assert(a.Message.Length >= 0);
         Debug.Assert(b.Message == "funds low");

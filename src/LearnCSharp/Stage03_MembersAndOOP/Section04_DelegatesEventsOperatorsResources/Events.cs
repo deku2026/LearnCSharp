@@ -30,7 +30,7 @@ internal static class Events
     private static void DemoFieldStyleEvent()
     {
         Console.WriteLine("-- 字段式事件：外部只能 += / -= --");
-        var b = new Button();
+        Button b = new Button();
         int clicks = 0;
         b.Clicked += (_, _) => clicks++;
         b.SimulateClick();
@@ -44,7 +44,7 @@ internal static class Events
     private static void DemoStandardPattern()
     {
         Console.WriteLine("-- EventHandler<T> + OnXxx --");
-        var t = new Thermostat();
+        Thermostat t = new Thermostat();
         double seen = 0;
         t.TemperatureChanged += (_, e) => seen = e.NewTemperature;
         t.Set(36.5);
@@ -55,7 +55,7 @@ internal static class Events
     private static void DemoCustomAccessors()
     {
         Console.WriteLine("-- 自定义 add/remove --");
-        var src = new CustomEventSource();
+        CustomEventSource src = new CustomEventSource();
         int n = 0;
         EventHandler<EventArgs> h = (_, _) => n++;
         src.Changed += h;
@@ -95,7 +95,7 @@ internal static class Events
         // publisher 的委托链持有 (target=subscriber, method=OnClick)
         // → subscriber 局部死后仍无法被 GC，直到 -= 退订
         // NoInlining 防止 JIT 把 subscriber 存活期拉长到方法末尾
-        var publisher = new Button();
+        Button publisher = new Button();
         WeakReference weak = SubscribeThenDropLocal(publisher);
         Debug.Assert(publisher.SubscriberCount == 1);
 
@@ -114,8 +114,8 @@ internal static class Events
     [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
     private static WeakReference SubscribeThenDropLocal(Button publisher)
     {
-        var subscriber = new CountingSubscriber();
-        var weak = new WeakReference(subscriber);
+        CountingSubscriber subscriber = new CountingSubscriber();
+        WeakReference weak = new WeakReference(subscriber);
         publisher.Clicked += subscriber.OnClick;
         publisher.SimulateClick();
         Debug.Assert(subscriber.Hits == 1);

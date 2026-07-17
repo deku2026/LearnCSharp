@@ -69,13 +69,13 @@ internal static class NullableReferenceTypes
     private static void DemoNullableAttributes()
     {
         Console.WriteLine("-- [NotNullWhen] Try 风格 --");
-        if (TryGetName(out var n))
+        if (TryGetName(out string? n))
         {
-            Debug.Assert(n.Length == 3); // 特性：true 时 n 非空
+            Debug.Assert(n!.Length == 3); // 特性：true 时 n 非空
             Console.WriteLine($"  TryGetName → {n}");
         }
 
-        if (!TryGetNameFail(out var miss))
+        if (!TryGetNameFail(out string? miss))
         {
             Debug.Assert(miss is null);
             Console.WriteLine("  Try 失败时 out 可为 null");

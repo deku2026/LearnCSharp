@@ -29,8 +29,8 @@ internal static class NestedAndPartial
     private static void DemoNestedAccessPrivate()
     {
         Console.WriteLine("-- 嵌套类型可访问外层私有成员 --");
-        var outer = new Outer(42);
-        var nested = new Outer.Nested();
+        Outer outer = new Outer(42);
+        Outer.Nested nested = new Outer.Nested();
         Debug.Assert(nested.Read(outer) == 42);
         Console.WriteLine($"  Nested.Read(Outer)={nested.Read(outer)}");
     }
@@ -38,7 +38,7 @@ internal static class NestedAndPartial
     private static void DemoPartialClassMerge()
     {
         Console.WriteLine("-- partial class 多部分合并 --");
-        var p = new PartialPerson { First = "Ada", Last = "Lovelace" };
+        PartialPerson p = new PartialPerson { First = "Ada", Last = "Lovelace" };
         Debug.Assert(p.FullName() == "Ada Lovelace");
         Console.WriteLine($"  FullName={p.FullName()}");
     }
@@ -46,7 +46,7 @@ internal static class NestedAndPartial
     private static void DemoPartialMethodOptional()
     {
         Console.WriteLine("-- 经典 partial void：无实现则调用被移除 --");
-        var h = new HookHost();
+        HookHost h = new HookHost();
         h.Run(); // OnBefore 无实现 → 编译期移除调用
         Debug.Assert(h.Ran);
         Console.WriteLine("  HookHost.Run completed (optional partial void)");
@@ -55,7 +55,7 @@ internal static class NestedAndPartial
     private static void DemoPartialProperty()
     {
         Console.WriteLine("-- partial 属性(C#13) --");
-        var c = new PartialConfig { Title = "demo" };
+        PartialConfig c = new PartialConfig { Title = "demo" };
         Debug.Assert(c.Title == "demo");
         Console.WriteLine($"  Title={c.Title}");
     }

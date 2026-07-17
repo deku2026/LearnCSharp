@@ -29,7 +29,7 @@ internal static class Properties
     private static void DemoAutoAndInitRequired()
     {
         Console.WriteLine("-- 自动属性 / init / required --");
-        var r = new Rectangle { Width = 3, Height = 4, Name = "R1" };
+        Rectangle r = new Rectangle { Width = 3, Height = 4, Name = "R1" };
         Debug.Assert(r.Width == 3 && r.Height == 4);
         Debug.Assert(r.Name == "R1");
         Debug.Assert(r.Id == 0); // 只读自动属性默认 0，构造后不可写
@@ -40,7 +40,7 @@ internal static class Properties
     private static void DemoFieldKeywordValidation()
     {
         Console.WriteLine("-- C#14 field 关键字：自动后台字段 + 自定义 set --");
-        var p = new ValidatedPerson { FirstName = "Jane", Age = 30 };
+        ValidatedPerson p = new ValidatedPerson { FirstName = "Jane", Age = 30 };
         Debug.Assert(p.FirstName == "Jane");
         Debug.Assert(p.Age == 30);
         try
@@ -66,7 +66,7 @@ internal static class Properties
     private static void DemoComputedAndExpressionBodied()
     {
         Console.WriteLine("-- 计算属性 / 表达式主体 --");
-        var r = new Rectangle { Width = 3, Height = 4, Name = "box" };
+        Rectangle r = new Rectangle { Width = 3, Height = 4, Name = "box" };
         Debug.Assert(Math.Abs(r.Area - 12) < 1e-9);
         Debug.Assert(r.Label == "box(3x4)");
         Console.WriteLine($"  Area={r.Area}, Label={r.Label}");
@@ -75,7 +75,7 @@ internal static class Properties
     private static void DemoAccessorAccessLevels()
     {
         Console.WriteLine("-- 访问器不同访问级别 --");
-        var t = new TokenBox("secret");
+        TokenBox t = new TokenBox("secret");
         Debug.Assert(t.Token == "secret");
         t.Rotate("next");
         Debug.Assert(t.Token == "next");

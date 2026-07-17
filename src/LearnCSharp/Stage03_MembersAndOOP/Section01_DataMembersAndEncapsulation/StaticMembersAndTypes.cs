@@ -30,8 +30,8 @@ internal static class StaticMembersAndTypes
     {
         Console.WriteLine("-- 静态字段：所有实例共享 --");
         Counter.Reset();
-        var a = new Counter();
-        var b = new Counter();
+        Counter a = new Counter();
+        Counter b = new Counter();
         Debug.Assert(a.Id == 1 && b.Id == 2);
         Debug.Assert(Counter.Total == 2);
         Debug.Assert(Counter.Doubled == 4);

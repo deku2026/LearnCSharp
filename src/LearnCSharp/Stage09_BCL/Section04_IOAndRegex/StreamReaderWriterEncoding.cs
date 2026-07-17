@@ -29,7 +29,7 @@ internal static class StreamReaderWriterEncoding
     private static void DemoMemoryStream()
     {
         Console.WriteLine("-- MemoryStream as in-memory Stream --");
-        using var ms = new MemoryStream();
+        using MemoryStream ms = new MemoryStream();
         byte[] payload = Encoding.UTF8.GetBytes("stream-data");
         ms.Write(payload, 0, payload.Length);
         ms.Position = 0;
@@ -46,13 +46,13 @@ internal static class StreamReaderWriterEncoding
         string path = Path.Combine(Path.GetTempPath(), $"learn-rw-{Guid.NewGuid():N}.txt");
         try
         {
-            using (var writer = new StreamWriter(path, append: false, Encoding.UTF8))
+            using (StreamWriter writer = new StreamWriter(path, append: false, Encoding.UTF8))
             {
                 writer.WriteLine("line1");
                 writer.WriteLine("中文");
             }
 
-            using var reader = new StreamReader(path, Encoding.UTF8);
+            using StreamReader reader = new StreamReader(path, Encoding.UTF8);
             string all = reader.ReadToEnd();
             Debug.Assert(all.Contains("line1", StringComparison.Ordinal));
             Debug.Assert(all.Contains("中文", StringComparison.Ordinal));

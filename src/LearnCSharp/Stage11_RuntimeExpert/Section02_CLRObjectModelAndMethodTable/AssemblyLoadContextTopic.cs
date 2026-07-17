@@ -74,10 +74,10 @@ internal static class AssemblyLoadContextTopic
     private static int RunPluginInCollectible(out WeakReference weakAlc, out WeakReference weakAsm)
     {
         byte[] pe = BuildPluginPe();
-        var alc = new AssemblyLoadContext("plugin-demo-" + Guid.NewGuid().ToString("N")[..8], isCollectible: true);
+        AssemblyLoadContext alc = new AssemblyLoadContext("plugin-demo-" + Guid.NewGuid().ToString("N")[..8], isCollectible: true);
         weakAlc = new WeakReference(alc, trackResurrection: false);
 
-        using var ms = new MemoryStream(pe, writable: false);
+        using MemoryStream ms = new MemoryStream(pe, writable: false);
         Assembly asm = alc.LoadFromStream(ms);
         weakAsm = new WeakReference(asm, trackResurrection: false);
 
@@ -100,7 +100,7 @@ internal static class AssemblyLoadContextTopic
     private static byte[] BuildPluginPe()
     {
         // .NET 9+ PersistedAssemblyBuilder: emit a real PE we can LoadFromStream.
-        var ab = new PersistedAssemblyBuilder(
+        PersistedAssemblyBuilder ab = new PersistedAssemblyBuilder(
             new AssemblyName("LearnCSharp.Plugin." + Guid.NewGuid().ToString("N")[..8]),
             typeof(object).Assembly);
 
@@ -121,7 +121,7 @@ internal static class AssemblyLoadContextTopic
         il.Emit(OpCodes.Ret);
         tb.CreateType();
 
-        using var pe = new MemoryStream();
+        using MemoryStream pe = new MemoryStream();
         ab.Save(pe);
         return pe.ToArray();
     }
@@ -146,21 +146,21 @@ internal static class AssemblyLoadContextTopic
     private static Type LoadNamedPluginType(string suffix)
     {
         byte[] pe = BuildNamedTypePe(suffix);
-        var alc = new AssemblyLoadContext("id-" + suffix, isCollectible: true);
-        using var ms = new MemoryStream(pe, writable: false);
+        AssemblyLoadContext alc = new AssemblyLoadContext("id-" + suffix, isCollectible: true);
+        using MemoryStream ms = new MemoryStream(pe, writable: false);
         Assembly asm = alc.LoadFromStream(ms);
         return asm.GetType("Shared.Name.PluginType", throwOnError: true)!;
     }
 
     private static byte[] BuildNamedTypePe(string suffix)
     {
-        var ab = new PersistedAssemblyBuilder(
+        PersistedAssemblyBuilder ab = new PersistedAssemblyBuilder(
             new AssemblyName("IdDemo." + suffix),
             typeof(object).Assembly);
         ModuleBuilder mb = ab.DefineDynamicModule("M");
         TypeBuilder tb = mb.DefineType("Shared.Name.PluginType", TypeAttributes.Public);
         tb.CreateType();
-        using var pe = new MemoryStream();
+        using MemoryStream pe = new MemoryStream();
         ab.Save(pe);
         return pe.ToArray();
     }

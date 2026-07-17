@@ -46,7 +46,7 @@ internal static class ListT
         Console.WriteLine("-- Count vs Capacity（底层数组翻倍） --");
         List<int> list = [];
         int prev = list.Capacity;
-        var capacities = new List<int> { prev };
+        List<int> capacities = new List<int> { prev };
         for (int i = 0; i < 20; i++)
         {
             list.Add(i);

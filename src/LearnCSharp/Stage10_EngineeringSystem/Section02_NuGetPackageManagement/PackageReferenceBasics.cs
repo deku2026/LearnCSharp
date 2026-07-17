@@ -89,12 +89,12 @@ internal static class PackageReferenceBasics
     {
         Console.WriteLine("-- restore resolves a graph --");
         // 微型依赖图演示
-        var direct = new Dictionary<string, string>(StringComparer.Ordinal)
+        Dictionary<string, string> direct = new Dictionary<string, string>(StringComparer.Ordinal)
         {
             ["App"] = "Serilog 4.0",
             ["Serilog"] = "Serilog.Sinks.Console 5.0 (transitive example)",
         };
-        foreach (var kv in direct)
+        foreach (KeyValuePair<string, string> kv in direct)
             Console.WriteLine($"  {kv.Key} → {kv.Value}");
         Console.WriteLine("  产物: project.assets.json（obj/）描述闭合依赖图");
         Console.WriteLine("  全局缓存: ~/.nuget/packages（可复用，不进 Git）");

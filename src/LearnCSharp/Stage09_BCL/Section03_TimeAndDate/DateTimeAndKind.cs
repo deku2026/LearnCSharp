@@ -32,7 +32,7 @@ internal static class DateTimeAndKind
         DateTime now = DateTime.Now;
         DateTime utc = DateTime.UtcNow;
         DateTime today = DateTime.Today;
-        var dt = new DateTime(2026, 6, 14, 15, 30, 0);
+        DateTime dt = new DateTime(2026, 6, 14, 15, 30, 0);
         DateTime next = dt.AddDays(7);
         Debug.Assert(next.Day == 21);
         Debug.Assert(now.Kind == DateTimeKind.Local);
@@ -56,7 +56,7 @@ internal static class DateTimeAndKind
     private static void DemoSpecifyKind()
     {
         Console.WriteLine("-- SpecifyKind changes tag only, not ticks --");
-        var raw = new DateTime(2026, 1, 1, 12, 0, 0, DateTimeKind.Unspecified);
+        DateTime raw = new DateTime(2026, 1, 1, 12, 0, 0, DateTimeKind.Unspecified);
         DateTime asUtc = DateTime.SpecifyKind(raw, DateTimeKind.Utc);
         Debug.Assert(raw.Ticks == asUtc.Ticks);
         Debug.Assert(asUtc.Kind == DateTimeKind.Utc);

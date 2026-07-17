@@ -8,6 +8,7 @@
 // Lesson: async methods lower to stub + IAsyncStateMachine with lifted locals/state.
 
 using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using LearnCSharp.Topics;
 
@@ -55,9 +56,9 @@ internal static class AsyncStateMachine
     private static void DemoAttribute()
     {
         Console.WriteLine("-- AsyncStateMachineAttribute points at generated type --");
-        var m = typeof(AsyncStateMachine).GetMethod(nameof(SampleAsync), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+        MethodInfo? m = typeof(AsyncStateMachine).GetMethod(nameof(SampleAsync), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
         Debug.Assert(m is not null);
-        var attr = m.GetCustomAttributes(typeof(AsyncStateMachineAttribute), false)
+        AsyncStateMachineAttribute? attr = m.GetCustomAttributes(typeof(AsyncStateMachineAttribute), false)
             .OfType<AsyncStateMachineAttribute>()
             .FirstOrDefault();
         Console.WriteLine($"  SampleAsync AsyncStateMachineAttribute StateMachineType={attr?.StateMachineType.Name}");

@@ -29,7 +29,7 @@ internal static class IDisposableDisposePattern
     {
         Console.WriteLine("-- using statement --");
         int disposed = 0;
-        using (var r = new Resource("A", () => disposed++))
+        using (Resource r = new Resource("A", () => disposed++))
         {
             Debug.Assert(r.Name == "A");
             Console.WriteLine($"  using resource {r.Name}");
@@ -42,7 +42,7 @@ internal static class IDisposableDisposePattern
     private static void DemoFullPattern()
     {
         Console.WriteLine("-- classic Dispose(bool) pattern --");
-        var r = new Resource("B", static () => { });
+        Resource r = new Resource("B", static () => { });
         r.Dispose();
         r.Dispose(); // idempotent
         Debug.Assert(r.IsDisposed);

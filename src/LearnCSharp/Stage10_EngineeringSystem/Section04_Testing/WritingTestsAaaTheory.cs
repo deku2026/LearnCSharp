@@ -31,7 +31,7 @@ internal static class WritingTestsAaaTheory
     {
         Console.WriteLine("-- AAA: Arrange / Act / Assert --");
         // Arrange
-        var cart = new Cart();
+        Cart cart = new Cart();
         cart.Add("book", 10m);
         cart.Add("pen", 2m);
         // Act
@@ -54,7 +54,7 @@ internal static class WritingTestsAaaTheory
             ("x", true),
         ];
         int passed = 0;
-        foreach (var (input, expected) in rows)
+        foreach ((string? input, bool expected) in rows)
         {
             bool actual = IsNonEmpty(input);
             Debug.Assert(actual == expected);
@@ -70,7 +70,7 @@ internal static class WritingTestsAaaTheory
     private static void DemoSetupTeardown()
     {
         Console.WriteLine("-- setup / teardown --");
-        var fixture = new TempFolderFixture();
+        TempFolderFixture fixture = new TempFolderFixture();
         try
         {
             fixture.Setup();

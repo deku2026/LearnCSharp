@@ -64,7 +64,9 @@ internal static class LogicalPatterns
 
         int n = 50;
         Debug.Assert(n is not (< 0 or > 100));
-        Debug.Assert(!(150 is not (< 0 or > 100)));
+        // 用变量承载 150，避免常量折叠导致 CS8519
+        int big = 150;
+        Debug.Assert(!(big is not (< 0 or > 100)));
         Console.WriteLine("  字母模式；not (<0 or >100) = 在 [0,100]");
     }
 

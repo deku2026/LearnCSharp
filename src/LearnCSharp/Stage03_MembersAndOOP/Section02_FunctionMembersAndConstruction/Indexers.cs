@@ -28,7 +28,7 @@ internal static class Indexers
     private static void DemoIntAndStringIndexers()
     {
         Console.WriteLine("-- this[int] / this[string] --");
-        var list = new WordList();
+        WordList list = new WordList();
         list[0] = "hello";
         list[1] = "world";
         Debug.Assert(list[0] == "hello");
@@ -40,7 +40,7 @@ internal static class Indexers
     private static void DemoMultiParamIndexer()
     {
         Console.WriteLine("-- 二维 this[row,col] --");
-        var grid = new Grid(2, 3);
+        Grid grid = new Grid(2, 3);
         grid[0, 1] = 42;
         grid[1, 2] = 7;
         Debug.Assert(grid[0, 1] == 42);
@@ -51,7 +51,7 @@ internal static class Indexers
     private static void DemoIndexAndRange()
     {
         Console.WriteLine("-- Index / Range 参数 --");
-        var slice = new Sliceable([10, 20, 30, 40, 50]);
+        Sliceable slice = new Sliceable([10, 20, 30, 40, 50]);
         Debug.Assert(slice[^1] == 50);
         Debug.Assert(slice[1..4] is [20, 30, 40]);
         Console.WriteLine($"  ^1={slice[^1]}, 1..4=[{string.Join(',', slice[1..4])}]");

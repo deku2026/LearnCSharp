@@ -85,13 +85,13 @@ internal static class RefFamilyAndDefensiveCopy
     private static void DemoDefensiveCopy()
     {
         Console.WriteLine("-- ⚠ 防御性拷贝：readonly 上调可变 struct 方法 --");
-        var holder = new ReadonlyHolder(new Counter { Value = 0 });
+        ReadonlyHolder holder = new ReadonlyHolder(new Counter { Value = 0 });
         holder.Bump(); // 在只读字段上调可变方法 → 编译器先拷贝再调，原字段不变
         Debug.Assert(holder.C.Value == 0);
         Console.WriteLine($"  readonly Counter 上 Bump 后仍是 {holder.C.Value}（拷贝被改）");
 
         // 对比：非 readonly 字段会被真正修改
-        var mut = new MutableHolder(new Counter { Value = 0 });
+        MutableHolder mut = new MutableHolder(new Counter { Value = 0 });
         mut.Bump();
         Debug.Assert(mut.C.Value == 1);
         Console.WriteLine($"  非 readonly 字段 Bump 后={mut.C.Value}");
@@ -100,7 +100,7 @@ internal static class RefFamilyAndDefensiveCopy
     private static void DemoMutableStructTrap()
     {
         Console.WriteLine("-- 可变 struct 陷阱：属性返回拷贝 --");
-        var bag = new CounterBag();
+        CounterBag bag = new CounterBag();
         bag.Current.Bump(); // Current 属性返回拷贝，Bump 改的是临时副本
         Debug.Assert(bag.Current.Value == 0);
         bag.BumpInPlace();

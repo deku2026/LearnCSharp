@@ -58,8 +58,8 @@ internal static class TimeZoneInfoDst
         }
 
         // mid-summer vs mid-winter (US Eastern typically DST in July, not January)
-        var summer = new DateTime(2026, 7, 15, 12, 0, 0, DateTimeKind.Unspecified);
-        var winter = new DateTime(2026, 1, 15, 12, 0, 0, DateTimeKind.Unspecified);
+        DateTime summer = new DateTime(2026, 7, 15, 12, 0, 0, DateTimeKind.Unspecified);
+        DateTime winter = new DateTime(2026, 1, 15, 12, 0, 0, DateTimeKind.Unspecified);
         bool summerDst = eastern.IsDaylightSavingTime(summer);
         bool winterDst = eastern.IsDaylightSavingTime(winter);
         Console.WriteLine($"  {eastern.Id}: July DST={summerDst}; Jan DST={winterDst}");
@@ -77,7 +77,7 @@ internal static class TimeZoneInfoDst
         }
 
         // These wall times may be invalid/ambiguous around transitions; APIs exist to detect
-        var sample = new DateTime(2026, 3, 8, 2, 30, 0); // near US spring-forward historically
+        DateTime sample = new DateTime(2026, 3, 8, 2, 30, 0); // near US spring-forward historically
         bool invalid = eastern.IsInvalidTime(sample);
         bool ambiguous = eastern.IsAmbiguousTime(sample);
         Console.WriteLine($"  sample local {sample}: invalid={invalid}, ambiguous={ambiguous}");

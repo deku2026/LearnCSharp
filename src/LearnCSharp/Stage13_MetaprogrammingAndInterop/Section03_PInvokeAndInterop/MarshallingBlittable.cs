@@ -63,7 +63,7 @@ internal static class MarshallingBlittable
         nint buf = Marshal.AllocHGlobal(size);
         try
         {
-            var p = new Point2 { X = 3, Y = 4 };
+            Point2 p = new Point2 { X = 3, Y = 4 };
             Marshal.StructureToPtr(p, buf, fDeleteOld: false);
             Point2 back = Marshal.PtrToStructure<Point2>(buf);
             Debug.Assert(back.X == 3 && back.Y == 4);

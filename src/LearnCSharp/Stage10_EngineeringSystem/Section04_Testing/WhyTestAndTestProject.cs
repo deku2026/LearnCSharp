@@ -92,7 +92,7 @@ internal static class WhyTestAndTestProject
             ("单元测试项目", "纯逻辑、假依赖、快"),
             ("集成测试项目", "真实 IO/容器/HTTP，可标签过滤"),
         ];
-        foreach (var (layer, content) in map)
+        foreach ((string? layer, string? content) in map)
             Console.WriteLine($"  {layer,-12} {content}");
         Debug.Assert(map.Length == 3);
     }

@@ -36,11 +36,11 @@ internal static class ObjectMemoryLayout
         _ = new TwoIntsAndRef(1, 2, "x");
 
         long b0 = GC.GetAllocatedBytesForCurrentThread();
-        var empty = new EmptyClass();
+        EmptyClass empty = new EmptyClass();
         long b1 = GC.GetAllocatedBytesForCurrentThread();
-        var two = new TwoInts(10, 20);
+        TwoInts two = new TwoInts(10, 20);
         long b2 = GC.GetAllocatedBytesForCurrentThread();
-        var withRef = new TwoIntsAndRef(10, 20, "name");
+        TwoIntsAndRef withRef = new TwoIntsAndRef(10, 20, "name");
         long b3 = GC.GetAllocatedBytesForCurrentThread();
 
         long emptyBytes = b1 - b0;
@@ -62,7 +62,7 @@ internal static class ObjectMemoryLayout
     private static void DemoHeaderAndSyncBlock()
     {
         Console.WriteLine("-- sync block / identity hash --");
-        var a = new TwoInts(1, 2);
+        TwoInts a = new TwoInts(1, 2);
         int id1 = RuntimeHelpers.GetHashCode(a);
         lock (a)
         {

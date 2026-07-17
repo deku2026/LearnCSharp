@@ -51,9 +51,9 @@ internal static class TimeProviderDotNet8
     private static void DemoFakeForTests()
     {
         Console.WriteLine("-- inject FixedTimeProvider → deterministic tests --");
-        var fixedUtc = new DateTimeOffset(2026, 7, 16, 12, 0, 0, TimeSpan.Zero);
-        var clock = new FixedTimeProvider(fixedUtc);
-        var svc = new OrderService(clock);
+        DateTimeOffset fixedUtc = new DateTimeOffset(2026, 7, 16, 12, 0, 0, TimeSpan.Zero);
+        FixedTimeProvider clock = new FixedTimeProvider(fixedUtc);
+        OrderService svc = new OrderService(clock);
         Debug.Assert(svc.CreatedAt == fixedUtc);
         Debug.Assert(svc.IsExpired(fixedUtc.AddMinutes(-1)));
         Debug.Assert(!svc.IsExpired(fixedUtc.AddHours(1)));

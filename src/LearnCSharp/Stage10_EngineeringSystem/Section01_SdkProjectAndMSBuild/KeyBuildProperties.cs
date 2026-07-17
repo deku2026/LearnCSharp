@@ -61,7 +61,7 @@ internal static class KeyBuildProperties
             ("InvariantGlobalization", "关掉全球化数据，利于 AOT 瘦身"),
             ("Configuration", "Debug / Release（-c 传入）"),
         ];
-        foreach (var (prop, meaning) in rows)
+        foreach ((string? prop, string? meaning) in rows)
             Console.WriteLine($"  {prop,-28} {meaning}");
         Debug.Assert(rows.Length >= 8);
     }
@@ -92,7 +92,7 @@ internal static class KeyBuildProperties
         Assembly asm = typeof(KeyBuildProperties).Assembly;
         AssemblyName name = asm.GetName();
         Console.WriteLine($"  AssemblyName.Version={name.Version}");
-        var info = asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+        AssemblyInformationalVersionAttribute? info = asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
         Console.WriteLine($"  InformationalVersion={info?.InformationalVersion ?? "(default)"}");
         Debug.Assert(name.Version is not null);
         Console.WriteLine("  csproj: Version 影响 NuGet；AssemblyVersion 影响强名称绑定");

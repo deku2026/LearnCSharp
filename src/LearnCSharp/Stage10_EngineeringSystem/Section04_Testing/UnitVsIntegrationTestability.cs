@@ -35,7 +35,7 @@ internal static class UnitVsIntegrationTestability
             ("Integration", "真实协作（DB/HTTP/文件）", "较慢"),
             ("E2E", "完整用户路径", "最慢/最脆"),
         ];
-        foreach (var (kind, scope, speed) in rows)
+        foreach ((string? kind, string? scope, string? speed) in rows)
             Console.WriteLine($"  {kind,-12} {scope,-28} {speed}");
         Debug.Assert(rows[0].Speed.Contains("毫秒"));
     }
@@ -47,10 +47,10 @@ internal static class UnitVsIntegrationTestability
         Console.WriteLine("  难: new HttpClient() 满天飞、静态 DateTime.Now、直接读配置文件");
         Console.WriteLine("  易: 依赖接口 + 构造注入 → 测试可替换");
 
-        var hard = new HardWiredGreeter();
+        HardWiredGreeter hard = new HardWiredGreeter();
         Debug.Assert(hard.Greet().StartsWith("hi@", StringComparison.Ordinal));
 
-        var easy = new Greeter(new FixedClock(new DateTimeOffset(2026, 1, 1, 0, 0, 0, TimeSpan.Zero)));
+        Greeter easy = new Greeter(new FixedClock(new DateTimeOffset(2026, 1, 1, 0, 0, 0, TimeSpan.Zero)));
         string msg = easy.Greet("Ada");
         Debug.Assert(msg == "hi Ada @ 2026-01-01");
         Console.WriteLine($"  seam result: {msg}");
@@ -67,11 +67,11 @@ internal static class UnitVsIntegrationTestability
             ("Spy", "记录调用再断言"),
             ("Dummy", "填参数但不使用"),
         ];
-        foreach (var (kind, role) in doubles)
+        foreach ((string? kind, string? role) in doubles)
             Console.WriteLine($"  {kind,-6} {role}");
 
-        var fakeMail = new FakeMailer();
-        var svc = new OrderService(fakeMail);
+        FakeMailer fakeMail = new FakeMailer();
+        OrderService svc = new OrderService(fakeMail);
         svc.Place("a@b.c");
         Debug.Assert(fakeMail.LastTo == "a@b.c");
         Console.WriteLine($"  FakeMailer captured: {fakeMail.LastTo}");

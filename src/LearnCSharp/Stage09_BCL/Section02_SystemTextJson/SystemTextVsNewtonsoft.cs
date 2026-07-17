@@ -9,7 +9,6 @@
 
 using System.Diagnostics;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage09.Section02;
@@ -48,7 +47,7 @@ internal static class SystemTextVsNewtonsoft
             threw = true;
         }
         Debug.Assert(threw);
-        var loose = new JsonSerializerOptions
+        JsonSerializerOptions loose = new JsonSerializerOptions
         {
             ReadCommentHandling = JsonCommentHandling.Skip,
             AllowTrailingCommas = true
@@ -64,7 +63,7 @@ internal static class SystemTextVsNewtonsoft
         const string camel = """{"name":"Ada","count":3}""";
         Payload? strict = JsonSerializer.Deserialize<Payload>(camel);
         Debug.Assert(strict is { Name: "", Count: 0 } or { Name: null }); // no match without options
-        var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        JsonSerializerOptions opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         Payload? loose = JsonSerializer.Deserialize<Payload>(camel, opts);
         Debug.Assert(loose is { Name: "Ada", Count: 3 });
         Console.WriteLine($"  insensitive → Name={loose.Name}");

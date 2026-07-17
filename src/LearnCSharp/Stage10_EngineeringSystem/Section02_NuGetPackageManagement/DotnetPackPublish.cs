@@ -56,7 +56,7 @@ internal static class DotnetPackPublish
             ("GeneratePackageOnBuild", "build 时自动 pack"),
             ("IsPackable", "false 禁止被 pack（应用项目）"),
         ];
-        foreach (var (prop, role) in meta)
+        foreach ((string? prop, string? role) in meta)
             Console.WriteLine($"  {prop,-28} {role}");
         Debug.Assert(meta.Length >= 8);
 

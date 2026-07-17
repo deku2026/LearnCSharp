@@ -50,12 +50,12 @@ internal static class AsyncIoPipelines
         try
         {
             byte[] data = Encoding.UTF8.GetBytes(new string('x', 4096));
-            await using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None, 4096, useAsync: true))
+            await using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None, 4096, useAsync: true))
             {
                 await fs.WriteAsync(data);
             }
 
-            await using var rs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, useAsync: true);
+            await using FileStream rs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, useAsync: true);
             byte[] buf = new byte[data.Length];
             int total = 0;
             while (total < buf.Length)
@@ -79,7 +79,7 @@ internal static class AsyncIoPipelines
         Console.WriteLine("  PipeReader/PipeWriter: backpressure + buffer pooling for network/protocol IO");
         Console.WriteLine("  Prefer FileStream async APIs for simple files; Pipelines for Kestrel-style streams");
         // educational stand-in: producer/consumer via Channel-like manual buffer
-        var buffer = new MemoryStream();
+        MemoryStream buffer = new MemoryStream();
         byte[] chunk = Encoding.UTF8.GetBytes("pipeline-chunk");
         buffer.Write(chunk);
         Debug.Assert(buffer.Length == chunk.Length);

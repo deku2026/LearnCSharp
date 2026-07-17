@@ -48,7 +48,7 @@ internal static class JsonSerializerOptionsDemo
     private static void DemoCommonOptions()
     {
         Console.WriteLine("-- CamelCase + ignore null + enum as string --");
-        var s = new Sample { Name = "Ada", Nickname = null, Weather = Sky.Clear };
+        Sample s = new Sample { Name = "Ada", Nickname = null, Weather = Sky.Clear };
         string json = JsonSerializer.Serialize(s, s_options);
         Debug.Assert(json.Contains("\"name\"", StringComparison.Ordinal));
         Debug.Assert(!json.Contains("nickname", StringComparison.OrdinalIgnoreCase));

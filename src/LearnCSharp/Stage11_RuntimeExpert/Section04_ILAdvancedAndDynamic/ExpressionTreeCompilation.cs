@@ -23,6 +23,7 @@ internal static class ExpressionTreeCompilation
         DemoSimpleCompile();
         DemoClosureAndCapture();
         DemoVsDynamicMethod();
+        DemoCodeAsDataAndInterpreted();
         return 0;
     }
 
@@ -61,5 +62,34 @@ internal static class ExpressionTreeCompilation
         Func<int, bool> isEven = pred.Compile();
         Debug.Assert(isEven(4) && !isEven(5));
         Console.WriteLine($"  lambda expression tree '{pred}' → isEven(4)={isEven(4)}");
+    }
+
+    // The doc's ⭐ points: ① "code as data" — the AST is traversable at runtime;
+    // ② Compile(preferInterpretation: true) is the AOT-friendly interpreted fallback.
+    private static void DemoCodeAsDataAndInterpreted()
+    {
+        Console.WriteLine("-- code as data: walking the AST + interpreted compile --");
+        ParameterExpression a = Expression.Parameter(typeof(int), "a");
+        ParameterExpression b = Expression.Parameter(typeof(int), "b");
+        BinaryExpression addBody = Expression.Add(a, b);
+        Expression<Func<int, int, int>> tree = Expression.Lambda<Func<int, int, int>>(addBody, a, b);
+
+        // ① "代码即数据": traverse the AST node graph at runtime.
+        Console.WriteLine($"  tree.Body.NodeType={tree.Body.NodeType} (Add)");
+        Console.WriteLine($"  tree.Body.Type={tree.Body.Type}");
+        Console.WriteLine($"  tree.Parameters count={tree.Parameters.Count} [{tree.Parameters[0].Name},{tree.Parameters[1].Name}]");
+        if (tree.Body is BinaryExpression bin)
+        {
+            Console.WriteLine($"    Left={bin.Left.NodeType}({bin.Left.Type.Name}), Right={bin.Right.NodeType}({bin.Right.Type.Name})");
+            Debug.Assert(bin.Left is ParameterExpression && bin.Right is ParameterExpression);
+        }
+
+        // ② preferInterpretation: true → interpreted delegate, the AOT-compatible path
+        // (no dynamic IL emitted; works where RuntimeFeature.IsDynamicCodeCompiled is false).
+        Func<int, int, int> interpreted = tree.Compile(preferInterpretation: true);
+        int r = interpreted(15, 27);
+        Debug.Assert(r == 42);
+        Console.WriteLine($"  Compile(preferInterpretation:true)(15,27)={r}");
+        Console.WriteLine($"  IsDynamicCodeCompiled={System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeCompiled}");
     }
 }

@@ -52,7 +52,7 @@ internal static class VirtualMethodDispatch
     private static void DemoNonVirtualCall()
     {
         Console.WriteLine("-- non-virtual: call vs callvirt --");
-        var a = new Animal();
+        Animal a = new Animal();
         string direct = a.Id(); // non-virtual instance method
         Debug.Assert(direct == "Animal");
         // base.Speak from Dog would use call (non-virtual) to Animal::Speak

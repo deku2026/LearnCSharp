@@ -34,7 +34,7 @@ internal static class SemverAndVersionRanges
         Console.WriteLine("  MINOR: 向后兼容功能");
         Console.WriteLine("  PATCH: 向后兼容修复");
         Console.WriteLine("  预发布: 1.0.0-beta.1；构建元数据: 1.0.0+gitsha");
-        var v = new Version(4, 2, 1);
+        Version v = new Version(4, 2, 1);
         Debug.Assert(v.Major == 4 && v.Minor == 2 && v.Build == 1);
         Console.WriteLine($"  System.Version sample: {v}");
     }
@@ -50,7 +50,7 @@ internal static class SemverAndVersionRanges
             ("(,1.0]", "<=1.0"),
             ("[1.0,)", ">=1.0"),
         ];
-        foreach (var (spec, meaning) in ranges)
+        foreach ((string? spec, string? meaning) in ranges)
             Console.WriteLine($"  {spec,-12} {meaning}");
         Debug.Assert(ranges.Any(r => r.Spec.StartsWith('[')));
     }
@@ -70,7 +70,7 @@ internal static class SemverAndVersionRanges
     {
         Console.WriteLine("-- one version per package id in a graph --");
         // 模拟：A 要 Newtonsoft 12，B 要 13 → 提升到满足约束的单一版本
-        var requests = new Dictionary<string, Version>
+        Dictionary<string, Version> requests = new Dictionary<string, Version>
         {
             ["LibA"] = new Version(12, 0, 0),
             ["LibB"] = new Version(13, 0, 1),

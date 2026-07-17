@@ -33,7 +33,7 @@ internal static partial class RegexPerformancePitfalls
     private static void DemoCompiledAndStatic()
     {
         Console.WriteLine("-- reuse Regex instance; avoid new Regex in hot loops --");
-        var re = new Regex(@"\b\w+\b", RegexOptions.Compiled | RegexOptions.CultureInvariant, TimeSpan.FromMilliseconds(100));
+        Regex re = new Regex(@"\b\w+\b", RegexOptions.Compiled | RegexOptions.CultureInvariant, TimeSpan.FromMilliseconds(100));
         int count = 0;
         foreach (Match _ in re.Matches("one two three four"))
             count++;
@@ -48,7 +48,7 @@ internal static partial class RegexPerformancePitfalls
     {
         Console.WriteLine("-- MatchTimeout mitigates catastrophic backtracking --");
         // deliberately awkward pattern + input; timeout protects
-        var dangerous = new Regex(@"(a+)+$", RegexOptions.None, TimeSpan.FromMilliseconds(20));
+        Regex dangerous = new Regex(@"(a+)+$", RegexOptions.None, TimeSpan.FromMilliseconds(20));
         string input = new string('a', 30) + "b";
         bool timedOut = false;
         try
@@ -70,7 +70,7 @@ internal static partial class RegexPerformancePitfalls
         Console.WriteLine("-- NonBacktracking + [GeneratedRegex] --");
         Debug.Assert(SsnShape().IsMatch("123-45-6789"));
         Debug.Assert(!SsnShape().IsMatch("12-345-6789"));
-        var nb = new Regex(@"\d+", RegexOptions.NonBacktracking, TimeSpan.FromSeconds(1));
+        Regex nb = new Regex(@"\d+", RegexOptions.NonBacktracking, TimeSpan.FromSeconds(1));
         Debug.Assert(nb.IsMatch("id=42"));
         Console.WriteLine("  prefer GeneratedRegex / NonBacktracking for untrusted input");
         Console.WriteLine("  ReDoS: evil patterns + user input → always set timeout");

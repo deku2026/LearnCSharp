@@ -29,7 +29,7 @@ internal static class InheritanceBasics
     private static void DemoSingleInheritance()
     {
         Console.WriteLine("-- 单类继承 + 派生扩展 --");
-        var d = new Dog("Rex");
+        Dog d = new Dog("Rex");
         Debug.Assert(d.Name == "Rex");
         Debug.Assert(d.Eat() == "Rex eats");
         Debug.Assert(d.Bark() == "Rex barks");
@@ -48,7 +48,7 @@ internal static class InheritanceBasics
     private static void DemoBaseMemberAccess()
     {
         Console.WriteLine("-- base.成员 --");
-        var c = new LabeledChild("kid");
+        LabeledChild c = new LabeledChild("kid");
         Debug.Assert(c.Describe() == "Child of Base:kid");
         Console.WriteLine($"  {c.Describe()}");
     }
@@ -56,7 +56,7 @@ internal static class InheritanceBasics
     private static void DemoEverythingIsObject()
     {
         Console.WriteLine("-- 所有类最终继承 System.Object --");
-        var d = new Dog("Spot");
+        Dog d = new Dog("Spot");
         object o = d;
         Debug.Assert(o.GetType() == typeof(Dog));
         Debug.Assert(d is object);

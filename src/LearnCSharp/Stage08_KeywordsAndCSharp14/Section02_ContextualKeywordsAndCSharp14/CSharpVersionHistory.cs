@@ -34,7 +34,7 @@ internal static class CSharpVersionHistory
         Debug.Assert(square(3) == 9);
         int? maybe = null;
         Debug.Assert(maybe is null); // 可空值类型 C#2
-        var gen = new Box<int>(5);
+        Box<int> gen = new Box<int>(5);
         Debug.Assert(gen.Value == 5);
         Debug.Assert(YieldTwo().SequenceEqual([1, 2]));
         Console.WriteLine("  generics + nullable + yield ok");
@@ -43,8 +43,8 @@ internal static class CSharpVersionHistory
     private static void DemoLinqAndAsyncEra()
     {
         Console.WriteLine("-- C# 3 LINQ/var/lambda；C# 5 async/await --");
-        var data = new[] { 1, 2, 3, 4 };
-        var q = data.Where(x => x % 2 == 0).Select(x => x * 10).ToArray();
+        int[] data = new[] { 1, 2, 3, 4 };
+        int[] q = data.Where(x => x % 2 == 0).Select(x => x * 10).ToArray();
         Debug.Assert(q is [20, 40]);
         int v = GetAsync().GetAwaiter().GetResult();
         Debug.Assert(v == 1);
@@ -64,8 +64,8 @@ internal static class CSharpVersionHistory
             _ => "big",
         };
         Debug.Assert(kind == "small");
-        var r = new PersonRec("Ada") { Age = 36 };
-        var r2 = r with { Age = 37 };
+        PersonRec r = new PersonRec("Ada") { Age = 36 };
+        PersonRec r2 = r with { Age = 37 };
         Debug.Assert(r2 is { Name: "Ada", Age: 37 });
         Console.WriteLine($"  pattern={kind}, record with Age={r2.Age}");
     }
@@ -76,7 +76,7 @@ internal static class CSharpVersionHistory
         int[] arr = [1, 2, 3];
         Debug.Assert(arr is [1, 2, 3]);
         Debug.Assert(arr is [1, .., 3]);
-        var p = new FieldSample { Name = "x" };
+        FieldSample p = new FieldSample { Name = "x" };
         Debug.Assert(p.Name == "x");
         Debug.Assert("a b".HistoryWordCount == 2);
         string unbound = nameof(List<>);
@@ -104,7 +104,7 @@ internal static class CSharpVersionHistory
             ("13.0", "params collections, Lock, allows ref struct, partial props"),
             ("14.0", "field, extension members, compound assignment, null-cond assign"),
         ];
-        foreach (var (ver, h) in map)
+        foreach ((string? ver, string? h) in map)
             Console.WriteLine($"  C# {ver}: {h}");
         Debug.Assert(map.Length >= 14);
     }

@@ -33,7 +33,7 @@ internal static class Loops
     {
         Console.WriteLine("-- while：顶判，0 次或多次 --");
         int i = 0;
-        var buf = new List<int>();
+        List<int> buf = new List<int>();
         while (i < 5)
         {
             buf.Add(i);
@@ -47,7 +47,7 @@ internal static class Loops
     {
         Console.WriteLine("-- do-while：底判，至少 1 次 --");
         int j = 0;
-        var buf = new List<int>();
+        List<int> buf = new List<int>();
         do
         {
             buf.Add(j);
@@ -64,7 +64,7 @@ internal static class Loops
     private static void DemoFor()
     {
         Console.WriteLine("-- for：初始化; 条件; 迭代 --");
-        var buf = new List<int>();
+        List<int> buf = new List<int>();
         for (int k = 0; k < 5; k++)
             buf.Add(k);
         Debug.Assert(string.Join("", buf) == "01234");
@@ -75,14 +75,14 @@ internal static class Loops
     {
         Console.WriteLine("-- foreach：遍历元素 --");
         int[] nums = [10, 20, 30];
-        var buf = new List<int>();
+        List<int> buf = new List<int>();
         foreach (int n in nums)
             buf.Add(n);
         Debug.Assert(buf is [10, 20, 30]);
 
-        var dict = new Dictionary<string, int> { ["a"] = 1, ["b"] = 2 };
+        Dictionary<string, int> dict = new Dictionary<string, int> { ["a"] = 1, ["b"] = 2 };
         int sum = 0;
-        foreach (var (key, value) in dict)
+        foreach ((string? key, int value) in dict)
             sum += value;
         Debug.Assert(sum == 3);
         Console.WriteLine($"  foreach array → [{string.Join(",", buf)}]; dict sum={sum}");
@@ -92,8 +92,8 @@ internal static class Loops
     {
         Console.WriteLine("-- foreach ≈ GetEnumerator + MoveNext + Current --");
         int[] nums = [1, 2, 3];
-        var e = ((IEnumerable<int>)nums).GetEnumerator();
-        var manual = new List<int>();
+        IEnumerator<int> e = ((IEnumerable<int>)nums).GetEnumerator();
+        List<int> manual = new List<int>();
         try
         {
             while (e.MoveNext())
@@ -110,8 +110,8 @@ internal static class Loops
     private static void DemoCustomGetEnumerator()
     {
         Console.WriteLine("-- 自定义 GetEnumerator（鸭子类型） --");
-        var bag = new NumberBag([7, 8, 9]);
-        var got = new List<int>();
+        NumberBag bag = new NumberBag([7, 8, 9]);
+        List<int> got = new List<int>();
         foreach (int n in bag)
             got.Add(n);
         Debug.Assert(got is [7, 8, 9]);
@@ -121,7 +121,7 @@ internal static class Loops
     private static void DemoModifyDuringEnumerate()
     {
         Console.WriteLine("-- 枚举期间改集合 → InvalidOperationException --");
-        var list = new List<int> { 1, 2, 3 };
+        List<int> list = new List<int> { 1, 2, 3 };
         bool threw = false;
         try
         {

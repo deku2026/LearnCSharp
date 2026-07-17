@@ -8,7 +8,6 @@
 // 步骤 2：勿 per-request new；勿永久单例无刷新；PooledConnectionLifetime 正解
 
 using System.Diagnostics;
-using System.Net.Http;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage09.Section05;
@@ -20,7 +19,7 @@ internal static class SocketExhaustionLifetime
 
     private static HttpClient CreateSharedClient()
     {
-        var handler = new SocketsHttpHandler
+        SocketsHttpHandler handler = new SocketsHttpHandler
         {
             PooledConnectionLifetime = TimeSpan.FromMinutes(15),
             MaxConnectionsPerServer = 20

@@ -74,7 +74,7 @@ internal static class ExceptionTypeHierarchy
 
     private static void ThrowWithData()
     {
-        var ex = new InvalidOperationException("demo failure");
+        InvalidOperationException ex = new InvalidOperationException("demo failure");
         ex.Data["hint"] = "check config";
         throw ex;
     }

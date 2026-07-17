@@ -51,7 +51,7 @@ internal static class Interfaces
     private static void DemoExplicitImplementation()
     {
         Console.WriteLine("-- 显式实现：同名消歧 + 隐藏公开 API --");
-        var p = new Panel();
+        Panel p = new Panel();
         // p.Paint(); // ❌ 不在类公开 API
         Debug.Assert(((IControl)p).Paint() == "IControl.Paint");
         Debug.Assert(((ISurface)p).Paint() == "ISurface.Paint");

@@ -34,7 +34,7 @@ internal static class CSharp14Features
     private static void DemoFieldKeyword()
     {
         Console.WriteLine("-- field 关键字 --");
-        var p = new FieldPerson { Name = "Ada" };
+        FieldPerson p = new FieldPerson { Name = "Ada" };
         Debug.Assert(p.Name == "Ada");
         try
         {
@@ -64,10 +64,10 @@ internal static class CSharp14Features
     private static void DemoCompoundAssignmentAndIncrement()
     {
         Console.WriteLine("-- 用户定义 += / 实例 ++ --");
-        var v = new Vec3(1, 2, 3);
+        Vec3 v = new Vec3(1, 2, 3);
         v += new Vec3(4, 5, 6);
         Debug.Assert(v == new Vec3(5, 7, 9));
-        var c = new Counter(10);
+        Counter c = new Counter(10);
         c++;
         Debug.Assert(c.Value == 11);
         Console.WriteLine($"  Vec3 after += {v}, Counter={c.Value}");
@@ -76,7 +76,7 @@ internal static class CSharp14Features
     private static void DemoPartialConstructorAndEvent()
     {
         Console.WriteLine("-- partial 构造 / 事件 --");
-        var h = new PartialHost(42);
+        PartialHost h = new PartialHost(42);
         Debug.Assert(h.Value == 42);
         int fired = 0;
         h.Tick += (_, n) => fired += n;
@@ -103,13 +103,13 @@ internal static class CSharp14Features
         c = new Customer();
         c?.Order = Make();
         Debug.Assert(calls == 1);
-        Debug.Assert(c.Order is { Id: 1 });
+        Debug.Assert(c!.Order is { Id: 1 });
 
         int[]? arr = null;
         arr?[0] = 9; // 跳过
         arr = [0, 0];
         arr?[0] = 9;
-        Debug.Assert(arr[0] == 9);
+        Debug.Assert(arr![0] == 9);
         Console.WriteLine($"  null skip calls={calls - 1}, after assign Id={c.Order!.Id}, arr[0]={arr[0]}");
     }
 

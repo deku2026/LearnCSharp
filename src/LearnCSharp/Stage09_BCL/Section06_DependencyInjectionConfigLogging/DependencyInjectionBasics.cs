@@ -48,10 +48,10 @@ internal static class DependencyInjectionBasics
     private static void DemoWithoutDiVsWithDi()
     {
         Console.WriteLine("-- ctor injection vs hard-coded new --");
-        var coupled = new OrderService(new SmtpEmailSender());
+        OrderService coupled = new OrderService(new SmtpEmailSender());
         Debug.Assert(coupled.Place("a@b.c").StartsWith("SMTP", StringComparison.Ordinal));
 
-        var services = new ServiceCollection();
+        ServiceCollection services = new ServiceCollection();
         services.AddSingleton<IEmailSender, SmtpEmailSender>();
         services.AddTransient<OrderService>();
         using ServiceProvider provider = services.BuildServiceProvider();
@@ -65,7 +65,7 @@ internal static class DependencyInjectionBasics
     private static void DemoSwapImplementation()
     {
         Console.WriteLine("-- swap implementation for tests --");
-        var services = new ServiceCollection();
+        ServiceCollection services = new ServiceCollection();
         services.AddSingleton<IEmailSender, FakeEmailSender>();
         services.AddTransient<OrderService>();
         using ServiceProvider provider = services.BuildServiceProvider();

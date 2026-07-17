@@ -53,9 +53,9 @@ internal static class EqualityFullSet
     private static void DemoFullValueEquality()
     {
         Console.WriteLine("-- 成套值相等实现 --");
-        var p1 = new Point(1, 2);
-        var p2 = new Point(1, 2);
-        var p3 = new Point(9, 9);
+        Point p1 = new Point(1, 2);
+        Point p2 = new Point(1, 2);
+        Point p3 = new Point(9, 9);
         Debug.Assert(p1.Equals(p2));
         Debug.Assert(p1 == p2);
         Debug.Assert(p1 != p3);
@@ -67,7 +67,7 @@ internal static class EqualityFullSet
     private static void DemoHashSetDedup()
     {
         Console.WriteLine("-- HashSet 用值相等去重 --");
-        var set = new HashSet<Point> { new(1, 2), new(1, 2), new(3, 4) };
+        HashSet<Point> set = new HashSet<Point> { new(1, 2), new(1, 2), new(3, 4) };
         Debug.Assert(set.Count == 2);
         Console.WriteLine($"  HashSet count={set.Count}（两个 (1,2) 合成一个）");
     }
@@ -75,7 +75,7 @@ internal static class EqualityFullSet
     private static void DemoCustomComparer()
     {
         Console.WriteLine("-- IEqualityComparer 外部规则 --");
-        var set = new HashSet<Box>(new ByVolume())
+        HashSet<Box> set = new HashSet<Box>(new ByVolume())
         {
             new(2, 3, 4),
             new(1, 4, 6), // 同体积 24
@@ -89,8 +89,8 @@ internal static class EqualityFullSet
     {
         Console.WriteLine("-- ⚠ 只重写 Equals 不重写 GetHashCode 会坏 Dictionary --");
         // BrokenPoint 故意只改 Equals：演示“相等但哈希不同”的风险说明
-        var broken = new BrokenPoint(1, 2);
-        var other = new BrokenPoint(1, 2);
+        BrokenPoint broken = new BrokenPoint(1, 2);
+        BrokenPoint other = new BrokenPoint(1, 2);
         Debug.Assert(broken.Equals(other));
         // GetHashCode 仍是默认引用哈希 → 通常不同
         bool sameHash = broken.GetHashCode() == other.GetHashCode();
@@ -98,7 +98,7 @@ internal static class EqualityFullSet
 
         // Dictionary 用 GetHashCode 选桶，再用 Equals 确认：
         // 键入 new BrokenPoint(1,2) 后用另一个相等实例查找 → 常找不到
-        var map = new Dictionary<BrokenPoint, string> { [broken] = "found" };
+        Dictionary<BrokenPoint, string> map = new Dictionary<BrokenPoint, string> { [broken] = "found" };
         bool lookupOk = map.TryGetValue(other, out string? value);
         Debug.Assert(map.ContainsKey(broken)); // 同一引用通常能命中
         // 值相等但哈希不同 → 查找失败（若碰巧哈希碰撞相同则可能命中，故用“坏实现”教学）
@@ -151,6 +151,7 @@ internal static class EqualityFullSet
         public int GetHashCode(Box obj) => obj.Volume.GetHashCode();
     }
 
+#pragma warning disable CS0659 // 故意演示坏类型：重写 Equals 但不重写 GetHashCode
     private sealed class BrokenPoint(int x, int y)
     {
         public int X { get; } = x;
@@ -159,4 +160,5 @@ internal static class EqualityFullSet
             obj is BrokenPoint o && X == o.X && Y == o.Y;
         // 故意不重写 GetHashCode
     }
+#pragma warning restore CS0659
 }

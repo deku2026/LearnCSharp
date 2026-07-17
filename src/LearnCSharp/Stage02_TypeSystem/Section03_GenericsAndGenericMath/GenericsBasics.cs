@@ -31,8 +31,8 @@ internal static class GenericsBasics
     private static void DemoGenericType()
     {
         Console.WriteLine("-- 泛型类一份定义 --");
-        var bi = new Box<int>(42);
-        var bs = new Box<string>("hi");
+        Box<int> bi = new Box<int>(42);
+        Box<string> bs = new Box<string>("hi");
         Debug.Assert(bi.Value == 42 && bs.Value == "hi");
         Console.WriteLine($"  Box<int>={bi.Value}, Box<string>={bs.Value}");
     }

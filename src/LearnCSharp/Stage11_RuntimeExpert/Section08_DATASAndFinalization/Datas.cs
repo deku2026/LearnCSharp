@@ -38,7 +38,7 @@ internal static class Datas
         Console.WriteLine("-- observe heap via managed APIs (no dotnet-counters required) --");
         GCMemoryInfo before = GC.GetGCMemoryInfo();
         Console.WriteLine($"  before HeapSize={before.HeapSizeBytes}, Committed={before.TotalCommittedBytes}");
-        var keep = new List<byte[]>(200);
+        List<byte[]> keep = new List<byte[]>(200);
         for (int i = 0; i < 200; i++)
             keep.Add(new byte[50_000]);
         GCMemoryInfo mid = GC.GetGCMemoryInfo();
@@ -49,7 +49,10 @@ internal static class Datas
         GC.Collect();
         GCMemoryInfo after = GC.GetGCMemoryInfo();
         Console.WriteLine($"  after release+GC HeapSize={after.HeapSizeBytes}, Committed={after.TotalCommittedBytes}");
-        Debug.Assert(mid.HeapSizeBytes >= before.HeapSizeBytes || mid.TotalCommittedBytes >= 0);
+        // "grow on burst": after 200×50KB allocations the managed heap must have grown.
+        // (The shrink half is observational only — DATAS shrink needs sustained idle + server GC.)
+        Debug.Assert(mid.HeapSizeBytes > before.HeapSizeBytes, "DATAS: heap must grow under allocation burst");
+        Console.WriteLine($"  grow-on-burst ΔHeap={mid.HeapSizeBytes - before.HeapSizeBytes} bytes (asserted > 0)");
     }
 
     private static void DemoConfig()

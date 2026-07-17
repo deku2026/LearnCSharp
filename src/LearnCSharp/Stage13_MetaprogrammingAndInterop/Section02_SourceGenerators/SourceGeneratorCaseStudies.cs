@@ -33,7 +33,7 @@ internal static partial class SourceGeneratorCaseStudies
     private static void DemoStjRoundTripAndAlloc()
     {
         Console.WriteLine("-- System.Text.Json source gen (round-trip + alloc sample) --");
-        var person = new PersonDto { Name = "Ada", Age = 36 };
+        PersonDto person = new PersonDto { Name = "Ada", Age = 36 };
         long before = GC.GetAllocatedBytesForCurrentThread();
         string json = JsonSerializer.Serialize(person, Stage13PersonJsonContext.Default.PersonDto);
         PersonDto? back = JsonSerializer.Deserialize(json, Stage13PersonJsonContext.Default.PersonDto);

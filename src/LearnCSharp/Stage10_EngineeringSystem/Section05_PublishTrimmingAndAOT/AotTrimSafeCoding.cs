@@ -50,7 +50,7 @@ internal static partial class AotTrimSafeCoding
             ("DynamicDependency", "额外根住某成员/类型"),
             ("UnconditionalSuppressMessage", "确认安全后的定点抑制"),
         ];
-        foreach (var (attr, role) in attrs)
+        foreach ((string? attr, string? role) in attrs)
             Console.WriteLine($"  {attr,-28} {role}");
         Debug.Assert(attrs.Length == 5);
 
@@ -62,7 +62,7 @@ internal static partial class AotTrimSafeCoding
     private static void DemoJsonSourceGen()
     {
         Console.WriteLine("-- JSON source generation (trim-safe) --");
-        var dto = new Payload { Id = 7, Name = "ada" };
+        Payload dto = new Payload { Id = 7, Name = "ada" };
         string json = JsonSerializer.Serialize(dto, PayloadJsonContext.Default.Payload);
         Payload? back = JsonSerializer.Deserialize(json, PayloadJsonContext.Default.Payload);
         Debug.Assert(back is { Id: 7, Name: "ada" });

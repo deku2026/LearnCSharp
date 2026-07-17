@@ -32,7 +32,7 @@ internal static class ContextualKeywords
     private static void DemoVarAndDynamic()
     {
         Console.WriteLine("-- var / dynamic --");
-        var n = 42; // 编译期推断 int
+        int n = 42; // 编译期推断 int
         Debug.Assert(n.GetType() == typeof(int));
         dynamic d = "hello";
         Debug.Assert((int)d.Length == 5);
@@ -45,7 +45,7 @@ internal static class ContextualKeywords
     {
         Console.WriteLine("-- LINQ: from where select group by into orderby join let --");
         int[] nums = [1, 2, 3, 4, 5, 6];
-        var q =
+        IEnumerable<int> q =
             from x in nums
             where x % 2 == 0
             let doubled = x * 2
@@ -55,13 +55,13 @@ internal static class ContextualKeywords
 
         var people = new[] { new { Id = 1, Name = "A" }, new { Id = 2, Name = "B" } };
         var orders = new[] { new { PersonId = 1, Total = 10 }, new { PersonId = 1, Total = 5 } };
-        var joined =
+        IEnumerable<string> joined =
             from p in people
             join o in orders on p.Id equals o.PersonId
             select p.Name + ":" + o.Total;
         Debug.Assert(joined.Count() == 2);
 
-        var groups =
+        IEnumerable<(int Key, int Count)> groups =
             from x in nums
             group x by x % 2 into g
             select (g.Key, Count: g.Count());
@@ -72,14 +72,14 @@ internal static class ContextualKeywords
     private static void DemoAccessorsAndRecord()
     {
         Console.WriteLine("-- get/set/init/value/required/record/partial/file --");
-        var p = new Person { Name = "Ada", Age = 36 };
+        Person p = new Person { Name = "Ada", Age = 36 };
         Debug.Assert(p.Name == "Ada" && p.Age == 36);
         // p.Name = "x"; // init-only after construction
-        var r = new PointRec(1, 2);
-        var r2 = r with { Y = 9 };
+        PointRec r = new PointRec(1, 2);
+        PointRec r2 = r with { Y = 9 };
         Debug.Assert(r2 is { X: 1, Y: 9 });
         Debug.Assert(r == new PointRec(1, 2));
-        var cfg = new Config { Title = "t" };
+        Config cfg = new Config { Title = "t" };
         Debug.Assert(cfg.Title == "t");
         Console.WriteLine($"  Person={p.Name}/{p.Age}, with Y={r2.Y}");
     }
@@ -90,7 +90,9 @@ internal static class ContextualKeywords
         int n = 50;
         bool inRange = n is >= 0 and <= 100;
         bool smallOrBig = n is 1 or 2 or >= 40;
-        bool notNull = "x" is not null;
+        // 用变量承载字面量，避免常量折叠导致的 CS8793
+        string label = "x";
+        bool notNull = label is not null;
         string grade = n switch
         {
             >= 90 => "A",
@@ -116,7 +118,7 @@ internal static class ContextualKeywords
         Console.WriteLine("-- async / await / yield --");
         int v = GetValueAsync().GetAwaiter().GetResult();
         Debug.Assert(v == 7);
-        var seq = TakeThree().ToArray();
+        int[] seq = TakeThree().ToArray();
         Debug.Assert(seq is [0, 1, 2]);
         Console.WriteLine($"  await result={v}, yield=[{string.Join(',', seq)}]");
     }

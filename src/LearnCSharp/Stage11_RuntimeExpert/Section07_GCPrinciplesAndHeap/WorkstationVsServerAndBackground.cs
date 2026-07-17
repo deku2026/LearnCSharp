@@ -39,15 +39,24 @@ internal static class WorkstationVsServerAndBackground
 
     private static void DemoBackground()
     {
-        Console.WriteLine("-- background GC --");
-        Console.WriteLine("  Concurrent mark of Gen2 while app threads mostly run.");
-        Console.WriteLine("  Still brief suspends; not hard real-time.");
-        int g2 = GC.CollectionCount(2);
-        // light allocation
-        for (int i = 0; i < 1000; i++)
-            _ = new byte[256];
-        Console.WriteLine($"  Gen2 collections so far={GC.CollectionCount(2)} (was {g2})");
-        Debug.Assert(GC.CollectionCount(2) >= g2);
+        Console.WriteLine("-- background GC + observe a real Gen2 collection --");
+        Console.WriteLine("  Concurrent mark of Gen2 while app threads mostly run; brief suspends, not hard real-time.");
+        GCMemoryInfo info = GC.GetGCMemoryInfo();
+        Console.WriteLine($"  HeapSizeBytes={info.HeapSizeBytes}, Committed={info.TotalCommittedBytes}, PinnedObjects={info.PinnedObjectsCount}");
+        int g2Before = GC.CollectionCount(2);
+        // Allocate enough large arrays (each > 85KB → LOH → eventually Gen2) to force a Gen2 collection.
+        List<byte[]> keep = new List<byte[]>(256);
+        for (int i = 0; i < 256; i++)
+            keep.Add(new byte[1 << 20]); // 1 MiB each → LOH, promoted to Gen2
+        GC.Collect(2);
+        GC.WaitForPendingFinalizers();
+        GC.Collect(2);
+        int g2After = GC.CollectionCount(2);
+        Console.WriteLine($"  Gen2 collections before={g2Before}, after={g2After}");
+        Debug.Assert(g2After > g2Before, "a Gen2 collection must have occurred after large allocations + GC.Collect(2)");
+        keep.Clear();
+        GC.Collect(2);
+        Console.WriteLine($"  IsServerGC={GCSettings.IsServerGC} → {(GCSettings.IsServerGC ? "server: heap per CPU" : "workstation: single heap")}");
     }
 
     private static void DemoConfig()

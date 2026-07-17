@@ -58,7 +58,7 @@ internal static class MarshalClassManual
         nint p = Marshal.AllocHGlobal(size);
         try
         {
-            var h = new Header { Tag = 7, Length = 99 };
+            Header h = new Header { Tag = 7, Length = 99 };
             Marshal.StructureToPtr(h, p, fDeleteOld: false);
             Header back = Marshal.PtrToStructure<Header>(p);
             Debug.Assert(back.Tag == 7 && back.Length == 99);

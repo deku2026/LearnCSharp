@@ -30,7 +30,7 @@ internal static class StringBuilderDemo
     {
         Console.WriteLine("-- loop += vs StringBuilder --");
         const int n = 2000;
-        var sw = Stopwatch.StartNew();
+        Stopwatch sw = Stopwatch.StartNew();
         string slow = "";
         for (int i = 0; i < n; i++)
             slow += i + ",";
@@ -38,7 +38,7 @@ internal static class StringBuilderDemo
         long msPlus = sw.ElapsedMilliseconds;
 
         sw.Restart();
-        var sb = new StringBuilder(capacity: n * 4);
+        StringBuilder sb = new StringBuilder(capacity: n * 4);
         for (int i = 0; i < n; i++)
             sb.Append(i).Append(',');
         string fast = sb.ToString();
@@ -50,7 +50,7 @@ internal static class StringBuilderDemo
     private static void DemoApi()
     {
         Console.WriteLine("-- Append / Insert / Replace / Clear --");
-        var sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         sb.Append("text");
         sb.AppendLine("line");
         sb.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, "{0:N2}", 12.3);

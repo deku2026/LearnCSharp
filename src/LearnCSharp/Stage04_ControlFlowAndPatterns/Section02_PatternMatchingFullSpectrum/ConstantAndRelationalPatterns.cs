@@ -87,7 +87,7 @@ internal static class ConstantAndRelationalPatterns
     private static void DemoIsNullVsOverloadedEquals()
     {
         Console.WriteLine("-- is null 不调用用户 == --");
-        var a = new WeirdEq("a");
+        WeirdEq? a = new WeirdEq("a");
         WeirdEq? b = null;
         Debug.Assert(b is null);
         // a == null 会进重载；is null 走引用判空

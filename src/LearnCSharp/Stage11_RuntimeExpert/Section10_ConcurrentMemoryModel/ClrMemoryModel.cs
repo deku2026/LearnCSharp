@@ -46,7 +46,7 @@ internal static class ClrMemoryModel
         int observedReady = -1;
         int inconsistencies = 0;
 
-        var writer = new Thread(() =>
+        Thread writer = new Thread(() =>
         {
             for (int i = 1; i <= 50_000; i++)
             {
@@ -58,7 +58,7 @@ internal static class ClrMemoryModel
             }
         });
 
-        var reader = new Thread(() =>
+        Thread reader = new Thread(() =>
         {
             for (int i = 0; i < 50_000; i++)
             {
@@ -93,12 +93,12 @@ internal static class ClrMemoryModel
     private static void DemoLockFence()
     {
         Console.WriteLine("-- lock as full barrier --");
-        var gate = new object();
+        object gate = new();
         int payload = 0;
         bool published = false;
         int seen = -1;
 
-        var t = new Thread(() =>
+        Thread t = new Thread(() =>
         {
             lock (gate)
             {

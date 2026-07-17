@@ -85,7 +85,7 @@ internal static class SwitchStatement
         Console.WriteLine("-- goto case：显式穿透 --");
         static string RunState(string state)
         {
-            var log = new List<string>();
+            List<string> log = new List<string>();
             switch (state)
             {
                 case "start":

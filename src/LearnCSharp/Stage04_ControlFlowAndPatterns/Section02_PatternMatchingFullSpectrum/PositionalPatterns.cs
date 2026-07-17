@@ -33,10 +33,10 @@ internal static class PositionalPatterns
         static string Quadrant((int x, int y) p) => p switch
         {
             (0, 0) => "原点",
-            (> 0, > 0) => "第一象限",
-            (< 0, > 0) => "第二象限",
-            (< 0, < 0) => "第三象限",
-            (> 0, < 0) => "第四象限",
+            ( > 0, > 0) => "第一象限",
+            ( < 0, > 0) => "第二象限",
+            ( < 0, < 0) => "第三象限",
+            ( > 0, < 0) => "第四象限",
             (0, _) => "Y轴",
             (_, 0) => "X轴",
         };
@@ -54,7 +54,7 @@ internal static class PositionalPatterns
         static string Loc(Point p) => p switch
         {
             (0, 0) => "原点",
-            (> 0, > 0) => "右上",
+            ( > 0, > 0) => "右上",
             _ => "其他",
         };
 
@@ -88,7 +88,7 @@ internal static class PositionalPatterns
     private static void DemoCustomDeconstruct()
     {
         Console.WriteLine("-- 自定义类型 Deconstruct --");
-        var c = new ColorRgb(255, 0, 128);
+        ColorRgb c = new ColorRgb(255, 0, 128);
         string kind = c switch
         {
             (255, 0, 0) => "纯红",

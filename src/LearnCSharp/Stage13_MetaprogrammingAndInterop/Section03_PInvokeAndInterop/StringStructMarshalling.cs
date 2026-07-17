@@ -61,7 +61,7 @@ internal static partial class StringStructMarshalling
         Debug.Assert(Marshal.SizeOf<PackedHeader>() == 5);
         Debug.Assert(Marshal.SizeOf<AlignedHeader>() >= 5);
 
-        var u = new Overlap { AsInt = 0x3F800000 }; // IEEE 1.0f bit pattern
+        Overlap u = new Overlap { AsInt = 0x3F800000 }; // IEEE 1.0f bit pattern
         float f = u.AsFloat;
         Debug.Assert(Math.Abs(f - 1.0f) < 1e-6);
         Console.WriteLine($"  Explicit union: AsInt=0x{u.AsInt:X8} → AsFloat={f}");

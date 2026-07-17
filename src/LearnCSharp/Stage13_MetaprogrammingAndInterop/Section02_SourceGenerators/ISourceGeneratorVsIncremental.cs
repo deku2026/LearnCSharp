@@ -37,12 +37,12 @@ internal static partial class ISourceGeneratorVsIncremental
     private static void DemoWhyIncrementalMeasured()
     {
         Console.WriteLine("-- simulated cache: miss cost vs hit --");
-        var cache = new Dictionary<string, (string input, string output)>(StringComparer.Ordinal);
+        Dictionary<string, (string input, string output)> cache = new Dictionary<string, (string input, string output)>(StringComparer.Ordinal);
         int misses = 0, hits = 0;
 
         string RunStage(string key, string input)
         {
-            if (cache.TryGetValue(key, out var hit) && hit.input == input)
+            if (cache.TryGetValue(key, out (string input, string output) hit) && hit.input == input)
             {
                 hits++;
                 return hit.output;
@@ -74,7 +74,7 @@ internal static partial class ISourceGeneratorVsIncremental
     private static void DemoRealJsonContextAsGeneratedArtifact()
     {
         Console.WriteLine("-- real generated artifact: JsonSerializerContext --");
-        var row = new CacheRow { Key = "A", Value = 1 };
+        CacheRow row = new CacheRow { Key = "A", Value = 1 };
         string json = JsonSerializer.Serialize(row, IncJsonContext.Default.CacheRow);
         CacheRow? back = JsonSerializer.Deserialize(json, IncJsonContext.Default.CacheRow);
         Debug.Assert(back is { Key: "A", Value: 1 });

@@ -41,14 +41,14 @@ internal static class ResourceManagementIDisposableUsing
     {
         Console.WriteLine("-- using 语句 / using 声明 --");
         int disposed = 0;
-        using (var r = new TrackedResource(() => disposed++))
+        using (TrackedResource r = new TrackedResource(() => disposed++))
         {
             r.Write("hello");
             Debug.Assert(r.Content == "hello");
         }
         Debug.Assert(disposed == 1);
 
-        using var r2 = new TrackedResource(() => disposed++);
+        using TrackedResource r2 = new TrackedResource(() => disposed++);
         r2.Write("hi");
         Debug.Assert(r2.Content == "hi");
         // 作用域结束时 Dispose
@@ -58,9 +58,9 @@ internal static class ResourceManagementIDisposableUsing
     private static void DemoDisposeOrderLifo()
     {
         Console.WriteLine("-- Dispose 顺序：嵌套 using 逆序（LIFO，像栈） --");
-        var order = new List<string>();
-        using (var outer = new TrackedResource(() => order.Add("outer")))
-        using (var inner = new TrackedResource(() => order.Add("inner")))
+        List<string> order = new List<string>();
+        using (TrackedResource outer = new TrackedResource(() => order.Add("outer")))
+        using (TrackedResource inner = new TrackedResource(() => order.Add("inner")))
         {
             outer.Write("o");
             inner.Write("i");
@@ -78,7 +78,7 @@ internal static class ResourceManagementIDisposableUsing
         int disposed = 0;
         try
         {
-            using var r = new TrackedResource(() => disposed++);
+            using TrackedResource r = new TrackedResource(() => disposed++);
             throw new InvalidOperationException("boom");
         }
         catch (InvalidOperationException)
@@ -97,7 +97,7 @@ internal static class ResourceManagementIDisposableUsing
     private static async Task DemoAsyncDisposableCore()
     {
         int disposed = 0;
-        await using (var c = new AsyncConnection(() => disposed++))
+        await using (AsyncConnection c = new AsyncConnection(() => disposed++))
         {
             await c.WriteAsync("ping");
             Debug.Assert(c.Last == "ping");
@@ -110,7 +110,7 @@ internal static class ResourceManagementIDisposableUsing
     {
         Console.WriteLine("-- 完整 Dispose 模式 + SuppressFinalize --");
         int unmanagedReleases = 0;
-        using (var n = new NativeLikeResource(() => unmanagedReleases++))
+        using (NativeLikeResource n = new NativeLikeResource(() => unmanagedReleases++))
         {
             Debug.Assert(n.IsOpen);
             n.Touch();
@@ -125,7 +125,7 @@ internal static class ResourceManagementIDisposableUsing
         // SafeHandle 是 CLR 对“句柄 + 临界终结”的标准封装：
         // Dispose → ReleaseHandle；若忘记 Dispose，critical finalizer 仍会释放。
         int releases = 0;
-        using (var h = new DemoSafeHandle(() => releases++))
+        using (DemoSafeHandle h = new DemoSafeHandle(() => releases++))
         {
             Debug.Assert(!h.IsInvalid);
             Debug.Assert(!h.IsClosed);
@@ -140,7 +140,7 @@ internal static class ResourceManagementIDisposableUsing
     {
         Console.WriteLine("-- Deconstruct ≠ 终结器（~T） --");
         // Deconstruct：编译器用于 (x, y) = p 与位置模式；与资源释放无关
-        var p = new Coord(3, 4);
+        Coord p = new Coord(3, 4);
         p.Deconstruct(out int x, out int y);
         Debug.Assert(x == 3 && y == 4);
         (int a, int b) = p;

@@ -53,7 +53,7 @@ internal static class SdkStyleProjectStructure
             ("Microsoft.NET.Sdk.Worker", "后台 Worker"),
             ("Microsoft.NET.Sdk.Razor", "Razor 类库"),
         ];
-        foreach (var (sdk, role) in sdks)
+        foreach ((string? sdk, string? role) in sdks)
             Console.WriteLine($"  {sdk} → {role}");
         Debug.Assert(sdks[0].Sdk.EndsWith(".Sdk", StringComparison.Ordinal));
     }

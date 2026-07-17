@@ -42,7 +42,7 @@ internal static class CovarianceContravariance
         IEnumerable<Dog> dogs = [new Dog("Rex"), new Dog("Max")];
         IEnumerable<Animal> animals = dogs; // 合法：只产出，不消费
         int count = 0;
-        foreach (var a in animals)
+        foreach (Animal a in animals)
         {
             count++;
             Debug.Assert(a is Dog);
@@ -61,8 +61,8 @@ internal static class CovarianceContravariance
         IComparer<Animal> byName = Comparer<Animal>.Create((a, b) =>
             string.Compare(a.Name, b.Name, StringComparison.Ordinal));
         IComparer<Dog> dogComparer = byName; // Animal 比较器可用于 Dog
-        var d1 = new Dog("A");
-        var d2 = new Dog("B");
+        Dog d1 = new Dog("A");
+        Dog d2 = new Dog("B");
         Debug.Assert(dogComparer.Compare(d1, d2) < 0);
 
         IConsumer<Animal> consumer = new Consumer<Animal>();
