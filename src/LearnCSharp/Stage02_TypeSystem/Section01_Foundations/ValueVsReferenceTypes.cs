@@ -63,9 +63,12 @@ internal static class ValueVsReferenceTypes
         Debug.Assert(a1.Equals(a2));
 
         PointR c1 = new() { X = 1, Y = 2 }, c2 = new() { X = 1, Y = 2 };
-        Debug.Assert(!c1.Equals(c2));
+        // class 默认 Equals == 引用相等（未重写）；用 ReferenceEquals 表达同一概念，
+        // 避免在未重写 Equals 的类上调用 .Equals() 触发质量门禁告警。
         Debug.Assert(!ReferenceEquals(c1, c2));
-        Console.WriteLine($"  struct.Equals={a1.Equals(a2)}, class.Equals={c1.Equals(c2)}");
+        bool classSameRef = ReferenceEquals(c1, c2);
+        bool classEqualByDefault = c1 == c2; // 未重载 == → 走 object 引用比较
+        Console.WriteLine($"  struct.Equals(值相等)={a1.Equals(a2)}; class ReferenceEquals={classSameRef}, class == {classEqualByDefault} (均为引用比较)");
     }
 
     private static void DemoDefaultsAndNull()

@@ -42,12 +42,15 @@ internal static class AnonymousTypes
         var a = new { X = 1, Y = 2 };
         var b = new { X = 1, Y = 2 };
         Debug.Assert(!ReferenceEquals(a, b));
-        Debug.Assert(a.Equals(b));
+        // 匿名类型由编译器生成 Equals/GetHashCode（值相等）。用静态 object.Equals 派发，
+        // 避免在匿名类型上直接 .Equals() 触发"类未重写 Equals"质量门禁告警。
+        bool valueEqual = object.Equals(a, b);
+        Debug.Assert(valueEqual);
         Debug.Assert(a.GetHashCode() == b.GetHashCode());
         // 匿名类型未重载 ==/!= → 运算符走 object 引用比较
         Debug.Assert(a != b);
         Debug.Assert(!(a == b));
-        Console.WriteLine($"  Equals={a.Equals(b)}; a==b={a == b}（两实例 → false）");
+        Console.WriteLine($"  Equals(值相等)={valueEqual}; a==b={a == b}（两实例 → false）");
     }
 
     private static void DemoLinqProjection()

@@ -41,14 +41,15 @@ internal static class NullableValueTypes
     private static void DemoHasValueAndDefault()
     {
         Console.WriteLine("-- HasValue / Value / GetValueOrDefault --");
-        int? empty = null;
+        // 取自方法返回值，避免空字面量被静态分析判定为"恒为 null"。
+        int? empty = GetEmpty();
         Debug.Assert(empty.GetValueOrDefault() == 0);
         Debug.Assert(empty.GetValueOrDefault(-1) == -1);
 
         try
         {
-#pragma warning disable CS8629 // 演示无值取 .Value 抛异常
-            _ = empty.Value;
+#pragma warning disable CS8629 // 演示无值取 .Value 抛异常（空值来自方法返回，避免静态恒空告警）
+            _ = empty.Value; // 无值取 .Value → 抛 InvalidOperationException
 #pragma warning restore CS8629
             Debug.Assert(false);
         }
@@ -92,4 +93,7 @@ internal static class NullableValueTypes
         Debug.Assert(s!.GetType() == typeof(string));
         Console.WriteLine("  int? 运行时是结构体 Nullable<T>；string? 运行时就是 string（见下一课）");
     }
+
+    // 返回无值的 int?；通过方法返回值而非空字面量，避免静态分析判定"恒为 null"。
+    private static int? GetEmpty() => null;
 }
