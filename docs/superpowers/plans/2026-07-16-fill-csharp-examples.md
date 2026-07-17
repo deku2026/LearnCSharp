@@ -71,7 +71,7 @@ dotnet run --project src/LearnCSharp -c Debug
 
 ### Task 1: Stage01 (10 files)
 
-**Files:** `src/LearnCSharp/Stage01_SyntaxAndProgramStructure/Section01_LanguageBasics/*.cs`  
+**Files:** `src/LearnCSharp/Stage01_SyntaxAndProgramStructure/Section01_LanguageBasics/*.cs`
 **Doc:** `CSharp-阶段1-语法基础与程序结构-详解.md`
 
 - [ ] Fill all 10 topics from doc steps 1–10
@@ -80,7 +80,7 @@ dotnet run --project src/LearnCSharp -c Debug
 
 ### Task 2: Stage02 (21 files)
 
-**Docs:** 阶段2 第1–4 部分  
+**Docs:** 阶段2 第1–4 部分
 **Sections:** Foundations, Aggregates, Generics, Memory-oriented
 
 - [ ] Fill all 21
@@ -172,6 +172,6 @@ dotnet run --project src/LearnCSharp -c Debug
 
 ## Self-review checklist
 
-1. Spec coverage: all 13 stages have tasks → yes  
-2. No TBD placeholders in process → yes  
-3. Topic ids unchanged across fills → enforce in review  
+1. Spec coverage: all 13 stages have tasks → yes
+2. No TBD placeholders in process → yes
+3. Topic ids unchanged across fills → enforce in review

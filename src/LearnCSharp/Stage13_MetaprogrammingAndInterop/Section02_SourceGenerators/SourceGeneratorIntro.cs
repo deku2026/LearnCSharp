@@ -50,9 +50,9 @@ internal static partial class SourceGeneratorIntro
     {
         Console.WriteLine("-- compile-time partial vs runtime Reflection.Emit --");
         // Compile-time: hand-authored partial stand-in (what a generator would emit)
-        string compileTime = new GeneratedGreeter().Hello();
-        Debug.Assert(compileTime.Contains("GeneratedGreeter", StringComparison.Ordinal));
-        Console.WriteLine($"  compile-time partial: {compileTime}");
+        string compileTimeResult = new GeneratedGreeter().Hello();
+        Debug.Assert(compileTimeResult.Contains("GeneratedGreeter", StringComparison.Ordinal));
+        Console.WriteLine($"  compile-time partial: {compileTimeResult}");
 
         // Runtime: emit a method that returns 42
         DynamicMethod dm = new DynamicMethod("FortyTwo", typeof(int), Type.EmptyTypes, typeof(SourceGeneratorIntro).Module, true);

@@ -1,7 +1,7 @@
 # Fill All C# Learn Topics — Design Spec
 
-**Date:** 2026-07-16  
-**Branch / worktree:** `fill-all-csharp-examples` @ `.worktree/fill-all-csharp-examples`  
+**Date:** 2026-07-16
+**Branch / worktree:** `fill-all-csharp-examples` @ `.worktree/fill-all-csharp-examples`
 **Status:** Approved
 
 ## Goal
