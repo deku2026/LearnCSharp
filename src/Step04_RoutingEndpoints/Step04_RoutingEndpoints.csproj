@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Step04_RoutingEndpoints</RootNamespace>
+  </PropertyGroup>
+</Project>

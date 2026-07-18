@@ -1,162 +1,105 @@
-# LearnCSharp · 现代 C# 14 / .NET 10 学习占位脚手架
+# ASP.NET Study Labs
 
-按 `C:/MyFile/ArcForges/ArchitectureDesign/CSharpStudy/CSharp-dotNET-完整学习路线图.md`
-逐阶段铺好的 **271 个空 `Run()` 占位**。后续往每个 `.cs` 里直接写真实代码 (`Console.WriteLine` /
-`Debug.Assert` / 抛异常 / 玩 `args`，怎么舒服怎么写)，**没有测试框架的盒子约束**。
+**一文档 = 一独立项目**  
+Worktree：`/home/sammiller/Project/LearnCSharp/.worktree/aspnet-study`  
+分支：`feature/aspnet-study-labs`
 
-阶段 14 (Unity 接轨附录) 不铺占位 — 那是 Unity 仓自己的事。
+## 怎么跑
 
-## 工作原理
+```bash
+cd /home/sammiller/Project/LearnCSharp/.worktree/aspnet-study
 
-整仓一个可执行 `LearnCSharp`。每个占位 `.cs` 长这样：
+# 全部测试（推荐；WebApplicationFactory / Testcontainers，无需手写端口）
+dotnet test AspNetStudyLabs.slnx
 
-```csharp
-using LearnCSharp.Topics;
-
-namespace LearnCSharp.Stage01.Section01;
-
-internal static class ProjectVsFileBasedApp
-{
-    [LearnTopic("stage01/section01/project_vs_file_based_app")]
-    internal static int Run(string[] args)
-    {
-        _ = args;
-        return 0;
-    }
-}
+# 跑某个 lab（端口来自各项目 launchSettings.json）
+dotnet run --project src/Step01_HostingAndStartup
+dotnet run --project src/Part05_02_SpaBffAuth          # :5402 浏览器演示 BFF
+dotnet run --project src/Part07_DistributedComms/Inventory
+dotnet run --project src/Part07_DistributedComms/Catalog
+dotnet run --project src/Part07_DistributedComms/Gateway
+dotnet run --project src/Part10_Aspire/Api
+# 可选完整 Aspire 编排（需 Docker）：
+dotnet run --project src/Part10_Aspire/AppHost
 ```
 
-`[LearnTopic("id")]` 把方法标记为可调度 topic。`Program.cs` 启动时反射扫描当前 assembly，
-把所有打了这个特性的 `static int Run(string[])` 方法收进 `Dictionary<string, Func<string[], int>>`。
-`Main` 再把命令行参数转给 registry 调度 — **等同于直接进入那个 topic 的 `int Main(string[])`**。
+Docker（`/home/sammiller/Project/docker`）已启动时默认连接：
 
-```pwsh
-# Debug build 无参 = 遍历全部 271 个 topic (F5 from IDE 用这条)
-dotnet run --project src/LearnCSharp -c Debug
+| 服务 | 地址 |
+|------|------|
+| PostgreSQL | `localhost:5432` · `dotnet`/`dotnet_dev` |
+| Redis | `localhost:6380` |
+| RabbitMQ | `amqp://dotnet:dotnet_dev@localhost:5672/` |
+| Seq | `http://localhost:5341` |
+| Aspire Dashboard / OTLP | `18888` / `4317` |
 
-# Release/ci build 无参 = 列出全部 topic
-dotnet run --project src/LearnCSharp -c Release
+---
 
-# 任意 build 跑某个 topic
-dotnet run --project src/LearnCSharp -c Debug -- stage01/section01/project_vs_file_based_app
+## 测试结果（完整绿）
 
-# 透传额外参数
-dotnet run --project src/LearnCSharp -c Debug -- stage10/section04/dotnet_test_workflow extra args
+```text
+dotnet test AspNetStudyLabs.slnx
+# ~102 tests, 0 failed
 ```
 
-「无参」行为按 `DEBUG` 宏分支:
+### 本体 Step01–10（55）
 
-- **Debug build**: 无参时 registry 遍历全 dict, 顺序调用每个 `Run()`. IDE 里 F5 不用配 args, 任何 topic 里下的断点都会命中.
-- **Release**: 无参时只列出已注册 topic — 手动 pick.
+| Lab | Tests |
+|-----|------:|
+| Step01 Hosting | 8 |
+| Step02 DI/Options | 11 |
+| Step03 Middleware | 6 |
+| Step04 Routing | 6 |
+| Step05 Minimal+Controller | 5 |
+| Step06 Validation/ProblemDetails | 5 |
+| Step07 JWT AuthZ | 4 |
+| Step08 Logging/Health/Seq | 3 |
+| Step09 Integration + PG | 5 |
+| Step10 Kestrel/HttpClient | 2 |
 
-调试时: IDE 的 launch profile 用 Debug build, 直接 F5; 或显式把 args 设成 topic id, F5 命中那一个 `Run()` 里的断点.
+### 第 3–10 部分（加深后）
 
-## 关键路径
+| Lab | Tests | 完整度 |
+|-----|------:|--------|
+| Part03_01 API Design | 4 | 高 · 版本/keyset/ETag/幂等 |
+| Part03_02 Architecture | 2 | 高 · 三模块 |
+| Part03_03 Project Structure | 1 | 高 · 分层 |
+| Part03_04 Architecture Tests | 3 | 高 · NetArchTest |
+| Part04_01 EF Core | 3 | 高 · 真 PG/投影/N+1/并发 |
+| Part04_02 Caching | 2 | 高 · Redis |
+| Part04_03 MultiTenancy | 3 | 高 · 租户隔离 |
+| Part05_01 Auth Core | 2 | 高 · JWT+限流+CORS |
+| **Part05_02 SPA/BFF** | **6** | **高 · BFF cookie、CSRF、PKCE 说明、token 存储教育、演示页** |
+| Part06_01 Message Patterns | 3 | 高 · Outbox |
+| Part06_02 RabbitMQ | 1 | 高 · 真 RMQ |
+| **Part07 Distributed** | **7** | **高 · Catalog+Inventory+Gateway、gRPC、弹性、YARP 鉴权、health** |
+| Part08_01 OpenTelemetry | 2 | 高 · OTLP |
+| **Part08_02 Troubleshooting** | **4** | **高 · 故障注入、checkout、metrics 指纹、CorrelationId** |
+| Part09 Deployment | 1 | 高 · Dockerfile+/health |
+| **Part10 Aspire** | **3** | **高 · ServiceDefaults+Api；AppHost 资源图可 `dotnet run`** |
 
-```
-.
-├── .editorconfig / .gitattributes / .gitignore
-├── Directory.Build.props          # 中央 net10.0 / LangVersion 14.0 / Nullable / CPM
-├── Directory.Build.targets
-├── Directory.Packages.props       # 中央包版本管理 (Central Package Management)
-├── NuGet.config
-├── global.json                    # 锁 SDK 版本
-├── LearnCSharp.slnx               # SLNX (新式 XML solution)
-├── LICENSE / README.md
-└── src/
-    └── LearnCSharp/
-        ├── LearnCSharp.csproj
-        ├── Program.cs             # 唯一 Main, 把 args 转给 registry
-        ├── Topics/
-        │   ├── LearnTopicAttribute.cs  # [LearnTopic("id")] 标记
-        │   └── TopicRegistry.cs        # 反射扫描 + 字典 + Run / List
-        ├── Stage01_SyntaxAndProgramStructure/        # 阶段 1
-        ├── Stage02_TypeSystem/                       # 阶段 2 (4 部分)
-        ├── Stage03_MembersAndOOP/                    # 阶段 3 (4 部分)
-        ├── Stage04_ControlFlowAndPatterns/           # 阶段 4 (2 部分)
-        ├── Stage05_CollectionsLINQIterators/         # 阶段 5 (3 部分)
-        ├── Stage06_ExceptionsAndDiagnostics/         # 阶段 6 (2 部分)
-        ├── Stage07_AsyncBasics/                      # 阶段 7 (2 部分)
-        ├── Stage08_KeywordsAndCSharp14/              # 阶段 8 (2 部分)
-        ├── Stage09_BCL/                              # 阶段 9 (6 部分)
-        ├── Stage10_EngineeringSystem/                # 阶段 10 (5 部分)
-        ├── Stage11_RuntimeExpert/                    # 阶段 11 (10 部分)
-        ├── Stage12_PerformanceLine/                  # 阶段 12 (4 部分)
-        └── Stage13_MetaprogrammingAndInterop/        # 阶段 13 (4 部分)
-```
+---
 
-每个 stage 目录:
+## 加深 lab 要点
 
-- 一份 `README.md` (该 stage 目标 + 学习节奏);
-- 每个「部分」一个 `SectionNN_xxx/` 子目录, 对应路线图里的「第 N 部分」;
-- 子目录内 N 个 `*.cs` 占位, 每份 = 独立类型 + 一个 `[LearnTopic]` 标注的 `Run`.
+### Part05_02
+- BFF：`HttpOnly` session cookie + **服务端 token 会话**
+- CSRF：`X-CSRF: 1` + SameSite=Strict
+- 教育 API：localStorage / memory / cookie 风险
+- 静态演示页：`wwwroot/index.html`
 
-## 现状
+### Part07
+- **三个独立服务**：Gateway `5700` · Catalog `5701` · Inventory `5702`
+- 对内 **gRPC**（`.proto`）+ 弹性 `AddStandardResilienceHandler`
+- **YARP** 网关 + JWT 下沉
+- live/ready health
 
-- 语言/运行时: **C# 14 / .NET 10** (`<TargetFramework>net10.0</TargetFramework>` + `<LangVersion>14.0</LangVersion>`).
-- SDK: `.NET 10 SDK 10.0.301` (锁在 `global.json`).
-- 解决方案: **SLNX** (XML 新式 solution, 不再用旧 `.sln` 格式).
-- 包版本: **CPM (Central Package Management)** — 所有 NuGet 版本在 `Directory.Packages.props` 集中管。
-- 占位规模: **13 stage / 48 section / 271 个 `.cs`**, 每个一条 `[LearnTopic(id)] Run(string[])`.
-- 不带测试框架 — 代码主体是赤裸 `int Run(string[] args)`, 用 `Console.WriteLine` / `Debug.Assert` / 抛异常 / 玩 `args` 自由发挥。
+### Part08_02
+- `POST /diag/fault` 注入慢/失败  
+- `GET /api/orders/checkout` 复现  
+- `GET /diag/metrics` + Seq/Aspire 排障路径  
 
-## 本地一把梭
-
-```pwsh
-# 在 worktree 里
-cd C:\MyFile\LearnCSharp\.worktree\scaffold
-
-# 编一遍
-dotnet build LearnCSharp.slnx -c Debug
-
-# 列出全部 topic
-dotnet run --project src/LearnCSharp -c Release
-
-# 跑某个 topic
-dotnet run --project src/LearnCSharp -c Debug -- stage02/section01/value_vs_reference_types
-
-# Debug 无参 = 遍历所有 topic (IDE F5 友好)
-dotnet run --project src/LearnCSharp -c Debug
-```
-
-## 填一个占位
-
-1. 选一个 `.cs` (例: `src/LearnCSharp/Stage02_TypeSystem/Section01_Foundations/BoxingAndUnboxing.cs`);
-2. 顶部注释里有 Doc / Stage / Section / Item / Topic id, 翻 `C:/MyFile/ArcForges/ArchitectureDesign/CSharpStudy/<那个 md>` 看本节;
-3. 配合 `https://learn.microsoft.com/dotnet/csharp/...` + `https://sharplab.io` (看 IL/lowered) + `BenchmarkDotNet` (量化) 进入循环;
-4. 在 `Run(string[] args)` 里直接写代码 — `Console.WriteLine` / `Debug.Assert` / 抛异常 / 用 args 都可;
-5. 跑: `dotnet run --project src/LearnCSharp -c Debug -- <topic id>`;
-
-## 添加新占位
-
-直接 `cp` 一个现成 `.cs` 改名, 改顶部 5 个注释字段 (Doc / Stage / Section / Item / Topic id),
-改类名 + `[LearnTopic("<新 id>")]` 里的 id 字符串。下次 `dotnet build` 自动接上 — 没有 GLOB 配置,
-SDK-style 项目默认把 `**/*.cs` 都编进去。
-
-## Worktree 用法
-
-主 checkout (`C:/MyFile/LearnCSharp`) 故意保持空 (只有 `LICENSE`), 所有占位放进 worktree 分支:
-
-```pwsh
-git -C C:\MyFile\LearnCSharp worktree list
-# C:/MyFile/LearnCSharp                    [main]      <- 空, 只有 LICENSE
-# C:/MyFile/LearnCSharp/.worktree/scaffold [scaffold]  <- 这里
-```
-
-要再起独立练习分支:
-
-```pwsh
-git -C C:\MyFile\LearnCSharp worktree add -b stage02-types .worktree/stage02-types scaffold
-```
-
-`.worktree/` 已加进 `.gitignore`, 所以从 scaffold branch 看 `.worktree/` 是 untracked + 被忽略,
-git 自己也知道这是 worktree 路径不会误删。
-
-## 与路线图的关系
-
-- 本仓只放 **占位 + registry + 本地工具链**, **不在仓内**重写路线图。
-- 路线图文档保留在原位 (`C:/MyFile/ArcForges/ArchitectureDesign/CSharpStudy/`), 仓内通过注释 / README 引用相对路径。
-
-## License
-
-见 `LICENSE`。
+### Part10
+- `ServiceDefaults`（OTel/Health/Resilience/Discovery）  
+- `Api` 使用 defaults  
+- `AppHost`：Postgres + Redis + RabbitMQ + Api 资源图  

@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Step03_MiddlewarePipeline</RootNamespace>
+  </PropertyGroup>
+</Project>

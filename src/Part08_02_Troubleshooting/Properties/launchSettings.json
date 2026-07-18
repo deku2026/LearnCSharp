@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5703",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Downstream__BaseUrl": "http://localhost:5703",
+        "OTEL_EXPORTER_OTLP_ENDPOINT": "http://localhost:4317",
+        "Seq__ServerUrl": "http://localhost:5341"
+      }
+    }
+  }
+}

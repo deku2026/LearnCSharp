@@ -1,0 +1,102 @@
+name: AspNetStudyLabs CI
+
+on:
+  push:
+    branches: [main, feature/aspnet-study-labs]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    services:
+      postgres:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_USER: dotnet
+          POSTGRES_PASSWORD: dotnet_dev
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U dotnet -d postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          # App labs use host port 6380 (WSL local stack convention)
+          - 6380:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+
+      rabbitmq:
+        image: rabbitmq:4-management-alpine
+        env:
+          RABBITMQ_DEFAULT_USER: dotnet
+          RABBITMQ_DEFAULT_PASS: dotnet_dev
+        ports:
+          - 5672:5672
+        options: >-
+          --health-cmd "rabbitmq-diagnostics -q ping"
+          --health-interval 10s
+          --health-timeout 10s
+          --health-retries 10
+
+    env:
+      # Prefer GitHub service containers over Testcontainers when set
+      TEST_USE_LOCAL_PG: "1"
+      ConnectionStrings__Default: "Host=localhost;Port=5432;Database=lab_ci;Username=dotnet;Password=dotnet_dev"
+      ConnectionStrings__Postgres: "Host=localhost;Port=5432;Database=postgres;Username=dotnet;Password=dotnet_dev"
+      ConnectionStrings__Redis: "localhost:6380,abortConnect=false"
+      ConnectionStrings__RabbitMQ: "amqp://dotnet:dotnet_dev@localhost:5672/"
+      Seq__ServerUrl: "http://127.0.0.1:1" # sink optional; avoid hanging if Seq absent
+      OTEL_EXPORTER_OTLP_ENDPOINT: ""
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Create CI databases
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client
+          PGPASSWORD=dotnet_dev psql -h localhost -U dotnet -d postgres -c "CREATE DATABASE lab_step09_tests;" || true
+          PGPASSWORD=dotnet_dev psql -h localhost -U dotnet -d postgres -c "CREATE DATABASE lab_part04_ef;" || true
+          PGPASSWORD=dotnet_dev psql -h localhost -U dotnet -d postgres -c "CREATE DATABASE lab_ci;" || true
+
+      - name: Restore
+        run: dotnet restore AspNetStudyLabs.slnx
+
+      - name: Build
+        run: dotnet build AspNetStudyLabs.slnx --no-restore -c Release
+
+      - name: Test
+        run: >
+          dotnet test AspNetStudyLabs.slnx
+          --no-build -c Release
+          --verbosity normal
+          --logger "trx;LogFilePrefix=test-results"
+          --results-directory TestResults
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults/**
+          if-no-files-found: ignore

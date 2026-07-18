@@ -1,32 +1,23 @@
-# Build outputs
+# Build
 **/bin/
 **/obj/
 artifacts/
-build/
-out/
-dist/
 TestResults/
-.compiler-cache/
-
-# IDE / editor
-.vs/
-.vscode/*.code-workspace
-.idea/
 *.user
 *.suo
-*.sdf
-*.opensdf
-*.VC.db
-*.VC.opendb
+.vs/
+.idea/
+*.DotSettings.user
 
-# Worktrees (git worktree add .worktree/<branch> lands here)
-.worktree/
-.worktrees/
-
-# Local AI assistant workspaces
-.claude/
-.cursor/
-
-# OS junk
+# OS
 .DS_Store
 Thumbs.db
+
+# Secrets / local
+**/appsettings.*.local.json
+.env
+.env.*
+
+# Aspire
+**/.aspire/
+**/aspire-output/

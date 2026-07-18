@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>CampusShop SPA/BFF Lab</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; line-height: 1.5; }
+    button { margin-right: .5rem; margin-bottom: .5rem; }
+    pre { background: #f4f4f5; padding: 1rem; overflow: auto; }
+  </style>
+</head>
+<body>
+  <h1>Part05_02 · SPA / BFF 演示页</h1>
+  <p>本页同源访问 BFF：登录后只有 <code>HttpOnly</code> session cookie，token 在服务端。</p>
+  <button id="loginStudent">BFF 登录 student</button>
+  <button id="loginAdmin">BFF 登录 admin</button>
+  <button id="me">GET /bff/me</button>
+  <button id="orders">GET /bff/api/orders</button>
+  <button id="logout">Logout</button>
+  <button id="education">Token 存储教育</button>
+  <pre id="out">ready</pre>
+  <script>
+    const out = document.getElementById('out');
+    const show = (x) => out.textContent = typeof x === 'string' ? x : JSON.stringify(x, null, 2);
+    async function api(path, opts = {}) {
+      opts.headers = Object.assign({ 'Content-Type': 'application/json', 'X-CSRF': '1' }, opts.headers || {});
+      opts.credentials = 'include';
+      const res = await fetch(path, opts);
+      const text = await res.text();
+      try { return { status: res.status, body: JSON.parse(text) }; } catch { return { status: res.status, body: text }; }
+    }
+    document.getElementById('loginStudent').onclick = async () => show(await api('/bff/login', { method: 'POST', body: JSON.stringify({ userName: 'student', password: 'campus123' }) }));
+    document.getElementById('loginAdmin').onclick = async () => show(await api('/bff/login', { method: 'POST', body: JSON.stringify({ userName: 'admin', password: 'campus123' }) }));
+    document.getElementById('me').onclick = async () => show(await api('/bff/me'));
+    document.getElementById('orders').onclick = async () => show(await api('/bff/api/orders'));
+    document.getElementById('logout').onclick = async () => show(await api('/bff/logout', { method: 'POST' }));
+    document.getElementById('education').onclick = async () => show(await api('/api/education/token-storage'));
+  </script>
+</body>
+</html>

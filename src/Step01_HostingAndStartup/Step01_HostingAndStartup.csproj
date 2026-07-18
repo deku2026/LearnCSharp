@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Step01_HostingAndStartup</RootNamespace>
+    <AssemblyName>Step01_HostingAndStartup</AssemblyName>
+  </PropertyGroup>
+</Project>

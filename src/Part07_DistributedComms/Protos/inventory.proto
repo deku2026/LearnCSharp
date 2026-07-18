@@ -1,0 +1,13 @@
+syntax = "proto3";
+option csharp_namespace = "Part07.Inventory.Grpc";
+package inventory;
+
+service InventoryService {
+  rpc GetStock (StockRequest) returns (StockReply);
+  rpc Reserve (ReserveRequest) returns (ReserveReply);
+}
+
+message StockRequest { string sku = 1; }
+message StockReply { string sku = 1; int32 quantity = 2; }
+message ReserveRequest { string sku = 1; int32 quantity = 2; string order_id = 3; }
+message ReserveReply { bool ok = 1; string message = 2; int32 remaining = 3; }
