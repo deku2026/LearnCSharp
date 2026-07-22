@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Part11_3_FrameworkSource</RootNamespace>
+    <AssemblyName>Part11_3_FrameworkSource</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Campus.ServiceDefaults\Asp_Campus.ServiceDefaults.csproj" />
+  </ItemGroup>
+</Project>

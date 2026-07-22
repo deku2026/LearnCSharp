@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Part09_Deployment</RootNamespace>
+    <AssemblyName>Part09_Deployment</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Campus.ServiceDefaults\Asp_Campus.ServiceDefaults.csproj" />
+  </ItemGroup>
+</Project>

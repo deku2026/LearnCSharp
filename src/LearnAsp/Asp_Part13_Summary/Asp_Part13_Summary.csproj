@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Part13_Summary</RootNamespace>
+    <AssemblyName>Part13_Summary</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Campus.ServiceDefaults\Asp_Campus.ServiceDefaults.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\docs\summary\capabilities.json" CopyToOutputDirectory="PreserveNewest" Link="manifests\capabilities.json" />
+    <None Include="..\..\..\docs\summary\capstones.json" CopyToOutputDirectory="PreserveNewest" Link="manifests\capstones.json" />
+    <None Include="..\..\..\docs\summary\infrastructure.json" CopyToOutputDirectory="PreserveNewest" Link="manifests\infrastructure.json" />
+    <None Include="..\..\..\docs\summary\evidence.json" CopyToOutputDirectory="PreserveNewest" Link="manifests\evidence.json" />
+  </ItemGroup>
+</Project>

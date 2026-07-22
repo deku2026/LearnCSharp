@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Step04_RoutingEndpoints</RootNamespace>
+    <AssemblyName>Step04_RoutingEndpoints</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Campus.Contracts\Asp_Campus.Contracts.csproj" />
+  </ItemGroup>
+</Project>

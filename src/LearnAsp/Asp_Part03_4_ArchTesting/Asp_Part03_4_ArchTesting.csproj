@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Part03_4_ArchTesting</RootNamespace>
+    <AssemblyName>Part03_4_ArchTesting</AssemblyName>
+  </PropertyGroup>
+</Project>

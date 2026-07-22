@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Part08_2_TroubleshootingProcess</RootNamespace>
+    <AssemblyName>Part08_2_TroubleshootingProcess</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Campus.ServiceDefaults\Asp_Campus.ServiceDefaults.csproj" />
+    <PackageReference Include="Npgsql" />
+  </ItemGroup>
+</Project>

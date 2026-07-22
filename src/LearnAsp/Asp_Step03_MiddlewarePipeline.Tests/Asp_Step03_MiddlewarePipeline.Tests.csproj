@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Step03_MiddlewarePipeline.Tests</RootNamespace>
+    <AssemblyName>Step03_MiddlewarePipeline.Tests</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Step03_MiddlewarePipeline\Asp_Step03_MiddlewarePipeline.csproj" />
+    <ProjectReference Include="..\Asp_Campus.Testing\Asp_Campus.Testing.csproj" />
+  </ItemGroup>
+</Project>

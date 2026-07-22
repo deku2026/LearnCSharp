@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Part03_2_AppArchitecture</RootNamespace>
+    <AssemblyName>Part03_2_AppArchitecture</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Part03_2_Catalog.Contracts\Asp_Part03_2_Catalog.Contracts.csproj" />
+    <ProjectReference Include="..\Asp_Part03_2_Catalog\Asp_Part03_2_Catalog.csproj" />
+    <ProjectReference Include="..\Asp_Part03_2_Enrollment.Contracts\Asp_Part03_2_Enrollment.Contracts.csproj" />
+    <ProjectReference Include="..\Asp_Part03_2_Enrollment\Asp_Part03_2_Enrollment.csproj" />
+    <ProjectReference Include="..\Asp_Part03_2_Notices.Contracts\Asp_Part03_2_Notices.Contracts.csproj" />
+    <ProjectReference Include="..\Asp_Part03_2_Notices\Asp_Part03_2_Notices.csproj" />
+    <ProjectReference Include="..\Asp_Part03_2_BuildingBlocks\Asp_Part03_2_BuildingBlocks.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Part11_1_PerformanceBenchmarks</RootNamespace>
+    <AssemblyName>Part11_1_PerformanceBenchmarks</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>false</IsTestProject>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Part11_1_PerformanceAdvanced\Asp_Part11_1_PerformanceAdvanced.csproj" />
+    <PackageReference Include="BenchmarkDotNet" />
+    <PackageReference Include="BenchmarkDotNet.Annotations" />
+  </ItemGroup>
+</Project>

@@ -157,6 +157,20 @@ git 自己也知道这是 worktree 路径不会误删。
 - 本仓只放 **占位 + registry + 本地工具链**, **不在仓内**重写路线图。
 - 路线图文档保留在原位 (`C:/MyFile/ArcForges/ArchitectureDesign/CSharpStudy/`), 仓内通过注释 / README 引用相对路径。
 
+## LearnAsp · ASP.NET Core 10 实战模块
+
+`src/LearnAsp/` 收录从 LearnAsp.Net 仓库并入的完整 ASP.NET Core 10 实战项目:
+**48 个 src 项目 + 31 个测试项目 + benchmarks**, 统一加 `Asp_` 前缀, 与
+`Avalonia_*` / `Blazor_*` / `Maui_*` 的平台前缀惯例一致。模块说明详见
+[`src/LearnAsp/README.md`](src/LearnAsp/README.md)。
+
+```pwsh
+# CI 口径: 编译全部 (含 LearnAsp, 不含 Maui/Android)
+dotnet build LearnCSharp.CI.slnx -c Release
+
+# Aspire AppHost (Part10, 拉起 W7/W8 全套服务)
+dotnet run --project src/LearnAsp/Asp_Part10_Aspire
+```
 ## License
 
 见 `LICENSE`。

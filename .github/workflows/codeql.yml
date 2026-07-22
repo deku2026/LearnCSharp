@@ -60,6 +60,7 @@ jobs:
             paths-ignore:
               - '**/bin/**'
               - '**/obj/**'
+              - '**/Migrations/**'
               - 'src/LearnMaui/**'
 
       - name: Restore
