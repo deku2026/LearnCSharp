@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Blazor_Part10_JsInteropWebView</AssemblyName>
+    <RootNamespace>LearnBlazor.Blazor_Part10_JsInteropWebView</RootNamespace>
+  </PropertyGroup>
+</Project>

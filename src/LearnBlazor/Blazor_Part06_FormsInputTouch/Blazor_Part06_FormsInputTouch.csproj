@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Blazor_Part06_FormsInputTouch</AssemblyName>
+    <RootNamespace>LearnBlazor.Blazor_Part06_FormsInputTouch</RootNamespace>
+  </PropertyGroup>
+</Project>

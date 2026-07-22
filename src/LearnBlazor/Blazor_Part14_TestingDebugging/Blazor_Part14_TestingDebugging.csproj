@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Blazor_Part14_TestingDebugging</AssemblyName>
+    <RootNamespace>LearnBlazor.Blazor_Part14_TestingDebugging</RootNamespace>
+  </PropertyGroup>
+</Project>

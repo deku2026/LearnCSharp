@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Blazor_Part15_PerformanceDiagnostics</AssemblyName>
+    <RootNamespace>LearnBlazor.Blazor_Part15_PerformanceDiagnostics</RootNamespace>
+  </PropertyGroup>
+</Project>

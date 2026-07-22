@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Blazor_Part11_NativePlatformBridge</AssemblyName>
+    <RootNamespace>LearnBlazor.Blazor_Part11_NativePlatformBridge</RootNamespace>
+  </PropertyGroup>
+</Project>

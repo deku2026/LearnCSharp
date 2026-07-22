@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Blazor_Part05_NavigationAppShell</AssemblyName>
+    <RootNamespace>LearnBlazor.Blazor_Part05_NavigationAppShell</RootNamespace>
+  </PropertyGroup>
+</Project>

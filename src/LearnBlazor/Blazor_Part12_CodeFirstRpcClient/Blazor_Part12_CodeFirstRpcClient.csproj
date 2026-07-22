@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Blazor_Part12_CodeFirstRpcClient</AssemblyName>
+    <RootNamespace>LearnBlazor.Blazor_Part12_CodeFirstRpcClient</RootNamespace>
+  </PropertyGroup>
+</Project>
