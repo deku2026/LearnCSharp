@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Step02_DIConfigOptions</RootNamespace>
+    <AssemblyName>Step02_DIConfigOptions</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <UserSecretsId>step02-diconfig-options-lab</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Scrutor" />
+  </ItemGroup>
+</Project>

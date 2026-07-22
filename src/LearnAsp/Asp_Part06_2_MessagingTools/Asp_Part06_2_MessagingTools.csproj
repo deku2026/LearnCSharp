@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Part06_2_MessagingTools</RootNamespace>
+    <AssemblyName>Part06_2_MessagingTools</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Campus.Contracts\Asp_Campus.Contracts.csproj" />
+    <PackageReference Include="RabbitMQ.Client" />
+    <PackageReference Include="Npgsql" />
+  </ItemGroup>
+</Project>

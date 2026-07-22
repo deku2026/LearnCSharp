@@ -12,5 +12,10 @@
   "editor.formatOnSave": true,
   "[csharp]": {
     "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "host": "http://localhost"
+    }
   }
 }

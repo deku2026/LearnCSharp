@@ -3,6 +3,7 @@
     "ms-dotnettools.csdevkit",
     "ms-dotnettools.csharp",
     "editorconfig.editorconfig",
+    "humao.rest-client",
     "streetsidesoftware.code-spell-checker"
   ]
 }

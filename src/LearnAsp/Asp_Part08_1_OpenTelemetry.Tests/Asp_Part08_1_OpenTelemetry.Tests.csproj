@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Part08_1_OpenTelemetry.Tests</RootNamespace>
+    <AssemblyName>Part08_1_OpenTelemetry.Tests</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="WireMock.Net" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Part08_1_OpenTelemetry\Asp_Part08_1_OpenTelemetry.csproj" />
+  </ItemGroup>
+</Project>

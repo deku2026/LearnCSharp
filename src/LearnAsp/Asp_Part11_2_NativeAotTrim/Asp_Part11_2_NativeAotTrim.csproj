@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Part11_2_NativeAotTrim</RootNamespace>
+    <AssemblyName>Part11_2_NativeAotTrim</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PublishAot>true</PublishAot>
+    <IsAotCompatible>true</IsAotCompatible>
+    <AnalysisLevel>latest</AnalysisLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Part11_2_NativeAotTrim.Endpoints\Asp_Part11_2_NativeAotTrim.Endpoints.csproj" />
+  </ItemGroup>
+</Project>

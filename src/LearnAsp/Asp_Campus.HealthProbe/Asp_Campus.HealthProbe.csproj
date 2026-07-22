@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Campus.HealthProbe</RootNamespace>
+    <AssemblyName>Campus.HealthProbe</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+</Project>

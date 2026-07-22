@@ -27,7 +27,10 @@ dotnet_diagnostic.IDE0161.severity = warning
 [**/Generated/**/*.cs]
 generated_code = true
 
-[*.{json,yml,yaml,toml,md}]
+[**/Migrations/*.cs]
+generated_code = true
+
+[*.{json,yml,yaml,toml,md,http}]
 indent_size = 2
 
 [*.md]

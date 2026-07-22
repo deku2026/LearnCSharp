@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Part11_2.TrimWarningLab</RootNamespace>
+    <AssemblyName>Part11_2.TrimWarningLab</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PublishAot>true</PublishAot>
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+</Project>

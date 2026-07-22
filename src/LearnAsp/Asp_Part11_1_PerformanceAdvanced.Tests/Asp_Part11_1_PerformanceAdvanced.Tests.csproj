@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Part11_1_PerformanceAdvanced.Tests</RootNamespace>
+    <AssemblyName>Part11_1_PerformanceAdvanced.Tests</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="coverlet.collector" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Part11_1_PerformanceAdvanced\Asp_Part11_1_PerformanceAdvanced.csproj" />
+  </ItemGroup>
+</Project>

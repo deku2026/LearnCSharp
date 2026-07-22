@@ -42,6 +42,13 @@
       "command": "dotnet",
       "args": ["format", "LearnCSharp.slnx", "--verbosity", "minimal"],
       "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "watch current project",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["watch", "run", "--project", "${fileDirname}"],
+      "problemMatcher": "$msCompile"
     }
   ]
 }

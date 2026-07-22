@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Step04_RoutingEndpoints.Tests</RootNamespace>
+    <AssemblyName>Step04_RoutingEndpoints.Tests</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Step04_RoutingEndpoints\Asp_Step04_RoutingEndpoints.csproj" />
+    <ProjectReference Include="..\Asp_Campus.Testing\Asp_Campus.Testing.csproj" />
+  </ItemGroup>
+</Project>

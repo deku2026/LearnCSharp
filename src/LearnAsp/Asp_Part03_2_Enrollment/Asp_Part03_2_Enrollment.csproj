@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Part03_2.Enrollment</RootNamespace>
+    <AssemblyName>Part03_2.Enrollment</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Part03_2_Enrollment.Contracts\Asp_Part03_2_Enrollment.Contracts.csproj" />
+    <ProjectReference Include="..\Asp_Part03_2_Catalog.Contracts\Asp_Part03_2_Catalog.Contracts.csproj" />
+    <ProjectReference Include="..\Asp_Part03_2_BuildingBlocks\Asp_Part03_2_BuildingBlocks.csproj" />
+    <ProjectReference Include="..\Asp_Campus.Contracts\Asp_Campus.Contracts.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+</Project>

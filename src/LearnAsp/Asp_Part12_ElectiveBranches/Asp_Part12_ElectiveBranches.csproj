@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Part12_ElectiveBranches</RootNamespace>
+    <AssemblyName>Part12_ElectiveBranches</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Campus.ServiceDefaults\Asp_Campus.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Asp_Campus.Contracts\Asp_Campus.Contracts.csproj" />
+    <PackageReference Include="Confluent.Kafka" />
+    <PackageReference Include="Npgsql" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+  </ItemGroup>
+</Project>

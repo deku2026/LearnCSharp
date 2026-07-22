@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Part11_2_NativeAotTrim.Endpoints</RootNamespace>
+    <AssemblyName>Part11_2_NativeAotTrim.Endpoints</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+</Project>

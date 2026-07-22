@@ -8,6 +8,14 @@ dist/
 TestResults/
 .compiler-cache/
 
+# ASP.NET / .NET dev secrets and runtime junk
+secrets.json
+appsettings.*.local.json
+**/*.dev.json
+**/.env
+*.pidb
+*.cache
+
 # IDE / editor
 .vs/
 .vscode/*.code-workspace

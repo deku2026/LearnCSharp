@@ -22,11 +22,81 @@ jobs:
     name: Linux x64
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    services:
+      redis:
+        image: redis:8.8.0-alpine
+        ports:
+          - 6380:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+      postgres:
+        image: postgres:18.4-alpine
+        env:
+          POSTGRES_USER: dotnet
+          POSTGRES_PASSWORD: dotnet_dev
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U dotnet -d postgres"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+      rabbitmq:
+        image: rabbitmq:4.3.2-management-alpine
+        env:
+          RABBITMQ_DEFAULT_USER: dotnet
+          RABBITMQ_DEFAULT_PASS: dotnet_dev
+        ports:
+          - 5672:5672
+        options: >-
+          --health-cmd "rabbitmq-diagnostics -q ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 15
+      kafka:
+        image: apache/kafka:4.3.1
+        env:
+          KAFKA_NODE_ID: 1
+          KAFKA_PROCESS_ROLES: broker,controller
+          KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093,EXTERNAL://0.0.0.0:9094
+          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092,EXTERNAL://127.0.0.1:9094
+          KAFKA_CONTROLLER_QUORUM_VOTERS: 1@127.0.0.1:9093
+          KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+          KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+          KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+          KAFKA_AUTO_CREATE_TOPICS_ENABLE: true
+        ports:
+          - 9094:9094
+        options: >-
+          --health-cmd "timeout 5 bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/9094'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 30
+      mailpit:
+        image: axllent/mailpit:latest
+        ports:
+          - 1125:1025
+          - 8025:8025
+        options: >-
+          --health-cmd "wget -q -O - http://127.0.0.1:8025/api/v1/info || exit 1"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 15
     env:
       DOTNET_NOLOGO: "1"
       DOTNET_CLI_TELEMETRY_OPTOUT: "1"
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "1"
       MSBUILDDISABLENODEREUSE: "1"
+      CAMPUS_W7_PG: "Host=127.0.0.1;Port=5432;Database=postgres;Username=dotnet;Password=dotnet_dev"
+      CAMPUS_W7_RABBITMQ: "amqp://dotnet:dotnet_dev@127.0.0.1:5672/"
+      CAMPUS_W9_PG: "Host=127.0.0.1;Port=5432;Database=postgres;Username=dotnet;Password=dotnet_dev"
+      CAMPUS_W9_KAFKA: "127.0.0.1:9094"
+      CAMPUS_W9_MAILPIT_API: "8025"
 
     steps:
       - name: Checkout
@@ -82,6 +152,19 @@ jobs:
             echo "expected exit 2 for unknown topic, got $rc" >&2
             exit 1
           fi
+
+      # GitHub-hosted Ubuntu already has Docker Engine. Docker-backed PostgreSQL,
+      # Redis, RabbitMQ and Keycloak suites live only in this Linux job. W7 reuses
+      # the PostgreSQL/RabbitMQ services; isolated fixtures may start extra containers.
+      - name: Verify Docker (for Testcontainers)
+        run: |
+          docker version
+          docker info >/dev/null
+
+      - name: Test (Release)
+        # Docker suites share the explicitly provisioned broker. Running modules
+        # sequentially prevents one lab's queue purge/consumer from stealing another's messages.
+        run: dotnet test LearnCSharp.CI.slnx -c Release --no-build --max-parallel-test-modules 1
 
       - name: Run pre-commit hooks
         run: |

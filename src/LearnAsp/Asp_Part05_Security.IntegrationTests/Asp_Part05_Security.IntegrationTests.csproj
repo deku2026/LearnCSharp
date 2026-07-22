@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Part05_Security.IntegrationTests</RootNamespace>
+    <AssemblyName>Part05_Security.IntegrationTests</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Testcontainers" />
+    <PackageReference Include="StackExchange.Redis" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asp_Part05_1_AuthnAuthz\Asp_Part05_1_AuthnAuthz.csproj"
+                      ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Asp_Part05_2_SpaAuth\Asp_Part05_2_SpaAuth.csproj"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+</Project>
