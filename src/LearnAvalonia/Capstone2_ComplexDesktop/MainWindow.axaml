@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="LearnAvalonia.Capstone2_ComplexDesktop.MainWindow"
+        Title="Capstone2_ComplexDesktop - Capstone 2 - Complex Desktop Production App"
+        Width="800" Height="450">
+    <TextBlock Text="Hello from Capstone2_ComplexDesktop"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="24" />
+</Window>

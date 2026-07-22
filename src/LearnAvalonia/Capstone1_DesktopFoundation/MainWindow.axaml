@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="LearnAvalonia.Capstone1_DesktopFoundation.MainWindow"
+        Title="Capstone1_DesktopFoundation - Capstone 1 - Production Desktop Foundation"
+        Width="800" Height="450">
+    <TextBlock Text="Hello from Capstone1_DesktopFoundation"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="24" />
+</Window>
