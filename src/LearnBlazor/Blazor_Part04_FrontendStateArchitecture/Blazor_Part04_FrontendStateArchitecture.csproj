@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Blazor_Part04_FrontendStateArchitecture</AssemblyName>
+    <RootNamespace>LearnBlazor.Blazor_Part04_FrontendStateArchitecture</RootNamespace>
+  </PropertyGroup>
+</Project>

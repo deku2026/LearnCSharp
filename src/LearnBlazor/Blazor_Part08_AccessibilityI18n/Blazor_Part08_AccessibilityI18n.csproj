@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Blazor_Part08_AccessibilityI18n</AssemblyName>
+    <RootNamespace>LearnBlazor.Blazor_Part08_AccessibilityI18n</RootNamespace>
+  </PropertyGroup>
+</Project>

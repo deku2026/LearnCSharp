@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Blazor_Part13_AuthSecurityBoundary</AssemblyName>
+    <RootNamespace>LearnBlazor.Blazor_Part13_AuthSecurityBoundary</RootNamespace>
+  </PropertyGroup>
+</Project>

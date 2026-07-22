@@ -43,4 +43,21 @@
     <Project Path="src/LearnAvalonia/Avalonia_Stage30_PlatformBackend/Avalonia_Stage30_PlatformBackend.csproj" />
     <Project Path="src/LearnAvalonia/Avalonia_Stage31_RenderingExpert/Avalonia_Stage31_RenderingExpert.csproj" />
   </Folder>
+  <Folder Name="/src/LearnBlazor/">
+    <Project Path="src/LearnBlazor/Blazor_Part02_HtmlModernCss/Blazor_Part02_HtmlModernCss.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part03_RazorComponents/Blazor_Part03_RazorComponents.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part04_FrontendStateArchitecture/Blazor_Part04_FrontendStateArchitecture.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part05_NavigationAppShell/Blazor_Part05_NavigationAppShell.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part06_FormsInputTouch/Blazor_Part06_FormsInputTouch.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part07_ListsMediaUI/Blazor_Part07_ListsMediaUI.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part08_AccessibilityI18n/Blazor_Part08_AccessibilityI18n.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part09_ComponentLibStyling/Blazor_Part09_ComponentLibStyling.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part10_JsInteropWebView/Blazor_Part10_JsInteropWebView.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part11_NativePlatformBridge/Blazor_Part11_NativePlatformBridge.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part12_CodeFirstRpcClient/Blazor_Part12_CodeFirstRpcClient.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part13_AuthSecurityBoundary/Blazor_Part13_AuthSecurityBoundary.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part14_TestingDebugging/Blazor_Part14_TestingDebugging.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part15_PerformanceDiagnostics/Blazor_Part15_PerformanceDiagnostics.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part16_PackagingEngineering/Blazor_Part16_PackagingEngineering.csproj" />
+  </Folder>
 </Solution>

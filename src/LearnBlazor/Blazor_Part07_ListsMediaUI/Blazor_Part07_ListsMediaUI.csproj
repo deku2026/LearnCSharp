@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Blazor_Part07_ListsMediaUI</AssemblyName>
+    <RootNamespace>LearnBlazor.Blazor_Part07_ListsMediaUI</RootNamespace>
+  </PropertyGroup>
+</Project>
