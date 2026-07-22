@@ -38,7 +38,7 @@ internal static class ConfigurationAndOptions
     private static void DemoLayeredConfig()
     {
         Console.WriteLine("-- layered: memory < json (later wins) --");
-        string path = Path.Combine(Path.GetTempPath(), $"learn-cfg-{Guid.NewGuid():N}.json");
+        string path = Path.Join(Path.GetTempPath(), $"learn-cfg-{Guid.NewGuid():N}.json");
         try
         {
             File.WriteAllText(path, """

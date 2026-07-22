@@ -66,7 +66,7 @@ internal static partial class SourceGeneratorCaseStudies
         Debug.Assert(m.Success && m.Value == "42");
         // Multi match
         int count = 0;
-        foreach (Match x in DigitsOnly().Matches("a1 b22 c333"))
+        foreach (Match _ in DigitsOnly().Matches("a1 b22 c333"))
             count++;
         Debug.Assert(count == 3);
         Console.WriteLine($"  DigitsOnly: first={m.Value}, matches in sample={count}");

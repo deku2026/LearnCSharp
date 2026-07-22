@@ -122,8 +122,8 @@ internal static class MethodTableAndEEClass
 
     private sealed class WithFields(int x, int y, string name)
     {
-        public int X = x;
-        public int Y = y;
-        public string Name = name;
+        public readonly int X = x;
+        public readonly int Y = y;
+        public readonly string Name = name;
     }
 }

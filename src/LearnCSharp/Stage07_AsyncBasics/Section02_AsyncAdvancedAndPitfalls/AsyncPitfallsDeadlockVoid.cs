@@ -81,7 +81,7 @@ internal static class AsyncPitfallsDeadlockVoid
         Console.WriteLine("-- async void: catch INSIDE method; outer try cannot catch --");
         bool innerCaught = false;
         bool outerCaught = false;
-        ManualResetEventSlim done = new ManualResetEventSlim(false);
+        using ManualResetEventSlim done = new ManualResetEventSlim(false);
 
         async void EventHandlerStyle()
         {
@@ -125,7 +125,7 @@ internal static class AsyncPitfallsDeadlockVoid
         bool observed = false;
         bool completedOk = false;
         Exception? fault = null;
-        ManualResetEventSlim gate = new ManualResetEventSlim(false);
+        using ManualResetEventSlim gate = new ManualResetEventSlim(false);
 
         Task background = BackgroundWorkAsync();
         // Intentionally not: await background;  — that would be the "success path"

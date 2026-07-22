@@ -52,7 +52,7 @@ internal static class MetadataSelfDescribing
         foreach (object a in attrs)
             Console.WriteLine($"    [{a.GetType().Name}]");
         Debug.Assert(attrs.OfType<ObsoleteAttribute>().Any());
-        ObsoleteAttribute obs = (ObsoleteAttribute)attrs.OfType<ObsoleteAttribute>().First();
+        ObsoleteAttribute obs = attrs.OfType<ObsoleteAttribute>().First();
         Console.WriteLine($"  Obsolete message: {obs.Message}");
     }
 
@@ -70,7 +70,7 @@ internal static class MetadataSelfDescribing
 
     private sealed class SampleWidget : IFormattable
     {
-        private int _count;
+        private readonly int _count;
 
         public SampleWidget(int count) => _count = count;
 

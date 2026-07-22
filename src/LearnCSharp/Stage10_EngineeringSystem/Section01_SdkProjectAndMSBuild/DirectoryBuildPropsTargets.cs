@@ -47,7 +47,7 @@ internal static class DirectoryBuildPropsTargets
         Console.WriteLine("-- read real Directory.Build.props in this repo --");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null, "repo root with Directory.Build.props not found");
-        string path = Path.Combine(root, "Directory.Build.props");
+        string path = Path.Join(root, "Directory.Build.props");
         string text = File.ReadAllText(path);
         Debug.Assert(text.Contains("TargetFramework", StringComparison.Ordinal));
         Debug.Assert(text.Contains("net10.0", StringComparison.Ordinal));
@@ -64,7 +64,7 @@ internal static class DirectoryBuildPropsTargets
         Console.WriteLine("-- Directory.Build.targets (auto-imported late) --");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null);
-        string path = Path.Combine(root, "Directory.Build.targets");
+        string path = Path.Join(root, "Directory.Build.targets");
         if (File.Exists(path))
         {
             string text = File.ReadAllText(path);
@@ -99,7 +99,7 @@ internal static class DirectoryBuildPropsTargets
         Console.WriteLine("-- Directory.Packages.props (CPM) — real file --");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null);
-        string path = Path.Combine(root, "Directory.Packages.props");
+        string path = Path.Join(root, "Directory.Packages.props");
         string text = File.ReadAllText(path);
         Debug.Assert(text.Contains("ManagePackageVersionsCentrally", StringComparison.Ordinal));
         Debug.Assert(text.Contains("PackageVersion", StringComparison.Ordinal));
@@ -113,8 +113,8 @@ internal static class DirectoryBuildPropsTargets
             DirectoryInfo? dir = new(start);
             while (dir is not null)
             {
-                if (File.Exists(Path.Combine(dir.FullName, "Directory.Build.props"))
-                    && File.Exists(Path.Combine(dir.FullName, "global.json")))
+                if (File.Exists(Path.Join(dir.FullName, "Directory.Build.props"))
+                    && File.Exists(Path.Join(dir.FullName, "global.json")))
                     return dir.FullName;
                 dir = dir.Parent;
             }

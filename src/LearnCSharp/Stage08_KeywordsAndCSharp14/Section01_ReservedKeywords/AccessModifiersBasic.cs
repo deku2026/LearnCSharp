@@ -65,7 +65,7 @@ internal static class AccessModifiersBasic
 
     private class BaseBox
     {
-        private int _secret;
+        private readonly int _secret;
         public int PublicValue { get; }
         internal int InternalValue { get; }
         protected int ProtectedValue { get; }

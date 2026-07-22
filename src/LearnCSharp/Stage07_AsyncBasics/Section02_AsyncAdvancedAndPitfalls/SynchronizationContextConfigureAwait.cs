@@ -72,7 +72,7 @@ internal static class SynchronizationContextConfigureAwait
         {
             int postsBefore = ctx.PostCount;
             bool resumedOnContext = true;
-            ManualResetEventSlim done = new ManualResetEventSlim(false);
+            using ManualResetEventSlim done = new ManualResetEventSlim(false);
 
             async Task WorkAsync()
             {

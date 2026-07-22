@@ -57,7 +57,7 @@ internal static class ValueTypeKeywords
         Debug.Assert(typeof(double) == typeof(System.Double));
         Debug.Assert(typeof(decimal) == typeof(System.Decimal));
         // 二进制浮点不精确；decimal 十进制精确（金额用）
-        Debug.Assert(f + f + f != 0.3f || true); // may or may not equal; demo point is binary vs decimal
+        Debug.Assert(Math.Abs(f + f + f - 0.3f) < 1e-6f); // 与 0.3f 至多相差 float epsilon；二进制 vs 十进制的对比看输出行
         Debug.Assert(m + m + m == 0.3m);
         Console.WriteLine($"  0.1f+0.1f+0.1f={f + f + f}, 0.1d+0.1d+0.1d={d + d + d}, 0.1m*3={m + m + m}");
     }

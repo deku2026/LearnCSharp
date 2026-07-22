@@ -76,7 +76,7 @@ internal static class DotnetTestWorkflow
         Console.WriteLine("-- CI workflow files in this repo --");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null);
-        string workflows = Path.Combine(root, ".github", "workflows");
+        string workflows = Path.Join(root, ".github", "workflows");
         Debug.Assert(Directory.Exists(workflows));
         string[] yml = Directory.GetFiles(workflows, "*.yml");
         Debug.Assert(yml.Length >= 1);
@@ -112,8 +112,8 @@ internal static class DotnetTestWorkflow
             DirectoryInfo? dir = new(start);
             while (dir is not null)
             {
-                if (Directory.Exists(Path.Combine(dir.FullName, ".github", "workflows"))
-                    && File.Exists(Path.Combine(dir.FullName, "global.json")))
+                if (Directory.Exists(Path.Join(dir.FullName, ".github", "workflows"))
+                    && File.Exists(Path.Join(dir.FullName, "global.json")))
                     return dir.FullName;
                 dir = dir.Parent;
             }

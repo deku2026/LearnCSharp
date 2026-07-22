@@ -35,7 +35,7 @@ internal static class EditorConfigRules
         Console.WriteLine("  管: 缩进/换行/字符集 + C# 风格 + 诊断严重性");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null);
-        Debug.Assert(File.Exists(Path.Combine(root, ".editorconfig")));
+        Debug.Assert(File.Exists(Path.Join(root, ".editorconfig")));
     }
 
     private static void DemoReadRealEditorConfig()
@@ -43,7 +43,7 @@ internal static class EditorConfigRules
         Console.WriteLine("-- real .editorconfig in this repo --");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null);
-        string path = Path.Combine(root, ".editorconfig");
+        string path = Path.Join(root, ".editorconfig");
         string text = File.ReadAllText(path);
         Debug.Assert(text.Contains("root = true", StringComparison.Ordinal));
         Debug.Assert(text.Contains("indent_size", StringComparison.Ordinal));
@@ -59,7 +59,7 @@ internal static class EditorConfigRules
         Console.WriteLine("-- raise/lower diagnostic severity --");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null);
-        string text = File.ReadAllText(Path.Combine(root, ".editorconfig"));
+        string text = File.ReadAllText(Path.Join(root, ".editorconfig"));
         string[] samples =
         [
             "dotnet_diagnostic.IDE0005.severity",
@@ -78,7 +78,7 @@ internal static class EditorConfigRules
         Console.WriteLine("-- EnforceCodeStyleInBuild (Directory.Build.props) --");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null);
-        string props = File.ReadAllText(Path.Combine(root, "Directory.Build.props"));
+        string props = File.ReadAllText(Path.Join(root, "Directory.Build.props"));
         Debug.Assert(props.Contains("EnforceCodeStyleInBuild", StringComparison.Ordinal));
         Console.WriteLine("  this repo sets EnforceCodeStyleInBuild=true → style in CI build");
     }
@@ -101,8 +101,8 @@ internal static class EditorConfigRules
             DirectoryInfo? dir = new(start);
             while (dir is not null)
             {
-                if (File.Exists(Path.Combine(dir.FullName, ".editorconfig"))
-                    && File.Exists(Path.Combine(dir.FullName, "global.json")))
+                if (File.Exists(Path.Join(dir.FullName, ".editorconfig"))
+                    && File.Exists(Path.Join(dir.FullName, "global.json")))
                     return dir.FullName;
                 dir = dir.Parent;
             }

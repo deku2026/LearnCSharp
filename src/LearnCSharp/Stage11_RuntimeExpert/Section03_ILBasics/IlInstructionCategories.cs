@@ -103,7 +103,6 @@ internal static class IlInstructionCategories
         int shown = 0;
         while (i < il.Length && shown < 24)
         {
-            byte op = il[i];
             (string name, int size) = Decode(il, i);
             Console.WriteLine($"    IL_{i:X4}: {name}");
             i += size;

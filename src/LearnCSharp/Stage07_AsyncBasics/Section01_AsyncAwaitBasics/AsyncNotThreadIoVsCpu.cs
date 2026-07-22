@@ -40,7 +40,7 @@ internal static class AsyncNotThreadIoVsCpu
     private static async Task DemoIoBoundStyle()
     {
         Console.WriteLine("-- I/O-bound: await real async APIs (here: Delay + temp file) --");
-        string path = Path.Combine(Path.GetTempPath(), $"learncsharp-io-{Guid.NewGuid():N}.txt");
+        string path = Path.Join(Path.GetTempPath(), $"learncsharp-io-{Guid.NewGuid():N}.txt");
         try
         {
             string content = await SimulateIoAsync("hello-io");

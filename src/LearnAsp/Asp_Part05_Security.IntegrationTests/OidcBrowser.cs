@@ -240,9 +240,8 @@ public static partial class OidcBrowser
         string[] query = uri.Query.TrimStart('?').Split(
             '&',
             StringSplitOptions.RemoveEmptyEntries);
-        foreach (string item in query)
+        foreach (string[] pair in query.Select(item => item.Split('=', 2)))
         {
-            string[] pair = item.Split('=', 2);
             if (Uri.UnescapeDataString(pair[0]) == name)
             {
                 return pair.Length == 2

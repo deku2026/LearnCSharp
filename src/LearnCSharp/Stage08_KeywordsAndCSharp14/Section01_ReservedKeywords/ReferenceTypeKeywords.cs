@@ -62,7 +62,7 @@ internal static class ReferenceTypeKeywords
         Debug.Assert(typeof(object) == typeof(System.Object));
         Debug.Assert(typeof(string) == typeof(System.String));
         Debug.Assert(s == s2); // 值相等
-        Debug.Assert(string.IsInterned(s) is not null || true);
+        Debug.Assert(string.IsInterned(s) is not null);
         Console.WriteLine($"  object box={box}, string equal={s == s2}");
     }
 

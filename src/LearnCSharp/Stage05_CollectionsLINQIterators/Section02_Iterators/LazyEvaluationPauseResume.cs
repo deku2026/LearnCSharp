@@ -89,7 +89,7 @@ internal static class LazyEvaluationPauseResume
         try
         {
             int count = 0;
-            foreach (string line in ReadLines(path))
+            foreach (string _ in ReadLines(path))
             {
                 count++;
                 if (count == 2)

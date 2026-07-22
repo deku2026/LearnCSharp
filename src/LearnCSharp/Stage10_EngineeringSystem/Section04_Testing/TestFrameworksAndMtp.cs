@@ -8,7 +8,6 @@
 // xUnit/NUnit/MSTest + VSTest vs Microsoft.Testing.Platform；.NET 10 默认 MTP。
 
 using System.Diagnostics;
-using System.Reflection;
 using LearnCSharp.Topics;
 
 namespace LearnCSharp.Stage10.Section04;
@@ -89,12 +88,10 @@ internal static class TestFrameworksAndMtp
     {
         Console.WriteLine("-- discovery mental model --");
         // 不用 xunit 包，用自研“发现”演示
-        List<string> catalog = new List<string>();
-        foreach (MethodInfo m in typeof(SampleTests).GetMethods())
-        {
-            if (m.GetCustomAttributes(typeof(MiniFactAttribute), false).Length > 0)
-                catalog.Add(m.Name);
-        }
+        List<string> catalog = typeof(SampleTests).GetMethods()
+            .Where(m => m.GetCustomAttributes(typeof(MiniFactAttribute), false).Length > 0)
+            .Select(m => m.Name)
+            .ToList();
         Debug.Assert(catalog.Contains(nameof(SampleTests.Add_works)));
         Console.WriteLine($"  discovered mini-facts: {string.Join(", ", catalog)}");
         SampleTests.Add_works();

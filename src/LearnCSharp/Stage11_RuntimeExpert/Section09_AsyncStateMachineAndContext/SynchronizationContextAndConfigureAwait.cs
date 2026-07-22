@@ -48,7 +48,6 @@ internal static class SynchronizationContextAndConfigureAwait
         SynchronizationContext.SetSynchronizationContext(ctx);
         try
         {
-            int pumpId = Environment.CurrentManagedThreadId;
             // Run the async work on the pump thread so Current is our context at await.
             TaskCompletionSource<int> tcs = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
             ctx.Post(_ =>

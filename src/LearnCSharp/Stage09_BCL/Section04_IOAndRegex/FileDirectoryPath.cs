@@ -27,11 +27,11 @@ internal static class FileDirectoryPath
     private static void DemoFileAndDirectory()
     {
         Console.WriteLine("-- File + Directory on temp path --");
-        string root = Path.Combine(Path.GetTempPath(), $"learn-io-{Guid.NewGuid():N}");
+        string root = Path.Join(Path.GetTempPath(), $"learn-io-{Guid.NewGuid():N}");
         try
         {
             Directory.CreateDirectory(root);
-            string file = Path.Combine(root, "note.txt");
+            string file = Path.Join(root, "note.txt");
             File.WriteAllText(file, "hello");
             Debug.Assert(File.Exists(file));
             string text = File.ReadAllText(file);

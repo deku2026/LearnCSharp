@@ -29,7 +29,7 @@ internal static class AsyncIoPipelines
     private static async Task DemoAsyncFileIo()
     {
         Console.WriteLine("-- File.WriteAllTextAsync / ReadAllTextAsync --");
-        string path = Path.Combine(Path.GetTempPath(), $"learn-aio-{Guid.NewGuid():N}.txt");
+        string path = Path.Join(Path.GetTempPath(), $"learn-aio-{Guid.NewGuid():N}.txt");
         try
         {
             await File.WriteAllTextAsync(path, "async-hello", Encoding.UTF8);
@@ -46,7 +46,7 @@ internal static class AsyncIoPipelines
     private static async Task DemoBufferedReadWrite()
     {
         Console.WriteLine("-- FileStream async Read/Write with buffer --");
-        string path = Path.Combine(Path.GetTempPath(), $"learn-fs-{Guid.NewGuid():N}.bin");
+        string path = Path.Join(Path.GetTempPath(), $"learn-fs-{Guid.NewGuid():N}.bin");
         try
         {
             byte[] data = Encoding.UTF8.GetBytes(new string('x', 4096));
@@ -79,7 +79,7 @@ internal static class AsyncIoPipelines
         Console.WriteLine("  PipeReader/PipeWriter: backpressure + buffer pooling for network/protocol IO");
         Console.WriteLine("  Prefer FileStream async APIs for simple files; Pipelines for Kestrel-style streams");
         // educational stand-in: producer/consumer via Channel-like manual buffer
-        MemoryStream buffer = new MemoryStream();
+        using MemoryStream buffer = new MemoryStream();
         byte[] chunk = Encoding.UTF8.GetBytes("pipeline-chunk");
         buffer.Write(chunk);
         Debug.Assert(buffer.Length == chunk.Length);

@@ -150,7 +150,7 @@ internal static class BuiltinTypesAndLiterals
         Console.WriteLine($"  default(int)={zero}, default(bool)={f}, default(string) is null? {r is null}");
         Debug.Assert(maybe is null);
         Debug.Assert(zero == 0);
-        Debug.Assert(f == false);
+        Debug.Assert(!f);
         Debug.Assert(r is null);
     }
 

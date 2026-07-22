@@ -32,7 +32,6 @@ internal static class DotNet9LockAndPrimitives
         int n = 0;
         using (gate.EnterScope())
         {
-            n = 1;
             Console.WriteLine("  EnterScope() held");
         }
 

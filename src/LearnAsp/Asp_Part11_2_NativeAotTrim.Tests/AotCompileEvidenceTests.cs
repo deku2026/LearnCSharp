@@ -17,9 +17,9 @@ public class AotCompileEvidenceTests
     [Fact]
     public async Task AotAppCsprojDeclaresPublishAotAndIsAotCompatible()
     {
-        string csprojPath = Path.Combine(
-            FindRepoRoot(),
-            "src", "LearnAsp", "Asp_Part11_2_NativeAotTrim", "Asp_Part11_2_NativeAotTrim.csproj");
+        string csprojPath = Path.Join(
+            Path.Join(FindRepoRoot(), "src"),
+            "LearnAsp", "Asp_Part11_2_NativeAotTrim", "Asp_Part11_2_NativeAotTrim.csproj");
         string csproj = await File.ReadAllTextAsync(csprojPath);
         Assert.Contains("<PublishAot>true</PublishAot>", csproj);
         Assert.Contains("<IsAotCompatible>true</IsAotCompatible>", csproj);
@@ -28,9 +28,9 @@ public class AotCompileEvidenceTests
     [Fact]
     public async Task EndpointsLibraryCsprojDeclaresRdgAndAotCompatible()
     {
-        string csprojPath = Path.Combine(
-            FindRepoRoot(),
-            "src", "LearnAsp", "Asp_Part11_2_NativeAotTrim.Endpoints", "Asp_Part11_2_NativeAotTrim.Endpoints.csproj");
+        string csprojPath = Path.Join(
+            Path.Join(FindRepoRoot(), "src"),
+            "LearnAsp", "Asp_Part11_2_NativeAotTrim.Endpoints", "Asp_Part11_2_NativeAotTrim.Endpoints.csproj");
         string csproj = await File.ReadAllTextAsync(csprojPath);
         Assert.Contains("<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>", csproj);
         Assert.Contains("<IsAotCompatible>true</IsAotCompatible>", csproj);

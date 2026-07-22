@@ -35,7 +35,7 @@ internal static partial class SafeHandleCallingConvention
         Console.WriteLine("  SafeHandle: IDisposable + critical finalizer + refcount during P/Invoke");
 
         // SafeFileHandle is the BCL pattern for file handles
-        string path = Path.Combine(Path.GetTempPath(), $"learncsharp-stage13-{Guid.NewGuid():N}.tmp");
+        string path = Path.Join(Path.GetTempPath(), $"learncsharp-stage13-{Guid.NewGuid():N}.tmp");
         try
         {
             using (FileStream fs = new(path, FileMode.Create, FileAccess.Write, FileShare.None))

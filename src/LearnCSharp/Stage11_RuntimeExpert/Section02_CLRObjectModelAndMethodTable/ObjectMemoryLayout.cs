@@ -111,14 +111,14 @@ internal static class ObjectMemoryLayout
 
     private sealed class TwoInts(int x, int y)
     {
-        public int X = x;
-        public int Y = y;
+        public readonly int X = x;
+        public readonly int Y = y;
     }
 
     private sealed class TwoIntsAndRef(int x, int y, string name)
     {
-        public int X = x;
-        public int Y = y;
-        public string Name = name;
+        public readonly int X = x;
+        public readonly int Y = y;
+        public readonly string Name = name;
     }
 }

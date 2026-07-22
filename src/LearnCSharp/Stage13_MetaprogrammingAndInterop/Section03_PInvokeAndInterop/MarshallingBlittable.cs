@@ -86,16 +86,11 @@ internal static class MarshallingBlittable
             return true;
         if (!t.IsValueType || t.IsClass)
             return false;
-        foreach (System.Reflection.FieldInfo f in t.GetFields(
-                     System.Reflection.BindingFlags.Instance |
-                     System.Reflection.BindingFlags.Public |
-                     System.Reflection.BindingFlags.NonPublic))
-        {
-            if (!IsBlittable(f.FieldType))
-                return false;
-        }
-
-        return true;
+        return t.GetFields(
+                System.Reflection.BindingFlags.Instance |
+                System.Reflection.BindingFlags.Public |
+                System.Reflection.BindingFlags.NonPublic)
+            .All(f => IsBlittable(f.FieldType));
     }
 
     [StructLayout(LayoutKind.Sequential)]

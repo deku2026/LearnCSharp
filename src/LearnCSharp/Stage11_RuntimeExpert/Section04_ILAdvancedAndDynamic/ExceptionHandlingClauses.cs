@@ -30,7 +30,7 @@ internal static class ExceptionHandlingClauses
     {
         Console.WriteLine("-- catch + finally (leave / endfinally in IL) --");
         bool finallyRan = false;
-        string path = "ok";
+        string path;
         try
         {
             path = "try";
@@ -53,7 +53,7 @@ internal static class ExceptionHandlingClauses
     private static void DemoWhenFilter()
     {
         Console.WriteLine("-- exception filter (when) → filter clause in IL --");
-        string result = "none";
+        string result;
         try
         {
             throw new InvalidOperationException("code=42");

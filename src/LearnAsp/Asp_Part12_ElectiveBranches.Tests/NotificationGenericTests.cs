@@ -41,7 +41,7 @@ public sealed class NotificationGenericTests
         using HttpClient client = factory.CreateClient();
         using HttpResponseMessage response = await client.PostAsJsonAsync(
             "/api/notifications/email",
-            new { Recipient = "student@example.test", Subject = "Course notice", HtmlBody = "<p>hi</p>", TextBody = (string?)"hi", IdempotencyKey = (string?)"key-1" });
+            new { Recipient = "student@example.test", Subject = "Course notice", HtmlBody = "<p>hi</p>", TextBody = "hi", IdempotencyKey = "key-1" });
         // Without a DB, the endpoint throws 500; with a DB it returns 202.
         // The address-validation logic is what we test here (200/202 path requires Docker).
         Assert.NotEqual(HttpStatusCode.BadRequest, response.StatusCode);

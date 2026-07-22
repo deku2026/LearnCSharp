@@ -35,7 +35,7 @@ internal static class HelloWorldDissection
         Console.WriteLine("Hello, World!");
 
         Type consoleType = typeof(Console);
-        Debug.Assert(consoleType.FullName == "System.Console");
+        Debug.Assert(consoleType == typeof(Console));
         Debug.Assert(consoleType.GetMethod(nameof(Console.WriteLine), [typeof(string)]) is not null);
 
         string message = "Hello, World!";

@@ -52,7 +52,7 @@ internal static class JsonSerializerBasics
     private static async Task DemoAsyncStream()
     {
         Console.WriteLine("-- SerializeAsync / DeserializeAsync on temp file --");
-        string path = Path.Combine(Path.GetTempPath(), $"learn-stj-{Guid.NewGuid():N}.json");
+        string path = Path.Join(Path.GetTempPath(), $"learn-stj-{Guid.NewGuid():N}.json");
         try
         {
             WeatherForecast forecast = new WeatherForecast { Date = DateTime.UtcNow, TemperatureC = 18, Summary = "Cool" };
@@ -73,7 +73,7 @@ internal static class JsonSerializerBasics
     private static async Task DemoAsyncEnumerable()
     {
         Console.WriteLine("-- DeserializeAsyncEnumerable for JSON array --");
-        string path = Path.Combine(Path.GetTempPath(), $"learn-stj-arr-{Guid.NewGuid():N}.json");
+        string path = Path.Join(Path.GetTempPath(), $"learn-stj-arr-{Guid.NewGuid():N}.json");
         try
         {
             WeatherForecast[] items =

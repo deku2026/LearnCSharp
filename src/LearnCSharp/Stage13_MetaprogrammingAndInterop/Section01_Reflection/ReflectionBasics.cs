@@ -32,7 +32,7 @@ internal static class ReflectionBasics
         Type t = typeof(string);
         Assembly asm = t.Assembly;
         Module mod = t.Module;
-        Debug.Assert(t.FullName == "System.String");
+        Debug.Assert(t == typeof(string));
         Debug.Assert(asm.GetName().Name is not null);
         Console.WriteLine($"  Type={t.FullName}");
         Console.WriteLine($"  Assembly={asm.GetName().Name}");

@@ -7,21 +7,20 @@ public sealed class RepoConsistencyTests
     [Fact]
     public async Task All31SrcLabsAreNonPlaceholder()
     {
-        string srcDir = Path.Combine(RepoRoot, "src", "LearnAsp");
+        string srcDir = Path.Join(RepoRoot, "src", "LearnAsp");
         List<string> labDirs = Directory.GetDirectories(srcDir)
             .Where(d =>
             {
                 string name = Path.GetFileName(d);
                 return (name.StartsWith("Asp_Step", StringComparison.Ordinal)
                     || name.StartsWith("Asp_Part", StringComparison.Ordinal))
-                    && File.Exists(Path.Combine(d, "Program.cs"))
-                    && File.Exists(Path.Combine(d, "Properties", "launchSettings.json"));
+                    && File.Exists(Path.Join(d, "Program.cs"))
+                    && File.Exists(Path.Join(d, "Properties", "launchSettings.json"));
             })
             .ToList();
         Assert.Equal(31, labDirs.Count);
-        foreach (string dir in labDirs)
+        foreach (string programPath in labDirs.Select(dir => Path.Join(dir, "Program.cs")))
         {
-            string programPath = Path.Combine(dir, "Program.cs");
             string content = await File.ReadAllTextAsync(programPath);
             Assert.DoesNotContain("// LearnAspNet placeholder", content);
         }
@@ -30,7 +29,7 @@ public sealed class RepoConsistencyTests
     [Fact]
     public async Task AllShellScriptsHaveShebang()
     {
-        string scriptsDir = Path.Combine(RepoRoot, "scripts");
+        string scriptsDir = Path.Join(RepoRoot, "scripts");
         if (!Directory.Exists(scriptsDir))
         {
             return;
@@ -46,7 +45,7 @@ public sealed class RepoConsistencyTests
     [Fact]
     public async Task JsonAndYamlFilesEndWithNewline()
     {
-        string docsDir = Path.Combine(RepoRoot, "docs");
+        string docsDir = Path.Join(RepoRoot, "docs");
         if (!Directory.Exists(docsDir))
         {
             return;
@@ -63,7 +62,7 @@ public sealed class RepoConsistencyTests
     [Fact]
     public void ReadmeDoesNotCarryStaleStatus()
     {
-        string readmePath = Path.Combine(RepoRoot, "README.md");
+        string readmePath = Path.Join(RepoRoot, "README.md");
         string content = File.ReadAllText(readmePath);
         Assert.DoesNotContain("W6–W8 未完成", content);
         Assert.DoesNotContain("W6-W8 未完成", content);
