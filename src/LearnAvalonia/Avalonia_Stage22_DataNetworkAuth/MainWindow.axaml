@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.MainWindow"
+        Title="Stage22_DataNetworkAuth - Data Storage, Network &amp; Auth"
+        Width="800" Height="450">
+    <TextBlock Text="Hello from Stage22_DataNetworkAuth"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="24" />
+</Window>

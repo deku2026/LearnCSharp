@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.MainWindow"
+        Title="Stage15_Virtualization - Virtualization &amp; Large Data UI"
+        Width="800" Height="450">
+    <TextBlock Text="Hello from Stage15_Virtualization"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="24" />
+</Window>

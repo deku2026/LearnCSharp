@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="LearnAvalonia.Avalonia_Stage23_AccessibilityI18n.MainWindow"
+        Title="Stage23_AccessibilityI18n - Accessibility, I18n &amp; Text"
+        Width="800" Height="450">
+    <TextBlock Text="Hello from Stage23_AccessibilityI18n"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="24" />
+</Window>
