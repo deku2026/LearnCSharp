@@ -7,6 +7,7 @@ exclude: |
     build/.*|
     dist/.*|
     out/.*|
+    \.cache/.*|
     src/.*/Generated/.*
   )$
 
@@ -18,14 +19,17 @@ repos:
       - id: end-of-file-fixer
       - id: mixed-line-ending
         args: [--fix=lf]
+        # CRLF files (gitattributes) must not be forced to LF.
+        exclude: \.(bat|cmd|ps1|sln|vcxproj|filters)$
       - id: check-added-large-files
         args: [--maxkb=2048]
       - id: check-merge-conflict
       - id: check-json
+      - id: check-toml
       - id: check-yaml
         args: [--allow-multiple-documents]
       - id: check-executables-have-shebangs
-        exclude: (?i)\.(md|yaml|yml|ignore|cs|csproj|props|targets|slnx|json|config|http)$
+        exclude: (?i)\.(txt|md|yaml|yml|ignore|cs|csproj|props|targets|slnx|json|config|http|vcxproj|filters|cmake)$|(^|/)\.clang|(^|/)CMakeLists\.txt$
       - id: check-shebang-scripts-are-executable
         exclude: \.sh$
 
@@ -35,6 +39,21 @@ repos:
       - id: codespell
         additional_dependencies: [tomli]
         args: [-I, .codespell-ignore]
+
+  # C++ formatting for the LearnCpp subtree (src/learncpp). Uses the self-contained
+  # pre-commit clang-format mirror, so no system LLVM is required on the runner.
+  # clang-format discovers src/learncpp/.clang-format by walking up from each file.
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v22.1.4
+    hooks:
+      - id: clang-format
+        files: \.(c|h|cpp|hpp|cc|hh|cxx|hxx|ipp|tpp|inc)$
+        types_or: [c++, c]
+
+  # clang-tidy is intentionally not wired into pre-commit: analyzing ~876 C++
+  # translation units on every commit is too slow to be a useful gate. Run it on
+  # demand via `cmake --preset windows-debug -DLEARNCPP_ENABLE_CLANG_TIDY=ON`,
+  # which makes the CMake build apply clang-tidy per-target during compilation.
 
   - repo: local
     hooks:

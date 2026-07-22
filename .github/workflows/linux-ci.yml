@@ -177,3 +177,139 @@ jobs:
           fi
           echo 'pre-commit made changes; rerunning once'
           pre-commit run --all-files --show-diff-on-failure --color=always
+
+  cpp-cmake:
+    name: C++ Linux x64 (Clang 22 + ${{ matrix.standard_library }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - standard_library: libstdc++
+            stdlib_flags: -stdlib=libstdc++
+          - standard_library: libc++
+            stdlib_flags: -stdlib=libc++
+    env:
+      SCCACHE_DIR: ${{ github.workspace }}/.sccache
+      SCCACHE_CACHE_SIZE: 2G
+      CMAKE_C_COMPILER_LAUNCHER: sccache
+      CMAKE_CXX_COMPILER_LAUNCHER: sccache
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install clang 22 from apt.llvm.org + ninja
+        # apt.llvm.org ships the latest patch of each major; aiming at 22.x to match
+        # local clang-cl 22 (exact patch not promised within major 22).
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends wget gnupg lsb-release ninja-build python3-pip
+          wget -qO /tmp/llvm.sh https://apt.llvm.org/llvm.sh
+          chmod +x /tmp/llvm.sh
+          sudo /tmp/llvm.sh 22
+          sudo apt-get install -y --no-install-recommends \
+            clang-22 clang-tidy-22 clang-format-22 lld-22 libc++-22-dev libc++abi-22-dev
+          sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-22 100
+          sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-22 100
+          sudo update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-22 100
+          sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-22 100
+
+      - name: Install CMake 3.31
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: "3.31.6"
+          ninjaVersion: latest
+
+      - name: Install sccache
+        uses: mozilla-actions/sccache-action@v0.0.10
+
+      - name: Restore sccache cache
+        uses: actions/cache@v6
+        with:
+          path: ${{ env.SCCACHE_DIR }}
+          key: sccache-cpp-linux-${{ matrix.standard_library }}-${{ hashFiles('src/learncpp/CMakeLists.txt','src/learncpp/cmake/**','src/learncpp/CMakePresets.json') }}-${{ github.sha }}
+          restore-keys: |
+            sccache-cpp-linux-${{ matrix.standard_library }}-${{ hashFiles('src/learncpp/CMakeLists.txt','src/learncpp/cmake/**','src/learncpp/CMakePresets.json') }}-
+            sccache-cpp-linux-${{ matrix.standard_library }}-
+
+      - name: Verify tools
+        env:
+          STANDARD_LIBRARY: ${{ matrix.standard_library }}
+        run: |
+          set -euo pipefail
+          /usr/bin/clang-22 --version
+          /usr/bin/clang++-22 --version
+          clang_major=$(/usr/bin/clang++-22 -dumpversion | cut -d. -f1)
+          if [ "$clang_major" != 22 ]; then
+            echo "expected Clang major 22, got '$clang_major'" >&2
+            exit 1
+          fi
+          if [ "$STANDARD_LIBRARY" = "libstdc++" ]; then
+            printf 'GNU C++: %s\n' "$(g++-14 -dumpfullversion)"
+          fi
+          cmake --version | head -n 1
+          ninja --version
+          sccache --version
+
+      - name: Configure
+        working-directory: src/learncpp
+        env:
+          CC: /usr/bin/clang-22
+          CXX: /usr/bin/clang++-22
+          STDLIB_FLAGS: ${{ matrix.stdlib_flags }}
+        run: |
+          set -euo pipefail
+          cmake_args=(
+            --preset linux-ci
+            -DCMAKE_CXX_COMPILER=/usr/bin/clang++-22
+          )
+          if [ -n "$STDLIB_FLAGS" ]; then
+            cmake_args+=(
+              "-DCMAKE_CXX_FLAGS=$STDLIB_FLAGS"
+              "-DCMAKE_EXE_LINKER_FLAGS=$STDLIB_FLAGS"
+            )
+          fi
+          cmake "${cmake_args[@]}"
+          configured_compiler=$(sed -n 's/^CMAKE_CXX_COMPILER:[^=]*=//p' build/linux-ci/CMakeCache.txt)
+          if [ "$configured_compiler" != /usr/bin/clang++-22 ]; then
+            echo "CMake selected unexpected compiler '$configured_compiler'" >&2
+            exit 1
+          fi
+
+      - name: Build all translation units
+        working-directory: src/learncpp
+        run: cmake --build --preset linux-ci -- -k 0
+
+      - name: Smoke-run learn_cpp (list registered topics)
+        working-directory: src/learncpp
+        run: |
+          set -euo pipefail
+          exe=build/linux-ci/bin/learn_cpp
+          output=$("$exe")
+          printf '%s\n' "$output" | sed -n '1,5p'
+          header=${output%%$'\n'*}
+          listed=$(printf '%s\n' "$output" | sed -n 's/^  //p' | wc -l | tr -d ' ')
+          if [ "$header" != 'learn_cpp: 874 topics registered' ] || [ "$listed" -ne 874 ]; then
+            echo "expected exactly 874 registered topics; header='$header', listed=$listed" >&2
+            exit 1
+          fi
+          echo "OK (874 registered topics)"
+
+      - name: sccache stats
+        if: always()
+        run: sccache --show-stats
+
+      - name: Install pre-commit
+        if: ${{ always() && matrix.standard_library == 'libstdc++' }}
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pre-commit
+
+      - name: Run pre-commit (C++ hooks; dotnet-format needs the dotnet job)
+        if: ${{ always() && matrix.standard_library == 'libstdc++' }}
+        env:
+          SKIP: dotnet-format
+        run: pre-commit run --all-files --show-diff-on-failure --color=always
