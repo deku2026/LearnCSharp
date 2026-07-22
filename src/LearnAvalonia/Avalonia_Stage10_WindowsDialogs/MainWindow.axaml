@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.MainWindow"
+        Title="Stage10_WindowsDialogs - Windows, Dialogs &amp; System Integration"
+        Width="800" Height="450">
+    <TextBlock Text="Hello from Stage10_WindowsDialogs"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="24" />
+</Window>

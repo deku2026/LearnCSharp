@@ -55,13 +55,13 @@ jobs:
           & dotnet --list-sdks
 
       - name: Restore
-        run: dotnet restore LearnCSharp.slnx
+        run: dotnet restore LearnCSharp.CI.slnx
 
       - name: Build (Debug)
-        run: dotnet build LearnCSharp.slnx -c Debug --no-restore
+        run: dotnet build LearnCSharp.CI.slnx -c Debug --no-restore
 
       - name: Build (Release)
-        run: dotnet build LearnCSharp.slnx -c Release --no-restore
+        run: dotnet build LearnCSharp.CI.slnx -c Release --no-restore
 
       - name: Smoke - list every topic (Release)
         run: dotnet run --project src/LearnCSharp -c Release --no-build

@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.MainWindow"
+        Title="Stage31_RenderingExpert - Rendering Expert Track"
+        Width="800" Height="450">
+    <TextBlock Text="Hello from Stage31_RenderingExpert"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="24" />
+</Window>

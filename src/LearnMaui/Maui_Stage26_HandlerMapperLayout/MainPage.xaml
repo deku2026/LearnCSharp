@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnMaui.Maui_Stage26_HandlerMapperLayout.MainPage"
+             Title="Handler, Mapper and Layout">
+    <VerticalStackLayout HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         Spacing="16">
+        <Label Text="Hello from Stage26_HandlerMapperLayout"
+               FontSize="24"
+               HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>
