@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="LearnAvalonia.Stage12_InputFocusGestures.MainWindow"
+        Title="Stage12_InputFocusGestures - Input, Focus, Gestures &amp; IME"
+        Width="800" Height="450">
+    <TextBlock Text="Hello from Stage12_InputFocusGestures"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="24" />
+</Window>

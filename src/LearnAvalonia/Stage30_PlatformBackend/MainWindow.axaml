@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="LearnAvalonia.Stage30_PlatformBackend.MainWindow"
+        Title="Stage30_PlatformBackend - Platform Backend Selective Reading"
+        Width="800" Height="450">
+    <TextBlock Text="Hello from Stage30_PlatformBackend"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="24" />
+</Window>

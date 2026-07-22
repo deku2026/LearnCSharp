@@ -6,4 +6,41 @@
   <Folder Name="/src/">
     <Project Path="src/LearnCSharp/LearnCSharp.csproj" />
   </Folder>
+  <Folder Name="/src/LearnAvalonia/">
+    <Project Path="src/LearnAvalonia/Stage01_AppBuilder/Stage01_AppBuilder.csproj" />
+    <Project Path="src/LearnAvalonia/Stage02_Dispatcher/Stage02_Dispatcher.csproj" />
+    <Project Path="src/LearnAvalonia/Stage03_AvaloniaXaml/Stage03_AvaloniaXaml.csproj" />
+    <Project Path="src/LearnAvalonia/Stage04_PropertySystem/Stage04_PropertySystem.csproj" />
+    <Project Path="src/LearnAvalonia/Stage05_LogicalVisualTree/Stage05_LogicalVisualTree.csproj" />
+    <Project Path="src/LearnAvalonia/Stage06_LayoutSystem/Stage06_LayoutSystem.csproj" />
+    <Project Path="src/LearnAvalonia/Stage07_ControlSystem/Stage07_ControlSystem.csproj" />
+    <Project Path="src/LearnAvalonia/Stage08_StylesThemes/Stage08_StylesThemes.csproj" />
+    <Project Path="src/LearnAvalonia/Stage09_DataBindingMVVM/Stage09_DataBindingMVVM.csproj" />
+    <Project Path="src/LearnAvalonia/Capstone1_DesktopFoundation/Capstone1_DesktopFoundation.csproj" />
+    <Project Path="src/LearnAvalonia/Stage10_WindowsDialogs/Stage10_WindowsDialogs.csproj" />
+    <Project Path="src/LearnAvalonia/Stage11_PagesNavigation/Stage11_PagesNavigation.csproj" />
+    <Project Path="src/LearnAvalonia/Stage12_InputFocusGestures/Stage12_InputFocusGestures.csproj" />
+    <Project Path="src/LearnAvalonia/Stage13_GraphicsAnimation/Stage13_GraphicsAnimation.csproj" />
+    <Project Path="src/LearnAvalonia/Stage14_CustomControls/Stage14_CustomControls.csproj" />
+    <Project Path="src/LearnAvalonia/Stage15_Virtualization/Stage15_Virtualization.csproj" />
+    <Project Path="src/LearnAvalonia/Stage16_PlatformAbstraction/Stage16_PlatformAbstraction.csproj" />
+    <Project Path="src/LearnAvalonia/Stage17_WebViewHybrid/Stage17_WebViewHybrid.csproj" />
+    <Project Path="src/LearnAvalonia/Stage18_Mobile/Stage18_Mobile.csproj" />
+    <Project Path="src/LearnAvalonia/Stage19_WebAssembly/Stage19_WebAssembly.csproj" />
+    <Project Path="src/LearnAvalonia/Stage20_EmbeddedLinux/Stage20_EmbeddedLinux.csproj" />
+    <Project Path="src/LearnAvalonia/Capstone3_CrossPlatform/Capstone3_CrossPlatform.csproj" />
+    <Project Path="src/LearnAvalonia/Stage21_AppArchitecture/Stage21_AppArchitecture.csproj" />
+    <Project Path="src/LearnAvalonia/Stage22_DataNetworkAuth/Stage22_DataNetworkAuth.csproj" />
+    <Project Path="src/LearnAvalonia/Capstone2_ComplexDesktop/Capstone2_ComplexDesktop.csproj" />
+    <Project Path="src/LearnAvalonia/Stage23_AccessibilityI18n/Stage23_AccessibilityI18n.csproj" />
+    <Project Path="src/LearnAvalonia/Stage24_TestingSystem/Stage24_TestingSystem.csproj" />
+    <Project Path="src/LearnAvalonia/Stage25_Performance/Stage25_Performance.csproj" />
+    <Project Path="src/LearnAvalonia/Stage26_TrimmingAOT/Stage26_TrimmingAOT.csproj" />
+    <Project Path="src/LearnAvalonia/Stage27_PackagingCI/Stage27_PackagingCI.csproj" />
+    <Project Path="src/LearnAvalonia/Stage28_WpfMigration/Stage28_WpfMigration.csproj" />
+    <Project Path="src/LearnAvalonia/Capstone4_CustomControlAOT/Capstone4_CustomControlAOT.csproj" />
+    <Project Path="src/LearnAvalonia/Stage29_SourceReading/Stage29_SourceReading.csproj" />
+    <Project Path="src/LearnAvalonia/Stage30_PlatformBackend/Stage30_PlatformBackend.csproj" />
+    <Project Path="src/LearnAvalonia/Stage31_RenderingExpert/Stage31_RenderingExpert.csproj" />
+  </Folder>
 </Solution>

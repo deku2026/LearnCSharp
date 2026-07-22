@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="LearnAvalonia.Stage19_WebAssembly.MainWindow"
+        Title="Stage19_WebAssembly - WebAssembly Specifics"
+        Width="800" Height="450">
+    <TextBlock Text="Hello from Stage19_WebAssembly"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="24" />
+</Window>
