@@ -36,7 +36,7 @@ internal static class ReproducibleBuildsLockfileAudit
         Console.WriteLine("  有锁文件: 精确图 + 内容哈希 → CI 与本地一致");
         Console.WriteLine("  可复现 ≠ 确定性编译全部细节，但依赖闭包必须钉死");
         string? root = FindRepoRoot();
-        Debug.Assert(root is not null && File.Exists(Path.Combine(root, "Directory.Packages.props")));
+        Debug.Assert(root is not null && File.Exists(Path.Join(root, "Directory.Packages.props")));
     }
 
     private static void DemoLockFile()
@@ -97,8 +97,8 @@ internal static class ReproducibleBuildsLockfileAudit
         string? dir = AppContext.BaseDirectory;
         while (dir is not null)
         {
-            if (File.Exists(Path.Combine(dir, "Directory.Packages.props"))
-                && File.Exists(Path.Combine(dir, "LearnCSharp.slnx")))
+            if (File.Exists(Path.Join(dir, "Directory.Packages.props"))
+                && File.Exists(Path.Join(dir, "LearnCSharp.slnx")))
             {
                 return dir;
             }

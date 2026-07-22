@@ -75,7 +75,7 @@ internal static class WritingTestsAaaTheory
         {
             fixture.Setup();
             Debug.Assert(Directory.Exists(fixture.Path));
-            string file = Path.Combine(fixture.Path, "a.txt");
+            string file = Path.Join(fixture.Path, "a.txt");
             File.WriteAllText(file, "hi");
             Debug.Assert(File.Exists(file));
             Debug.Assert(File.ReadAllText(file) == "hi");
@@ -136,7 +136,7 @@ internal static class WritingTestsAaaTheory
         public string Path { get; private set; } = "";
         public void Setup()
         {
-            Path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "learn-csharp-tests-" + Guid.NewGuid().ToString("N"));
+            Path = System.IO.Path.Join(System.IO.Path.GetTempPath(), "learn-csharp-tests-" + Guid.NewGuid().ToString("N"));
             Directory.CreateDirectory(Path);
         }
         public void Teardown()

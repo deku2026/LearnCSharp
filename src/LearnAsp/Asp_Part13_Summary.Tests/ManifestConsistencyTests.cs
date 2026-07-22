@@ -9,7 +9,7 @@ public sealed class ManifestConsistencyTests
     [Fact]
     public async Task CapabilitiesManifestHas31LabsNoDuplicatesUniquePorts()
     {
-        string path = Path.Combine(RepoRoot, "docs", "summary", "capabilities.json");
+        string path = Path.Join(RepoRoot, "docs", "summary", "capabilities.json");
         string json = await File.ReadAllTextAsync(path);
         CapabilitiesFile? caps = JsonSerializer.Deserialize(json, SummaryJsonContext.Default.CapabilitiesFile);
         Assert.NotNull(caps);
@@ -24,7 +24,7 @@ public sealed class ManifestConsistencyTests
     [Fact]
     public async Task EveryLabHasTestProjectOrManualEvidence()
     {
-        string path = Path.Combine(RepoRoot, "docs", "summary", "capabilities.json");
+        string path = Path.Join(RepoRoot, "docs", "summary", "capabilities.json");
         string json = await File.ReadAllTextAsync(path);
         CapabilitiesFile? caps = JsonSerializer.Deserialize(json, SummaryJsonContext.Default.CapabilitiesFile);
         Assert.NotNull(caps);
@@ -38,7 +38,7 @@ public sealed class ManifestConsistencyTests
     [Fact]
     public async Task InfrastructureManifestHasTenContainers()
     {
-        string path = Path.Combine(RepoRoot, "docs", "summary", "infrastructure.json");
+        string path = Path.Join(RepoRoot, "docs", "summary", "infrastructure.json");
         string json = await File.ReadAllTextAsync(path);
         InfrastructureFile? infra = JsonSerializer.Deserialize(json, SummaryJsonContext.Default.InfrastructureFile);
         Assert.NotNull(infra);
@@ -50,7 +50,7 @@ public sealed class ManifestConsistencyTests
     [Fact]
     public async Task CapstonesManifestHasThreeCapstones()
     {
-        string path = Path.Combine(RepoRoot, "docs", "summary", "capstones.json");
+        string path = Path.Join(RepoRoot, "docs", "summary", "capstones.json");
         string json = await File.ReadAllTextAsync(path);
         CapstonesFile? capstones = JsonSerializer.Deserialize(json, SummaryJsonContext.Default.CapstonesFile);
         Assert.NotNull(capstones);

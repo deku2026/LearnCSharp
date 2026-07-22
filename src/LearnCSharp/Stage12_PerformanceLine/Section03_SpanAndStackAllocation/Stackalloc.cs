@@ -35,7 +35,7 @@ internal static class Stackalloc
         ReadOnlySpan<char> digits = buf[..written];
         Debug.Assert(digits.SequenceEqual("12345"));
         long after = GC.GetTotalAllocatedBytes(precise: true);
-        Console.WriteLine($"  formatted '{digits.ToString()}' written={written}, alloc Δ≈{after - before}");
+        Console.WriteLine($"  formatted '{digits}' written={written}, alloc Δ≈{after - before}");
         Console.WriteLine("  Prefer Span over unsafe raw pointers for bounds safety.");
     }
 

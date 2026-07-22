@@ -49,7 +49,7 @@ internal static class CentralPackageManagement
         Console.WriteLine("-- real Directory.Packages.props in this repo --");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null);
-        string path = Path.Combine(root, "Directory.Packages.props");
+        string path = Path.Join(root, "Directory.Packages.props");
         string text = File.ReadAllText(path);
         Debug.Assert(text.Contains("ManagePackageVersionsCentrally", StringComparison.Ordinal));
         MatchCollection versions = Regex.Matches(text, @"PackageVersion\s+Include=""([^""]+)""");
@@ -65,7 +65,7 @@ internal static class CentralPackageManagement
         Console.WriteLine("-- project PackageReference without Version (CPM) --");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null);
-        string csproj = Path.Combine(root, "src", "LearnCSharp", "LearnCSharp.csproj");
+        string csproj = Path.Join(root, "src", "LearnCSharp", "LearnCSharp.csproj");
         string text = File.ReadAllText(csproj);
         Debug.Assert(text.Contains("PackageReference", StringComparison.Ordinal));
         Debug.Assert(text.Contains("Microsoft.Extensions.DependencyInjection", StringComparison.Ordinal));
@@ -110,8 +110,8 @@ internal static class CentralPackageManagement
             DirectoryInfo? dir = new(start);
             while (dir is not null)
             {
-                if (File.Exists(Path.Combine(dir.FullName, "Directory.Packages.props"))
-                    && File.Exists(Path.Combine(dir.FullName, "global.json")))
+                if (File.Exists(Path.Join(dir.FullName, "Directory.Packages.props"))
+                    && File.Exists(Path.Join(dir.FullName, "global.json")))
                     return dir.FullName;
                 dir = dir.Parent;
             }

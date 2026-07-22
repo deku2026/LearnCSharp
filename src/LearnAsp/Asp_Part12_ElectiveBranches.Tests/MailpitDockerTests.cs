@@ -20,7 +20,7 @@ public sealed class MailpitDockerTests(Part12Fixture fixture)
         string idemKey = $"test-{Guid.NewGuid():N}";
         using HttpResponseMessage schedule = await client.PostAsJsonAsync(
             "/api/notifications/email",
-            new { Recipient = "student@example.test", Subject = "Course notice W9", HtmlBody = "<p>Your enrollment is confirmed.</p>", TextBody = (string?)"Your enrollment is confirmed.", IdempotencyKey = idemKey });
+            new { Recipient = "student@example.test", Subject = "Course notice W9", HtmlBody = "<p>Your enrollment is confirmed.</p>", TextBody = "Your enrollment is confirmed.", IdempotencyKey = idemKey });
         schedule.EnsureSuccessStatusCode();
         Assert.Equal(HttpStatusCode.Accepted, schedule.StatusCode);
         ScheduleResponse? scheduled = await schedule.Content.ReadFromJsonAsync<ScheduleResponse>();
@@ -55,7 +55,7 @@ public sealed class MailpitDockerTests(Part12Fixture fixture)
         using HttpClient client = await CreateReadyClientAsync(factory);
 
         string idemKey = $"idem-{Guid.NewGuid():N}";
-        JsonContent requestContent = JsonContent.Create(new { Recipient = "student@example.test", Subject = "dup test", HtmlBody = "<p>dup</p>", TextBody = (string?)"dup" });
+        JsonContent requestContent = JsonContent.Create(new { Recipient = "student@example.test", Subject = "dup test", HtmlBody = "<p>dup</p>", TextBody = "dup" });
         client.DefaultRequestHeaders.Add("Idempotency-Key", idemKey);
 
         using HttpResponseMessage first = await client.PostAsync("/api/notifications/email", requestContent);

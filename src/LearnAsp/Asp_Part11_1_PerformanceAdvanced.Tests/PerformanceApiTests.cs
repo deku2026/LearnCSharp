@@ -128,6 +128,7 @@ public sealed class PerformanceApiTests : IClassFixture<PerformanceFactory>
         }
         catch (OperationCanceledException)
         {
+            // Expected: the in-flight request observes the token cancellation.
         }
     }
 

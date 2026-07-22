@@ -75,7 +75,7 @@ internal static class Enums
         string[] names = Enum.GetNames<Season>();
         Debug.Assert(names.Length == 4);
         Debug.Assert(Enum.Parse<Season>("Autumn") == Season.Autumn);
-        Debug.Assert(Enum.TryParse("Nope", out Season _) == false);
+        Debug.Assert(!Enum.TryParse("Nope", out Season _));
         Console.WriteLine($"  GetNames count={names.Length}");
     }
 

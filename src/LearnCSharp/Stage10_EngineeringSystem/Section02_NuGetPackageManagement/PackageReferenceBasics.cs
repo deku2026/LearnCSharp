@@ -50,7 +50,7 @@ internal static class PackageReferenceBasics
         Console.WriteLine("-- real NuGet.config in this repo --");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null);
-        string path = Path.Combine(root, "NuGet.config");
+        string path = Path.Join(root, "NuGet.config");
         string text = File.ReadAllText(path);
         Debug.Assert(text.Contains("packageSources", StringComparison.OrdinalIgnoreCase));
         Debug.Assert(text.Contains("nuget.org", StringComparison.OrdinalIgnoreCase));
@@ -64,8 +64,8 @@ internal static class PackageReferenceBasics
             DirectoryInfo? dir = new(start);
             while (dir is not null)
             {
-                if (File.Exists(Path.Combine(dir.FullName, "NuGet.config"))
-                    && File.Exists(Path.Combine(dir.FullName, "global.json")))
+                if (File.Exists(Path.Join(dir.FullName, "NuGet.config"))
+                    && File.Exists(Path.Join(dir.FullName, "global.json")))
                     return dir.FullName;
                 dir = dir.Parent;
             }

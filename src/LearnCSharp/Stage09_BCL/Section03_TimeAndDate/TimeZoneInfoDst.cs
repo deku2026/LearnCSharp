@@ -87,8 +87,8 @@ internal static class TimeZoneInfoDst
     private static TimeZoneInfo? TryFindZone(string iana, string windows)
     {
         try { return TimeZoneInfo.FindSystemTimeZoneById(iana); }
-        catch (TimeZoneNotFoundException) { }
-        catch (InvalidTimeZoneException) { }
+        catch (TimeZoneNotFoundException) { /* IANA id absent on this platform; fall through to the Windows id. */ }
+        catch (InvalidTimeZoneException) { /* id not valid on this platform; fall through to the Windows id. */ }
 
         try { return TimeZoneInfo.FindSystemTimeZoneById(windows); }
         catch (TimeZoneNotFoundException) { return null; }

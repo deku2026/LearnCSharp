@@ -77,10 +77,10 @@ internal static class IteratorLimitationsAndPitfalls
 
         // Runtime danger: Monitor.Enter then yield holds the lock while the consumer runs.
         bool otherThreadBlocked = false;
-        ManualResetEventSlim enteredConsumer = new ManualResetEventSlim(false);
-        ManualResetEventSlim releaseConsumer = new ManualResetEventSlim(false);
+        using ManualResetEventSlim enteredConsumer = new ManualResetEventSlim(false);
+        using ManualResetEventSlim releaseConsumer = new ManualResetEventSlim(false);
 
-        IEnumerator<int> e = HoldLockAcrossYield().GetEnumerator();
+        using IEnumerator<int> e = HoldLockAcrossYield().GetEnumerator();
         Debug.Assert(e.MoveNext()); // acquires lock, yields 1 — lock still held
         Debug.Assert(e.Current == 1);
 
@@ -102,7 +102,6 @@ internal static class IteratorLimitationsAndPitfalls
 
         // Finish / dispose releases in finally.
         while (e.MoveNext()) { }
-        e.Dispose();
         releaseConsumer.Set();
         probe.GetAwaiter().GetResult();
         Console.WriteLine("  never hold a lock across yield — consumer code runs while you still own it");

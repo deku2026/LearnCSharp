@@ -33,7 +33,7 @@ internal static class SdkStyleProjectStructure
         Console.WriteLine("-- real LearnCSharp.csproj --");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null);
-        string path = Path.Combine(root, "src", "LearnCSharp", "LearnCSharp.csproj");
+        string path = Path.Join(root, "src", "LearnCSharp", "LearnCSharp.csproj");
         string text = File.ReadAllText(path);
         Debug.Assert(text.Contains("Microsoft.NET.Sdk", StringComparison.Ordinal));
         Debug.Assert(text.Contains("OutputType", StringComparison.Ordinal));
@@ -72,7 +72,7 @@ internal static class SdkStyleProjectStructure
         Console.WriteLine("-- real global.json pins SDK --");
         string? root = FindRepoRoot();
         Debug.Assert(root is not null);
-        string text = File.ReadAllText(Path.Combine(root, "global.json"));
+        string text = File.ReadAllText(Path.Join(root, "global.json"));
         Debug.Assert(text.Contains("sdk", StringComparison.OrdinalIgnoreCase));
         Debug.Assert(text.Contains("10.0", StringComparison.Ordinal));
         Console.WriteLine($"  global.json: {text.ReplaceLineEndings(" ").Trim()}");
@@ -95,8 +95,8 @@ internal static class SdkStyleProjectStructure
             DirectoryInfo? dir = new(start);
             while (dir is not null)
             {
-                if (File.Exists(Path.Combine(dir.FullName, "global.json"))
-                    && File.Exists(Path.Combine(dir.FullName, "Directory.Build.props")))
+                if (File.Exists(Path.Join(dir.FullName, "global.json"))
+                    && File.Exists(Path.Join(dir.FullName, "Directory.Build.props")))
                     return dir.FullName;
                 dir = dir.Parent;
             }

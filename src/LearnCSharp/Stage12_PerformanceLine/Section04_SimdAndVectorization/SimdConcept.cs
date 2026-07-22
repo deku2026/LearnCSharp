@@ -61,7 +61,7 @@ internal static class SimdConcept
             scalar += data[i];
 
         // conceptual parallel add (full Vector demos in later topics)
-        float check = data.Length * (data.Length - 1) / 2f;
+        float check = (float)data.Length * (data.Length - 1) / 2f;
         Debug.Assert(Math.Abs(scalar - check) < 0.1f);
         Console.WriteLine($"  scalar sum of 0..1023 = {scalar}");
         Console.WriteLine("  Use SIMD last: after profile + after reducing allocations.");

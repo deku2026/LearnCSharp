@@ -51,7 +51,7 @@ internal static class SpanReadOnlySpanMemory
         Debug.Assert(chars[0] == 'h');
         ReadOnlySpan<char> sub = chars.Slice(1, 3); // "ell"
         Debug.Assert(sub.SequenceEqual("ell"));
-        Console.WriteLine($"  \"hello\".AsSpan().Slice(1,3)={sub.ToString()}");
+        Console.WriteLine($"  \"hello\".AsSpan().Slice(1,3)={sub}");
     }
 
     private static void DemoStackalloc()

@@ -72,11 +72,10 @@ internal static class OtherModifiers
         VolatileBox box = new VolatileBox();
         box.Flag = 1;
         Debug.Assert(box.Flag == 1);
-        // extern + DllImport：声明外部实现（此处仅验证方法存在）
+        // extern + DllImport：声明外部实现（验证 MethodAttributes.PinvokeImpl 标志）
         MethodInfo? m = typeof(NativeProbe).GetMethod(nameof(NativeProbe.GetTickCount64));
         Debug.Assert(m is not null);
-        Debug.Assert((m.GetMethodImplementationFlags() & MethodImplAttributes.InternalCall) == 0
-                     || true);
+        Debug.Assert((m.Attributes & MethodAttributes.PinvokeImpl) != 0);
         Console.WriteLine($"  volatile Flag={box.Flag}, extern method={m.Name}");
     }
 

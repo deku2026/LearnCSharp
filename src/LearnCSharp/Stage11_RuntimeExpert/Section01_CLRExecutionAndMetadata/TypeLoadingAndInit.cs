@@ -84,7 +84,7 @@ internal static class TypeLoadingAndInit
 
     private static class OnceType
     {
-        public static int InitCount;
+        public static readonly int InitCount;
         public static readonly int Id;
 
         static OnceType()

@@ -77,7 +77,7 @@ internal static class StaticMembersAndTypes
 
     private static class Settings
     {
-        public static int CctorRuns;
+        public static readonly int CctorRuns;
         public static readonly string Env;
         static Settings()
         {

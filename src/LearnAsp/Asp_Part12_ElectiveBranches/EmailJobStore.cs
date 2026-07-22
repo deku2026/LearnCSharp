@@ -94,7 +94,7 @@ public sealed class EmailJobStore
         try
         {
             await using NpgsqlCommand command = connection.CreateCommand();
-            command.Transaction = (NpgsqlTransaction)transaction;
+            command.Transaction = transaction;
             command.CommandText = """
                 SELECT job_id, recipient, subject, html_body, text_body, attempts
                 FROM email_jobs
@@ -119,7 +119,7 @@ public sealed class EmailJobStore
                 reader.GetInt32(5));
             await reader.DisposeAsync();
             await using NpgsqlCommand update = connection.CreateCommand();
-            update.Transaction = (NpgsqlTransaction)transaction;
+            update.Transaction = transaction;
             update.CommandText = "UPDATE email_jobs SET state = 'running', attempts = attempts + 1 WHERE job_id = @id";
             update.Parameters.AddWithValue("id", row.JobId);
             await update.ExecuteNonQueryAsync(cancellationToken);

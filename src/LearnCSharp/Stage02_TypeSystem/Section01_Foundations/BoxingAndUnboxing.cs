@@ -57,9 +57,8 @@ internal static class BoxingAndUnboxing
 
         try
         {
-            long bad = (long)o; // 不能顺便数值转换
+            _ = (long)o; // 不能顺便数值转换
             Debug.Assert(false, "should throw");
-            _ = bad;
         }
         catch (InvalidCastException)
         {

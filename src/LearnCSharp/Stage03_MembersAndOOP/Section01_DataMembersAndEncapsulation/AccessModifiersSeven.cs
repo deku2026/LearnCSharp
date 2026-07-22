@@ -76,17 +76,17 @@ internal static class AccessModifiersSeven
 
     private sealed class VisibilityBox
     {
-        private int _privateValue = 0;
+        private readonly int _privateValue = 0;
         public int PublicValue { get; } = 1;
         public int PeekPrivate() => _privateValue;
     }
 
     private class BaseVisibility
     {
-        protected int ProtectedValue = 42;
-        internal int InternalValue = 7;
-        protected internal int ProtectedInternalValue = 8;
-        private protected int PrivateProtectedValue = 9;
+        protected readonly int ProtectedValue = 42;
+        internal readonly int InternalValue = 7;
+        protected internal readonly int ProtectedInternalValue = 8;
+        private protected readonly int PrivateProtectedValue = 9;
     }
 
     private sealed class DerivedVisibility : BaseVisibility

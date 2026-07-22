@@ -43,7 +43,7 @@ internal static class StreamReaderWriterEncoding
     private static void DemoReaderWriterUtf8()
     {
         Console.WriteLine("-- StreamWriter / StreamReader UTF-8 temp file --");
-        string path = Path.Combine(Path.GetTempPath(), $"learn-rw-{Guid.NewGuid():N}.txt");
+        string path = Path.Join(Path.GetTempPath(), $"learn-rw-{Guid.NewGuid():N}.txt");
         try
         {
             using (StreamWriter writer = new StreamWriter(path, append: false, Encoding.UTF8))

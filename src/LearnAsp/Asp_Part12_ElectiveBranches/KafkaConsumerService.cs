@@ -75,6 +75,7 @@ public sealed class KafkaConsumerService : BackgroundService
         }
         catch (OperationCanceledException)
         {
+            // Expected on shutdown: the stoppingToken cancels the consume loop.
         }
         finally
         {

@@ -14,16 +14,16 @@ public sealed class ManifestLoader
     {
         string[] candidates = new[]
         {
-            Path.Combine(environment.ContentRootPath, "manifests"),
-            Path.Combine(AppContext.BaseDirectory, "manifests"),
-            Path.Combine(environment.ContentRootPath, "..", "..", "..", "..", "..", "docs", "summary"),
+            Path.Join(environment.ContentRootPath, "manifests"),
+            Path.Join(AppContext.BaseDirectory, "manifests"),
+            Path.Join(Path.Join(environment.ContentRootPath, "..", "..", ".."), "..", "..", "docs", "summary"),
         };
         string manifestsDir = candidates.FirstOrDefault(Directory.Exists)
-            ?? Path.Combine(environment.ContentRootPath, "manifests");
-        _capabilities = Load<CapabilitiesFile>(Path.Combine(manifestsDir, "capabilities.json"));
-        _capstones = Load<CapstonesFile>(Path.Combine(manifestsDir, "capstones.json"));
-        _infrastructure = Load<InfrastructureFile>(Path.Combine(manifestsDir, "infrastructure.json"));
-        _evidence = Load<EvidenceFile>(Path.Combine(manifestsDir, "evidence.json"));
+            ?? Path.Join(environment.ContentRootPath, "manifests");
+        _capabilities = Load<CapabilitiesFile>(Path.Join(manifestsDir, "capabilities.json"));
+        _capstones = Load<CapstonesFile>(Path.Join(manifestsDir, "capstones.json"));
+        _infrastructure = Load<InfrastructureFile>(Path.Join(manifestsDir, "infrastructure.json"));
+        _evidence = Load<EvidenceFile>(Path.Join(manifestsDir, "evidence.json"));
     }
 
     public CapabilitiesFile? Capabilities => _capabilities;

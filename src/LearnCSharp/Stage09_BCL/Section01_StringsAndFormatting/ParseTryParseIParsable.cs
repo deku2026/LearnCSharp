@@ -67,7 +67,7 @@ internal static class ParseTryParseIParsable
         Span<char> buf = stackalloc char[36];
         bool ok = ((ISpanFormattable)g).TryFormat(buf, out int written, "D", CultureInfo.InvariantCulture);
         Debug.Assert(ok && written == 36);
-        Console.WriteLine($"  Guid TryFormat → {buf[..written].ToString()}");
+        Console.WriteLine($"  Guid TryFormat → {buf[..written]}");
     }
 
     private static T ParseAny<T>(string s, IFormatProvider? provider)

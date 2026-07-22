@@ -32,7 +32,7 @@ internal static class Fields
         BlankPerson blank = new BlankPerson();
         Debug.Assert(blank.Age == 0);
         Debug.Assert(blank.Name is null);
-        Debug.Assert(blank.Active == false);
+        Debug.Assert(!blank.Active);
         Console.WriteLine($"  未初始化: Age={blank.Age}, Name={blank.Name ?? "null"}, Active={blank.Active}");
     }
 
@@ -78,7 +78,7 @@ internal static class Fields
     {
         private static int s_next = 1000;
         private readonly int _id = ++s_next; // 字段初始化器
-        private string _name;
+        private readonly string _name;
 
         public TrackedPerson(string name) => _name = name;
 

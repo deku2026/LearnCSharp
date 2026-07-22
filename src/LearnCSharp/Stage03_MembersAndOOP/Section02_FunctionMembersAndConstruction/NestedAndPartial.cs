@@ -62,7 +62,7 @@ internal static class NestedAndPartial
 
     private sealed class Outer
     {
-        private int _secret;
+        private readonly int _secret;
         public Outer(int secret) => _secret = secret;
 
         public sealed class Nested
