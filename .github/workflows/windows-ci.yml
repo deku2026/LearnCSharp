@@ -37,12 +37,6 @@ jobs:
         with:
           global-json-file: global.json
 
-      - name: Setup Java JDK 21
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'microsoft'
-          java-version: '21'
-
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
@@ -56,29 +50,18 @@ jobs:
       - name: Verify tool versions
         run: |
           Write-Host "dotnet:     $(& dotnet --version)"
-          Write-Host "java:       $(& java --version 2>&1 | Select-Object -First 1)"
           Write-Host "python:     $(& python --version)"
           Write-Host "pre-commit: $(& pre-commit --version)"
           & dotnet --list-sdks
 
-      - name: Locate MSBuild
-        id: vswhere
-        run: |
-          $msbuild = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe" | Select-Object -First 1
-          if (-not $msbuild) { Write-Error "MSBuild.exe not found"; exit 1 }
-          Write-Host "MSBuild: $msbuild"
-          "path=$msbuild" >> $env:GITHUB_OUTPUT
-
       - name: Restore
-        run: dotnet restore LearnCSharp.slnx
+        run: dotnet restore LearnCSharp.CI.slnx
 
       - name: Build (Debug)
-        run: |
-          & "${{ steps.vswhere.outputs.path }}" LearnCSharp.slnx /p:Configuration=Debug /nologo /v:minimal /m
+        run: dotnet build LearnCSharp.CI.slnx -c Debug --no-restore
 
       - name: Build (Release)
-        run: |
-          & "${{ steps.vswhere.outputs.path }}" LearnCSharp.slnx /p:Configuration=Release /nologo /v:minimal /m
+        run: dotnet build LearnCSharp.CI.slnx -c Release --no-restore
 
       - name: Smoke - list every topic (Release)
         run: dotnet run --project src/LearnCSharp -c Release --no-build
