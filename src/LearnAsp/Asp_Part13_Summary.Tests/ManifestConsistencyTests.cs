@@ -4,8 +4,7 @@ namespace Part13_Summary.Tests;
 
 public sealed class ManifestConsistencyTests
 {
-    private static readonly string RepoRoot =
-        Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", ".."));
+    private static readonly string RepoRoot = RepoRootFinder.Find();
 
     [Fact]
     public async Task CapabilitiesManifestHas31LabsNoDuplicatesUniquePorts()

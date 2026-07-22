@@ -2,19 +2,18 @@ namespace Part13_Summary.Tests;
 
 public sealed class RepoConsistencyTests
 {
-    private static readonly string RepoRoot =
-        Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", ".."));
+    private static readonly string RepoRoot = RepoRootFinder.Find();
 
     [Fact]
     public async Task All31SrcLabsAreNonPlaceholder()
     {
-        string srcDir = Path.Combine(RepoRoot, "src");
+        string srcDir = Path.Combine(RepoRoot, "src", "LearnAsp");
         List<string> labDirs = Directory.GetDirectories(srcDir)
             .Where(d =>
             {
                 string name = Path.GetFileName(d);
-                return (name.StartsWith("Step", StringComparison.Ordinal)
-                    || name.StartsWith("Part", StringComparison.Ordinal))
+                return (name.StartsWith("Asp_Step", StringComparison.Ordinal)
+                    || name.StartsWith("Asp_Part", StringComparison.Ordinal))
                     && File.Exists(Path.Combine(d, "Program.cs"))
                     && File.Exists(Path.Combine(d, "Properties", "launchSettings.json"));
             })

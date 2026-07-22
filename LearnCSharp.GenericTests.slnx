@@ -1,0 +1,27 @@
+<Solution>
+  <Folder Name="/src/LearnAsp/">
+    <Project Path="src/LearnAsp/Asp_Step01_HostStartup.Tests/Asp_Step01_HostStartup.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Step02_DIConfigOptions.Tests/Asp_Step02_DIConfigOptions.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Step03_MiddlewarePipeline.Tests/Asp_Step03_MiddlewarePipeline.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Step04_RoutingEndpoints.Tests/Asp_Step04_RoutingEndpoints.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Step05_MinimalApiVsController.Tests/Asp_Step05_MinimalApiVsController.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Step06_BindingValidationProblemDetails.Tests/Asp_Step06_BindingValidationProblemDetails.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Step07_AuthnAuthzEntry.Tests/Asp_Step07_AuthnAuthzEntry.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Step08_LoggingErrorsHealth.Tests/Asp_Step08_LoggingErrorsHealth.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Step10_HttpFoundation.Tests/Asp_Step10_HttpFoundation.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part03_1_ApiDesign.Tests/Asp_Part03_1_ApiDesign.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part03_2_AppArchitecture.Tests/Asp_Part03_2_AppArchitecture.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part03_3_ProjectStructure.Tests/Asp_Part03_3_ProjectStructure.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part03_4_ArchTesting.Tests/Asp_Part03_4_ArchTesting.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part05_1_AuthnAuthz.Tests/Asp_Part05_1_AuthnAuthz.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part05_2_SpaAuth.Tests/Asp_Part05_2_SpaAuth.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part08_1_OpenTelemetry.Tests/Asp_Part08_1_OpenTelemetry.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part08_2_TroubleshootingProcess.Tests/Asp_Part08_2_TroubleshootingProcess.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part09_Deployment.Tests/Asp_Part09_Deployment.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part11_1_PerformanceAdvanced.Tests/Asp_Part11_1_PerformanceAdvanced.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part11_2_NativeAotTrim.Tests/Asp_Part11_2_NativeAotTrim.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part11_3_FrameworkSource.Tests/Asp_Part11_3_FrameworkSource.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part12_ElectiveBranches.Tests/Asp_Part12_ElectiveBranches.Tests.csproj" />
+    <Project Path="src/LearnAsp/Asp_Part13_Summary.Tests/Asp_Part13_Summary.Tests.csproj" />
+  </Folder>
+</Solution>

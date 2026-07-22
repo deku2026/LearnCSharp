@@ -352,7 +352,8 @@ public sealed class W6DockerFixture : IAsyncLifetime
         string assembly = Path.Join(
             repository,
             "src",
-            projectDirectory,
+            "LearnAsp",
+            $"Asp_{projectDirectory}",
             "bin",
             configuration,
             "net10.0",
@@ -479,7 +480,7 @@ public sealed class W6DockerFixture : IAsyncLifetime
         DirectoryInfo? directory = new DirectoryInfo(AppContext.BaseDirectory);
         while (directory is not null)
         {
-            if (File.Exists(Path.Join(directory.FullName, "LearnAspNet.slnx")))
+            if (File.Exists(Path.Join(directory.FullName, "LearnCSharp.slnx")))
             {
                 return directory.FullName;
             }
@@ -487,7 +488,7 @@ public sealed class W6DockerFixture : IAsyncLifetime
             directory = directory.Parent;
         }
 
-        throw new DirectoryNotFoundException("Could not locate the LearnAspNet repository root.");
+        throw new DirectoryNotFoundException("Could not locate the LearnCSharp repository root.");
     }
 }
 

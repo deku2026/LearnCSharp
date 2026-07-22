@@ -183,7 +183,7 @@ public sealed class Part12Factory(
             ["Kafka:RunConsumer"] = "true",
             ["Kafka:GroupId"] = $"campus-w9-test-{Guid.NewGuid():N}",
             ["Notifications:RunScheduler"] = "true",
-            ["Notifications:SmtpHost"] = "localhost",
+            ["Notifications:SmtpHost"] = "127.0.0.1",
             ["Notifications:SmtpPort"] = mailpitSmtpPort.ToString(System.Globalization.CultureInfo.InvariantCulture),
             ["Notifications:PollIntervalMs"] = "500",
             ["Notifications:BaseBackoffMs"] = "50",

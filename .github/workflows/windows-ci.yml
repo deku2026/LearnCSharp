@@ -82,6 +82,10 @@ jobs:
             exit 1
           }
 
+      - name: Test generic projects (Release)
+        # Docker-backed PostgreSQL/Redis/RabbitMQ/Keycloak suites run only in Linux CI.
+        run: dotnet test LearnCSharp.GenericTests.slnx -c Release --no-build --filter-not-trait Category=Docker
+
       - name: Run pre-commit hooks
         run: |
           $env:MSBUILDDISABLENODEREUSE = "1"
