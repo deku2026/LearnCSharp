@@ -93,3 +93,106 @@ jobs:
           if ($LASTEXITCODE -eq 0) { exit 0 }
           Write-Host 'pre-commit made changes; rerunning once'
           pre-commit run --all-files --show-diff-on-failure --color=always
+
+  cpp-cmake:
+    name: C++ Windows x64 (clang-cl + ninja + sccache)
+    runs-on: windows-2025-vs2026
+    timeout-minutes: 60
+    env:
+      SCCACHE_DIR: ${{ github.workspace }}\.sccache
+      SCCACHE_CACHE_SIZE: "2G"
+      CMAKE_C_COMPILER_LAUNCHER: sccache
+      CMAKE_CXX_COMPILER_LAUNCHER: sccache
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup MSVC dev environment (VS2026, x64)
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+          vsversion: 18.0
+
+      - name: Install CMake + Ninja
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: "3.31.6"
+          ninjaVersion: latest
+
+      - name: Use VS2026 bundled clang-cl (22.x)
+        # The windows-2025-vs2026 runner ships VS2026 (= VS18); its bundled LLVM
+        # (clang-cl 22.x) lives under VS\VC\Tools\Llvm\x64\bin. Prepend it to PATH
+        # so clang-cl resolves to VS2026's copy, matching local dev builds.
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vsPath = & $vswhere -latest -version "[18.0,19.0)" -property installationPath
+          if (-not $vsPath) {
+            Write-Error "VS2026 (= VS18) not found on this runner via vswhere"
+            exit 1
+          }
+          $llvmBin = Join-Path $vsPath "VC\Tools\Llvm\x64\bin"
+          if (-not (Test-Path "$llvmBin\clang-cl.exe")) {
+            Write-Error "clang-cl.exe missing under $llvmBin"
+            exit 1
+          }
+          echo $llvmBin | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      - name: Install sccache
+        uses: mozilla-actions/sccache-action@v0.0.10
+
+      - name: Restore sccache cache
+        uses: actions/cache@v6
+        with:
+          path: ${{ env.SCCACHE_DIR }}
+          key: sccache-cpp-windows-${{ hashFiles('src/learncpp/CMakeLists.txt','src/learncpp/cmake/**','src/learncpp/CMakePresets.json') }}-${{ github.sha }}
+          restore-keys: |
+            sccache-cpp-windows-${{ hashFiles('src/learncpp/CMakeLists.txt','src/learncpp/cmake/**','src/learncpp/CMakePresets.json') }}-
+            sccache-cpp-windows-
+
+      - name: Verify tools
+        run: |
+          (Get-Command clang-cl).Source
+          clang-cl --version
+          cmake --version | Select-Object -First 1
+          ninja --version
+          sccache --version
+
+      - name: Configure
+        working-directory: src/learncpp
+        run: cmake --preset windows-ci
+
+      - name: Build
+        working-directory: src/learncpp
+        run: cmake --build --preset windows-ci
+
+      - name: Smoke-run learn_cpp (list registered topics)
+        working-directory: src/learncpp
+        run: |
+          $exe = "build/windows-ci/bin/learn_cpp.exe"
+          $output = @(& $exe)
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $output | Select-Object -First 5
+          $listed = @($output | Where-Object { $_ -match '^  ' }).Count
+          if ($output[0] -ne 'learn_cpp: 874 topics registered' -or $listed -ne 874) {
+            Write-Error "expected exactly 874 registered topics; header='$($output[0])', listed=$listed"
+            exit 1
+          }
+          Write-Host "OK (874 registered topics)"
+
+      - name: sccache stats
+        if: always()
+        run: sccache --show-stats
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install pre-commit
+        run: python -m pip install --upgrade pip pre-commit
+
+      - name: Run pre-commit (C++ hooks; dotnet-format needs the dotnet job)
+        env:
+          SKIP: dotnet-format
+        run: pre-commit run --all-files --show-diff-on-failure --color=always

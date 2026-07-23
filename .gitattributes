@@ -9,6 +9,24 @@
 *.bat text eol=crlf
 *.cmd text eol=crlf
 *.ps1 text eol=crlf
+
+# C++ / Visual Studio native project files (LearnCpp subtree) keep CRLF.
+*.sln text eol=crlf
+*.vcxproj text eol=crlf
+*.filters text eol=crlf
+
+# C++ sources — GitHub linguist language hints.
+*.h linguist-language=C++
+*.hh linguist-language=C++
+*.hpp linguist-language=C++
+*.hxx linguist-language=C++
+*.inc linguist-language=C++
+*.cc linguist-language=C++
+*.cpp linguist-language=C++
+*.cxx linguist-language=C++
+*.ipp linguist-language=C++
+*.tpp linguist-language=C++
+
 *.png binary
 *.jpg binary
 *.jpeg binary
@@ -22,4 +40,6 @@
 *.dll binary
 *.so binary
 *.dylib binary
+*.obj binary
+*.o binary
 **/Generated/** linguist-generated=true

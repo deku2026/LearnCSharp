@@ -98,3 +98,113 @@ jobs:
           fi
           echo 'pre-commit made changes; rerunning once'
           pre-commit run --all-files --show-diff-on-failure --color=always
+
+  cpp-cmake:
+    name: C++ macOS arm64 (Homebrew Clang 22 + libc++)
+    runs-on: macos-14
+    timeout-minutes: 45
+    env:
+      SCCACHE_DIR: ${{ github.workspace }}/.sccache
+      SCCACHE_CACHE_SIZE: 2G
+      CMAKE_C_COMPILER_LAUNCHER: sccache
+      CMAKE_CXX_COMPILER_LAUNCHER: sccache
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install CMake + Ninja
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: "3.31.6"
+          ninjaVersion: latest
+
+      - name: Install LLVM 22 (clang, clang-format, clang-tidy)
+        run: |
+          set -euo pipefail
+          brew install llvm@22
+          llvm_prefix=$(brew --prefix llvm@22)
+          echo "${llvm_prefix}/bin" >> "$GITHUB_PATH"
+          echo "LLVM_PREFIX=${llvm_prefix}" >> "$GITHUB_ENV"
+          "${llvm_prefix}/bin/clang" --version | head -1
+
+      - name: Install sccache
+        uses: mozilla-actions/sccache-action@v0.0.10
+
+      - name: Restore sccache cache
+        uses: actions/cache@v6
+        with:
+          path: ${{ env.SCCACHE_DIR }}
+          key: sccache-cpp-macos-${{ hashFiles('src/learncpp/CMakeLists.txt','src/learncpp/cmake/**','src/learncpp/CMakePresets.json') }}-${{ github.sha }}
+          restore-keys: |
+            sccache-cpp-macos-${{ hashFiles('src/learncpp/CMakeLists.txt','src/learncpp/cmake/**','src/learncpp/CMakePresets.json') }}-
+            sccache-cpp-macos-
+
+      - name: Verify tools
+        run: |
+          set -euo pipefail
+          "$LLVM_PREFIX/bin/clang" --version
+          "$LLVM_PREFIX/bin/clang++" --version
+          clang_major=$("$LLVM_PREFIX/bin/clang++" -dumpversion | cut -d. -f1)
+          if [ "$clang_major" != 22 ]; then
+            echo "expected Clang major 22, got '$clang_major'" >&2
+            exit 1
+          fi
+          cmake --version | head -n 1
+          ninja --version
+          sccache --version
+
+      - name: Configure
+        working-directory: src/learncpp
+        run: |
+          set -euo pipefail
+          export CC="$LLVM_PREFIX/bin/clang"
+          export CXX="$LLVM_PREFIX/bin/clang++"
+          cmake --preset macos-ci -DCMAKE_CXX_COMPILER="$LLVM_PREFIX/bin/clang++"
+          configured_compiler=$(sed -n 's/^CMAKE_CXX_COMPILER:[^=]*=//p' build/macos-ci/CMakeCache.txt)
+          if [ "$configured_compiler" != "$LLVM_PREFIX/bin/clang++" ]; then
+            echo "CMake selected unexpected compiler '$configured_compiler'" >&2
+            exit 1
+          fi
+
+      - name: Build all translation units
+        working-directory: src/learncpp
+        run: cmake --build --preset macos-ci -- -k 0
+
+      - name: Smoke-run learn_cpp (list registered topics)
+        working-directory: src/learncpp
+        run: |
+          set -euo pipefail
+          exe=build/macos-ci/bin/learn_cpp
+          output=$("$exe")
+          printf '%s\n' "$output" | sed -n '1,5p'
+          header=${output%%$'\n'*}
+          listed=$(printf '%s\n' "$output" | sed -n 's/^  //p' | wc -l | tr -d ' ')
+          if [ "$header" != 'learn_cpp: 874 topics registered' ] || [ "$listed" -ne 874 ]; then
+            echo "expected exactly 874 registered topics; header='$header', listed=$listed" >&2
+            exit 1
+          fi
+          echo "OK (874 registered topics)"
+
+      - name: sccache stats
+        if: always()
+        run: sccache --show-stats
+
+      - name: Install pre-commit (pipx, PEP 668 safe)
+        if: always()
+        run: |
+          set -euo pipefail
+          # macos-14 ships Python 3.13 as externally-managed; use pipx (preinstalled) so pip won't refuse.
+          if ! command -v pipx >/dev/null 2>&1; then
+            brew install pipx
+            pipx ensurepath
+          fi
+          pipx install pre-commit
+          # pipx puts shims under ~/.local/bin
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Run pre-commit (C++ hooks; dotnet-format needs the dotnet job)
+        if: always()
+        env:
+          SKIP: dotnet-format
+        run: pre-commit run --all-files --show-diff-on-failure --color=always

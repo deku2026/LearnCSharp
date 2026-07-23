@@ -62,6 +62,7 @@ jobs:
               - '**/obj/**'
               - '**/Migrations/**'
               - 'src/LearnMaui/**'
+              - 'src/learncpp/**'
 
       - name: Restore
         run: dotnet restore LearnCSharp.CI.slnx

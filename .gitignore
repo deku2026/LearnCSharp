@@ -8,6 +8,19 @@ dist/
 TestResults/
 .compiler-cache/
 
+# CMake / compiler caches (LearnCpp subtree builds under src/learncpp/build/)
+.cache/
+.sccache/
+.ccache/
+CMakeCache.txt
+CMakeFiles/
+CMakeUserPresets.json
+cmake-build-*/
+Testing/
+*.gcov
+*.gcda
+*.gcno
+
 # ASP.NET / .NET dev secrets and runtime junk
 secrets.json
 appsettings.*.local.json

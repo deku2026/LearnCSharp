@@ -6,6 +6,11 @@
   <Folder Name="/src/">
     <Project Path="src/LearnCSharp/LearnCSharp.csproj" />
   </Folder>
+  <Folder Name="/src/learncpp/">
+    <Project Path="src/learncpp/vs/cpp_learn.vcxproj" Id="44b4c0d0-2a55-4a73-b803-cc04213d600b">
+      <Platform Solution="*|Any CPU" Project="x64" />
+    </Project>
+  </Folder>
   <Folder Name="/src/LearnAvalonia/">
     <Project Path="src/LearnAvalonia/Avalonia_Capstone1_DesktopFoundation/Avalonia_Capstone1_DesktopFoundation.csproj" />
     <Project Path="src/LearnAvalonia/Avalonia_Capstone2_ComplexDesktop/Avalonia_Capstone2_ComplexDesktop.csproj" />
