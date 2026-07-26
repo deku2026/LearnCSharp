@@ -1,0 +1,21 @@
+@page "/diagnostics"
+
+@* Part14 - 诊断：渲染计数 + ShouldRender 重写 *@
+
+<PageTitle>Part14 · Diagnostics</PageTitle>
+<h1>Diagnostics</h1>
+
+<p>渲染次数：@_renderCount</p>
+<button class="icon-btn" style="background:var(--color-surface-container)" @onclick="Bump">Bump (re-render)</button>
+
+@code {
+    private int _renderCount;
+
+    protected override bool ShouldRender()
+    {
+        _renderCount++;
+        return true;
+    }
+
+    private void Bump() { }
+}

@@ -59,6 +59,7 @@
     <Project Path="src/LearnBlazor/Blazor_Part12_CodeFirstRpcClient.Api/Blazor_Part12_CodeFirstRpcClient.Api.csproj" />
     <Project Path="src/LearnBlazor/Blazor_Part13_AuthSecurityBoundary/Blazor_Part13_AuthSecurityBoundary.csproj" />
     <Project Path="src/LearnBlazor/Blazor_Part14_TestingDebugging/Blazor_Part14_TestingDebugging.csproj" />
+    <Project Path="src/LearnBlazor/Blazor_Part14_TestingDebugging.Tests/Blazor_Part14_TestingDebugging.Tests.csproj" />
     <Project Path="src/LearnBlazor/Blazor_Part15_PerformanceDiagnostics/Blazor_Part15_PerformanceDiagnostics.csproj" />
     <Project Path="src/LearnBlazor/Blazor_Part16_PackagingEngineering/Blazor_Part16_PackagingEngineering.csproj" />
   </Folder>

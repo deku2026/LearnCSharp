@@ -81,5 +81,6 @@
     <!-- LearnBlazor -->
     <PackageVersion Include="bunit.web" Version="1.40.0" />
     <PackageVersion Include="bunit.core" Version="1.40.0" />
+    <PackageVersion Include="AngleSharp" Version="1.5.2" />
   </ItemGroup>
 </Project>
