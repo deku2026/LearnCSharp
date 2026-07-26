@@ -3,4 +3,7 @@
     <AssemblyName>Blazor_Part09_ComponentLibStyling</AssemblyName>
     <RootNamespace>LearnBlazor.Blazor_Part09_ComponentLibStyling</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Blazor_Part09_ComponentLibStyling.RazorLib\Blazor_Part09_ComponentLibStyling.RazorLib.csproj" />
+  </ItemGroup>
 </Project>

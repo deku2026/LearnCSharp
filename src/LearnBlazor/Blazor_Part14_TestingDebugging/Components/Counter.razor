@@ -1,0 +1,10 @@
+@* Part14 fixture - 被 bUnit 测试的组件 *@
+
+<p>Count: @Start</p>
+<button @onclick="Increment">+1</button>
+
+@code {
+    [Parameter] public int Start { get; set; }
+
+    private void Increment() => Start++;
+}

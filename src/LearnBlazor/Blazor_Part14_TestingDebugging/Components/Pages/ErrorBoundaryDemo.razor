@@ -1,0 +1,28 @@
+@page "/error-boundary"
+
+<PageTitle>Part14 · ErrorBoundary</PageTitle>
+<h1>ErrorBoundary</h1>
+
+<p>未捕获异常会被 <code>&lt;ErrorBoundary&gt;</code> 接住，显示回退内容而非崩溃整个 circuit。</p>
+
+<ErrorBoundary>
+    <ChildContent>
+        @if (_throw)
+        {
+            <Throwing />
+        }
+        else
+        {
+            <p>No error. 点下方按钮触发异常。</p>
+        }
+    </ChildContent>
+    <ErrorContent>
+        <p role="alert" style="color:red">已捕获异常：ErrorBoundary 兜底。</p>
+    </ErrorContent>
+</ErrorBoundary>
+
+<button class="icon-btn" style="background:var(--color-surface-container)" @onclick="() => _throw = true">Throw</button>
+
+@code {
+    private bool _throw;
+}

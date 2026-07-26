@@ -2,6 +2,11 @@
     --color-bg: #ffffff;
     --color-fg: #1a1a1a;
     --color-accent: #5b21b6;
+    --color-surface-container: #f0f0f3;
+    --space-2: .5rem;
+    --space-3: 1rem;
+    --radius-md: .75rem;
+    --touch-min: 2.75rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -9,6 +14,7 @@
         --color-bg: #121212;
         --color-fg: #f5f5f5;
         --color-accent: #a78bfa;
+        --color-surface-container: #1e2022;
     }
 }
 
@@ -22,4 +28,18 @@ body {
 
 h1 {
     color: var(--color-accent);
+}
+
+.card {
+    background: var(--color-surface-container);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    margin-block: var(--space-2);
+}
+
+.icon-btn {
+    min-height: var(--touch-min);
+    border: 0;
+    border-radius: var(--radius-md);
+    cursor: pointer;
 }

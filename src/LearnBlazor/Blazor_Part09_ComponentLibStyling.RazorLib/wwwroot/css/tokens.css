@@ -1,0 +1,24 @@
+/* Part09 RCL - token 权威（与 Part02 tokens.css 同语义，命名空间隔离） */
+:root {
+    --rl-color-primary: #0b57d0;
+    --rl-color-on-primary: #ffffff;
+    --rl-color-surface: #fdfcff;
+    --rl-color-on-surface: #1a1c1e;
+    --rl-color-surface-container: #f0f0f3;
+    --rl-color-outline-variant: #c3c6cf;
+    --rl-space-2: .5rem;
+    --rl-space-3: 1rem;
+    --rl-radius-md: .75rem;
+    --rl-touch-min: 2.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --rl-color-primary: #a8c7fa;
+        --rl-color-on-primary: #003258;
+        --rl-color-surface: #1a1c1e;
+        --rl-color-on-surface: #e2e2e5;
+        --rl-color-surface-container: #1e2022;
+        --rl-color-outline-variant: #43474e;
+    }
+}

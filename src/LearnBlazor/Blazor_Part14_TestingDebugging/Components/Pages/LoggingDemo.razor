@@ -1,0 +1,17 @@
+@page "/logging"
+
+@* Part14 - ILogger 演示 *@
+
+<PageTitle>Part14 · Logging</PageTitle>
+<h1>Logging Demo</h1>
+
+<button class="icon-btn" style="background:var(--color-surface-container)" @onclick="LogInfo">Log info</button>
+<button class="icon-btn" style="background:var(--color-surface-container)" @onclick="LogWarn">Log warn</button>
+<p>看控制台/日志输出。</p>
+
+@code {
+    [Inject] public ILogger<LoggingDemo> Logger { get; set; } = default!;
+
+    private void LogInfo() => Logger.LogInformation("info at {Time}", DateTime.Now);
+    private void LogWarn() => Logger.LogWarning("warn at {Time}", DateTime.Now);
+}

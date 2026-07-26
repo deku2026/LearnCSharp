@@ -1,0 +1,34 @@
+@page "/tokens"
+@* Part02 §3 - Design Tokens 亮/暗切换演示 *@
+
+<PageTitle>Part02 · Tokens & Theme</PageTitle>
+
+<h1>Tokens & Theme</h1>
+
+<p>组件 CSS 只引用 <code>var(--color-*)</code>；主题切换 = 换 token，不改选择器。
+   下面按钮通过 <code>html[data-theme]</code> 强制覆盖 <code>prefers-color-scheme</code>。</p>
+
+<div class="card-grid" style="margin-block:1rem">
+    @foreach (var sample in new[] { "primary", "surface", "surface-container", "outline-variant" })
+    {
+        <article class="card">
+            <div style="height:3rem;border-radius:var(--radius-md);background:var(--color-@sample)"></div>
+            <p class="list-row__sub">--color-@sample</p>
+        </article>
+    }
+</div>
+
+<button class="icon-btn" style="background:var(--color-primary);color:var(--color-on-primary)"
+        @onclick="SetLight">Light</button>
+<button class="icon-btn" style="background:var(--color-surface-container)"
+        @onclick="SetDark">Dark</button>
+<button class="icon-btn" style="background:var(--color-surface-container)"
+        @onclick="SetAuto">Auto</button>
+
+@code {
+    [Inject] public IJSRuntime JS { get; set; } = default!;
+
+    private async Task SetLight() => await JS.InvokeVoidAsync("eval", "document.documentElement.setAttribute('data-theme','light')");
+    private async Task SetDark() => await JS.InvokeVoidAsync("eval", "document.documentElement.setAttribute('data-theme','dark')");
+    private async Task SetAuto() => await JS.InvokeVoidAsync("eval", "document.documentElement.removeAttribute('data-theme')");
+}

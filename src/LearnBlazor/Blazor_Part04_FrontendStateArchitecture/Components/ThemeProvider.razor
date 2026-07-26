@@ -1,0 +1,13 @@
+@* Part04 - ThemeProvider：把 ThemeState 级联给后代 *@
+
+@inject ThemeState ThemeState
+
+<CascadingValue Value="@ThemeState">
+    <div data-theme="@ThemeState.Theme">
+        @ChildContent
+    </div>
+</CascadingValue>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

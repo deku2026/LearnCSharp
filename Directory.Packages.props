@@ -78,5 +78,9 @@
     <PackageVersion Include="WireMock.Net" Version="2.12.0" />
     <PackageVersion Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.19.2" />
     <PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.19.2" />
+    <!-- LearnBlazor -->
+    <PackageVersion Include="bunit.web" Version="1.40.0" />
+    <PackageVersion Include="bunit.core" Version="1.40.0" />
+    <PackageVersion Include="AngleSharp" Version="1.5.2" />
   </ItemGroup>
 </Project>

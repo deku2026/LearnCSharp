@@ -1,0 +1,8 @@
+@* Part09 RCL - Badge *@
+
+<span class="badge badge-@Tone">@ChildContent</span>
+
+@code {
+    [Parameter] public string Tone { get; set; } = "neutral"; // neutral | accent | danger
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

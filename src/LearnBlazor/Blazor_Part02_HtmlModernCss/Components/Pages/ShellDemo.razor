@@ -1,0 +1,62 @@
+@page "/shell"
+@page "/shell/{CurrentTab:alpha}"
+
+@* Part02 §2 - 经典手机壳：顶栏 + 可滚动内容 + 底栏三 Tab + 抽屉
+   纯 HTML/CSS 驱动，状态由 Blazor 切 data-open / aria-current。 *@
+
+<PageTitle>Part02 · App Shell Demo</PageTitle>
+
+<section class="app">
+    <header class="top-bar">
+        <h1 class="top-bar__title">收件箱</h1>
+        <button type="button" class="icon-btn" aria-label="搜索">🔍</button>
+    </header>
+
+    <main id="main" class="content" tabindex="-1">
+        <h2 class="sr-only">@CurrentTab 列表</h2>
+        @if (CurrentTab == "inbox")
+        {
+            @foreach (var row in FakeRows)
+            {
+                <article class="list-row">
+                    <div>
+                        <h3 class="list-row__title">@row.Title</h3>
+                        <p class="list-row__sub">@row.Sub</p>
+                    </div>
+                </article>
+            }
+        }
+        else if (CurrentTab == "card")
+        {
+            <div class="card-grid">
+                @for (var i = 0; i < 12; i++)
+                {
+                    var n = i + 1;
+                    <article class="card">
+                        <h3>卡片 @n</h3>
+                        <p class="list-row__sub">auto-fill + minmax 演示</p>
+                    </article>
+                }
+            </div>
+        }
+        else
+        {
+            <p>关于本演示：纯 HTML/CSS 移动壳，flex 顶栏/内容/底栏 + 安全区 + 触控目标。</p>
+        }
+    </main>
+
+    <nav class="bottom-nav" aria-label="主导航">
+        <a class="bottom-nav__item" href="/shell/inbox" aria-current="@(CurrentTab == "inbox" ? "page" : "false")">收件箱</a>
+        <a class="bottom-nav__item" href="/shell/card" aria-current="@(CurrentTab == "card" ? "page" : "false")">卡片</a>
+        <a class="bottom-nav__item" href="/shell/about" aria-current="@(CurrentTab == "about" ? "page" : "false")">关于</a>
+    </nav>
+</section>
+
+@code {
+    [Parameter] public string CurrentTab { get; set; } = "inbox";
+
+    private List<(string Title, string Sub)> FakeRows =>
+        Enumerable.Range(1, 30)
+            .Select(i => ($"会议纪要 #{i}", $"今天 14:{30 + i % 10:00} · {(i % 3 == 0 ? "未读" : "已读")}"))
+            .ToList();
+}

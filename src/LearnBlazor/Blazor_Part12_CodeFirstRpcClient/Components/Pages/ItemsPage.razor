@@ -1,0 +1,54 @@
+@page "/items"
+@inject ItemsClient Client
+@* Part12 - UI 状态机：loading | content | empty | error *@
+
+<PageTitle>Part12 · Items</PageTitle>
+<h1>Items (HTTP client + resilience + error mapping)</h1>
+
+@if (_state is State.Loading)
+{
+    <p role="status">Loading…</p>
+}
+else if (_state is State.Error)
+{
+    <p role="alert" style="color:red">Error: @_error</p>
+    <button class="icon-btn" style="background:var(--color-surface-container)" @onclick="Load">Retry</button>
+}
+else if (_items is { Count: 0 })
+{
+    <p>Empty.</p>
+}
+else if (_items is not null)
+{
+    <ul>
+        @foreach (var item in _items)
+        {
+            <li>@item.Title @(item.Done ? "✓" : "")</li>
+        }
+    </ul>
+}
+
+@code {
+    private enum State { Loading, Content, Error }
+    private State _state = State.Loading;
+    private IReadOnlyList<Item>? _items;
+    private string _error = string.Empty;
+
+    protected override async Task OnInitializedAsync() => await Load();
+
+    private async Task Load()
+    {
+        _state = State.Loading;
+        var (items, err) = await Client.GetAllAsync();
+        if (err == ApiError.None)
+        {
+            _items = items;
+            _state = State.Content;
+        }
+        else
+        {
+            _error = err.ToString();
+            _state = State.Error;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+@page "/account"
+@attribute [Authorize]
+@inject AuthService Auth
+@* Part13 - [Authorize] 受保护页面 *@
+
+<PageTitle>Part13 · Account</PageTitle>
+<h1>Account (protected by [Authorize])</h1>
+
+<p>欢迎，<strong>@Auth.CurrentName</strong>。Admin=@Auth.IsAdmin</p>
+
+<button class="icon-btn" style="background:var(--color-surface-container)" @onclick="Logout">Logout</button>
+
+@code {
+    [Inject] public NavigationManager Nav { get; set; } = default!;
+    [Inject] public AuthenticationStateProvider StateProvider { get; set; } = default!;
+
+    private async Task Logout()
+    {
+        await Auth.LogoutAsync();
+        if (StateProvider is SimpleAuthStateProvider p) p.NotifyChanged();
+        Nav.NavigateTo("/", forceLoad: true);
+    }
+}

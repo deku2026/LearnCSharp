@@ -1,0 +1,47 @@
+@* Part03 §4 - 生命周期：OnInitialized{Async} / OnParametersSet / OnAfterRender{Async} / IDisposable
+   演示 + CSS isolation *@
+
+<div class="lifecycle">
+    <h3>Lifecycle 日志</h3>
+    <ul>
+        @foreach (var line in _log)
+        {
+            <li>@line</li>
+        }
+    </ul>
+    <button class="icon-btn" style="background:var(--color-surface-container)" @onclick="TriggerRender">Trigger re-render</button>
+</div>
+
+@code {
+    private readonly List<string> _log = new();
+    private int _renderCount;
+
+    protected override void OnInitialized() => _log.Add($"OnInitialized (renderCount will increment)");
+
+    protected override void OnParametersSet() => _log.Add("OnParametersSet");
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        _renderCount++;
+        _log.Add($"OnAfterRender(firstRender={firstRender}) renderCount={_renderCount}");
+    }
+
+    private void TriggerRender() => _log.Add($"-- click @ {DateTime.Now:HH:mm:ss.fff} --");
+
+    public void Dispose() => _log.Add("Dispose");
+}
+
+<style>
+    /* 演示 CSS isolation：编译后形如 .lifecycle[b-xxxx] */
+    .lifecycle {
+        border: 1px solid var(--color-outline-variant, #c3c6cf);
+        padding: 1rem;
+        border-radius: .75rem;
+    }
+
+    .lifecycle ul {
+        max-height: 12rem;
+        overflow: auto;
+        font-size: .8rem;
+    }
+</style>

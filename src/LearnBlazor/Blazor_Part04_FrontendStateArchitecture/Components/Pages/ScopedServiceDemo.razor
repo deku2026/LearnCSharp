@@ -1,0 +1,7 @@
+@page "/scoped-state"
+
+<PageTitle>Part04 · Scoped Services</PageTitle>
+<h1>Scoped 状态容器（同一 circuit 共享）</h1>
+<CounterView />
+<CounterView />
+<p>两个 CounterView 实例共享同一 CounterState（Scoped），点任意 +1 都会同步刷新两个。</p>

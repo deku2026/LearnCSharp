@@ -1,0 +1,32 @@
+@page "/safe-area"
+
+@* Part02 §4.3 - 安全区 + 视口单位演示 *@
+
+<PageTitle>Part02 · Safe Area & Viewport</PageTitle>
+
+<h1>Safe Area & Viewport</h1>
+
+<p>移动壳必配 <code>viewport-fit=cover</code> + <code>env(safe-area-inset-*)</code>；
+   全屏高度用 <code>100dvh</code> 级联回退到 <code>100svh</code>，<strong>不要</strong>裸用 <code>100vh</code>。</p>
+
+<section class="app" style="min-height:60vh;min-height:60svh;min-height:60dvh;border:1px solid var(--color-outline-variant)">
+    <header class="top-bar">
+        <h2 class="top-bar__title">顶栏（safe-area-inset-top）</h2>
+    </header>
+    <main class="content">
+        <p>内容区 padding-bottom 已含 safe-area-inset-bottom。真机看刘海/手势条是否穿帮。</p>
+    </main>
+    <nav class="bottom-nav" aria-label="底栏">
+        <span class="bottom-nav__item">底栏（safe-area-inset-bottom）</span>
+    </nav>
+</section>
+
+<h2>视口单位对照</h2>
+<table>
+    <thead><tr><th>单位</th><th>含义</th><th>适用</th></tr></thead>
+    <tbody>
+        <tr><td><code>vh</code></td><td>常基于最大视口</td><td>少用于全屏壳</td></tr>
+        <tr><td><code>svh</code></td><td>small viewport</td><td>最小高度保守值</td></tr>
+        <tr><td><code>dvh</code></td><td>dynamic 随工具栏/键盘</td><td>全屏壳首选（支持时）</td></tr>
+    </tbody>
+</table>

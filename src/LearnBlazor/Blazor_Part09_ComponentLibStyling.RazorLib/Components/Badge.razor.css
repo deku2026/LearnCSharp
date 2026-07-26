@@ -1,0 +1,18 @@
+.badge {
+    display: inline-block;
+    padding: .15rem .5rem;
+    border-radius: 999px;
+    font-size: .75rem;
+    background: var(--rl-color-surface-container);
+    color: var(--rl-color-on-surface);
+}
+
+.badge-accent {
+    background: var(--rl-color-primary);
+    color: var(--rl-color-on-primary);
+}
+
+.badge-danger {
+    background: #ba1a1a;
+    color: #fff;
+}

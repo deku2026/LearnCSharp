@@ -1,0 +1,15 @@
+@page "/items/{Id:int}"
+@* Part05 - 路由参数 + NavigateTo 程序化跳转 *@
+
+<PageTitle>Part05 · Item @Id</PageTitle>
+<h1>Item @Id</h1>
+<p>路由参数 <code>Id:int</code> 约束。</p>
+<button class="icon-btn" style="background:var(--color-surface-container)" @onclick="Back">← Back to list</button>
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    [Inject] public NavigationManager Nav { get; set; } = default!;
+
+    private void Back() => Nav.NavigateTo("/items");
+}

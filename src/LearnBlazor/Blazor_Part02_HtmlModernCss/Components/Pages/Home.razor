@@ -1,7 +1,31 @@
 @page "/"
 
-<PageTitle>Part02_HtmlModernCss - HTML / Modern CSS / Mobile Visual Foundation</PageTitle>
+<PageTitle>Part02 · HTML/CSS 移动视觉地基</PageTitle>
 
-<h1>Hello from Part02_HtmlModernCss</h1>
+<h1>Part02 · HTML / 现代 CSS / 移动视觉地基</h1>
 
-<p>BlazorStudy Part 2 - HTML / Modern CSS / Mobile Visual Foundation.</p>
+<p>本部分对应 BlazorStudy 第 2 部分。建立移动 App 质感的视觉与布局地基，
+   <strong>本部分实验全部纯 HTML/CSS，不依赖 Blazor 逻辑</strong>。
+   同样的 CSS 将被后续部分搬进 Blazor <code>wwwroot</code> 与 RCL。</p>
+
+<h2>演示</h2>
+<ul>
+    <li><a href="/shell/inbox">App Shell 演示</a> — 顶栏 + 可滚动内容 + 底栏三 Tab（768px+ 变侧栏）</li>
+    <li><a href="/tokens">Design Tokens</a> — 亮/暗切换 + 语义 token</li>
+    <li><a href="/safe-area">Safe Area & Viewport</a> — env + dvh/svh</li>
+    <li><a href="/drawer">Drawer</a> — 抽屉 + backdrop + reduced-motion</li>
+    <li><a href="/reduced-motion">Reduced Motion & :focus-visible</a></li>
+</ul>
+
+<h2>验收标准</h2>
+<ul>
+    <li>能闭卷画出 App 壳 flex 结构，解释为何需要 <code>min-height: 0</code></li>
+    <li>静态页 landmark 正确；当前导航有 <code>aria-current</code></li>
+    <li>双主题仅通过 token 切换；组件无散落色值</li>
+    <li>不使用裸 <code>100vh</code> 当唯一全屏高度</li>
+    <li>触控目标 ≥ 44×44 CSS px；tap highlight 已处理</li>
+    <li><code>prefers-reduced-motion</code> 与 <code>:focus-visible</code> 已实现</li>
+    <li>使用 <code>@@layer</code> 划分 reset/tokens/components</li>
+    <li>能口述 stacking context 为何让 <code>z-index: 9999</code> 失效</li>
+    <li>能说明 container query 与 media query 的职责分工</li>
+</ul>

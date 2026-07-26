@@ -1,0 +1,44 @@
+@* Part08 - 模态焦点陷阱（Tab/Shift+Tab 在容器内循环），无 JS *@
+
+@if (Open)
+{
+    <div class="trap-backdrop" @onclick="Close"></div>
+    <div class="trap" role="dialog" aria-modal="true" aria-label="@Label" @onkeydown="OnKey">
+        @ChildContent
+        <button class="icon-btn" style="background:var(--color-surface-container)" @onclick="Close">Close</button>
+    </div>
+}
+
+@code {
+    [Parameter] public bool Open { get; set; }
+    [Parameter] public string Label { get; set; } = "Dialog";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public EventCallback<bool> OpenChanged { get; set; }
+
+    private void Close() => OpenChanged.InvokeAsync(false);
+
+    private void OnKey(KeyboardEventArgs e)
+    {
+        // 简化版：Escape 关闭；完整 Tab 焦点陷阱通常需 JS 介入（见 Part10）。
+        if (e.Key == "Escape") Close();
+    }
+}
+
+<style>
+    .trap-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.4);
+        z-index: 50;
+    }
+    .trap {
+        position: fixed;
+        inset: 2rem;
+        max-width: 30rem;
+        margin: 10vh auto;
+        padding: 1rem;
+        background: var(--color-bg, #fff);
+        z-index: 51;
+        border-radius: .75rem;
+    }
+</style>

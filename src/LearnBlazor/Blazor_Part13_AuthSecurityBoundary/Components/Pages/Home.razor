@@ -1,7 +1,13 @@
 @page "/"
 
-<PageTitle>Part13_AuthSecurityBoundary - Frontend Auth and Security Boundary</PageTitle>
+<PageTitle>Part13 · 认证与安全边界</PageTitle>
+<h1>Part13 · 认证与安全边界</h1>
 
-<h1>Hello from Part13_AuthSecurityBoundary</h1>
+<p>对应 BlazorStudy 第 13 部分。AuthenticationStateProvider、AuthorizeRouteView、[Authorize]/[Authorize(Roles)]、AuthorizeView、cookie auth、路由守卫。</p>
 
-<p>BlazorStudy Part 13 - Frontend Auth and Security Boundary.</p>
+<AuthStatus />
+
+<ul>
+    <li><a href="/login">Login (alice/password 或 bob/password)</a></li>
+    <li><a href="/admin">Admin (仅 admin)</a></li>
+</ul>

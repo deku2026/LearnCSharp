@@ -1,0 +1,17 @@
+@* Part04 - 订阅 CounterState 的组件。@implements IDisposable 自动取消订阅。 *@
+
+@implements IDisposable
+@inject CounterState Counter
+
+<div class="card">
+    <h3>Counter (订阅状态容器)</h3>
+    <p>Count = <strong>@Counter.Count</strong></p>
+    <button class="icon-btn" style="background:var(--color-surface-container)" @onclick="Counter.Increment">+1</button>
+    <button class="icon-btn" style="background:var(--color-surface-container)" @onclick="Counter.Reset">Reset</button>
+</div>
+
+@code {
+    protected override void OnInitialized() => Counter.Changed += StateHasChanged;
+
+    public void Dispose() => Counter.Changed -= StateHasChanged;
+}

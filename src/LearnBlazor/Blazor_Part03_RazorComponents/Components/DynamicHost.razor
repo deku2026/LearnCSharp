@@ -1,0 +1,28 @@
+@* Part03 §6 - DynamicComponent + 参数字典 *@
+
+<div class="card">
+    <label>
+        选择组件：
+        <select @bind="_selectedTypeName">
+            <option value="Greeting">Greeting</option>
+            <option value="TwoWay">TwoWay</option>
+        </select>
+    </label>
+</div>
+
+<DynamicComponent Type="@SelectedType" Parameters="@Params" />
+
+@code {
+    private string _selectedTypeName = "Greeting";
+
+    private Type SelectedType => _selectedTypeName switch
+    {
+        "TwoWay" => typeof(TwoWay),
+        _ => typeof(Greeting),
+    };
+
+    private Dictionary<string, object?> Params => new()
+    {
+        ["Name"] = "Dynamic",
+    };
+}

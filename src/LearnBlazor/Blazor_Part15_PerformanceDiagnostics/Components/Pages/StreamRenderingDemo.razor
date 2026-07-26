@@ -1,0 +1,30 @@
+@page "/stream"
+@attribute [StreamRendering(true)]
+@inject StreamService Stream
+@* Part15 - [StreamRendering] + IAsyncEnumerable：占位先渲染，数据流式补齐 *@
+
+<PageTitle>Part15 · Stream Rendering</PageTitle>
+<h1>Stream Rendering</h1>
+
+<p><code>[StreamRendering(true)]</code> 让组件先渲染占位，<code>IAsyncEnumerable</code> 的数据逐项流式补到 DOM，不必等全部就绪。</p>
+
+<p>当前已渲染：@_rendered.Count 项</p>
+<ul>
+    @foreach (var item in _rendered)
+    {
+        <li>@item</li>
+    }
+</ul>
+
+@code {
+    private readonly List<string> _rendered = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await foreach (var item in Stream.GetItemsAsync(10))
+        {
+            _rendered.Add(item);
+            StateHasChanged();
+        }
+    }
+}

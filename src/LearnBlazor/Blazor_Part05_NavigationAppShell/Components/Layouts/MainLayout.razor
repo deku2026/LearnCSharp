@@ -1,0 +1,13 @@
+@* Part05 - MainLayout：顶栏 + NavMenu + <main>@Body</main> *@
+
+@inherits LayoutComponentBase
+
+<div class="app">
+    <header class="top-bar">
+        <h1 class="top-bar__title">Part05 · Navigation</h1>
+        <NavMenu />
+    </header>
+    <main id="main" class="content" tabindex="-1">
+        @Body
+    </main>
+</div>

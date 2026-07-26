@@ -1,7 +1,13 @@
 @page "/"
 
-<PageTitle>Part05_NavigationAppShell - Navigation and App Shell</PageTitle>
+<PageTitle>Part05 · Navigation App Shell</PageTitle>
+<h1>Part05 · 导航与 App Shell</h1>
 
-<h1>Hello from Part05_NavigationAppShell</h1>
+<p>对应 BlazorStudy 第 5 部分。Router、NavLink、布局、查询/路由参数、404、FocusOnNavigate。</p>
 
-<p>BlazorStudy Part 5 - Navigation and App Shell.</p>
+<h2>演示</h2>
+<ul>
+    <li><NavLink href="/about">/about?q=...</NavLink> — 查询参数</li>
+    <li><a href="/items">/items</a> / <a href="/items/3">/items/3</a> — 路由参数</li>
+    <li><a href="/nonexistent">/nonexistent</a> — 触发 404 NotFound</li>
+</ul>

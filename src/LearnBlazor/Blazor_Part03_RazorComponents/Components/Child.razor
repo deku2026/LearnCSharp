@@ -1,0 +1,11 @@
+@* Part03 §2 - [CascadingParameter] + [Parameter] ChildContent *@
+
+<div class="card" style="background:@Theme.Background;color:@Theme.Foreground">
+    <p class="list-row__sub">[CascadingParameter] Theme: @Theme.Name</p>
+    @ChildContent
+</div>
+
+@code {
+    [CascadingParameter] public ThemeInfo Theme { get; set; } = ThemeInfo.Default;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

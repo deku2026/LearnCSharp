@@ -1,0 +1,23 @@
+@* Part14 fixture - 表单组件被测试 *@
+
+<EditForm Model="@_model" OnValidSubmit="Submit" FormName="simple">
+    <DataAnnotationsValidator />
+    <InputText @bind-Value="_model.Name" />
+    <button type="submit">Submit</button>
+    @if (_submitted)
+    {
+        <p class="success">Hi, @_model.Name</p>
+    }
+</EditForm>
+
+@code {
+    private readonly SimpleFormModel _model = new();
+    private bool _submitted;
+
+    private void Submit() => _submitted = true;
+
+    public sealed class SimpleFormModel
+    {
+        public string Name { get; set; } = string.Empty;
+    }
+}

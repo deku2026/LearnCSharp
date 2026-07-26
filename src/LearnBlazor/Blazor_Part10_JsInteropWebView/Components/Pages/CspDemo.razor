@@ -1,0 +1,17 @@
+@page "/csp"
+
+<PageTitle>Part10 · CSP & XSS</PageTitle>
+<h1>CSP & MarkupString 边界</h1>
+
+<p>CSP：<code>Content-Security-Policy</code> 头限制脚本/样式来源，阻断注入。
+   本工程 Program.cs 用 <code>Content-Security-Policy-Report-Only</code> 仅上报不阻断（避免框架脚本被拦）。</p>
+
+<h2>XSS 反例：裸 MarkupString</h2>
+<p>下面 <code>MarkupString</code> 直接渲染未消毒的字符串——<strong>永远不要</strong>对用户输入这样做：</p>
+
+@* 反例演示：把字面字符串当 MarkupString 渲染（非用户输入，仅演示风险） *@
+<div style="background:var(--color-surface-container,#f0f0f3);padding:1rem">
+    @((MarkupString)"<strong>这是一段 HTML</strong>，若来自用户输入则危险。")
+</div>
+
+<p>对用户输入永远用 <code>@@value</code>（自动 HTML 编码），不要 <code>MarkupString</code>。</p>

@@ -1,0 +1,29 @@
+@implements IDisposable
+@inject CartState Cart
+
+<div class="card">
+    <h3>Cart (订阅状态容器)</h3>
+    <p>共 @Cart.Count 件，合计 $@Cart.Total.ToString("F2")</p>
+    <ul>
+        @foreach (var item in Cart.Items)
+        {
+            <li>@item.Name × @item.Qty = $@(item.Price * item.Qty)</li>
+        }
+    </ul>
+    <button class="icon-btn" style="background:var(--color-surface-container)" @onclick="AddSample">Add sample</button>
+    <button class="icon-btn" style="background:var(--color-surface-container)" @onclick="Cart.Clear">Clear</button>
+</div>
+
+@code {
+    private int _seq;
+
+    protected override void OnInitialized() => Cart.Changed += StateHasChanged;
+
+    private void AddSample()
+    {
+        _seq++;
+        Cart.Add(new($"p{_seq}", $"Product {_seq}", 9.99m * _seq, 1));
+    }
+
+    public void Dispose() => Cart.Changed -= StateHasChanged;
+}

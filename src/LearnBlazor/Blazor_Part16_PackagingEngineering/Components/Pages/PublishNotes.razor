@@ -1,0 +1,29 @@
+@page "/publish-notes"
+
+<PageTitle>Part16 · Publish Notes</PageTitle>
+<h1>Publish & Engineering</h1>
+
+<h2>1. dotnet publish</h2>
+<pre><code>dotnet publish Blazor_Part16_PackagingEngineering.csproj -c Release -o publish</code></pre>
+<p>Release 配置在 csproj 里开了 <code>&lt;Optimize&gt;</code>、<code>&lt;DebugType&gt;none</code>（无符号、无 PDB），
+   适合体积优先的 Web 部署；要线上符号化则改 <code>portable</code> 或 <code>embedded</code>。</p>
+
+<h2>2. Docker</h2>
+<pre><code>docker build -t part16:latest .
+docker run -p 8080:8080 part16:latest</code></pre>
+<p>多阶段：sdk 阶段 publish，aspnet runtime 阶段仅拷贝产物。端口 8080 由 <code>ASPNETCORE_URLS</code> 设置。</p>
+
+<h2>3. Trimming / AOT 取舍</h2>
+<ul>
+    <li>Web 部署默认 <strong>不</strong>开 PublishTrimmed（Blazor Server 反射多，trim 易误删）。</li>
+    <li>NativeAOT 在 Server 模式不推荐（SignalR/Emit 依赖多）。WASM 才是 AOT 主场。</li>
+    <li>体积优化优先：静态资产压缩、HTTP 响应压缩、缓存头。</li>
+</ul>
+
+<h2>4. 静态资产</h2>
+<p><code>wwwroot/</code> 随程序集输出；Program.cs 给静态文件设了 <code>Cache-Control</code> 头。
+   Blazor 框架脚本 <code>_framework/blazor.web.js</code> 自带指纹文件名，可长期缓存。</p>
+
+<h2>5. 健康/异常</h2>
+<p>Program.cs 配了 <code>/healthz</code> 健康检查 + <code>UseExceptionHandler</code>。
+   上线前接真实日志聚合（Serilog/OTel）。</p>

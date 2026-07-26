@@ -1,0 +1,59 @@
+@page "/upload"
+@* Part06 - InputFile + 防伪 + 大小/类型校验
+   Blazor Server 的 InputFile 自动处理 antiforgery。 *@
+
+<PageTitle>Part06 · File Upload</PageTitle>
+<h1>File Upload (InputFile)</h1>
+
+<p>多选 + 大小（≤ 1MB）/类型（png/jpg/pdf）校验。预览列表。</p>
+
+<EditForm FormName="upload" OnValidSubmit="DoNothing">
+    <AntiforgeryToken />
+    <InputFile OnChange="OnFileChange" multiple accept=".png,.jpg,.jpeg,.pdf" />
+    <ValidationSummary />
+    <button type="submit">No-op submit (demo antiforgery)</button>
+</EditForm>
+
+@if (_errors.Any())
+{
+    <ul style="color:red">
+        @foreach (var e in _errors) { <li>@e</li> }
+    </ul>
+}
+
+<ul>
+    @foreach (var f in _files)
+    {
+        <li>@f.Name — @f.Size bytes</li>
+    }
+</ul>
+
+@code {
+    private readonly List<IBrowserFile> _files = new();
+    private readonly List<string> _errors = new();
+    private const long MaxSize = 1_000_000;
+    private static readonly HashSet<string> Allowed = new() { ".png", ".jpg", ".jpeg", ".pdf" };
+
+    private void OnFileChange(InputFileChangeEventArgs e)
+    {
+        _files.Clear();
+        _errors.Clear();
+        foreach (var file in e.GetMultipleFiles(10))
+        {
+            var ext = Path.GetExtension(file.Name).ToLowerInvariant();
+            if (!Allowed.Contains(ext))
+            {
+                _errors.Add($"{file.Name}: 类型 {ext} 不允许");
+                continue;
+            }
+            if (file.Size > MaxSize)
+            {
+                _errors.Add($"{file.Name}: 超过 1MB");
+                continue;
+            }
+            _files.Add(file);
+        }
+    }
+
+    private void DoNothing() { }
+}

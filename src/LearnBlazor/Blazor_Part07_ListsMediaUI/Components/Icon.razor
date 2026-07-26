@@ -1,0 +1,23 @@
+@* Part07 - 内联 SVG 图标，currentColor 跟随文字色 *@
+
+<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+    @switch (Name)
+    {
+        case "mail":
+            <path d="M4 4h16v16H4z M4 6l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" />
+            break;
+        case "star":
+            <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+            break;
+        case "trash":
+            <path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14" fill="none" stroke="currentColor" stroke-width="2" />
+            break;
+        default:
+            <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2" />
+            break;
+    }
+</svg>
+
+@code {
+    [Parameter] public string Name { get; set; } = "star";
+}

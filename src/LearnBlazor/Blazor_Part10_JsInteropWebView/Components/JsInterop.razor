@@ -1,0 +1,40 @@
+@* Part10 - IJSRuntime + ES module import + Dispose *@
+
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<div class="card">
+    <h3>JS interop：量取元素高度</h3>
+    <p id="measure-me" style="padding:2rem;background:var(--color-surface-container,#f0f0f3)">被量取的元素</p>
+    <p>offsetHeight = <strong>@_height</strong> px</p>
+    <button class="icon-btn" style="background:var(--color-surface-container)" @onclick="Measure">Measure</button>
+</div>
+
+@code {
+    private IJSObjectReference? _module;
+    private int _height;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/interop.js");
+        }
+    }
+
+    private async Task Measure()
+    {
+        if (_module is not null)
+        {
+            _height = await _module.InvokeAsync<int>("getElementHeight", "#measure-me");
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_module is not null)
+        {
+            await _module.DisposeAsync();
+        }
+    }
+}

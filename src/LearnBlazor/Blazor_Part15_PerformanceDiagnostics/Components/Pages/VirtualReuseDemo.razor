@@ -1,0 +1,20 @@
+@page "/virtual-reuse"
+@* Part15 - 大列表虚拟化复用 *@
+
+<PageTitle>Part15 · Virtual Reuse</PageTitle>
+<h1>Virtualization Reuse (10k)</h1>
+
+<div style="height:50vh;overflow:auto;border:1px solid var(--color-surface-container,#f0f0f3)">
+    <Virtualize Items="@_items" Context="i" OverscanCount="10">
+        <ChildContent>
+            <div style="padding:.5rem;border-bottom:1px solid var(--color-surface-container,#f0f0f3)">Item @i</div>
+        </ChildContent>
+        <Placeholder>
+            <p style="padding:.5rem">…</p>
+        </Placeholder>
+    </Virtualize>
+</div>
+
+@code {
+    private readonly List<int> _items = Enumerable.Range(1, 10_000).ToList();
+}

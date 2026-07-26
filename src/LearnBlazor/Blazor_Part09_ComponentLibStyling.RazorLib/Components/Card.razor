@@ -1,0 +1,16 @@
+@* Part09 RCL - Card *@
+
+<article class="card">
+    @if (Header is not null)
+    {
+        <div class="card-header">@Header</div>
+    }
+    <div class="card-body">
+        @ChildContent
+    </div>
+</article>
+
+@code {
+    [Parameter] public RenderFragment? Header { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

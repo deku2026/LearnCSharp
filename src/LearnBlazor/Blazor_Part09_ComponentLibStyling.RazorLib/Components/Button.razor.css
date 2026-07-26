@@ -1,0 +1,23 @@
+.btn {
+    min-height: var(--rl-touch-min);
+    padding: var(--rl-space-2) var(--rl-space-3);
+    border: 0;
+    border-radius: var(--rl-radius-md);
+    cursor: pointer;
+    font: inherit;
+}
+
+.btn-primary {
+    background: var(--rl-color-primary);
+    color: var(--rl-color-on-primary);
+}
+
+.btn-text {
+    background: transparent;
+    color: var(--rl-color-primary);
+}
+
+.btn[disabled] {
+    opacity: .5;
+    cursor: not-allowed;
+}

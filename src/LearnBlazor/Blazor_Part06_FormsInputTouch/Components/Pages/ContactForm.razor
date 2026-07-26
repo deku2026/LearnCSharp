@@ -1,0 +1,48 @@
+@page "/contact"
+@using LearnBlazor.Blazor_Part06_FormsInputTouch.Models
+@* Part06 - EditForm + 验证 + EditContext *@
+
+<PageTitle>Part06 · Contact Form</PageTitle>
+<h1>Contact Form (EditForm + DataAnnotations)</h1>
+
+<EditForm Model="@_contact" OnValidSubmit="Submit" FormName="contact">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>Name: <InputText @bind-Value="_contact.Name" /></label>
+    </p>
+    <p>
+        <label>Email: <InputText @bind-Value="_contact.Email" /></label>
+    </p>
+    <p>
+        <label>Category: <InputSelect @bind-Value="_contact.Category">
+            <option value="@ContactCategory.General">General</option>
+            <option value="@ContactCategory.Sales">Sales</option>
+            <option value="@ContactCategory.Support">Support</option>
+        </InputSelect></label>
+    </p>
+    <p>
+        <label>Message: <InputTextArea @bind-Value="_contact.Message" rows="4" cols="40" /></label>
+    </p>
+    <p>
+        <label><InputCheckbox @bind-Value="_contact.Agree" /> I agree</label>
+    </p>
+    <p>
+        自定义输入（trim 后存）： <CustomInputText @bind-Value="_contact.Name" />
+    </p>
+    <button type="submit" disabled="@_submitting">@(_submitting ? "Submitting..." : "Submit")</button>
+</EditForm>
+
+@if (_submitted)
+{
+    <p role="status" style="color:green">已提交：@_contact.Name / @_contact.Email / @_contact.Category</p>
+}
+
+@code {
+    private readonly Contact _contact = new();
+    private bool _submitting;
+    private bool _submitted;
+
+    private void Submit() => _submitted = _submitting = true;
+}

@@ -1,0 +1,30 @@
+@* Part08 - 切换 culture：cookie + NavigationManager 刷新 *@
+
+@inject NavigationManager Nav
+@inject IHttpContextAccessor HttpContextAccessor
+
+<label>
+    Culture：
+    <select @bind="_culture" @bind:after="OnChange">
+        <option value="">auto</option>
+        <option value="en">English</option>
+        <option value="zh-CN">中文</option>
+    </select>
+</label>
+
+@code {
+    private string? _culture;
+
+    private void OnChange()
+    {
+        var http = HttpContextAccessor.HttpContext;
+        if (http is not null)
+        {
+            http.Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new(_culture!)),
+                new CookieOptions { Secure = true, HttpOnly = true, IsEssential = true });
+        }
+        Nav.NavigateTo("/i18n", forceLoad: true);
+    }
+}
