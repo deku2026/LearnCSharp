@@ -1,6 +1,17 @@
 <Router AppAssembly="typeof(Program).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="routeData" />
+        <AuthorizeRouteView RouteData="routeData" DefaultLayout="@typeof(MainLayout)">
+            <NotAuthorized>
+                @if (context.User.Identity?.IsAuthenticated != true)
+                {
+                    <p role="alert">需要登录。<a href="/login">Login</a></p>
+                }
+                else
+                {
+                    <p role="alert">权限不足。</p>
+                }
+            </NotAuthorized>
+        </AuthorizeRouteView>
         <FocusOnNavigate RouteData="routeData" Selector="h1" />
     </Found>
 </Router>

@@ -1,0 +1,15 @@
+@* Part13 - AuthorizeView 内联使用 *@
+
+<AuthorizeView>
+    <Authorized>
+        <p>已登录：<strong>@context.User.Identity?.Name</strong></p>
+        @if (context.User.IsInRole("admin"))
+        {
+            <p>你是 admin。</p>
+        }
+        <a href="/account">Account</a>
+    </Authorized>
+    <NotAuthorized>
+        <p>未登录。 <a href="/login">Login</a></p>
+    </NotAuthorized>
+</AuthorizeView>

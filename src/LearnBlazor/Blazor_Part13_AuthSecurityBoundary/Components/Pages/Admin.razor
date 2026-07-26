@@ -1,0 +1,7 @@
+@page "/admin"
+@attribute [Authorize(Roles = "admin")]
+@* Part13 - 角色路由守卫 *@
+
+<PageTitle>Part13 · Admin</PageTitle>
+<h1>Admin (Roles="admin" only)</h1>
+<p>只有 admin 角色能看到此页。bob 访问会落到 NotAuthorized。</p>

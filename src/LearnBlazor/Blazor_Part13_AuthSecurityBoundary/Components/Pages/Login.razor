@@ -1,0 +1,38 @@
+@page "/login"
+@inject AuthService Auth
+@inject AuthenticationStateProvider StateProvider
+@* Part13 - 登录页（cookie auth） *@
+
+<PageTitle>Part13 · Login</PageTitle>
+<h1>Login</h1>
+
+@if (_error)
+{
+    <p role="alert" style="color:red">用户名或密码错误（密码统一为 <code>password</code>）</p>
+}
+
+<EditForm Model="@_model" OnValidSubmit="Submit" FormName="login">
+    <DataAnnotationsValidator />
+    <p><label>User: <InputText @bind-Value="_model.Username" /></label></p>
+    <p><label>Pass: <InputText type="password" @bind-Value="_model.Password" /></label></p>
+    <button type="submit">Login</button>
+</EditForm>
+
+<p>alice/password (admin) · bob/password (user)</p>
+
+@code {
+    private readonly LoginModel _model = new();
+    private bool _error;
+
+    [Inject] public NavigationManager Nav { get; set; } = default!;
+
+    private async Task Submit()
+    {
+        _error = !await Auth.LoginAsync(_model.Username, _model.Password);
+        if (!_error)
+        {
+            if (StateProvider is SimpleAuthStateProvider p) p.NotifyChanged();
+            Nav.NavigateTo("/account", forceLoad: true);
+        }
+    }
+}
