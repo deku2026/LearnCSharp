@@ -1,0 +1,42 @@
+@page "/reduce"
+@* Part15 - 减少渲染：ShouldRender 重写 + 渲染计数 *@
+
+<PageTitle>Part15 · Reduce Render</PageTitle>
+<h1>Reduce Render (ShouldRender)</h1>
+
+<p>渲染次数：@_renderCount</p>
+
+<label>
+    Filter (只触发渲染当 hash 变)：
+    <input @bind="_filter" @bind:event="oninput" />
+</label>
+<button class="icon-btn" style="background:var(--color-surface-container)" @onclick="Bump">Bump</button>
+
+<ul>
+    @foreach (var item in Filtered())
+    {
+        <li>@item</li>
+    }
+</ul>
+
+@code {
+    private string _filter = "";
+    private int _renderCount;
+    private int _lastHash;
+
+    private static readonly IReadOnlyList<string> All = Enumerable.Range(1, 100).Select(i => $"row {i}").ToList();
+
+    protected override bool ShouldRender()
+    {
+        _renderCount++;
+        int hash = _filter.GetHashCode();
+        if (hash == _lastHash) return false; // filter 没变，不重渲染
+        _lastHash = hash;
+        return true;
+    }
+
+    private IReadOnlyList<string> Filtered() =>
+        string.IsNullOrEmpty(_filter) ? All : All.Where(x => x.Contains(_filter)).ToList();
+
+    private void Bump() { }
+}
