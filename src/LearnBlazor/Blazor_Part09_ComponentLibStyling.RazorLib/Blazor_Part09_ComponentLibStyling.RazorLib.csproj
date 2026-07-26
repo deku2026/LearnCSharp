@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <AssemblyName>Blazor_Part09_ComponentLibStyling.RazorLib</AssemblyName>
+    <RootNamespace>LearnBlazor.Blazor_Part09_ComponentLibStyling.RazorLib</RootNamespace>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+</Project>

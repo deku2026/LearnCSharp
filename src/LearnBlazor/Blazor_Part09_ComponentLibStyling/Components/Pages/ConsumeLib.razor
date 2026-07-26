@@ -1,0 +1,21 @@
+@page "/consume"
+
+@* Part09 - 消费 RCL：静态资产 _content 路径 + 组件 *@
+
+<PageTitle>Part09 · Consume RCL</PageTitle>
+<h1>Consume RCL Component Library</h1>
+
+<p>RCL 静态资产路径：<code>_content/{PackageId}/...</code>。下面 <code>&lt;link&gt;</code> 加载 RCL tokens。</p>
+
+<Card>
+    <Header>
+        <strong>Card via RCL</strong>
+    </Header>
+    <ChildContent>
+        <p>这是 RCL Card 的 body。</p>
+        <Button Variant="primary">Primary</Button>
+        <Button Variant="text">Text</Button>
+        <Badge Tone="accent">accent</Badge>
+        <Badge Tone="danger">danger</Badge>
+    </ChildContent>
+</Card>
