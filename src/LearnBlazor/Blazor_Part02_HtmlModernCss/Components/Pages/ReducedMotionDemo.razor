@@ -1,0 +1,40 @@
+@page "/reduced-motion"
+
+@* Part02 §5 - 动画尊重 prefers-reduced-motion；focus-visible 替代裸 :focus *@
+
+<PageTitle>Part02 · Reduced Motion & Focus</PageTitle>
+
+<h1>Reduced Motion & :focus-visible</h1>
+
+<h2>1. 动画（transform/opacity 优先）</h2>
+<p>开系统「减少动态效果」时，下面淡入仍可读、可用，但无长动画。</p>
+
+<div style="padding:var(--space-4);background:var(--color-surface-container)">
+    <p class="fade-in">这是一段带 <code>fade-in</code> 动画的文字。</p>
+</div>
+
+<style>
+    .fade-in {
+        animation: fade-in 180ms ease both;
+    }
+
+    @@keyframes fade-in {
+        from { opacity: 0; transform: translateY(0.25rem); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 由 shell.css 的 reduced-motion 全局规则降为 0.01ms */
+</style>
+
+<h2>2. :focus-visible</h2>
+<p>鼠标点击不出现粗焦点环；键盘 Tab 出现——现代默认行为。Tab 到下面按钮观察：</p>
+
+<button class="icon-btn" style="background:var(--color-surface-container)">按钮 A</button>
+<button class="icon-btn" style="background:var(--color-surface-container)">按钮 B</button>
+
+<h2>验收</h2>
+<ul>
+    <li>系统开「减少动态效果」后无长动画但状态可见</li>
+    <li>键盘 Tab 焦点环可见；鼠标点击无粗环</li>
+    <li>不使用裸 <code>:focus { outline: none }</code> 无替代</li>
+</ul>

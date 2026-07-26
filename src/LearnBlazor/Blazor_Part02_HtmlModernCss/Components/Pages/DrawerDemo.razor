@@ -1,0 +1,37 @@
+@page "/drawer"
+
+@* Part02 §2.3 - 抽屉 Drawer + backdrop + reduced-motion
+   开关 data-open 与 aria-expanded；后续 Blazor 用状态驱动同一 DOM 契约。 *@
+
+<PageTitle>Part02 · Drawer Demo</PageTitle>
+
+<h1>Drawer + reduced-motion</h1>
+
+<p>抽屉用 transform 平移（不动画 layout 属性）；<code>prefers-reduced-motion: reduce</code>
+   时被 §5.1 全局规则降为 0.01ms。</p>
+
+<button type="button" class="icon-btn" aria-expanded="@_open.ToString().ToLowerInvariant()"
+        aria-controls="demo-drawer" @onclick="ToggleOpen">
+    @( _open ? "关闭" : "打开" )菜单
+</button>
+
+<div class="drawer-root" data-open="@_open.ToString().ToLowerInvariant()">
+    @if (_open)
+    {
+        <div class="drawer-backdrop" @onclick="ToggleOpen"></div>
+    }
+    <aside id="demo-drawer" class="drawer" aria-label="侧栏菜单">
+        <h2>菜单</h2>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:var(--space-2)">
+            <li><a href="/shell/inbox">收件箱</a></li>
+            <li><a href="/shell/card">卡片</a></li>
+            <li><a href="/tokens">主题</a></li>
+        </ul>
+    </aside>
+</div>
+
+@code {
+    private bool _open;
+
+    private void ToggleOpen() => _open = !_open;
+}

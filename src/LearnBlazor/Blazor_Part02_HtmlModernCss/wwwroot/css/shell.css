@@ -1,0 +1,329 @@
+/* Part02 - App Shell + 工程化层
+ * 来源：BlazorStudy 第 2 部分 §1/§2/§4/§5/§6
+ * 层序：reset < tokens < base < components < utilities
+ * 纪律：reset 用 @layer 兜底；组件只放组件层；不写死色值。
+ */
+
+@layer reset, tokens, base, components, utilities;
+
+@layer reset {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    * {
+        margin: 0;
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    img,
+    svg {
+        display: block;
+        max-width: 100%;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        font: inherit;
+    }
+
+    a {
+        color: inherit;
+    }
+}
+
+@layer base {
+    html {
+        font-family: var(--font-family);
+        font-size: 100%;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    body {
+        font-size: var(--font-size-body);
+        line-height: var(--line-height-body);
+        background: var(--color-surface);
+        color: var(--color-on-surface);
+    }
+
+    /* 优先 transform/opacity；尊重 reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+@layer components {
+    /* 经典手机壳：顶栏 + 可滚动内容 + 底栏 */
+    .app {
+        display: flex;
+        flex-direction: column;
+        /* 级联回退：最后写的 dvh 在支持时生效 */
+        min-height: 100vh;
+        min-height: 100svh;
+        min-height: 100dvh;
+        background: var(--color-surface);
+        color: var(--color-on-surface);
+    }
+
+    .top-bar {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-2);
+        min-height: var(--touch-min);
+        padding-block: var(--space-2);
+        padding-inline: var(--space-3);
+        padding-top: calc(var(--space-2) + env(safe-area-inset-top, 0px));
+        background: var(--color-surface-container);
+        border-bottom: 1px solid var(--color-outline-variant);
+    }
+
+    .top-bar__title {
+        font-size: var(--font-size-title);
+        font-weight: 600;
+    }
+
+    .content {
+        flex: 1 1 auto;
+        min-height: 0; /* 关键：允许子项收缩，否则内部 overflow 失效 */
+        overflow: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        padding: var(--space-3);
+        padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom, 0px));
+    }
+
+    .bottom-nav {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: stretch;
+        gap: var(--space-1);
+        min-height: var(--touch-min);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        background: var(--color-surface-container);
+        border-top: 1px solid var(--color-outline-variant);
+    }
+
+    .bottom-nav__item {
+        flex: 1 1 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: var(--touch-min);
+        padding: var(--space-1);
+        text-decoration: none;
+        color: var(--color-on-surface-variant);
+        font-size: var(--font-size-label);
+        background: none;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .bottom-nav__item[aria-current="page"] {
+        color: var(--color-primary);
+        font-weight: 600;
+    }
+
+    /* 平板/宽屏：侧栏 + 主区 */
+    @media (min-width: 768px) {
+        .app {
+            flex-direction: row;
+        }
+
+        .bottom-nav {
+            flex-direction: column;
+            width: 4.5rem;
+            border-top: 0;
+            border-inline-end: 1px solid var(--color-outline-variant);
+            padding-bottom: 0;
+            padding-inline-start: env(safe-area-inset-left, 0px);
+        }
+
+        .content {
+            flex: 1 1 auto;
+        }
+
+        @media (min-width: 1024px) {
+            .bottom-nav {
+                width: 12rem;
+                align-items: stretch;
+            }
+
+            .bottom-nav__item {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: var(--space-2);
+                padding-inline: var(--space-3);
+            }
+        }
+    }
+
+    /* 抽屉 Drawer */
+    .drawer-root {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: var(--z-drawer);
+    }
+
+    .drawer-root[data-open="true"] {
+        pointer-events: auto;
+    }
+
+    .drawer-backdrop {
+        position: absolute;
+        inset: 0;
+        background: color-mix(in srgb, black 40%, transparent);
+    }
+
+    .drawer {
+        position: absolute;
+        inset-block: 0;
+        inset-inline-start: 0;
+        width: min(20rem, 85vw);
+        padding: var(--space-4);
+        padding-top: calc(var(--space-4) + env(safe-area-inset-top, 0px));
+        background: var(--color-surface-container-high);
+        transform: translateX(-100%);
+        transition: transform 200ms ease;
+    }
+
+    .drawer-root[data-open="true"] .drawer {
+        transform: translateX(0);
+    }
+
+    [dir="rtl"] .drawer {
+        transform: translateX(100%);
+    }
+
+    [dir="rtl"] .drawer-root[data-open="true"] .drawer {
+        transform: translateX(0);
+    }
+
+    /* 列表行 */
+    .list-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        min-height: var(--touch-min);
+        padding: var(--space-3);
+        border-bottom: 1px solid var(--color-outline-variant);
+    }
+
+    .list-row__title {
+        font-size: var(--font-size-body);
+        font-weight: 600;
+    }
+
+    .list-row__sub {
+        color: var(--color-on-surface-variant);
+        font-size: var(--font-size-label);
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+        gap: var(--space-3);
+    }
+
+    .card {
+        background: var(--color-surface-container);
+        border-radius: var(--radius-md);
+        box-shadow: var(--elevation-1);
+        padding: var(--space-3);
+    }
+
+    /* 图标按钮 + 触控目标 */
+    .icon-btn {
+        min-width: var(--touch-min);
+        min-height: var(--touch-min);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        border-radius: var(--radius-md);
+        background: transparent;
+        color: inherit;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        cursor: pointer;
+    }
+
+    .icon-btn:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+
+    /* focus-visible 通用 */
+    :focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+}
+
+@layer utilities {
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    /* container query 演示 */
+    .panel {
+        container-type: inline-size;
+        container-name: panel;
+    }
+
+    @container panel (min-width: 24rem) {
+        .panel__meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2);
+        }
+    }
+
+    /* 选择性禁用文本选择（壳层），表单区恢复 */
+    .app {
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    input,
+    textarea,
+    [contenteditable="true"],
+    .selectable {
+        user-select: text;
+        -webkit-user-select: text;
+    }
+}
