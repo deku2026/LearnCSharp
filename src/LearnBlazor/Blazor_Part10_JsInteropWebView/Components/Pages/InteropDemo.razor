@@ -1,0 +1,10 @@
+@page "/interop"
+
+<PageTitle>Part10 · JS Interop</PageTitle>
+<h1>JS Interop (IJSRuntime / ES module / DotNetObjectReference)</h1>
+
+<p>能 CSS/C# 解决的不要 JS；JS 是 escape hatch。每个句柄都有 owner 与 Dispose；
+   组件卸载必须断开。捕获 <code>JSDisconnectedException</code> 以容忍 circuit 断开时的清理。</p>
+
+<JsInterop />
+<JsCallback />

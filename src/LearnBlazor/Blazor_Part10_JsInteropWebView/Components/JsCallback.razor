@@ -1,0 +1,40 @@
+@* Part10 - DotNetObjectReference + [JSInvokable] + Dispose
+   IntersectionObserver 回调 → .NET *@
+
+@implements IDisposable
+@inject IJSRuntime JS
+
+<div class="card">
+    <h3>JS → .NET 回调（DotNetObjectReference）</h3>
+    <div @ref="_target" style="height:2rem;background:var(--color-surface-container,#f0f0f3)">滚动到这里时触发 OnVisible</div>
+    <p>状态：@_status</p>
+</div>
+
+@code {
+    private ElementReference _target;
+    private DotNetObjectReference<JsCallback>? _ref;
+    private string _status = "waiting";
+    private IJSObjectReference? _module;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/interop.js");
+            _ref = DotNetObjectReference.Create(this);
+            await _module.InvokeVoidAsync("observeViewport", _ref, _target, "JsCallback");
+        }
+    }
+
+    [JSInvokable]
+    public void OnVisible(string componentName) => _status = $"{componentName} visible";
+
+    public void Dispose()
+    {
+        if (_module is not null && _target.Context is not null)
+        {
+            try { _module.InvokeVoidAsync("disconnectObserver", _target); } catch { }
+        }
+        _ref?.Dispose();
+    }
+}
