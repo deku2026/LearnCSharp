@@ -1,0 +1,19 @@
+@* Part08 - 跳过到主内容（键盘用户/读屏） *@
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<style>
+    .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        padding: .5rem 1rem;
+        background: var(--color-surface-container, #f0f0f3);
+        z-index: 1000;
+    }
+
+    .skip-link:focus {
+        left: .5rem;
+        top: .5rem;
+    }
+</style>

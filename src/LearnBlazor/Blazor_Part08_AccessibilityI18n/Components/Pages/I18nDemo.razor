@@ -1,0 +1,13 @@
+@page "/i18n"
+@* Part08 - IStringLocalizer + CultureSelector *@
+
+<PageTitle>Part08 · i18n</PageTitle>
+<h1>@L["Title"]</h1>
+
+<p>@L["Greeting"], Blazor i18n!</p>
+
+<CultureSelector />
+
+@code {
+    [Inject] public IStringLocalizer<Home> L { get; set; } = default!;
+}

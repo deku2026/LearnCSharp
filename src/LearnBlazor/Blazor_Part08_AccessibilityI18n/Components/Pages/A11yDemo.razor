@@ -1,0 +1,35 @@
+@page "/a11y"
+
+<PageTitle>Part08 · A11y</PageTitle>
+<SkipLink />
+<h1>Accessibility landmarks</h1>
+
+<p>landmark：<code>header</code>/<code>nav</code>/<code>main</code>/<code>footer</code>，heading 不跳级。</p>
+
+<nav aria-label="面包屑">
+    <ol><li>Home</li><li>Part08</li><li aria-current="page">A11y</li></ol>
+</nav>
+
+<main id="main">
+    <h2>主内容</h2>
+    <p><code>aria-current="page"</code> 标记当前导航项；<code>.sr-only</code> 给读屏。</p>
+    <button class="icon-btn" style="background:var(--color-surface-container)" @onclick="OpenModal">Open dialog</button>
+    <FocusTrap Open="@_open" OpenChanged="v => _open = v" Label="Demo dialog">
+        <p>这是一个模态。Escape 关闭。</p>
+    </FocusTrap>
+</main>
+
+@code {
+    private bool _open;
+
+    private void OpenModal() => _open = true;
+}
+
+<style>
+    .icon-btn {
+        min-height: 2.75rem;
+        border: 0;
+        border-radius: .75rem;
+        cursor: pointer;
+    }
+</style>
