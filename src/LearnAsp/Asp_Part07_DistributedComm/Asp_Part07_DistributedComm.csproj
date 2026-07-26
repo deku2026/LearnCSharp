@@ -4,6 +4,8 @@
     <AssemblyName>Part07_DistributedComm</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" />
     <ProjectReference Include="..\Asp_Campus.ServiceDefaults\Asp_Campus.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Asp_Campus.Contracts\Asp_Campus.Contracts.csproj" />
     <ProjectReference Include="..\Asp_Part06_2_MessagingTools\Asp_Part06_2_MessagingTools.csproj" />
