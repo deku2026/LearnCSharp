@@ -1,0 +1,17 @@
+@* Part06 - 自定义 InputBase<string>：演示 InputComponent 子类化 *@
+
+@inherits InputBase<string>
+
+<input @attributes="AdditionalAttributes"
+       class="@CssClass"
+       @bind="CurrentValue"
+       @bind:event="oninput" />
+
+@code {
+    protected override bool TryParseValueFromString(string? value, out string result, out string validationErrorMessage)
+    {
+        result = value?.Trim() ?? string.Empty;
+        validationErrorMessage = string.Empty;
+        return true;
+    }
+}

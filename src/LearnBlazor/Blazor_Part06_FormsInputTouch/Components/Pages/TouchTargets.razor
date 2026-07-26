@@ -1,0 +1,31 @@
+@page "/touch"
+
+<PageTitle>Part06 · Touch Targets</PageTitle>
+<h1>触控目标 ≥ 44×44 CSS px</h1>
+
+<p>移动端可点击区域应 ≥ 44px，<code>touch-action: manipulation</code> 减少双击缩放延迟。</p>
+
+<div style="display:flex;gap:1rem;align-items:center">
+    <button class="big-btn">Big (44px)</button>
+    <button class="small-btn">Small (16px) — 难点中</button>
+</div>
+
+<style>
+    .big-btn {
+        min-width: 2.75rem;
+        min-height: 2.75rem;
+        border: 0;
+        border-radius: .5rem;
+        background: var(--color-surface-container, #f0f0f3);
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .small-btn {
+        min-width: 1rem;
+        min-height: 1rem;
+        padding: 0;
+        border: 0;
+        background: var(--color-surface-container, #f0f0f3);
+    }
+</style>
