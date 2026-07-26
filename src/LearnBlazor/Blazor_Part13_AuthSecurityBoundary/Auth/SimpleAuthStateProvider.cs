@@ -1,6 +1,5 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Http;
 
 namespace LearnBlazor.Blazor_Part13_AuthSecurityBoundary.Auth;
 
