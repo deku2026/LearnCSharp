@@ -5,7 +5,7 @@ namespace LearnBlazor.Blazor_Part13_AuthSecurityBoundary.Auth;
 
 public sealed class SimpleAuthStateProvider : AuthenticationStateProvider
 {
-    private AuthenticationState _state;
+    private readonly AuthenticationState _state;
 
     public SimpleAuthStateProvider(IHttpContextAccessor http)
     {

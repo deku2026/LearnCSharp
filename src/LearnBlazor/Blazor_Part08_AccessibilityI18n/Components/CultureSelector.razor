@@ -22,7 +22,8 @@
         {
             http.Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
-                CookieRequestCultureProvider.MakeCookieValue(new(_culture!)));
+                CookieRequestCultureProvider.MakeCookieValue(new(_culture!)),
+                new CookieOptions { Secure = true, HttpOnly = true, IsEssential = true });
         }
         Nav.NavigateTo("/i18n", forceLoad: true);
     }
