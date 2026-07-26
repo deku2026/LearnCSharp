@@ -1,0 +1,21 @@
+@* Part05 - NavMenu：NavLink 自动 active；aria-current 由 NavLink 处理 *@
+
+<nav aria-label="主导航">
+    <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">Home</NavLink>
+    <NavLink class="nav-link" href="/about">About</NavLink>
+    <NavLink class="nav-link" href="/items">Items</NavLink>
+</nav>
+
+<style>
+    nav { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .nav-link {
+        padding: .25rem .5rem;
+        text-decoration: none;
+        color: inherit;
+        border-radius: .375rem;
+    }
+    .nav-link.active {
+        background: var(--color-surface-container, #f0f0f3);
+        font-weight: 600;
+    }
+</style>

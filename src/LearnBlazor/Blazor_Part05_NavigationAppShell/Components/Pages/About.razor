@@ -1,0 +1,28 @@
+@page "/about"
+@* Part05 - 查询参数演示 [SupplyParameterFromQuery] *@
+
+<PageTitle>Part05 · About</PageTitle>
+<h1>About</h1>
+<p>访问 <code>/about?q=hello</code> 试试查询参数。</p>
+<p>当前 q = <strong>@Q</strong></p>
+
+<label>
+    修改 q：
+    <input @bind="_next" />
+    <button class="icon-btn" style="background:var(--color-surface-container)" @onclick="Navigate">Go</button>
+</label>
+
+@code {
+    [SupplyParameterFromQuery(Name = "q")]
+    public string? Q { get; set; }
+
+    private string _next = "";
+
+    [Inject] public NavigationManager Nav { get; set; } = default!;
+
+    private void Navigate()
+    {
+        var uri = Nav.GetUriWithQueryParameter("q", _next);
+        Nav.NavigateTo(uri);
+    }
+}

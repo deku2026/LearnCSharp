@@ -1,0 +1,13 @@
+@page "/items"
+@* Part05 - 列表 + 相对/路由参数导航 *@
+
+<PageTitle>Part05 · Items</PageTitle>
+<h1>Items</h1>
+<p>点击进入 <code>/items/{Id}</code> 路由参数。</p>
+<ul>
+    @for (var i = 1; i <= 5; i++)
+    {
+        var id = i;
+        <li><a href="@($"/items/{id}")">Item @id</a></li>
+    }
+</ul>
