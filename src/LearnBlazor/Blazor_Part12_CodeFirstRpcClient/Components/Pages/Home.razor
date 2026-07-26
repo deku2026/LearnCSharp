@@ -1,7 +1,9 @@
 @page "/"
 
-<PageTitle>Part12_CodeFirstRpcClient - Code-First RPC Client</PageTitle>
-
-<h1>Hello from Part12_CodeFirstRpcClient</h1>
-
-<p>BlazorStudy Part 12 - Code-First RPC Client.</p>
+<PageTitle>Part12 · Code-First RPC 客户端（HTTP 适配）</PageTitle>
+<h1>Part12 · Code-First RPC 客户端 → HTTP 客户端</h1>
+<p>对应 BlazorStudy 第 12 部分。文档主宿主是 MagicOnion/gRPC，本工程适配为 <code>HttpClient</code> + <code>IHttpClientFactory</code> + <code>Microsoft.Extensions.Http.Resilience</code> 重试/超时 + 错误映射 + UI 状态机。</p>
+<p>后端工程 <code>Blazor_Part12_CodeFirstRpcClient.Api</code>（Minimal API + 假数据，端口 5199）。先 <code>dotnet run --project src/LearnBlazor/Blazor_Part12_CodeFirstRpcClient.Api</code> 再访问本页。</p>
+<ul>
+    <li><a href="/items">Items (loading/content/empty/error)</a></li>
+</ul>
