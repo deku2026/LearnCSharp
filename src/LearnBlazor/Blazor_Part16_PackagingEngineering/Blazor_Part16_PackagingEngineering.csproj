@@ -3,4 +3,13 @@
     <AssemblyName>Blazor_Part16_PackagingEngineering</AssemblyName>
     <RootNamespace>LearnBlazor.Blazor_Part16_PackagingEngineering</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Dockerfile" />
+    <None Include="docs\PUBLISH.md" />
+  </ItemGroup>
 </Project>
