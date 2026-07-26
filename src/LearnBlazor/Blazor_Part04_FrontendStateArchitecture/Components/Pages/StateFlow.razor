@@ -1,0 +1,18 @@
+@page "/state-flow"
+
+<PageTitle>Part04 · State Flow</PageTitle>
+<h1>前端状态架构心智图</h1>
+
+<pre style="background:var(--color-surface-container);padding:1rem;border-radius:.5rem;overflow:auto">
+用户交互
+    │
+    ▼
+组件（事件处理）────► 状态容器（持有状态 + event Changed）
+    ▲                       │
+    │ 订阅 Changed          │ 修改状态后 Invoke
+    │                       ▼
+    └── StateHasChanged ◄── 通知所有订阅者
+</pre>
+
+<p>单向流：组件只通过状态容器修改状态，状态容器只通知订阅者。组件不直接互相调用。</p>
+<p>对比：<code>CascadingValue</code> 是「向下传值」，状态容器是「横向广播」。两者常配合用。</p>

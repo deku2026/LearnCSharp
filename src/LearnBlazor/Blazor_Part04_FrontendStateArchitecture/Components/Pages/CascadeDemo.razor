@@ -1,0 +1,12 @@
+@page "/cascade-state"
+
+<PageTitle>Part04 · Cascade + State</PageTitle>
+<h1>CascadingValue + ThemeState</h1>
+<ThemeProvider>
+    <p>当前 theme（级联给后代）：<strong>@Theme.Theme</strong></p>
+    <button class="icon-btn" style="background:var(--color-surface-container)" @onclick="Theme.Toggle">Toggle theme</button>
+</ThemeProvider>
+
+@code {
+    [Inject] public ThemeState Theme { get; set; } = default!;
+}
