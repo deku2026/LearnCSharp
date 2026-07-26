@@ -1,0 +1,19 @@
+@* Part03 §1 - 参数 [Parameter] 与 RenderFragment *@
+
+<div class="card" style="margin-block:.5rem">
+    @if (Header is not null)
+    {
+        <div class="list-row__sub">@Header</div>
+    }
+    <h3>Hello, @Name!</h3>
+    @if (Footer is not null)
+    {
+        <div class="list-row__sub">@Footer</div>
+    }
+</div>
+
+@code {
+    [Parameter] public string Name { get; set; } = "World";
+    [Parameter] public RenderFragment? Header { get; set; }
+    [Parameter] public RenderFragment? Footer { get; set; }
+}

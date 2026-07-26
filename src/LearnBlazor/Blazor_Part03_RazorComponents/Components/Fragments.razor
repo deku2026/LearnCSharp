@@ -1,0 +1,18 @@
+@* Part03 §3 - SectionOutlet / SectionContent（.NET 8+ 全局占位填充） *@
+
+<PageTitle>Part03 · Fragments</PageTitle>
+
+<h1>SectionOutlet / SectionContent</h1>
+
+<p><code>SectionOutlet</code> 渲染由任意组件 <code>SectionContent</code> 注入到该 SectionId 的内容，
+   常用于「页面把脚本/样式塞进 App 头部」。</p>
+
+<section id="frag-demo">
+    <SectionContent SectionName="frag-notes">
+        <p class="list-row__sub">来自页面级 SectionContent 的内容</p>
+    </SectionContent>
+</section>
+
+<hr />
+<h2>占位（Outlet）</h2>
+<SectionOutlet SectionName="frag-notes" />

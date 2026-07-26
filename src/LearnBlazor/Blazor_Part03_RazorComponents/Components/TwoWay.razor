@@ -1,0 +1,22 @@
+@* Part03 §5 - @bind / @bind:after / 自定义 bind *@
+
+<div class="card">
+    <label>
+        Name (双向绑定)：
+        <input @bind="name" @bind:after="OnNameChanged" />
+    </label>
+    <p>Hi, <strong>@name</strong> (长度 @nameLength)</p>
+    <label>
+        Quantity (int 自定义 bind)：
+        <input type="number" @bind="qty" />
+    </label>
+    <p>Qty × 2 = @(qty * 2)</p>
+</div>
+
+@code {
+    private string name = "World";
+    private int nameLength;
+    private int qty = 3;
+
+    private void OnNameChanged() => nameLength = name.Length;
+}
