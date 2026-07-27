@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage23_AccessibilityI18n.Pages.OverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§0 导读：无障碍与文本" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="a11y 四目标（WCAG/POUR）" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Perceivable 可读" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="对比度/字号/不靠颜色传达信息" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Operable 可操作" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="键盘可达/焦点可见/时间充裕" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Understandable 可理解" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="错误提示/一致布局/语言标记" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Robust 健壮" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="AutomationPeer/AT-SPI/UIA 桥接" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="文本三难" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="1. Unicode/Grapheme — 字素 ≠ 码点；StringInfo 测字素簇" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 字体回退 — 缺字找 fallback；Inter 字体 + emoji 字体" TextWrapping="Wrap"/>
+          <TextBlock Text="3. IME — 输入法组合态；CompositionOffset/TextInputClient" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="Avalonia 模型：AutomationPeer 树 ↔ 视觉树；平台桥 UIA(AT-SPI/macOS)。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：口述 a11y 四目标与文本三难" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

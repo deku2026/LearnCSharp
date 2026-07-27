@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage28_WpfMigration.Pages.NativeHostInteropDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 原生宿主与互操作场景" FontWeight="Bold" FontSize="14"/>
+      <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="场景" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="WPF 做法" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="Avalonia 做法" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="嵌 Win32 控件" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="HwndHost" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="NativeControlHost" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="嵌 WinForms" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="ElementHost / WindowsFormsHost" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="同进程互操作（不推荐）" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="WebView2" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Microsoft.Web.WebView2.Wpf" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="Avalonia.WebView（社区）" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="NativeControlHost：Avalonia 12 提供；Windows 用 HWND，macOS 用 NSView，Linux 用 GdkWindow。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：互操作场景" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage24_TestingSystem.Pages.TopicChecklistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 专题测试清单" FontWeight="Bold" FontSize="14"/>
+      <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="专题" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="测试要点" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="测试文件" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="数据绑定" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="TwoWay 更新/Converter/验证错误" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="BindingHeadlessTests" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="布局" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Measure/Arrange/DesiredSize" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="LayoutHeadlessTests" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="控件" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Click/Selection/IsEnabled" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="ControlHeadlessTests" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="焦点" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="Tab 链/TabStop/Focus()" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="FocusHeadlessTests" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="主题" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="Light/Dark 切换资源" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="2" Text="ThemeHeadlessTests" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="视觉回归" Padding="4"/>
+        <TextBlock Grid.Row="6" Grid.Column="1" Text="Skia 像素 diff" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="6" Grid.Column="2" Text="VisualRegressionHeadlessTests" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="输入" Padding="4"/>
+        <TextBlock Grid.Row="7" Grid.Column="1" Text="KeyDown/Mouse/TextInput" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="7" Grid.Column="2" Text="InputHeadlessTests" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="本仓库 .Tests 项目已落地：Binding/Layout/Control/Focus/Theme/VisualRegression/Input。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：数据绑定/焦点/主题清单" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

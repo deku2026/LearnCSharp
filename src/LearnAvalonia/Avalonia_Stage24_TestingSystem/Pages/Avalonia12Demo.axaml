@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage24_TestingSystem.Pages.Avalonia12Demo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 Avalonia 12/12.1 变化" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="• Avalonia.Headless.XUnit 转正（不再是预览）" TextWrapping="Wrap"/>
+          <TextBlock Text="• [AvaloniaFact] / [AvaloniaTheory] 稳定" TextWrapping="Wrap"/>
+          <TextBlock Text="• xunit.v3 MTP runner 集成" TextWrapping="Wrap"/>
+          <TextBlock Text="• RenderTargetBitmap.Render 在 Headless 可用" TextWrapping="Wrap"/>
+          <TextBlock Text="• Linux Headless 不再需要 Xvfb（Skia 内存后端）" TextWrapping="Wrap"/>
+          <TextBlock Text="• 12.1：KeyboardNavigation 测试辅助 API 加强" TextWrapping="Wrap"/>
+          <TextBlock Text="• 12.1：InputTests 命名空间提供 SendTextInput 等辅助" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：Headless.XUnit 稳定" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

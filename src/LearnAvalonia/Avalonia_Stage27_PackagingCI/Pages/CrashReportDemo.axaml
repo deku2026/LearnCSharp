@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage27_PackagingCI.Pages.CrashReportDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 崩溃上报与可观测" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Sentry.NET 集成" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;PackageReference Include=&quot;Sentry&quot; Version=&quot;5.x&quot; /&gt;&#x0a;// Program.cs&#x0a;using Sentry;&#x0a;SentrySdk.Init(o =&gt;&#x0a;{&#x0a;    o.Dsn = &quot;https://xxx@sentry.io/123&quot;;&#x0a;    o.TracesSampleRate = 1.0;&#x0a;});" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="AOT 兼容：Sentry 5.x 支持 Native AOT；老版本反射需 RDG 兜底。" TextWrapping="Wrap"/>
+      <TextBlock Text="符号化：SourceLink + PDB 上传 Sentry；崩溃栈自动解到源码行。" TextWrapping="Wrap"/>
+      <TextBlock Text="可观测：Traces + Spans；App.Start/Window.Open/Navigation 各打 Span。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Sentry/崩溃上报" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

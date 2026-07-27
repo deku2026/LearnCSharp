@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage28_WpfMigration.Pages.DispatcherThreadingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 Dispatcher 与线程" FontWeight="Bold" FontSize="14"/>
+      <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="维度" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="WPF" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="Avalonia" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="入口" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Dispatcher.CurrentDispatcher" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Dispatcher.UIThread（静态）" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="异步" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Dispatcher.InvokeAsync" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="Dispatcher.UIThread.InvokeAsync" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="线程模型" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="STA UI 线程" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="单 UI 线程；可起多个 UI 线程" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="注意：Avalonia 允许同一进程多个 UI 线程（多窗口分线程），WPF 不允许。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Dispatcher 差异" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

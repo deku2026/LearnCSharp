@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage24_TestingSystem.Pages.OnePagerDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§17 一页总结" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="金字塔：Unit（多）→ Headless（中）→ Visual/Appium（少）" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• Unit：[Fact] 测 ViewModel/Service，无 Avalonia 依赖" TextWrapping="Wrap"/>
+          <TextBlock Text="• Headless：[AvaloniaFact] 构造控件 + Measure/Arrange + 断言" TextWrapping="Wrap"/>
+          <TextBlock Text="• Visual：RenderTargetBitmap.Render → Skia 像素 diff" TextWrapping="Wrap"/>
+          <TextBlock Text="• Appium：真窗口 + WinAppDriver（注释示例）" TextWrapping="Wrap"/>
+          <TextBlock Text="• CI：dotnet test --filter + matrix" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：测试体系一页纸" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

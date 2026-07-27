@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage23_AccessibilityI18n.Pages.Avalonia12Demo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 Avalonia 12/12.1 相关变化" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="• Automation 模块统一：Avalonia.Automation.Peers 命名空间稳定" TextWrapping="Wrap"/>
+          <TextBlock Text="• AT-SPI 默认开启（Linux 桌面无需 UseAtSpi）" TextWrapping="Wrap"/>
+          <TextBlock Text="• AutomationProperties.Name/HelpText 强化为可附加属性" TextWrapping="Wrap"/>
+          <TextBlock Text="• 字体回退：UseInterFont 默认 + Inter 字体包" TextWrapping="Wrap"/>
+          <TextBlock Text="• HarfBuzz 默认开启（UseSkia+UseHarfBuzz → WithInterFont）" TextWrapping="Wrap"/>
+          <TextBlock Text="• FlowDirection 修复镜像：方向性图标正确翻转" TextWrapping="Wrap"/>
+          <TextBlock Text="• 12.1：ThemeVariant.HighContrast 三平台一致" TextWrapping="Wrap"/>
+          <TextBlock Text="• 12.1：IME CompositionOffset 可靠；TextInput 测试增强" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：列出 12/12.1 关键变化" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage25_Performance.Pages.UiThreadHealthDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 UI 线程健康" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="UI 线程只做 UI；长任务用 Task.Run；结果回 UI 用 Dispatcher.UIThread.InvokeAsync。" TextWrapping="Wrap"/>
+      <Button Content="跑后台 1000 万次累加（不阻塞 UI）" Click="RunBackgroundButton_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="ResultText" Text="等待运行..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      <TextBlock Text="反例：直接在 Click 里跑 for 循环 → UI 卡死。" TextWrapping="Wrap"/>
+      <TextBlock Text="诊断：RenderTimer 监控帧间隔；&gt; 16ms 即掉帧。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：UI 线程无长任务" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

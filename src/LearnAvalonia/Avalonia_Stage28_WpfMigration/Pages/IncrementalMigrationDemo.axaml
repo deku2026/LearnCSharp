@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage28_WpfMigration.Pages.IncrementalMigrationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 增量迁移战术" FontWeight="Bold" FontSize="14"/>
+      <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="战术" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="做法" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="风险" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="模块替换" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="按模块把 WPF UserControl 换成 Avalonia" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="两套并存" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="主机托管" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="新 Avalonia 主机窗口 + 旧 WPF 子模块嵌入" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="互操作复杂" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="独立进程" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Avalonia 窗口与 WPF 进程通信" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="IPC 开销" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="优先级：先迁移叶子模块（少依赖）；最后迁移主窗口。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：增量迁移三战术" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

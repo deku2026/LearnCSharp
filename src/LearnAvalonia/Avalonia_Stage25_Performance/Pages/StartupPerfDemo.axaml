@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage25_Performance.Pages.StartupPerfDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 启动：冷启动与热启动" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="冷启动：进程首次启动，含 JIT/加载 dll/初始化 Skia/字体回退。" TextWrapping="Wrap"/>
+      <TextBlock Text="热启动：dll 已驻留；JIT 代码缓存命中。" TextWrapping="Wrap"/>
+      <Button Content="测量 1000 个 TextBlock 构造 + Measure" Click="MeasureButton_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="ResultText" Text="等待测量..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      <TextBlock Text="分段计时" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="var sw = Stopwatch.StartNew();&#x0a;// ... load xaml ...&#x0a;sw.Stop();&#x0a;Log($&quot;xaml load: {sw.ElapsedMilliseconds} ms&quot;);" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="目标：冷启动 &lt; 1s；热启动 &lt; 300ms；首帧 &lt; 500ms。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Stopwatch 测启动可演示" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

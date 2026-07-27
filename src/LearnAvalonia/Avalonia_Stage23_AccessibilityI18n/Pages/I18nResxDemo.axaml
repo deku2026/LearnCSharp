@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage23_AccessibilityI18n.Pages.I18nResxDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 国际化：RESX、Culture、复数、运行时切语言" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="资源：Resources.resx（默认）+ Resources.zh-CN.resx + Resources.en.resx；ResourceManager 自动选 UICulture。" TextWrapping="Wrap"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="切到中文" Click="SetChinese_Click"/>
+        <Button Content="切到 English" Click="SetEnglish_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="CultureStatus" Text="点击按钮切换 UICulture" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      <TextBlock Text="复数：使用 PluralRules（CLDR）；.NET 12+ IPluralizer 或自定义规则表。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// 复数示例（英文）&#x0a;int n = items.Count;&#x0a;string fmt = n == 1 ? &quot;{0} item&quot; : &quot;{0} items&quot;;&#x0a;return string.Format(fmt, n);" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="性别/复数复杂：用 ICU MessageFormat（ICU4N 包）；简单场景硬编码 if/else 即可。" TextWrapping="Wrap"/>
+      <TextBlock Text="Avalonia 12.1：应用层读 CultureInfo.CurrentUICulture；切换后已显示字符串不会自动刷新，需重启或手动 raise。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：运行时切语言可演示" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

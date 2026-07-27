@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage25_Performance.Pages.ImageFontTextDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 图片、字体、文本" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="图片" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="缓存" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="同一 Bitmap 多次引用只解码一次" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="解码尺寸" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="不要 4K 图加载到 100x100；先缩放" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="格式" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="PNG 透明；WEBP/JPEG 小体积" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="字体" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• Inter 字体包仅一份；不要多个字重堆叠" TextWrapping="Wrap"/>
+          <TextBlock Text="• 大字重 subset 化（pyftsubset / fonttools）" TextWrapping="Wrap"/>
+          <TextBlock Text="• 缺字回退 fallback：不要全量打包 CJK 字体" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="文本：TextTrimming/TextWrapping 命中布局缓存；不要每帧改 Text。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：图片缓存 + 字体子集" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

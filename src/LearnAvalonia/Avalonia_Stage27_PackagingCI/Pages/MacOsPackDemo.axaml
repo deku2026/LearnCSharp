@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage27_PackagingCI.Pages.MacOsPackDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 macOS" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="发布" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="dotnet publish -c Release -r osx-arm64 &#x0a;  --self-contained true /p:PublishSingleFile=true" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text=".app bundle 结构" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="MyApp.app/&#x0a;  Contents/&#x0a;    Info.plist          (CFBundleIdentifier/Executable)&#x0a;    MacOS/MyApp        (可执行)&#x0a;    Resources/AppIcon.icns&#x0a;    _CodeSignature/" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="签名 + 公证" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="codesign --deep --options runtime --sign &quot;Developer ID&quot; MyApp.app&#x0a;xcrun notarytool submit MyApp.zip --apple-id xx --team-id xx --wait&#x0a;xcrun stapler staple MyApp.app&#x0a;hdiutil create -volname MyApp -srcfolder MyApp.app MyApp.dmg" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="验收：.app/.dmg/签名/公证" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

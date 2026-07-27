@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage28_WpfMigration.Pages.XpfBoundaryDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 💼 Avalonia XPF 边界" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Orange" BorderThickness="2" Background="#FFF8E1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="💼 Avalonia XPF = 商业产品（由 Avalonia UI 公司销售）。" FontWeight="SemiBold" TextWrapping="Wrap"/>
+          <TextBlock Text="不是开源；需要付费授权。" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="做什么" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• 现有 WPF XAML 几乎零修改跑在 Avalonia 渲染层" TextWrapping="Wrap"/>
+          <TextBlock Text="• WPF Trigger/Style/ControlTemplate 兼容层" TextWrapping="Wrap"/>
+          <TextBlock Text="• Windows/macOS/Linux 桌面跨平台" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="适用：大型 WPF 项目想跨平台但不想重写。代价：商业授权费 + 仍要铲部分 Windows 假设。" TextWrapping="Wrap"/>
+      <TextBlock Text="不适用：新项目优先直接 Avalonia；学习用本项目已够。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：XPF 商业边界" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

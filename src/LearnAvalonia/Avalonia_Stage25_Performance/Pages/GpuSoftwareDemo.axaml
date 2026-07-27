@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage25_Performance.Pages.GpuSoftwareDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 GPU vs 软件渲染" FontWeight="Bold" FontSize="14"/>
+      <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="平台" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="GPU 后端" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="软件后端" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Windows" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="OpenGL / D3D" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Skia CPU" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="macOS" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Metal" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="Skia CPU" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Linux" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="OpenGL / Vulkan" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="Skia CPU" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="嵌入式" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="视硬件" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="常用" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="切换：With(SkiaOptions.GpuMaxVersion) / UseRenderingThreadPool；Headless 默认 CPU。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Backend 差异说明" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

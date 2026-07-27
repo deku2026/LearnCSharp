@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage28_WpfMigration.Pages.XamlStyleBindingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 XAML/样式/模板/绑定/路由事件差异" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Trigger 不存在 → PseudoClasses + Selector" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="WPF" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Avalonia" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="&lt;Style TargetType=Button&gt;&#x0a;  &lt;Style.Triggers&gt;&#x0a;    &lt;Trigger Property=IsMouseOver Value=True&gt;&#x0a;      &lt;Setter Property=Background Value=Red/&gt;&#x0a;    &lt;/Trigger&gt;&#x0a;  &lt;/Style.Triggers&gt;&#x0a;&lt;/Style&gt;" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="&lt;Style Selector=Button:pointerover&gt;&#x0a;  &lt;Setter Property=Background Value=Red/&gt;&#x0a;&lt;/Style&gt;&#x0a;// pointerover 是 PseudoClass" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace" Padding="4"/>
+      </Grid>
+      <TextBlock Text="CompiledBinding（默认 12.1）" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="WPF（反射）" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Avalonia（编译期）" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="&lt;TextBox Text={Binding Name}/&gt;&#x0a;反射查 PropertyInfo" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="&lt;UserControl x:DataType=vm:MyVm&gt;&#x0a;  &lt;TextBox Text={Binding Name}/&gt;&#x0a;// 编译期生成访问器" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace" Padding="4"/>
+      </Grid>
+      <TextBlock Text="路由事件：SelectionChanged 在 Avalonia 不冒泡（用 SelectionDelta 或 ItemCollectionChanged）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：XAML 差异并排示例" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage24_TestingSystem.Pages.AppiumDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 Appium 与真窗口" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Appium 需要真窗口（不能 Headless）；Windows 用 WinAppDriver，macOS 用 Appium Mac2 Driver，Linux 难做。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// 注释示例：需启动 MyApp.exe + WinAppDriver.exe&#x0a;// [Fact]&#x0a;// public void Login_Button_Opens_MainPage()&#x0a;// {&#x0a;//     var app = AppDriver.Start(&quot;http://127.0.0.1:4723&quot;,&#x0a;//         new() { App = &quot;C:\MyApp\MyApp.exe&quot; });&#x0a;//     var loginBtn = app.FindElementByAccessibilityId(&quot;LoginButton&quot;);&#x0a;//     loginBtn.Click();&#x0a;//     Assert.NotNull(app.FindElementByName(&quot;MainPage&quot;));&#x0a;//     app.Close();&#x0a;// }" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="AutomationId：在 Avalonia 中通过 AutomationProperties.AutomationId 附加属性设置。" TextWrapping="Wrap"/>
+      <TextBlock Text="限制：本仓库 .Tests 项目不跑 Appium（需要真窗口 + WinAppDriver），仅注释示例。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Appium WinAppDriver 注释示例" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

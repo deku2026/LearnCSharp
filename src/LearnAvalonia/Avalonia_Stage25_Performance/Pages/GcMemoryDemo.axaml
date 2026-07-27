@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage25_Performance.Pages.GcMemoryDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 GC 与内存" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="GC.GetTotalMemory(false) 当前托管内存；GC.Collect 强制回收。" TextWrapping="Wrap"/>
+      <Button Content="测分配 + GC" Click="MeasureButton_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="ResultText" Text="等待测量..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      <TextBlock Text="避免 LOH：&gt; 85KB 数组进大对象堆，标记代价高；切片或池化。" TextWrapping="Wrap"/>
+      <TextBlock Text="工具：dotMemory（JetBrains）/ GCStats（dotnet-counters）/ PerfView。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：GC.GetTotalMemory 可演示" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>
