@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.RelativeUniformPanelDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§D7-D8 RelativePanel 与 UniformGrid" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="RelativePanel：相对某兄弟/面板对齐的中小布局；约束过多易难读，复杂 UI 优先 Grid" TextWrapping="Wrap"/>
+      <TextBlock Text="UniformGrid：单元格等大；子按顺序填充，适合规则矩阵" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：RelativePanel 约束链" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4" Height="120">
+        <RelativePanel>
+          <TextBlock x:Name="Title" Text="标题" FontWeight="Bold"
+                     RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+          <Button Content="左" RelativePanel.Below="Title"
+                  RelativePanel.AlignLeftWithPanel="True" Margin="0,8,0,0"/>
+          <Button Content="右" RelativePanel.Below="Title"
+                  RelativePanel.AlignRightWithPanel="True" Margin="0,8,0,0"/>
+        </RelativePanel>
+      </Border>
+      <TextBlock Text="现场：UniformGrid Rows=2 Columns=3" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <UniformGrid Rows="2" Columns="3">
+          <Button Content="1"/><Button Content="2"/><Button Content="3"/>
+          <Button Content="4"/><Button Content="5"/><Button Content="6"/>
+        </UniformGrid>
+      </Border>
+      <TextBlock Text="验收：使用 RelativePanel 约束与 UniformGrid 等分" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

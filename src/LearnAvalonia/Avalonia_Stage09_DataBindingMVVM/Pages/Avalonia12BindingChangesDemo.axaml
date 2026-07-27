@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.Avalonia12BindingChangesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§H Avalonia 12 绑定变化" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="2" ColumnSpacing="4">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="变化" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="影响" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="行动" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="绑定插件移除" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="旧插件式扩展失效" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="读 migration；改用支持的扩展点" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="DataAnnotations 插件默认关" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="注解校验不自动" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="显式启用或改 Toolkit Validator" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="BindingBase" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="类型层次变化" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="库代码重编译对齐 12.1" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="代码绑定" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="Binding≈反射；编译用 CompiledBinding.Create" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="代码绑定时显式选择" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="XAML compiled 默认" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="新项目更安全" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="始终补 x:DataType" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="升级检查表：" FontWeight="SemiBold"/>
+      <Border BorderBrush="DarkGreen" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="☐ 全库搜 Avalonia.ReactiveUI → 换 ReactiveUI.Avalonia"/>
+          <TextBlock Text="☐ 全库搜旧 Behaviors 包名"/>
+          <TextBlock Text="☐ 代码 new Binding 是否应改编译绑定"/>
+          <TextBlock Text="☐ DataAnnotations 是否仍工作"/>
+          <TextBlock Text="☐ ViewLocator + PublishTrimmed 试验"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：说出绑定插件移除、DataAnnotations 默认关" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

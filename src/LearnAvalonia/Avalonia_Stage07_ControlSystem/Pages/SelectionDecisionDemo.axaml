@@ -1,0 +1,62 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.SelectionDecisionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§G1 完整选型决策表" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="2" ColumnSpacing="4">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="场景" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="推荐" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="备选" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="避免" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="只读文本" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="TextBlock" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="SelectableTextBlock" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="TextBox 只读滥用" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="表单短文本" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="TextBox+PlaceholderText" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="—" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="自定义绘制输入" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="枚举选择" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="ComboBox/Radio" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="ListBox" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="过重 DataGrid" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="布尔设置" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="ToggleSwitch/CheckBox" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="ToggleButton" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="—" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="只读表" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="TableView" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="ListBox 多列模板" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="DataGrid 只读" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="可编辑表" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="DataGrid ⚠️" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="行编辑 UserControl" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="无许可冒充 Pro" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="树" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="TreeView" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="—" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="3" Text="假表硬撑" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="0" Text="桌面导航壳" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="1" Text="SplitView+Content" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="2" Text="TabControl" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="3" Text="强制 NavigationPage" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="9" Grid.Column="0" Text="移动导航栈" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="9" Grid.Column="1" Text="NavigationPage" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="9" Grid.Column="2" Text="—" Padding="4"/>
+          <TextBlock Grid.Row="9" Grid.Column="3" Text="仅 Window 思维" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="10" Grid.Column="0" Text="命令菜单" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="10" Grid.Column="1" Text="MenuFlyout/ContextMenu" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="10" Grid.Column="2" Text="—" Padding="4"/>
+          <TextBlock Grid.Row="10" Grid.Column="3" Text="每处自绘" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="11" Grid.Column="0" Text="文件打开" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="11" Grid.Column="1" Text="StorageProvider" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="11" Grid.Column="2" Text="—" Padding="4"/>
+          <TextBlock Grid.Row="11" Grid.Column="3" Text="旧 FileDialog API" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：按 G1 表做选型口述（抽查 8 个）" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages"
+             x:DataType="pages:TableViewDemo"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.TableViewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§C6 TableView 12.1 核心 · 只读表首选" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="事实：位于 Avalonia.Controls 核心包，无需额外 NuGet；自 12.1 起作为轻量只读表；派生自 ListBox 一脉；行虚拟化、列不虚拟化" TextWrapping="Wrap"/>
+      <TextBlock Text="适用：日志表、只读订单列表、设置清单、Admin 只读浏览" TextWrapping="Wrap"/>
+      <TextBlock Text="不适用：Excel 式单元格编辑 → DataGrid（维护模式）或自研编辑行" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：TableView 三列只读" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <TableView ItemsSource="{Binding Rows}" CanUserResizeColumns="True" MaxHeight="160">
+          <TableView.Columns>
+            <TableViewColumn Header="名称" Binding="{Binding Name}" Width="2*"/>
+            <TableViewColumn Header="状态" Binding="{Binding Status}" Width="*"/>
+          </TableView.Columns>
+        </TableView>
+      </Border>
+      <TextBlock Text="列很多时：列不虚拟化 → 横向列爆炸会疼；控制列数或改交互" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：准确说出 TableView 包与状态" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

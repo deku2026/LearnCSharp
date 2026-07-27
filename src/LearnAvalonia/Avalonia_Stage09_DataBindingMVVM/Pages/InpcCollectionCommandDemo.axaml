@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages"
+             x:DataType="pages:InpcCollectionCommandVm"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.InpcCollectionCommandDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§C1-C5 INPC·集合·命令" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="生产：Toolkit 源生成（ObservableProperty + RelayCommand）；集合：ObservableCollection；跨线程必须 UI 封送" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：ObservableProperty + RelayCommand(CanExecute) + ObservableCollection" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="8">
+          <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" RowSpacing="6" ColumnSpacing="8">
+            <Label Grid.Row="0" Grid.Column="0" Content="姓名"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name, Mode=TwoWay}" PlaceholderText="输入姓名启用保存"/>
+            <Button Grid.Row="0" Grid.Column="2" Content="保存" Command="{Binding SaveCommand}"/>
+            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="异步加载（async Task）" Command="{Binding LoadCommand}"/>
+          </Grid>
+          <TextBlock Text="People 集合（ObservableCollection）：" FontWeight="SemiBold"/>
+          <ListBox ItemsSource="{Binding People}" MaxHeight="120"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="异步命令：async Task（禁 async void 命令）· CTS · IsBusy 防重入 · 异常变用户消息" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：使用 Toolkit ObservableProperty 与 RelayCommand" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.CodeBindingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§B3-B4 代码侧绑定与何时 Reflection" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="事实：在代码里 new Binding(...) 的语义在 12 更接近反射绑定；需要编译绑定时用显式 API" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="// 倾向反射（名称以 12.1 API 为准）&#10;control.Bind(TextBlock.TextProperty, new Binding(&quot;Title&quot;));&#10;&#10;// 编译绑定：使用 CompiledBinding / CompiledBinding.Create&#10;// control.Bind(TextBlock.TextProperty, CompiledBinding.Create(...));&#10;&#10;// 显式反射&#10;// control.Bind(..., new ReflectionBinding(&quot;Title&quot;));"/>
+      </Border>
+      <TextBlock Text="BindingBase 作为绑定抽象基类型出现在 12 绑定模型中——库作者依赖具体类型时要读 breaking notes" TextWrapping="Wrap"/>
+      <TextBlock Text="口诀：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="XAML 主线 → compiled + x:DataType"/>
+          <TextBlock Text="代码动态 → 想清楚 CompiledBinding.Create vs ReflectionBinding"/>
+          <TextBlock Text="AOT/trim → 避免反射路径绑私有/未注解成员"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="何时允许 Reflection：1. 设计器/动态列名直到运行时才知道 2. 遗留互操作短期兼容 3. 必须：文档注明 + 裁剪注解/根描述符，否则 AOT 爆" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：说清 CompiledBinding.Create vs ReflectionBinding" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.NavigationDialogAbstractionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§E4 导航/对话框抽象" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="VM 只依赖接口；桌面实现用 Window.ShowDialog；移动实现用 Pages" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="public interface INavigationService&#10;{&#10;    Task NavigateToAsync(string key, object? parameter = null);&#10;}&#10;&#10;public interface IDialogService&#10;{&#10;    Task&lt;bool&gt; ConfirmAsync(string title, string message);&#10;    Task ShowErrorAsync(string message);&#10;}"/>
+      </Border>
+      <TextBlock Text="VM 使用示例：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="[RelayCommand]&#10;private async Task CloseAsync()&#10;{&#10;    if (IsDirty &amp;&amp; !await _dialogs.ConfirmAsync(&quot;未保存&quot;, &quot;丢弃更改？&quot;))&#10;        return;&#10;    await _nav.NavigateToAsync(&quot;Home&quot;);&#10;}"/>
+      </Border>
+      <TextBlock Text="验收：VM 只依赖接口不引用 Window" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

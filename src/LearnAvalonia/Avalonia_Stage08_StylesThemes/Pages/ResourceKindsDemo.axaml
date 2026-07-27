@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage08_StylesThemes.Pages.ResourceKindsDemo">
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <SolidColorBrush x:Key="StaticBrandBlue" Color="#0078D4"/>
+      <SolidColorBrush x:Key="DynamicBrandBrush" Color="#0078D4"/>
+    </ResourceDictionary>
+  </UserControl.Resources>
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§D1-D4 Static·Dynamic·ThemeResource" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="三者选择口诀：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="真·编译期常量 → StaticResource（解析时机早；键必须已存在；运行时替换字典项不一定更新）"/>
+          <TextBlock Text="运行期可替换资源 → DynamicResource（键变化或字典更新时可刷新；主题切换常用）"/>
+          <TextBlock Text="随 Light/Dark 变 → ThemeResource（+ ThemeDictionaries；同一组 key 在 Light/Dark 双字典都出现）"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="现场：Static vs Dynamic 资源引用对照" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+        <Border Grid.Column="0" Background="{StaticResource StaticBrandBlue}" Padding="8" CornerRadius="4">
+          <TextBlock Text="StaticResource（一次解析）" Foreground="White"/>
+        </Border>
+        <Border Grid.Column="1" Background="{DynamicResource DynamicBrandBrush}" Padding="8" CornerRadius="4">
+          <TextBlock Text="DynamicResource（可刷新）" Foreground="White"/>
+        </Border>
+      </Grid>
+      <TextBlock Text="ThemeResource 示例（随 ThemeVariant 变化，需在 App.axaml 或 Themes/Tokens.axaml 定义 ThemeDictionaries）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;ResourceDictionary.ThemeDictionaries&gt;&#10;  &lt;ResourceDictionary x:Key=&quot;Light&quot;&gt;&#10;    &lt;SolidColorBrush x:Key=&quot;PageBackgroundBrush&quot; Color=&quot;#FFF5F5F5&quot; /&gt;&#10;  &lt;/ResourceDictionary&gt;&#10;  &lt;ResourceDictionary x:Key=&quot;Dark&quot;&gt;&#10;    &lt;SolidColorBrush x:Key=&quot;PageBackgroundBrush&quot; Color=&quot;#FF121212&quot; /&gt;&#10;  &lt;/ResourceDictionary&gt;&#10;&lt;/ResourceDictionary.ThemeDictionaries&gt;&#10;&#10;&lt;Border Background=&quot;{ThemeResource PageBackgroundBrush}&quot; /&gt;"/>
+      </Border>
+      <TextBlock Text="完整浅深色示例的关键：同一组 key 在 Light/Dark 双字典都出现；UI 只引用 key，不写死 Color" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：演示 Static/Dynamic/ThemeResource 差异" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

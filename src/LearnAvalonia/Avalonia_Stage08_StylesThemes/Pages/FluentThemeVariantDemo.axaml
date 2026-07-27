@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage08_StylesThemes.Pages.FluentThemeVariantDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§C1-C2 FluentTheme 与 ThemeVariant" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="FluentTheme：现代 Fluent 风，模板完整，默认首选；SimpleTheme：更轻更朴素，适合嵌入式/自定义重绘基底" TextWrapping="Wrap"/>
+      <TextBlock Text="铁律：主题包版本与 Avalonia 12.1.0 对齐" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="现场：切换 RequestedThemeVariant（Default=跟随系统 / Light / Dark）" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <RadioButton Content="跟随系统（Default）" Tag="Default" Click="SetVariant" IsChecked="True" GroupName="Theme"/>
+          <RadioButton Content="浅色（Light）" Tag="Light" Click="SetVariant" GroupName="Theme"/>
+          <RadioButton Content="深色（Dark）" Tag="Dark" Click="SetVariant" GroupName="Theme"/>
+          <Border Background="{DynamicResource SystemControlBackgroundAltMediumBrush}" Padding="12" CornerRadius="4">
+            <TextBlock Text="此卡片背景随 ThemeVariant 变化"/>
+          </Border>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="代码切换：Application.Current.RequestedThemeVariant = ThemeVariant.Dark" TextWrapping="Wrap"/>
+      <TextBlock Text="ThemeVariantScope 可在子树强制另一变体（局部预览深色卡片等）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：切换 ThemeVariant 即时生效" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

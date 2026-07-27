@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages"
+             x:DataType="pages:ValidationVm"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.ValidationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§D1-D3 校验与 DataAnnotations" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="12 DataAnnotations 绑定插件默认关闭（更利 Toolkit 与显式校验），需要时按官方文档显式启用" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：ObservableValidator + NotifyDataErrorInfo + Required/MinLength" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="8">
+          <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" RowSpacing="6" ColumnSpacing="8">
+            <Label Grid.Row="0" Grid.Column="0" Content="名称"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name, Mode=TwoWay}" PlaceholderText="至少 2 字符"/>
+            <Button Grid.Row="0" Grid.Column="2" Content="保存（触发校验）" Command="{Binding SaveCommand}"/>
+          </Grid>
+          <TextBlock Text="校验规则尽量在 VM/领域层，不在 code-behind 复制一份；异步唯一性检查要防抖；服务器错误映射回字段级消息" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：使用 ObservableValidator 与 INotifyDataErrorInfo" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

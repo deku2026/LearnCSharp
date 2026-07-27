@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.InfinityMeasureDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§A1.2 无限可用空间（Infinity）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="StackPanel 主轴、ScrollViewer 内容、Canvas 子项 Measure 时常收到无限 available 维度：" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="· 子控件必须能处理 double.IsInfinity，否则 NaN/∞ 会污染整棵树" TextWrapping="Wrap"/>
+          <TextBlock Text="· 有固定 Width/Height 的控件返回固定值；需要「按内容」的控件测内容高度" TextWrapping="Wrap"/>
+          <TextBlock Text="· 禁止对 infinity 做无保护的算术（如 available.Width * 0.5 当 width 为 ∞）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="现场：下方 ScrollViewer 内 StackPanel 主轴为 infinity → 按内容高度扩展" FontWeight="SemiBold"/>
+      <Border BorderBrush="OrangeRed" BorderThickness="1" Padding="4" CornerRadius="4" Height="120">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+          <StackPanel Spacing="4">
+            <TextBlock Text="第 1 行（按内容扩展，不裁剪）"/>
+            <TextBlock Text="第 2 行（按内容扩展，不裁剪）"/>
+            <TextBlock Text="第 3 行（按内容扩展，不裁剪）"/>
+            <TextBlock Text="第 4 行（按内容扩展，不裁剪）"/>
+            <TextBlock Text="第 5 行（按内容扩展，不裁剪）"/>
+            <TextBlock Text="第 6 行（按内容扩展，不裁剪）"/>
+            <TextBlock Text="第 7 行（按内容扩展，不裁剪）"/>
+            <TextBlock Text="第 8 行（按内容扩展，不裁剪）"/>
+          </StackPanel>
+        </ScrollViewer>
+      </Border>
+      <TextBlock Text="安全写法：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="var width = double.IsInfinity(availableSize.Width)&#10;    ? MeasureContentWidth()&#10;    : availableSize.Width;"/>
+      </Border>
+      <TextBlock Text="验收：说明 infinity measure 的陷阱" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

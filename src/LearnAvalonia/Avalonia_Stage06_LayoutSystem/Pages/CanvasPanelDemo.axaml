@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.CanvasPanelDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§D6 Canvas" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="子通过 Canvas.Left/Top/Right/Bottom 定位；Canvas 自身尺寸需显式或由父约束；不是响应式表单布局的首选" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：绝对定位图元（Ellipse + TextBlock）" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="4">
+        <Canvas Width="400" Height="180" Background="#22000000">
+          <Ellipse Canvas.Left="40" Canvas.Top="20" Width="50" Height="50" Fill="Orange"/>
+          <TextBlock Canvas.Left="100" Canvas.Top="120" Text="绝对定位文本"/>
+          <Rectangle Canvas.Left="220" Canvas.Top="40" Width="80" Height="40" Fill="SteelBlue"/>
+        </Canvas>
+      </Border>
+      <TextBlock Text="验收：使用 Canvas.Left/Top 绝对定位" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

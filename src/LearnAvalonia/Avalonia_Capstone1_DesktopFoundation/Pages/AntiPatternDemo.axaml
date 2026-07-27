@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone1_DesktopFoundation.Pages.AntiPatternDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 反模式清单（出现则整改）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="OrangeRed" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="2" ColumnSpacing="4">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="反模式" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="为什么坏" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="纠正" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="上帝 MainWindow.axaml.cs" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="不可测" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="逻辑下沉 VM/服务" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="静态 App.Services 满天飞" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="隐藏依赖" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="构造注入" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="ViewLocator 反射" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="AOT/trim 炸" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="DataTemplate 映射" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="只读表上 DataGrid" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="deprecated 路线错误" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="TableView" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="深色复制整页" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="不可维护" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="ThemeResource" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="后台线程改 OC" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="随机崩溃" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="UI 线程封送" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="async void 命令" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="异常难捕" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="async Task RelayCommand" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="0" Text="硬编码绝对路径" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="1" Text="三平台炸" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="2" Text="IAppPaths" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="9" Grid.Column="0" Text="阻塞 UI 做 IO" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="9" Grid.Column="1" Text="卡顿" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="9" Grid.Column="2" Text="async 全程" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="10" Grid.Column="0" Text="无 AutomationId" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="10" Grid.Column="1" Text="测不动、a11y 差" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="10" Grid.Column="2" Text="关键控件补齐" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="11" Grid.Column="0" Text="为共享牺牲桌面体验" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="11" Grid.Column="1" Text="空壳移动导航" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="11" Grid.Column="2" Text="桌面 Content 导航" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="12" Grid.Column="0" Text="实验 Wayland 当默认" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="12" Grid.Column="1" Text="不稳" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="12" Grid.Column="2" Text="X11 主路径" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：无反模式出现" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

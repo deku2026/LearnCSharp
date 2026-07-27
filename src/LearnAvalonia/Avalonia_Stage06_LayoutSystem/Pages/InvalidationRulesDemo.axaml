@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.InvalidationRulesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§B1 Invalidation 规则" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="API" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="何时调用" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="效果" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="InvalidateMeasure()" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="期望尺寸可能变" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="标记 measure dirty，向上传播" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="InvalidateArrange()" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="仅位置/最终矩形可能变" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="不重测内容尺寸时用" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="InvalidateVisual()" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="仅重绘" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="不触发布局" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="触发失效的典型属性变化：Width/Height/Min*/Max*/Margin/Padding/HorizontalAlignment、子集合增删、字体/文本、模板更换" TextWrapping="Wrap"/>
+      <TextBlock Text="反模式（布局循环）：" FontWeight="SemiBold" Foreground="OrangeRed"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="// ❌ 在 MeasureOverride 中修改会影响布局的属性并再次 Invalidate → 布局循环&#10;protected override Size MeasureOverride(Size availableSize)&#10;{&#10;    Width = availableSize.Width / 2; // 危险&#10;    return base.MeasureOverride(availableSize);&#10;}"/>
+      </Border>
+      <TextBlock Text="验收：区分 InvalidateMeasure/Arrange/Visual" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

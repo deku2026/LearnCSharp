@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.PlatformDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§I 平台差异摘要" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="2" ColumnSpacing="4">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="能力" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="桌面" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="移动" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="Browser" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="多 Window" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="✅" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="❌ 主单视图" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="❌" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Pages 导航" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="可用非必须" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="✅ 推荐" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="可用" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="ContextMenu" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="右键" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="长按" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="限制/差异" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="DataGrid 编辑" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="常用" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="体验差，慎用" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="慎用" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="TableView" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="✅" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="✅ 注意列宽" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="✅" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="ColorPicker" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="✅" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="✅" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="✅" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="系统返回键" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="弱" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="强（对接导航栈）" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="3" Text="浏览器历史" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：区分桌面/移动/Browser 能力" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

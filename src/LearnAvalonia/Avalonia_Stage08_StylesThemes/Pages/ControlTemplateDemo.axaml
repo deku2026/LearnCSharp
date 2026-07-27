@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage08_StylesThemes.Pages.ControlTemplateDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§E3-E5 ControlTemplate 与无外观控件" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="ControlTemplate 要点：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="4" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="TemplateBinding" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="绑定到模板父控件属性" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="PART_* 约定" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="代码 OnApplyTemplate 找零件" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="伪类改零件" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="Selector=^:pressed /template/ ..." TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="保持 lookless" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="逻辑在控件类，外观在模板" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="ControlTheme 完整示例（FancyButton）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;ControlTheme x:Key=&quot;{x:Type local:FancyButton}&quot; TargetType=&quot;local:FancyButton&quot;&gt;&#10;  &lt;Setter Property=&quot;Template&quot;&gt;&#10;    &lt;ControlTemplate&gt;&#10;      &lt;Border x:Name=&quot;Root&quot; Background=&quot;{TemplateBinding Background}&quot; CornerRadius=&quot;6&quot;&gt;&#10;        &lt;ContentPresenter Content=&quot;{TemplateBinding Content}&quot; /&gt;&#10;      &lt;/Border&gt;&#10;    &lt;/ControlTemplate&gt;&#10;  &lt;/Setter&gt;&#10;  &lt;Style Selector=&quot;^:pointerover /template/ Border#Root&quot;&gt;&#10;    &lt;Setter Property=&quot;Opacity&quot; Value=&quot;0.92&quot; /&gt;&#10;  &lt;/Style&gt;&#10;&lt;/ControlTheme&gt;"/>
+      </Border>
+      <TextBlock Text="Style 与 ControlTheme 分工：所有 TextBlock 字号微调 → Style；重做控件内部结构 → ControlTheme.Template；仅一处列表项 UI → DataTemplate" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：提供可替换 ControlTheme" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

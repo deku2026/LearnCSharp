@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage08_StylesThemes.Pages.PriorityClassesDemo">
+  <UserControl.Styles>
+    <Style Selector="Border.showerror">
+      <Setter Property="BorderBrush" Value="Red"/>
+      <Setter Property="BorderThickness" Value="2"/>
+    </Style>
+    <Style Selector="Border.card">
+      <Setter Property="Background" Value="#220000FF"/>
+      <Setter Property="Padding" Value="16"/>
+      <Setter Property="CornerRadius" Value="8"/>
+    </Style>
+  </UserControl.Styles>
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§B3-B4 优先级与 Classes 驱动" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="优先级心智：属性 value precedence（local/animation/style/template）→ 同一 precedence 内选择器更具体与样式集合顺序 → 内联属性通常压过 Style Setter → 模板绑定/主题默认值在更底层" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：Classes 驱动状态 UI" FontWeight="SemiBold"/>
+      <Border Classes="card showerror" Margin="0,4">
+        <TextBlock Text="同时带 card + showerror class（红色边框 + 蓝色背景卡片）"/>
+      </Border>
+      <Border Classes="card" Margin="0,4">
+        <TextBlock Text="仅 card class（蓝色背景卡片）"/>
+      </Border>
+      <TextBlock Text="代码驱动 Classes：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="root.Classes.Set(&quot;narrow&quot;, width &lt; 600);&#10;button.Classes.Add(&quot;primary&quot;);&#10;button.Classes.Remove(&quot;danger&quot;);"/>
+      </Border>
+      <TextBlock Text="适合响应式断点 class、错误态、忙碌态" TextWrapping="Wrap"/>
+      <TextBlock Text="调试技巧：DevTools 看有效值与来源；临时用夸张颜色定位哪条 Style 命中；怀疑特异性时简化 Selector 再叠加" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：解释 Selector 优先级与作用域" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

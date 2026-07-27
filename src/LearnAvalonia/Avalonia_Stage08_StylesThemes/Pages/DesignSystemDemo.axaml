@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage08_StylesThemes.Pages.DesignSystemDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§G1-G4 设计系统落地" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Token 层次：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="Primitive 色板 → Semantic(Accent/Danger/Surface) → 组件 token" TextWrapping="Wrap"/>
+          <TextBlock Text="UI 只绑语义层；浅深色只换映射" TextWrapping="Wrap"/>
+          <TextBlock Text="间距/字号阶梯: Space100/200/300 · FontSizeBody/H1" TextWrapping="Wrap"/>
+          <TextBlock Text="组件库: Themes 作 AvaloniaResource · StyleInclude · 版本钉 12.1" TextWrapping="Wrap"/>
+          <TextBlock Text="动画: Style+Transitions；12 不可见可停动画（省电）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="现场：语义色板示例" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="8">
+        <Border Grid.Column="0" Background="SteelBlue" Padding="8" CornerRadius="4"><TextBlock Text="Accent" Foreground="White"/></Border>
+        <Border Grid.Column="1" Background="#FFC42B1C" Padding="8" CornerRadius="4"><TextBlock Text="Danger" Foreground="White"/></Border>
+        <Border Grid.Column="2" Background="#FFF5F5F5" Padding="8" CornerRadius="4"><TextBlock Text="Surface Light"/></Border>
+        <Border Grid.Column="3" Background="#FF1E1E1E" Padding="8" CornerRadius="4"><TextBlock Text="Surface Dark" Foreground="White"/></Border>
+      </Grid>
+      <TextBlock Text="验收：Token 层次与 UI 只绑语义层" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

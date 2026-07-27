@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage08_StylesThemes.Pages.AcceptanceChecklistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§J1-J2 最小实验·验收" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="最小实验：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="1. Tokens Light/Dark + 切换（ThemeResource）"/>
+          <TextBlock Text="2. TextBlock.h1 全局 Style（Style 作用域）"/>
+          <TextBlock Text="3. Button.primary 嵌套伪类（Selector）"/>
+          <TextBlock Text="4. FancyButton ControlTheme（lookless）"/>
+          <TextBlock Text="5. DangerButton BasedOn 变体（Theme 属性）"/>
+          <TextBlock Text="6. Static vs Dynamic 替换资源观察（资源语义）"/>
+          <TextBlock Text="7. 150% 缩放 + 中英文字（跨平台观感）"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收标准：" FontWeight="SemiBold"/>
+      <Border BorderBrush="DarkGreen" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="☐ 闭卷讲清 A1 七行概念差异"/>
+          <TextBlock Text="☐ 完整浅色/深色，无页面级写死背景色作为唯一方案"/>
+          <TextBlock Text="☐ 至少一个自定义/无外观控件 + 可替换 ControlTheme"/>
+          <TextBlock Text="☐ 使用伪类表达 pointerover/pressed/disabled"/>
+          <TextBlock Text="☐ 理解并演示 Static / Dynamic / ThemeResource 之一差异"/>
+          <TextBlock Text="☐ FluentTheme 版本钉 12.1.0"/>
+          <TextBlock Text="☐ 不出现用 DataTemplate 换按钮铬的错误设计"/>
+          <TextBlock Text="☐ 跨平台或至少双缩放抽检字体与对比度"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：勾选验收清单 8 条" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

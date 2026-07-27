@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.StackPanelDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§D2 StackPanel" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="要点：Orientation（Vertical/Horizontal）· Spacing（现代 API 子间距，优于手写每项 Margin）· ScrollViewer 内主轴 infinity → 按内容高度扩展" TextWrapping="Wrap"/>
+      <TextBlock Text="Vertical + Spacing=8：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Orientation="Vertical" Spacing="8">
+          <TextBlock Text="标题" FontWeight="Bold"/>
+          <TextBox PlaceholderText="占位提示"/>
+          <Button Content="确定" HorizontalAlignment="Right"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="Horizontal + Spacing=12：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Orientation="Horizontal" Spacing="12">
+          <Button Content="A"/>
+          <Button Content="B"/>
+          <Button Content="C"/>
+          <Button Content="D"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：使用 Spacing 与 Orientation" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

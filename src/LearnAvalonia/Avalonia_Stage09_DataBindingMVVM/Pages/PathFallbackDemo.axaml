@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages"
+             x:DataType="pages:PathFallbackVm"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.PathFallbackDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§A3-A4 路径与 Fallback/TargetNull" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="路径语法：{Binding User.Profile.DisplayName} · {Binding #OtherControl.Text} · {Binding $parent[ItemsControl].DataContext.Title}" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：TargetNullValue 与 FallbackValue" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="8">
+          <TextBox Text="{Binding Nickname, Mode=TwoWay}" PlaceholderText="输入昵称（留空看 TargetNullValue）"/>
+          <TextBlock Text="{Binding Nickname, TargetNullValue='（未设置）', FallbackValue='（不可用）'}"/>
+          <TextBlock Text="清空 TextBox → 显示「（未设置）」（TargetNullValue：源值为 null）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="不要用 Fallback 吞掉本应修复的路径错误——诊断期先暴露问题" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：使用 FallbackValue 与 TargetNullValue" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

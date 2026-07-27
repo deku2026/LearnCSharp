@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.SizeSemanticsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§A1.1 DesiredSize / AvailableSize / FinalSize 语义" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="概念" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="含义" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="常见来源" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="AvailableSize" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="父级在本次 Measure 中允许子使用的最大空间；宽或高可为 PositiveInfinity" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="父 MeasureOverride 传入" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="DesiredSize" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="子在给定 available 下「想要」的尺寸（含自身 Margin 后的参与值由框架处理）" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="MeasureOverride 返回值经框架处理" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="Bounds" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="控件在父坐标系中的实际边界" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="Arrange 后" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="心智模型伪代码：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="protected override Size MeasureOverride(Size availableSize)&#10;{&#10;    // 1. 约束 available：考虑 Min/Max/Width/Height&#10;    // 2. Measure 子控件，收集 DesiredSize&#10;    // 3. 按布局算法汇总，返回「我需要多大」&#10;    return computedDesired;&#10;}&#10;&#10;protected override Size ArrangeOverride(Size finalSize)&#10;{&#10;    // 1. 按 finalSize 与对齐规则给每个子分配 Rect&#10;    // 2. child.Arrange(rect)&#10;    // 3. 返回实际使用的 size（通常等于 finalSize）&#10;    return finalSize;&#10;}"/>
+      </Border>
+      <TextBlock Text="验收：解释 Desired vs Available vs Final" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

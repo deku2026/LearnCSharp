@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.LayoutPipelineDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§A1 两阶段管线（必须背下）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="1. Measure 阶段（自顶向下传可用空间，自底向上回传期望尺寸）" FontWeight="SemiBold"/>
+          <TextBlock Text="父 → 子: availableSize（可用 Size，可含 PositiveInfinity）" TextWrapping="Wrap"/>
+          <TextBlock Text="子 → 父: DesiredSize（子希望占用的尺寸）" TextWrapping="Wrap"/>
+          <TextBlock Text="2. Arrange 阶段（自顶向下分配最终矩形）" FontWeight="SemiBold"/>
+          <TextBlock Text="父 → 子: finalRect（相对父的位置与大小）" TextWrapping="Wrap"/>
+          <TextBlock Text="子 设置: Bounds / 实际渲染位置；可再约束子树" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="关键约束：" FontWeight="SemiBold"/>
+      <TextBlock Text="1. Measure 必须幂等且无副作用到布局之外（不要在 MeasureOverride 里改 DataContext、触发 IO、无限循环 Invalidate）" TextWrapping="Wrap"/>
+      <TextBlock Text="2. Arrange 不得再扩大超出父给的 finalRect（除非显式允许溢出，如 Canvas 绝对定位）" TextWrapping="Wrap"/>
+      <TextBlock Text="3. 若子在 Measure 后属性变化影响尺寸，必须 InvalidateMeasure；仅位置/对齐类变化可 InvalidateArrange" TextWrapping="Wrap"/>
+      <TextBlock Text="4. 布局在 UI 线程由 LayoutManager 调度；批量失效后在同一 pass 收敛" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：拖动本窗口边框 → 触发一次完整 Measure→Arrange pass" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：闭卷画出此链" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage08_StylesThemes.Pages.LightDarkAppDemo">
+  <UserControl.Styles>
+    <Style Selector="TextBlock.h1">
+      <Setter Property="FontSize" Value="24"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+    <Style Selector="TextBlock.caption">
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="Opacity" Value="0.75"/>
+    </Style>
+    <Style Selector="Border.card">
+      <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltMediumBrush}"/>
+      <Setter Property="Padding" Value="16"/>
+      <Setter Property="CornerRadius" Value="8"/>
+    </Style>
+  </UserControl.Styles>
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§F1-F3 完整浅深色应用示例" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="文件结构建议：Themes/Tokens.axaml（ThemeDictionaries Light/Dark）+ Themes/ControlThemes.axaml + Styles/AppStyles.axaml + App.axaml" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：全局工具类 Style（h1/caption/card）" FontWeight="SemiBold"/>
+      <Border Classes="card" Margin="0,4">
+        <StackPanel Spacing="8">
+          <TextBlock Text="ThemeLab" Classes="h1"/>
+          <TextBlock Text="卡片与强调色随 ThemeVariant 变化" Classes="caption"/>
+          <Button Content="强调按钮" Background="SteelBlue" Foreground="White"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="ThemeDictionaries 双字典关键：同一组 key 在 Light/Dark 双字典都出现；UI 只引用 key，不写死 Color" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：完整浅色/深色无页面级写死" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

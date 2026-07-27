@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage08_StylesThemes.Pages.StyleSelectorDemo">
+  <UserControl.Styles>
+    <Style Selector="TextBlock.caption">
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="Opacity" Value="0.7"/>
+    </Style>
+    <Style Selector="Button.primary">
+      <Setter Property="Background" Value="SteelBlue"/>
+      <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style Selector="Button.primary:pointerover">
+      <Setter Property="Opacity" Value="0.9"/>
+    </Style>
+    <Style Selector="Border TextBlock.nested">
+      <Setter Property="Foreground" Value="DarkBlue"/>
+    </Style>
+  </UserControl.Styles>
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§B1-B2 Style 与 Selector" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="应用位置：Application.Styles 全局 / Window.Styles 子树 / 控件 Styles 更局部" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：类型/类/名/子/后代/伪类选择器" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="8">
+          <TextBlock Text="caption class（TextBlock.caption）" Classes="caption"/>
+          <Button Content="primary class 按钮" Classes="primary"/>
+          <Border BorderBrush="LightGray" BorderThickness="1" Padding="8">
+            <TextBlock Text="后代选择器 Border TextBlock.nested" Classes="nested"/>
+          </Border>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="嵌套选择器（^ 续写父选择器）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;Style Selector=&quot;Button.primary&quot;&gt;&#10;  &lt;Setter Property=&quot;Background&quot; Value=&quot;{DynamicResource AccentBrush}&quot; /&gt;&#10;  &lt;Style Selector=&quot;^:pointerover&quot;&gt;&#10;    &lt;Setter Property=&quot;Background&quot; Value=&quot;{DynamicResource AccentPointerOverBrush}&quot; /&gt;&#10;  &lt;/Style&gt;&#10;&lt;/Style&gt;"/>
+      </Border>
+      <TextBlock Text="验收：使用类型/类/名/子/伪类选择器" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

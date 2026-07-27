@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.WrapPanelDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§D4 WrapPanel" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="适合数量中等的流式子项；子项成千上万不要裸 WrapPanel，改虚拟化" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：Orientation=Horizontal + ItemWidth=80 + ItemHeight=32（拖动窗口宽度观察换行）" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <WrapPanel Orientation="Horizontal" ItemWidth="80" ItemHeight="32">
+          <Button Content="A"/><Button Content="B"/><Button Content="C"/>
+          <Button Content="D"/><Button Content="E"/><Button Content="F"/>
+          <Button Content="G"/><Button Content="H"/><Button Content="I"/>
+          <Button Content="J"/><Button Content="K"/><Button Content="L"/>
+        </WrapPanel>
+      </Border>
+      <TextBlock Text="验收：使用 ItemWidth/Height 换行" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

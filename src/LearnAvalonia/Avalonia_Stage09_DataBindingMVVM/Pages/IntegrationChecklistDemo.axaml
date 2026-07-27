@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.IntegrationChecklistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§I 串联清单（实验时自行拼装）" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="MainViewModel(IDialogService, IDataService)&#10;  : ObservableCollection Items · SelectedItem · Query · IsBusy&#10;  : RefreshCommand async · DeleteCommand(CanExecute)&#10;Window x:DataType + compiled · ListBox ItemsSource/SelectedItem&#10;单测：Fake 服务 → RefreshCommand → Assert.NotEmpty(Items)"/>
+      </Border>
+      <TextBlock Text="完整代码在实验工程 BindingMvvmLab 中落地即可；结构与 C 节 Toolkit API、E 节 DI 一致" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：拼装 MainVM+服务+单测心智" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

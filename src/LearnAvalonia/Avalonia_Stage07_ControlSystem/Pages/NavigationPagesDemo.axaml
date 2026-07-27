@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.NavigationPagesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§D1-D6 导航与 Pages（12 内置）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="何时用 Pages，何时用桌面壳：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="4" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="目标" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="推荐" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Android/iOS 主结构" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Pages 全家（Navigation/Tabbed/Drawer）" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Browser 单页" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="Pages 或 ContentControl 路由皆可" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="桌面工具/IDE" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="Window + SplitView/TabControl/多窗" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="原则：不要强制所有桌面 App 套移动 Pages" FontWeight="SemiBold" Foreground="OrangeRed"/>
+      <TextBlock Text="INavigation: Push/Pop/PopToRoot/PushModal/PopModal/Replace*；栈: NavigationStack · ModalStack · 事件 Pushed/Popped" TextWrapping="Wrap"/>
+      <TextBlock Text="多页壳：TabbedPage / DrawerPage / CarouselPage + PipsPager / MultiPage；CommandBar/Button 页级命令；Transitions PageSlide/CrossFade" TextWrapping="Wrap"/>
+      <TextBlock Text="⚠️ BottomSheet 非核心标准控件名，勿与 MAUI/第三方混淆" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：区分桌面壳与移动 Pages 导航" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

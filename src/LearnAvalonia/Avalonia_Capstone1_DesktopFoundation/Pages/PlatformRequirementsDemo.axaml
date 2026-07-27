@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone1_DesktopFoundation.Pages.PlatformRequirementsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 平台要求与差异" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="运行矩阵：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="4" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="平台" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="要求" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="证据" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Windows" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Tier 允许版本；x64 或 ARM64" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="截图/日志 dotnet run" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="macOS" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="允许版本；签名仅开发即可" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="同上" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="Linux" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="X11 路径；依赖 libx11 等" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="同上" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="Wayland：允许开发者额外验证，失败不阻 Capstone 通过" TextWrapping="Wrap"/>
+      <TextBlock Text="平台差异处理表：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="2" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="能力" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="策略" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="路径" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="抽象 IAppPaths" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="字体" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="Inter + 系统回退；中文抽检" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="对话框" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="自绘 Window 或平台消息框经 IDialogService" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="文件选择" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="StorageProvider only" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="缩放" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="100% 与 125%/150% 抽检 Win" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="明确不做：Android/iOS 包 · Browser host · Avalonia.Wayland 默认开启" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Win+macOS+Linux 至少各一证据" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

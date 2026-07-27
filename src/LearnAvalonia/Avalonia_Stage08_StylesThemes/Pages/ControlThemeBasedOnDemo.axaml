@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage08_StylesThemes.Pages.ControlThemeBasedOnDemo">
+  <UserControl.Resources>
+    <ControlTheme x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+      <Setter Property="Background" Value="#FFC42B1C"/>
+      <Setter Property="Foreground" Value="White"/>
+    </ControlTheme>
+  </UserControl.Resources>
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§E1-E2 ControlTheme 与 BasedOn" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="ControlTheme 是某控件类型的主题包，通常包含：1. 默认 ControlTemplate 2. 主题内针对模板零件/伪类的 Style 3. 默认属性 Setter" TextWrapping="Wrap"/>
+      <TextBlock Text="在资源中常以类型为 key，使该类型默认查找此主题" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：DangerButton 变体（BasedOn Fluent 默认 Button 主题）" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Orientation="Horizontal" Spacing="8">
+          <Button Content="默认 Button"/>
+          <Button Content="危险 Button" Theme="{StaticResource DangerButton}"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="更常见模式：给变体单独 key，而不是覆盖类型默认" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;ControlTheme x:Key=&quot;DangerButton&quot; TargetType=&quot;Button&quot;&#10;              BasedOn=&quot;{StaticResource {x:Type Button}}&quot;&gt;&#10;  &lt;Setter Property=&quot;Background&quot; Value=&quot;{ThemeResource DangerBrush}&quot; /&gt;&#10;&lt;/ControlTheme&gt;"/>
+      </Border>
+      <TextBlock Text="Theme 属性指定控件使用哪份 ControlTheme——组件库标准做法" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：使用 Theme 属性指定 ControlTheme" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

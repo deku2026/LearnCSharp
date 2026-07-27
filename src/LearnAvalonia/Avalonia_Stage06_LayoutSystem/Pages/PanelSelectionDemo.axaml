@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.PanelSelectionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§D1 Panel 选型总表" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="Panel" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="主轴/模型" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="典型场景" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="成本提示" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="StackPanel" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="单方向堆叠" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="工具条、表单列" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="主轴常 infinity measure" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="WrapPanel" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="堆叠+换行" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="标签云、工具箱" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="子多时 measure 重" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="DockPanel" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="边缘停靠" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="经典壳：顶栏底栏中心" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="LastChildFill" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="Grid" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="行列网格" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="对话框、自适应壳" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="最通用；星号行反复算" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="UniformGrid" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="等分网格" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="计算器键、色板" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="简单均匀" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="Canvas" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="绝对坐标" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="图编辑、装饰" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="不负责流式自适应" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="RelativePanel" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="相对约束" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="类 UWP 相对布局" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="3" Text="约束冲突需小心" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="0" Text="Panel（基类）" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="1" Text="默认叠放同槽" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="2" Text="自定义起点" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="3" Text="子默认占满" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="口诀：流式 Stack/Wrap · 结构 Grid · 壳 Dock · 图 Canvas" FontWeight="SemiBold"/>
+      <TextBlock Text="验收：按场景选型 Panel，无全用 Canvas" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

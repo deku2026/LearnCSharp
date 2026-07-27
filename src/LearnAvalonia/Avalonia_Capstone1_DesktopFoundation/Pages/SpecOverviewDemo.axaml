@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone1_DesktopFoundation.Pages.SpecOverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§0 规格导读与目标" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Capstone 目标（一句话）：交付一款桌面三端可运行的小型生产力应用（推荐领域：本地笔记/任务/书签管理器三选一），具备现代 Avalonia 12 工程骨架" TextWrapping="Wrap"/>
+      <TextBlock Text="非目标：" FontWeight="SemiBold" Foreground="OrangeRed"/>
+      <Border BorderBrush="OrangeRed" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="❌ 不做移动 Pages 必达（属后续 Capstone）"/>
+          <TextBlock Text="❌ 不做 Browser/WASM 必达"/>
+          <TextBlock Text="❌ 不做 Native AOT 必达（记录友好即可）"/>
+          <TextBlock Text="❌ 不依赖 TreeDataGrid / Pro 控件"/>
+          <TextBlock Text="❌ 不以 DataGrid 为只读主表（只读用 TableView）"/>
+          <TextBlock Text="❌ 不把 Wayland 实验后端写入通过条件"/>
+          <TextBlock Text="❌ 不要求完整云同步/账号系统"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="推荐产品选型（三选一，规格等价）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="4" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="代号" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="产品" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="核心实体" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="A" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="本地任务箱 TaskBox" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="Project / Task / Tag" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="B" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="速记本 QuickNote" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="Notebook / Note" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="C" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="书签柜 LinkShelf" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="Folder / Bookmark" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="成功判据：功能 P0 全绿 · 工程 CPM pin 12.1.0 + compiled · 平台三端证据 · UX 浅深色完整 + 键盘可达 · 质量 VM 单测 + Headless · 架构 DI + 导航/对话框抽象" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：口述 Capstone 目标与非目标" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

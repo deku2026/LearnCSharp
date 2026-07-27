@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.LayoutRoundingDpiDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§B2-B3 Layout Rounding 与 DPI / Scaling" FontWeight="Bold" FontSize="14"/>
+      <TextBlock x:Name="ScalingText" Text="当前 RenderScaling = (读取中...)" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="· DIP = 布局与 XAML 中的逻辑像素" TextWrapping="Wrap"/>
+          <TextBlock Text="· RenderScaling = TopLevel/窗口渲染缩放（如 1.25、1.5、2.0）" TextWrapping="Wrap"/>
+          <TextBlock Text="· 物理像素 = DIP × scaling（近似）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="1px 分隔线对照（左：未 rounding，右：rounding 开启）：" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+        <Border Grid.Column="0" BorderBrush="OrangeRed" BorderThickness="0,0,0,1" Height="24">
+          <TextBlock Text="未 rounding 边框" VerticalAlignment="Center" Padding="4"/>
+        </Border>
+        <Border Grid.Column="1" BorderBrush="DarkGreen" BorderThickness="0,0,0,1" Height="24" UseLayoutRounding="True">
+          <TextBlock Text="UseLayoutRounding=True" VerticalAlignment="Center" Padding="4"/>
+        </Border>
+      </Grid>
+      <TextBlock Text="实践：" FontWeight="SemiBold"/>
+      <TextBlock Text="1. 不要假设 1 控件单位 = 1 屏幕像素" TextWrapping="Wrap"/>
+      <TextBlock Text="2. 自定义绘制时，线条宽度、位图 DPI 要考虑 scaling" TextWrapping="Wrap"/>
+      <TextBlock Text="3. 多显示器拖动窗口时 scaling 可能变化 → 重新 measure/arrange/render" TextWrapping="Wrap"/>
+      <TextBlock Text="4. 分数缩放（125%、150%）上验证边框与图标对齐" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="var topLevel = TopLevel.GetTopLevel(control);&#10;var scaling = topLevel?.RenderScaling ?? 1.0;&#10;// 需要「物理 1px」线宽时&#10;var penThickness = 1.0 / scaling;"/>
+      </Border>
+      <TextBlock Text="验收：在分数缩放下验证无 1px 错位灾难" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

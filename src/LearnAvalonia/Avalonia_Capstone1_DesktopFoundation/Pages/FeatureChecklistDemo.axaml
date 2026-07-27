@@ -1,0 +1,65 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone1_DesktopFoundation.Pages.FeatureChecklistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 功能清单 P0/P1/P2" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="P0 必须（F01-F15）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="DarkGreen" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="2" ColumnSpacing="4">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="ID" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="功能" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="说明" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="F01" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="主窗口壳" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="导航区+内容区+状态栏；Grid/Dock 自适应" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="F02" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="实体 CRUD" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="创建/编辑/删除任务" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="F03" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="列表" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="虚拟化友好 ListBox 或 TableView 只读浏览" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="F04" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="详情编辑" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="表单：TextBox PlaceholderText、Toggle、日期" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="F05" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="搜索过滤" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="查询框过滤列表" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="F06" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="导航" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="列表/详情或编辑/设置 三处切换" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="F07" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="对话框" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="确认删除；错误提示（服务抽象）" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="0" Text="F08" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="1" Text="多窗口" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="2" Text="详情弹出窗或偏好设置窗" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="9" Grid.Column="0" Text="F09" Padding="4"/>
+          <TextBlock Grid.Row="9" Grid.Column="1" Text="文件" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="9" Grid.Column="2" Text="StorageProvider 打开/保存" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="10" Grid.Column="0" Text="F10" Padding="4"/>
+          <TextBlock Grid.Row="10" Grid.Column="1" Text="设置" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="10" Grid.Column="2" Text="主题、语言、可选项" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="11" Grid.Column="0" Text="F11" Padding="4"/>
+          <TextBlock Grid.Row="11" Grid.Column="1" Text="本地化" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="11" Grid.Column="2" Text="en + zh-Hans" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="12" Grid.Column="0" Text="F12" Padding="4"/>
+          <TextBlock Grid.Row="12" Grid.Column="1" Text="深浅色" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="12" Grid.Column="2" Text="ThemeDictionaries + 切换即时生效" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="13" Grid.Column="0" Text="F13" Padding="4"/>
+          <TextBlock Grid.Row="13" Grid.Column="1" Text="基础 a11y" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="13" Grid.Column="2" Text="AutomationId；焦点顺序合理" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="14" Grid.Column="0" Text="F14" Padding="4"/>
+          <TextBlock Grid.Row="14" Grid.Column="1" Text="持久化" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="14" Grid.Column="2" Text="本地文件 JSON/SQLite；重启可恢复" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="15" Grid.Column="0" Text="F15" Padding="4"/>
+          <TextBlock Grid.Row="15" Grid.Column="1" Text="测试" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="15" Grid.Column="2" Text="VM 单测≥5；Headless≥1 冒烟" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="P1 应当：F16 未保存关闭拦截 · F17 窗口尺寸/位置记忆 · F18 键盘快捷键 · F19 空状态/加载态/错误态 · F20 自定义 ControlTheme 变体" TextWrapping="Wrap"/>
+      <TextBlock Text="P2 可以：F21 系统托盘 · F22 全局拖放 · F23 打印/分享 · F24 插件文件夹扫描" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：功能清单 P0 全绿" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

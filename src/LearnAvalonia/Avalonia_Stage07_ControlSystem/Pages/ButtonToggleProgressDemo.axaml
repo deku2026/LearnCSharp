@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.ButtonToggleProgressDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§A6-A8 Button 族·开关·进度" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Button/Repeat/Toggle/Radio/Hyperlink · CheckBox（可三态）· RadioButton（同 GroupName 互斥）· ToggleSwitch · ProgressBar" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="8">
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Content="保存" IsDefault="True"/>
+            <Button Content="超链接样式" Classes="HyperlinkButton"/>
+            <RepeatButton Content="重复"/>
+          </StackPanel>
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <CheckBox Content="独立布尔"/>
+            <CheckBox Content="三态" IsThreeState="True"/>
+            <ToggleSwitch IsChecked="True"/>
+          </StackPanel>
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <RadioButton Content="选项 A" GroupName="G1" IsChecked="True"/>
+            <RadioButton Content="选项 B" GroupName="G1"/>
+          </StackPanel>
+          <ProgressBar Value="60" Maximum="100" Width="200"/>
+          <ProgressBar IsIndeterminate="True" Width="200"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="业务用 Command（阶段 9）；Click 留给纯 UI" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：使用 Command 优于业务 Click" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

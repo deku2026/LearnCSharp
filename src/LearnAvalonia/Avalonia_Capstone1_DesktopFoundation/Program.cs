@@ -2,16 +2,17 @@ using Avalonia;
 
 namespace LearnAvalonia.Avalonia_Capstone1_DesktopFoundation;
 
-public static class Program
+internal static class Program
 {
-    [STAThread]
-    public static void Main(string[] args) => BuildAvaloniaApp()
-        .StartWithClassicDesktopLifetime(args);
-
+    // Doc: 第4部分-Capstone1-生产级桌面基础应用.md §0
+    // Notes: BuildAvaloniaApp doubles as design-time preview entrypoint; keep signature stable.
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
-            .UseSkia()
-            .UseHarfBuzz()
+            .WithInterFont()
             .LogToTrace();
+
+    [STAThread]
+    public static int Main(string[] args)
+        => BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 }

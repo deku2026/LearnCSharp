@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage08_StylesThemes.Pages.FiveConceptsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§A1-A2 五个概念必须分清" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="2" ColumnSpacing="4">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="概念" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="是什么" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="典型放哪" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="解决什么" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Style" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="选择器 + 属性设置器集合" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="Styles / 应用/窗口/控件" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="对已存在可视树中匹配的控件设属性" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="ControlTheme" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="控件的主题定义（常含默认模板+主题内样式）" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="ResourceDictionary 以类型为 key" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="控件默认外观；可 BasedOn" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="ControlTemplate" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="控件内部视觉树结构" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="ControlTheme.Template / 局部" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="控件长什么样" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="DataTemplate" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="数据 → 可视片段" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="DataTemplates / ItemTemplate" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="内容/数据如何呈现" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="StaticResource" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="加载期解析的资源引用" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="任意需资源处" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="一次解析，改字典不自动更新" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="ThemeResource" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="随 ThemeVariant 解析的主题资源" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="浅/深色刷子" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="浅深色与主题字典切换" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="DataTemplate ≠ ControlTemplate · Style ≠ ControlTheme · StaticResource ≠ DynamicResource ≠ ThemeResource" TextWrapping="Wrap" FontWeight="SemiBold"/>
+      <TextBlock Text="验收：闭卷讲清 A1 七行概念差异" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

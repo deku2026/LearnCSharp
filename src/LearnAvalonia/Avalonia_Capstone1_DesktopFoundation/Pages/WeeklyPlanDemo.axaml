@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone1_DesktopFoundation.Pages.WeeklyPlanDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 分周实施计划" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="假设每周约 8-12 小时有效开发；可按个人压缩为冲刺天数" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="4" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="周" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="日项要点" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="周末门禁" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="1 骨架" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="模板 -m CommunityToolkit -rvl + CPM 12.1.0 · DI 分层 · 主壳 · Tokens 深浅色 · 三页导航空壳" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="构建+主题切换" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="2 领域" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="实体+JSON 仓储 · ListVM+搜索 · TableView/ListBox · CRUD+Fake 对话框 · 单测 3+" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="重启数据在" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="3 编辑文件" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="编辑校验 · 真对话框 · 未保存拦截 · StorageProvider 导出 · 多窗其一" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="绑定零错误" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="4 打磨" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="设置+en/zh · a11y · ControlTheme/快捷键 · Headless+单测≥5 · 三平台证据" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="tag capstone-1" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="周报模板：本周完成 / 本周风险 / 绑定/主题/平台问题 / 下周计划 / 验收勾选新增" TextWrapping="Wrap"/>
+      <TextBlock Text="建议每周对照第 7 节更新，避免期末一次性补债" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：按周计划执行并过门禁" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>
