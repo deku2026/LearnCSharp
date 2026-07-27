@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.GeometryShapeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.2 Geometry / Path / Shape" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Shape 控件：Rectangle Ellipse Line Polygon Polyline Path" TextWrapping="Wrap"/>
+      <Canvas Width="240" Height="120" Background="#10FFFFFF">
+        <Ellipse Width="80" Height="80" Fill="SteelBlue" Canvas.Left="10" Canvas.Top="20"/>
+        <Rectangle Width="70" Height="44" Stroke="Black" StrokeThickness="2" Canvas.Left="100" Canvas.Top="30" RadiusX="8" RadiusY="8"/>
+        <Path Stroke="OrangeRed" StrokeThickness="3" Data="M 10,100 C 40,60 80,120 120,80 S 200,40 230,90"/>
+      </Canvas>
+      <TextBlock Text="Geometry API：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.4*,2*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="API" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="场景" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="StreamGeometry" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="轻量、解析/填充快" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="PathGeometry" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="可编程构建复杂路径" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="EllipseGeometry 等" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="简单几何" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="Hit-test：Fill/Stroke 与 IsHitTestVisible；仅描边可点中时注意厚度。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：StreamGeometry/PathGeometry/Shape" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

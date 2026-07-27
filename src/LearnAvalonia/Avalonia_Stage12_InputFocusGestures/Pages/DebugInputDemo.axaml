@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.DebugInputDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.13 调试输入的方法" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="1. 临时 handler 日志 — 打印 e.Source、e.Route、Pointer.Type、Handled" TextWrapping="Wrap"/>
+          <TextBlock Text="2. DevTools — 检查焦点元素与可视化树" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 断点在 CaptureLost — 抓拖动异常结束" TextWrapping="Wrap"/>
+          <TextBlock Text="4. Headless — 注入指针/键盘事件做回归（测试路线）" TextWrapping="Wrap"/>
+          <TextBlock Text="5. 真机 IME — 录屏组合→上屏→提交" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="关键日志字段：e.Source（事件源）、e.Route（路由策略）、Pointer.Type（设备）、Handled（是否已处理）。" TextWrapping="Wrap"/>
+      <TextBlock Text="Headless 测试可注入 PointerPressedEventArgs / KeyEventArgs 做输入回归。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：临时 handler/DevTools/CaptureLost" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

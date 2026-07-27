@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.AccessKeysDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.6 Access Keys（🆕 按符号）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Access Key 允许 Alt+字符 激活控件。12 强调按符号匹配（与文化/可见标签相关）。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;Button Content=&quot;_保存&quot;/&gt;&#10;&lt;!-- 或显式 AccessKey / Header 助记符 —— 以 12.1 文档属性名为准 --&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="验收：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 英文与本地化标签助记符不冲突" TextWrapping="Wrap"/>
+      <TextBlock Text="• 与系统菜单 Alt 行为不抢（尤其 macOS 无 Win 式 Alt 助记时的降级）" TextWrapping="Wrap"/>
+      <TextBlock Text="• 屏幕阅读器名称仍完整可读（不要只剩下划线逻辑）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Alt+字符 按符号匹配与降级" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

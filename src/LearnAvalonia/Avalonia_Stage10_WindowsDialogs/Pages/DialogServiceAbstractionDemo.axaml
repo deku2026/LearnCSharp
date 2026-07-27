@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.DialogServiceAbstractionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.13 对话框服务抽象（VM-first）" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public interface IDialogService {&#10;    Task&lt;bool&gt; ConfirmAsync(string message, string? title = null);&#10;    Task&lt;IReadOnlyList&lt;IStorageFile&gt;&gt; OpenFilesAsync(FilePickerOpenOptions options);&#10;}&#10;&#10;public sealed class AvaloniaDialogService : IDialogService {&#10;    private readonly Func&lt;Window?&gt; _owner;&#10;    public async Task&lt;bool&gt; ConfirmAsync(...) {&#10;        var owner = _owner() ?? throw ...;&#10;        var dlg = new ConfirmDialog { ... };&#10;        return await dlg.ShowDialog&lt;bool&gt;(owner);&#10;    }&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="• 单元测试可 mock IDialogService" TextWrapping="Wrap"/>
+      <TextBlock Text="• Headless 测试走真实 ShowDialog 需 Avalonia.Headless 设施（见测试路线）" TextWrapping="Wrap"/>
+      <TextBlock Text="• 业务层 await dialogService.ConfirmAsync，VM 不引用具体 Window 类型" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：IDialogService 让 VM 不引用 Window" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

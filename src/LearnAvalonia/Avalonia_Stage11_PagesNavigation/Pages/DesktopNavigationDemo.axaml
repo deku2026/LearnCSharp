@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.DesktopNavigationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.13 桌面 document / tab / multi-window" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="桌面推荐壳（按产品选型）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="A. 单 Window + TabControl + 每 Tab Content" TextWrapping="Wrap"/>
+          <TextBlock Text="B. 单 Window + 左侧导航 + ContentControl 切换（VM 当前页）" TextWrapping="Wrap"/>
+          <TextBlock Text="C. 多 Window 文档模型（阶段 10）" TextWrapping="Wrap"/>
+          <TextBlock Text="D. 桌面嵌入 NavigationPage（统一移动代码，或预览）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="共享：INavigationService 接口 + 参数 DTO / 结果回调" TextWrapping="Wrap"/>
+      <TextBlock Text="实现：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="MobileNavigationService       : 调 INavigation&#10;DesktopTabNavigationService     : 改 SelectedTab / CurrentVm&#10;DesktopWindowNavigationService  : 开子窗&#10;DesktopContentNavigationService : Stack&lt;object&gt; + MainShellViewModel" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="验收：INavigationService 多实现共享契约" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

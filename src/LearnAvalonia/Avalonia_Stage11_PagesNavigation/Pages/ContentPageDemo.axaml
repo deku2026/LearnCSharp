@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.ContentPageDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.2 ContentPage 最小页" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;ContentPage xmlns=&quot;...&quot;&#10;             x:Class=&quot;MyApp.Views.HomePage&quot;&#10;             x:DataType=&quot;vm:HomeViewModel&quot;&#10;             Header=&quot;首页&quot;&gt;&#10;  &lt;DockPanel&gt;&#10;    &lt;CommandBar DockPanel.Dock=&quot;Bottom&quot; Placement=&quot;Bottom&quot;&gt;&#10;      &lt;CommandBarButton Label=&quot;刷新&quot; Command=&quot;{Binding RefreshCommand}&quot;/&gt;&#10;    &lt;/CommandBar&gt;&#10;    &lt;StackPanel Margin=&quot;16&quot; Spacing=&quot;12&quot;&gt;&#10;      &lt;TextBlock Text=&quot;{Binding Title}&quot; FontSize=&quot;20&quot;/&gt;&#10;      &lt;Button Content=&quot;打开详情&quot; Command=&quot;{Binding OpenDetailCommand}&quot;/&gt;&#10;    &lt;/StackPanel&gt;&#10;  &lt;/DockPanel&gt;&#10;&lt;/ContentPage&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="Header：在 NavigationPage 中显示于导航栏；在 TabbedPage 可用作 Tab 标签；在 DrawerPage 中显示规则以文档为准。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：写 ContentPage + Header + CommandBar" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

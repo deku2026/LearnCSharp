@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.TemplateBindingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.5 TemplateBinding vs Binding" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.6*,2*" RowDefinitions="Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="写法" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="含义" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="{}{TemplateBinding Foo}" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="绑到模板父的 Foo；高效、单向为主" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="{}{Binding Foo, RelativeSource={RelativeSource TemplatedParent}}" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="更灵活（转换器、模式）" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="经典 bug：模板里写 {}{Binding Value} 却期望绑到控件的 Value 属性 → 应 TemplateBinding。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="{}{Binding Foo} 在模板内默认 DataContext，不是控件属性。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：模板内必须 TemplateBinding 控件属性" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

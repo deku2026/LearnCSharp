@@ -1,0 +1,11 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.ClipboardDemo">
+  <StackPanel Spacing="8" Margin="12">
+    <TextBlock Text="§2.9 剪贴板（12：IAsyncDataTransfer 体系）" FontWeight="Bold" FontSize="14"/>
+    <TextBlock Text="从 TopLevel 取 Clipboard；SetTextAsync/TryGetTextAsync（旧 GetTextAsync 已移除）。" TextWrapping="Wrap"/>
+    <Button x:Name="CopyBtn" Content="复制到剪贴板" Click="CopyBtn_Clicked"/>
+    <Button x:Name="PasteBtn" Content="从剪贴板粘贴" Click="PasteBtn_Clicked"/>
+    <TextBlock x:Name="Result" TextWrapping="Wrap" Foreground="DarkGreen"/>
+  </StackPanel>
+</UserControl>

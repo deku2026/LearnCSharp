@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.LifetimeMultiWindowDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.1 Lifetime 与多窗口" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="IClassicDesktopStyleApplicationLifetime.Windows 为已打开窗口集合" TextWrapping="Wrap"/>
+          <TextBlock Text="ShutdownMode：OnLastWindowClose / OnMainWindowClose / OnExplicitShutdown（托盘常驻常用）" TextWrapping="Wrap"/>
+          <TextBlock Text="Show(owner) — modeless，带 Owner 影响居中基准/最小化跟随/任务栏分组" TextWrapping="Wrap"/>
+          <TextBlock Text="ShowDialog&lt;T&gt;(owner) — 模态，UI 线程异步等待；业务层 async，勿 .Result" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="从 VM 打开窗口：注入 IDialogService / IWindowService，由 View 层解析 Window，VM 不引用具体 Window 类型（Capstone 纪律）。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="var w = new ToolWindow { WindowStartupLocation = CenterOwner };&#10;w.Show(owner);  // modeless&#10;await dlg.ShowDialog&lt;bool?&gt;(owner);  // modal" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="验收：区分 Show / ShowDialog 与 Owner" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

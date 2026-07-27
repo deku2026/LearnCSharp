@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.CloseInterceptDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.9 关闭拦截与未保存" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="window.Closing += async (_, e) =&gt;&#10;{&#10;    if (!_vm.IsDirty) return;&#10;    e.Cancel = true;  // 同步事件中要小心异步&#10;    var ok = await _dialogs.ConfirmAsync(&quot;有未保存更改，仍要关闭？&quot;);&#10;    if (ok) { _vm.IsDirty = false; window.Close(); }&#10;};" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="生产模式建议：" FontWeight="SemiBold"/>
+      <TextBlock Text="1. IClosable / IAsyncCloseGuard 接口由 VM 实现" TextWrapping="Wrap"/>
+      <TextBlock Text="2. 主窗关闭时遍历子窗并请求保存" TextWrapping="Wrap"/>
+      <TextBlock Text="3. 托盘最小化隐藏：Closing 取消并 Hide()，真正退出走托盘「退出」" TextWrapping="Wrap"/>
+      <TextBlock Text="⚠ Closing 是同步事件：先 e.Cancel=true，再异步询问后 Close()；切勿在事件回调里阻塞等待。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：Closing 异步取消后调用 Close()" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

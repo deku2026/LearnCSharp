@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.RatingControlEndToEndDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 完整端到端示例：RatingControl" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="星级评分控件（lookless TemplatedControl 示例）。" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="3.1 逻辑代码 — RatingControl : TemplatedControl" FontWeight="SemiBold"/>
+          <TextBlock Text="• ValueProperty（StyledProperty, TwoWay, coerce 0..Maximum）" TextWrapping="Wrap"/>
+          <TextBlock Text="• MaximumProperty / IsReadOnlyProperty" TextWrapping="Wrap"/>
+          <TextBlock Text="• CommandProperty / CommandParameterProperty" TextWrapping="Wrap"/>
+          <TextBlock Text="• ValueChangedEvent（RoutedEvent Bubble）" TextWrapping="Wrap"/>
+          <TextBlock Text="• :readonly 伪类" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="3.2 ControlTheme — Themes/Fluent/RatingControl.axaml" TextWrapping="Wrap"/>
+      <TextBlock Text="3.3 应用侧使用 — &lt;local:RatingControl Value=&quot;{Binding Rating}&quot; Maximum=&quot;5&quot;/&gt;" TextWrapping="Wrap"/>
+      <TextBlock Text="3.4 单元测试（逻辑） — Value coerce / ValueChanged / IsReadOnly" TextWrapping="Wrap"/>
+      <TextBlock Text="3.5 项模板生成 — 星形 Path / 矩形 / 自定义 Template" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：逻辑+ControlTheme+应用+单测" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

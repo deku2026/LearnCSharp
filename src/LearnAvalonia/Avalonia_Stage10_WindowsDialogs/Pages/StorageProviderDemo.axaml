@@ -1,0 +1,12 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.StorageProviderDemo">
+  <StackPanel Spacing="8" Margin="12">
+    <TextBlock Text="§2.12 StorageProvider（取代旧 FileDialog）" FontWeight="Bold" FontSize="14"/>
+    <TextBlock Text="从 TopLevel/Window 取 StorageProvider；旧 OpenFileDialog / SaveFileDialog / OpenFolderDialog 已移除。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+    <Button x:Name="OpenFilesBtn" Content="打开文件（多选）" Click="OpenFilesBtn_Clicked"/>
+    <Button x:Name="SaveBtn" Content="另存为…" Click="SaveBtn_Clicked"/>
+    <Button x:Name="OpenFolderBtn" Content="选择文件夹" Click="OpenFolderBtn_Clicked"/>
+    <TextBlock x:Name="Result" TextWrapping="Wrap" Foreground="DarkGreen"/>
+  </StackPanel>
+</UserControl>

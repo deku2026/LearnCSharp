@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.PseudoclassesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.7 伪类（Pseudoclasses）" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="void SetPressed(bool v) =&gt; PseudoClasses.Set(&quot;:pressed&quot;, v);&#10;&#10;&lt;Style Selector=&quot;local|RatingControl:pointerover&quot;&gt;&#10;  &lt;Setter Property=&quot;Opacity&quot; Value=&quot;0.9&quot;/&gt;&#10;&lt;/Style&gt;&#10;&lt;Style Selector=&quot;local|RatingControl:disabled&quot;&gt;&#10;  &lt;Setter Property=&quot;Opacity&quot; Value=&quot;0.5&quot;/&gt;&#10;&lt;/Style&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="内置常见：" FontWeight="SemiBold"/>
+      <TextBlock Text=":pointerover :pressed :disabled :focus :focus-visible 等" TextWrapping="Wrap"/>
+      <TextBlock Text="自定义如 :indeterminate、:checked。" TextWrapping="Wrap"/>
+      <TextBlock Text="伪类驱动样式切换；伪类名称变更是破坏性变更。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：:pointerover/:pressed 自定义" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

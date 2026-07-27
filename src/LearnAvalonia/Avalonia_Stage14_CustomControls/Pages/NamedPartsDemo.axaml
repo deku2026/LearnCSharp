@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.NamedPartsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.6 Named parts 约定" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="PART_ 前缀 + PascalCase&#10;例：PART_Track, PART_Thumb, PART_IncreaseButton&#10;&#10;private Button? _increase;&#10;&#10;protected override void OnApplyTemplate(TemplateAppliedEventArgs e) {&#10;    base.OnApplyTemplate(e);&#10;    if (_increase is not null) _increase.Click -= OnIncrease;&#10;    _increase = e.NameScope.Find&lt;Button&gt;(&quot;PART_IncreaseButton&quot;);&#10;    if (_increase is not null) _increase.Click += OnIncrease;&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="模板替换时必须卸载旧事件，否则泄漏与重复触发。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="PART_ 名称是控件库契约的一部分，变更即破坏性。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：PART_ 前缀；卸载旧事件" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

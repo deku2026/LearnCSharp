@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.PageTransitionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.13 页面过渡（与阶段 11 衔接）" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="navigationPage.PageTransition = new CrossFade(TimeSpan.FromMilliseconds(150));&#10;// PageSlide 等" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="页面过渡与控件 Transitions 分层：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="• 页面过渡 — 管导航容器（NavigationPage.PageTransition）" TextWrapping="Wrap"/>
+          <TextBlock Text="• 控件 Transitions — 管控件微观反馈（hover/focus）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="内置过渡：CrossFade / PageSlide（方向/时长）等；per-call 可覆盖。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：CrossFade/PageSlide 与控件分层" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

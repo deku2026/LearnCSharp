@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.TabbedPageDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.5 TabbedPage" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;TabbedPage xmlns=&quot;...&quot;&#10;            x:Class=&quot;MyApp.Views.MainTabbedPage&quot;&gt;&#10;  &lt;views:HomePage Header=&quot;首页&quot;/&gt;&#10;  &lt;views:SearchPage Header=&quot;搜索&quot;/&gt;&#10;  &lt;views:ProfilePage Header=&quot;我的&quot;/&gt;&#10;&lt;/TabbedPage&gt;&#10;&#10;&lt;!-- 子页可以是 ContentPage，也可以是各自的 --&gt;&#10;&lt;!-- NavigationPage 以保持独立栈 --&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="模式建议：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="Tab 根 + 每 Tab 内嵌 NavigationPage — 各 Tab 独立返回栈（常见）" TextWrapping="Wrap"/>
+          <TextBlock Text="单 NavigationPage 内切换 Tab 内容 — 栈模型更简单但 Tab 状态需自管" TextWrapping="Wrap"/>
+          <TextBlock Text="桌面用 TabControl 代替 TabbedPage — 鼠标密集 UI 往往更合适" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：Tab 根 + 每 Tab 内嵌 NavigationPage" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.MinExperimentsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 最小实验清单" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <TextBlock Text="实验 A · NavigationPage 双层 + Modal" FontWeight="SemiBold"/>
+          <TextBlock Text="1. Root Home → Push Detail → PushModal Login → PopModal → Pop" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 记录 NavigationStack / ModalStack 深度" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 导航栏返回与命令返回一致" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 B · Drawer + Navigation 集成" FontWeight="SemiBold"/>
+          <TextBlock Text="1. Drawer 包 NavigationPage" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 根页汉堡可开抽屉；Push 后变返回" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 侧栏点击切换根或 Push" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 C · Tab 独立栈" FontWeight="SemiBold"/>
+          <TextBlock Text="1. 三 Tab，各内嵌 NavigationPage" TextWrapping="Wrap"/>
+          <TextBlock Text="2. TabA 深入两级后切 TabB 再回 TabA，栈保持" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 D · 双宿主对照" FontWeight="SemiBold"/>
+          <TextBlock Text="1. 同一 INavigationService 契约" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 移动：Pages 实现；桌面：ContentControl 栈实现" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 同一组 VM 命令两边可跑" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：完成 NavigationPage/Drawer/Tab 4 实验" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

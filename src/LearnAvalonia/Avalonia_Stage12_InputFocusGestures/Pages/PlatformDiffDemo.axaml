@@ -1,0 +1,63 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.PlatformDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 跨平台差异" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.2*,*,*,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="主题" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="🪟" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="🍎" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="🐧" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="4" Text="📱" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="5" Text="🌍" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="右键" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="鼠标右键" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="Ctrl+点" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="右键" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="4" Text="长按" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="5" Text="有限" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="全局热键" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="平台API" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="平台API" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="X11/Way" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="4" Text="无" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="5" Text="无" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="IME" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="TSF" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="系统IME" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="iBus/Fcitx" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="4" Text="软键盘" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="5" Text="浏览器" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="DnD 文件" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="强" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="强" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="中" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="4" Text="弱" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="5" Text="中" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="剪贴板" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="强" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="强" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="中" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="4" Text="权限" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="5" Text="门控" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="Haptics" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="少" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="触控板" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="少" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="6" Grid.Column="4" Text="PlatformFeedback" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="6" Grid.Column="5" Text="少" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="Meta 键" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="Win" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="⌘" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="7" Grid.Column="3" Text="Super" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="7" Grid.Column="4" Text="无" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="7" Grid.Column="5" Text="无" HorizontalAlignment="Center"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="修饰键文案：macOS UI 应显示 ⌘ 而非 Ctrl——可用 KeyGesture 本地化或平台资源。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：右键/全局热键/IME/Meta 键差异" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.NavigationEventsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.4 导航事件" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// 常见事件族（名称以 API 为准）：&#10;// Pushed / Popped / PoppedToRoot&#10;// ModalPushed / ModalPopped&#10;// 以及页面级 Appearing/Disappearing（若 Page 提供）&#10;&#10;nav.Pushed += OnPushed;&#10;nav.Popped += OnPopped;&#10;&#10;void OnPushed(object? s, NavigationEventArgs e) {&#10;    // 分析、日志、设置标题、请求焦点&#10;}&#10;&#10;// 页面内：&#10;protected override void OnAttachedToVisualTree(...) {&#10;    base.OnAttachedToVisualTree(e);&#10;    // 获取资源、订阅&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="将「导航到达」映射到 VM 的 OnNavigatedTo 时，用服务事件或弱引用消息，避免 Page code-behind 堆业务。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Pushed/Popped 与页级 Appearing" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

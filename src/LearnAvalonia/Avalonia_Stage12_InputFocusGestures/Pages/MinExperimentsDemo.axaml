@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.MinExperimentsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 最小实验清单" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <TextBlock Text="实验 A · 路由与 Handled" FontWeight="SemiBold"/>
+          <TextBlock Text="1. 父子三级 Border，分别订 Tunnel/Bubble" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 在中层 Handled=true，观察内外日志" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 用 handledEventsToo 对照" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 B · 捕获拖动" FontWeight="SemiBold"/>
+          <TextBlock Text="1. 拖动方块；指针快速移出仍跟踪" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 触发 CaptureLost（切窗）后状态复位" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 C · 手势与焦点" FontWeight="SemiBold"/>
+          <TextBlock Text="1. Tapped/DoubleTapped/Holding 各验证" TextWrapping="Wrap"/>
+          <TextBlock Text="2. Tab 导航与 IsFocusScope 循环" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 D · IME + 剪贴板 +（可选）DnD" FontWeight="SemiBold"/>
+          <TextBlock Text="1. 中文输入组合→上屏→Enter 提交" TextWrapping="Wrap"/>
+          <TextBlock Text="2. SetTextAsync/TryGetTextAsync 往返" TextWrapping="Wrap"/>
+          <TextBlock Text="3. （可选）DataTransfer 文本拖放" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：完成路由/捕获/手势/IME 4 实验" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

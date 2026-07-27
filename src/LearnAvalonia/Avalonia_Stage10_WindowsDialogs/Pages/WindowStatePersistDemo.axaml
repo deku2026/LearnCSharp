@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.WindowStatePersistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.7 窗口状态持久化" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="WindowBoundsState：X/Y/Width/Height/State/ScreenId" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="if (w.WindowState == Normal) {&#10;    s.X = w.Position.X; s.Y = w.Position.Y;&#10;    s.Width = w.Width; s.Height = w.Height;&#10;}&#10;s.State = (w.WindowState == Minimized) ? Normal : w.WindowState;&#10;&#10;// Apply：Math.Clamp(width, min, max)&#10;// 校验坐标是否落在某屏工作区 → 否则 CenterScreen&#10;if (s.State is Maximized or FullScreen) w.WindowState = s.State;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="在 Closing 时写入本地 JSON/设置服务；在 Opened 时 Apply。" TextWrapping="Wrap"/>
+      <TextBlock Text="⚠ 不要在 Measure 阶段改 Position；最大化/全屏时 Position 可能无意义 → 存 RestoreBounds 策略。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：Closing 存 Opened 应用 RestoreBounds" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

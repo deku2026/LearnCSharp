@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.PositionSizeStateDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.2 位置、尺寸、状态" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="Position — 像素坐标（多屏可负）" TextWrapping="Wrap"/>
+          <TextBlock Text="Width/Height + Min/Max — 逻辑像素 + 布局约束" TextWrapping="Wrap"/>
+          <TextBlock Text="ClientSize — 客户区尺寸" TextWrapping="Wrap"/>
+          <TextBlock Text="WindowState — Normal / Minimized / Maximized / FullScreen" TextWrapping="Wrap"/>
+          <TextBlock Text="WindowStartupLocation — Manual / CenterScreen / CenterOwner" TextWrapping="Wrap"/>
+          <TextBlock Text="CanResize / Topmost / ShowInTaskbar / Icon / Title" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="🆕 WindowState 是 DirectProperty —— 用代码或本地值设置：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="window.WindowState = WindowState.Maximized;&#10;&#10;❌ 不要：&lt;Setter Property=&quot;WindowState&quot; Value=&quot;Maximized&quot;/&gt;&#10;DirectProperty 不参与样式系统常规 Setter 路径。" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="全屏切换：FullScreen 隐藏系统装饰并占满目标显示器，与「无边框最大化」不同。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：WindowState 是 DirectProperty 不能用 Style" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

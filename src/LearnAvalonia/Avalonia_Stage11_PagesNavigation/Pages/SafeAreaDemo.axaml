@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.SafeAreaDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.10 Safe area 与 EffectiveBarHeight" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="刘海 / 状态栏 / 主页指示条 / 导航栏高度&#10;  → Padding / 附加属性 / EffectiveBarHeight&#10;  （文档属性名以 12.1 为准）" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="移动上：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 内容勿被挖孔遮挡" TextWrapping="Wrap"/>
+      <TextBlock Text="• 底栏 CommandBar 预留 home indicator" TextWrapping="Wrap"/>
+      <TextBlock Text="• 横竖屏切换后重新 measure" TextWrapping="Wrap"/>
+      <TextBlock Text="桌面预览 Pages 时可用固定窄窗模拟，但不能替代真机 safe area。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：刘海/状态栏/主页指示条避让" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

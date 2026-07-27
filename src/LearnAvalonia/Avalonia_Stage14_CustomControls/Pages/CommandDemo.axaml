@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.CommandDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.10 命令" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public static readonly StyledProperty&lt;ICommand?&gt; CommandProperty =&#10;    AvaloniaProperty.Register&lt;RatingControl, ICommand?&gt;(nameof(Command));&#10;&#10;public ICommand? Command {&#10;    get =&gt; GetValue(CommandProperty);&#10;    set =&gt; SetValue(CommandProperty, value);&#10;}&#10;&#10;// 在指针释放或点击时：&#10;if (Command?.CanExecute(CommandParameter) == true)&#10;    Command.Execute(CommandParameter);" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="库控件同时提供事件 + 命令，方便 MVVM。" TextWrapping="Wrap"/>
+      <TextBlock Text="CommandParameter 属性传参；CanExecute 控制可用性。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Command 属性 + CanExecute" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

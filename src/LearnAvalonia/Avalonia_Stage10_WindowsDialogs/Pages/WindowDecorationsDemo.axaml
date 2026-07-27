@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.WindowDecorationsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.3 WindowDecorations 与 WindowDrawnDecorations" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="命名迁移（12 主线）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="SystemDecorations → WindowDecorations" TextWrapping="Wrap"/>
+          <TextBlock Text="旧 TitleBar/CaptionButtons/ChromeOverlayLayer 拼装 → WindowDrawnDecorations（Avalonia.Controls.Chrome）" TextWrapping="Wrap"/>
+          <TextBlock Text="零散 ExtendClientArea* 旧组合 → 以 12 文档 decorations 模型为准" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="WindowDrawnDecorations 不是普通内容控件，而是逻辑元素：承载标题栏/边框/标题按钮/缩放抓手的模板与交互。" TextWrapping="Wrap"/>
+      <TextBlock Text="自定义标题栏工程步骤：" FontWeight="SemiBold"/>
+      <TextBlock Text="1. 启用 WindowDecorations 配置" TextWrapping="Wrap"/>
+      <TextBlock Text="2. 提供或改写 decorations 模板：左图标/标题，中拖拽区，右 min/max/close" TextWrapping="Wrap"/>
+      <TextBlock Text="3. 用拖拽区域（见 §2.8）标可拖动" TextWrapping="Wrap"/>
+      <TextBlock Text="4. 深浅色、最大化双击还原、无障碍名称一并验收" TextWrapping="Wrap"/>
+      <TextBlock Text="5. Win11 圆角、macOS 红绿灯留白、Linux 桌面环境差异抽检" TextWrapping="Wrap"/>
+      <TextBlock Text="拖动：BeginMoveDrag(e)；缩放：BeginResizeDrag(WindowEdge, e)。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：SystemDecorations 已改名 WindowDecorations" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

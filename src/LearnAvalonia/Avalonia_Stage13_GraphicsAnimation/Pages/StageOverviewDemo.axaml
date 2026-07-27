@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.StageOverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 为什么图形与动画单独成章" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="阶段 1–12 解决「能交互」。生产级视觉还需：画刷、几何、自绘、位图、变换、裁剪、效果、动画、过渡、缓动、文本 shaping。" TextWrapping="Wrap"/>
+      <TextBlock Text="核心区分：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="• 保留模式 — 控件树/布局系统托管（声明式 XAML）" TextWrapping="Wrap"/>
+          <TextBlock Text="• 即时模式 — DrawingContext 直接绘制（自绘 Control）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="本阶段覆盖 Skia 渲染栈的画刷/几何/位图/变换/效果/动画全链，以及 12 的 PlaybackBehavior 节能与 HarfBuzz shaping 配置。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：区分即时模式与保留模式" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

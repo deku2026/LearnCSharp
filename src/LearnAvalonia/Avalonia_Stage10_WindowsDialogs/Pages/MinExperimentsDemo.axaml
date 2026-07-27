@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.MinExperimentsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 最小实验清单" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <TextBlock Text="实验 A · 多窗口 + Modal" FontWeight="SemiBold"/>
+          <TextBlock Text="1. 主窗按钮 Show(owner) 打开 modeless 工具窗" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 主窗按钮 ShowDialog&lt;bool&gt; 打开 modal 确认框" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 关闭主窗时工具窗随之关闭或提示" TextWrapping="Wrap"/>
+          <TextBlock Text="4. 验收 Owner 居中与任务栏行为" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 B · 自定义标题栏 + 状态" FontWeight="SemiBold"/>
+          <TextBlock Text="1. 客户端装饰 + 自绘标题栏；BeginMoveDrag" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 最小/最大/关闭可用；双击标题栏切换最大化" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 代码设置 WindowState；证明 Style 无法设置（对照实验）" TextWrapping="Wrap"/>
+          <TextBlock Text="4. 重启后恢复位置与最大化状态" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 C · 托盘 + 显式退出" FontWeight="SemiBold"/>
+          <TextBlock Text="1. App.axaml 配置 TrayIcon + NativeMenu" TextWrapping="Wrap"/>
+          <TextBlock Text="2. ShutdownMode=OnExplicitShutdown；关主窗→Hide；托盘退出→Shutdown" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 故意改成 Menu 观察失败/无效" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 D · StorageProvider + 单实例" FontWeight="SemiBold"/>
+          <TextBlock Text="1. 打开/保存文本文件" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 第二次启动进程：首实例激活；命令行文件路径打开到主窗" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="记录：OS、缩放比例、是否 X11/Wayland、截图与日志。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：完成多窗口+模态/托盘/StorageProvider 4 实验" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

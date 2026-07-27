@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.PlatformDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 跨平台差异" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.6*,*,*,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="能力" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="🪟" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="🍎" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="🐧" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="4" Text="🌍" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="5" Text="📱" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="多 Window" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="完整" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="完整" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="X11 稳/Way🧪" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="4" Text="无桌面多窗" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="5" Text="Pages/Activity" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="TrayIcon+NativeMenu" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="✅" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="✅" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="部分 DE" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="4" Text="❌" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="5" Text="❌" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="StorageProvider" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="✅" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="沙盒" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="portal" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="4" Text="权限弹窗" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="5" Text="书签/权限" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="单实例" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="Mutex/管道" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="锁/socket" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="锁/socket" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="4" Text="标签页" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="5" Text="系统任务栈" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="文件关联" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="注册表/MSIX" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="plist" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="desktop/MIME" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="4" Text="PWA 有限" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="5" Text="Intent/UTType" HorizontalAlignment="Center"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="测试矩阵最低要求（桌面）：本机 Windows 或 macOS 完整测；Linux 至少 X11 一条；托盘与文件对话框各跑一次。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Win/mac/Linux 托盘/菜单/透明差异" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

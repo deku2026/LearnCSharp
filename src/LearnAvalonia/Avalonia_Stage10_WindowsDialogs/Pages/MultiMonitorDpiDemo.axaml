@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.MultiMonitorDpiDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.8 多显示器、DPI、拖拽区域" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="var screens = window.Screens;  // TopLevel.Screens&#10;foreach (var s in screens.All) {&#10;    // s.Bounds / WorkingArea / Scaling / IsPrimary&#10;}&#10;var current = window.Screens.ScreenFromWindow(window) ?? screens.Primary;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="DPI / Scaling：" FontWeight="SemiBold"/>
+      <TextBlock Text="• Avalonia 使用逻辑像素布局；Scaling 来自显示器" TextWrapping="Wrap"/>
+      <TextBlock Text="• 跨屏拖动窗口时注意字体与位图清晰度；图标提供多尺寸" TextWrapping="Wrap"/>
+      <TextBlock Text="• 分数缩放（125%/150%）下验收布局取整（layout rounding）" TextWrapping="Wrap"/>
+      <TextBlock Text="拖拽区域：" FontWeight="SemiBold"/>
+      <TextBlock Text="自定义标题栏用 BeginMoveDrag；边缘缩放用 BeginResizeDrag(WindowEdge, e)。勿在按钮 hit-test 区域同时启用拖动。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：BeginMoveDrag 与多屏 Scaling" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

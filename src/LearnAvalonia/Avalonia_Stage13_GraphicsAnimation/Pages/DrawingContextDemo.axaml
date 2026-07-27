@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.DrawingContextDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.3 DrawingContext（即时模式）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="在 Control.Render 或 DrawingPresenter/DrawingGroup 场景直接绘制：" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public class PlotControl : Control {&#10;    public static readonly StyledProperty&lt;IReadOnlyList&lt;double&gt;?&gt; ValuesProperty =&#10;        AvaloniaProperty.Register&lt;PlotControl, IReadOnlyList&lt;double&gt;?&gt;(nameof(Values));&#10;&#10;    static PlotControl() {&#10;        AffectsRender&lt;PlotControl&gt;(ValuesProperty);&#10;    }&#10;&#10;    public override void Render(DrawingContext context) {&#10;        base.Render(context);&#10;        // FillRectangle / DrawGeometry / DrawText ...&#10;    }&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="纪律：" FontWeight="SemiBold"/>
+      <TextBlock Text="1. AffectsRender 注册依赖属性" TextWrapping="Wrap"/>
+      <TextBlock Text="2. Render 内少分配；Pen/Brush 缓存为字段" TextWrapping="Wrap"/>
+      <TextBlock Text="3. 不要在 Render 里做网络/磁盘 IO" TextWrapping="Wrap"/>
+      <TextBlock Text="4. 大数据用抽样/虚拟化（阶段 15）而非一次画 10 万点无优化" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：AffectsRender + Render 纪律" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

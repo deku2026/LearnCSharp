@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.KeyboardHotkeyDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.4 键盘与热键" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="control.KeyDown += (_, e) =&gt;&#10;{&#10;    var mods = e.KeyModifiers;  // Control/Shift/Alt/Meta&#10;    if (mods.HasFlag(KeyModifiers.Control) &amp;&amp; e.Key == Key.S) {&#10;        Save();&#10;        e.Handled = true;&#10;    }&#10;};" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="应用级热键：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 桌面：在 Window 上隧道监听，或平台全局热键（平台专属，非可移植）" TextWrapping="Wrap"/>
+      <TextBlock Text="• 菜单：NativeMenuItem.Gesture / 控件 HotKey 属性绑定 KeyGesture" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;Button Content=&quot;保存&quot; HotKey=&quot;Ctrl+S&quot; Command=&quot;{Binding SaveCommand}&quot;/&gt;&#10;&#10;var gesture = new KeyGesture(Key.S, KeyModifiers.Control);" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="Key vs Key.Oem* vs 物理布局：快捷键用 Key + 修饰；字符输入优先看 TextInput。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：KeyModifiers + KeyGesture + HotKey" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

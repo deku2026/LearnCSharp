@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.CommandIntegrationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.12 与命令系统集成" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;Window&gt;&#10;  &lt;Window.KeyBindings&gt;&#10;    &lt;!-- 若使用 KeyBinding 集合 API --&gt;&#10;  &lt;/Window.KeyBindings&gt;&#10;  &lt;Button Command=&quot;{Binding SaveCommand}&quot; HotKey=&quot;Ctrl+S&quot;/&gt;&#10;&lt;/Window&gt;&#10;&#10;// CommunityToolkit&#10;[RelayCommand(CanExecute = nameof(CanSave))]&#10;void Save() { }&#10;&#10;bool CanSave() =&gt; IsDirty &amp;&amp; !IsBusy;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="焦点在 TextBox 时 Ctrl+S 仍应可达——在 Window 隧道处理或使用命令热键注册，避免被子控件吞掉且不转发。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：HotKey+Command + 隧道转发" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

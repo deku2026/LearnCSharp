@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.PlatformFeedbackDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.10 PlatformFeedback（触觉 / 声音）" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// 移动：轻触反馈（API 名称以 12.1 为准）&#10;// PlatformFeedback.PlayHaptic(...)&#10;// PlatformFeedback.PlaySound(...)&#10;&#10;public static class Feedback {&#10;    public static void LightTap(Visual v) {&#10;        // 从 TopLevel/平台设置获取反馈服务&#10;        // 桌面可 no-op&#10;    }&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="用于：开关切换、删除确认、吸附对齐。" TextWrapping="Wrap"/>
+      <TextBlock Text="无障碍：提供非仅触觉的视觉反馈——触觉不能是唯一信号。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="桌面通常 no-op；移动端通过 PlatformFeedback 服务触发。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：移动触觉需提供视觉替代" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>
