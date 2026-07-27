@@ -12,7 +12,7 @@
       </Border>
       <pages:GaugeControl x:Name="EvtGauge" Width="200" Height="200" Maximum="100" Value="20"
                           AutomationProperties.Name="路由事件示例仪表"/>
-      <Button Content="Value + 10" Click="IncButton_Click" HorizontalAlignment="Start"/>
+      <Button Content="Value + 10" Click="IncButton_Click" HorizontalAlignment="Left"/>
       <TextBlock x:Name="EvtLog" Text="(等触发)" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
       <TextBlock Text="验收：订阅 routed event" Foreground="DarkGreen"/>
     </StackPanel>

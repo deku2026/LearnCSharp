@@ -5,14 +5,5 @@
              RequestedThemeVariant="Default">
     <Application.Styles>
         <FluentTheme />
-        <ControlTheme x:Key="{x:Type pages:GaugeControl}" TargetType="pages:GaugeControl">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="NeedleBrush" Value="OrangeRed"/>
-            <Template>
-                <ControlTemplate>
-                    <ContentPresenter Name="PART_ContentPresenter"/>
-                </ControlTemplate>
-            </Template>
-        </ControlTheme>
     </Application.Styles>
 </Application>

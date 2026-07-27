@@ -11,11 +11,11 @@
       </Border>
       <pages:GaugeControl Width="220" Height="220" Maximum="100" Value="55" NeedleBrush="OrangeRed"
                           AutomationProperties.Name="动画演示仪表">
-        <GaugeControl.Transitions>
+        <pages:GaugeControl.Transitions>
           <Transitions>
             <DoubleTransition Property="Value" Duration="0:0:0.5"/>
           </Transitions>
-        </GaugeControl.Transitions>
+        </pages:GaugeControl.Transitions>
       </pages:GaugeControl>
       <TextBlock Text="可在 §2 用滑块快速改 Value；本 demo 静态展示 transitions 配置。" TextWrapping="Wrap" Foreground="Gray"/>
       <TextBlock Text="验收：用 Avalonia.Animation 做过渡" Foreground="DarkGreen"/>
