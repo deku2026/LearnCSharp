@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.UiAutomationTestDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§12 UI 自动化与测试" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="单元测试" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="Undo 栈" TextWrapping="Wrap"/>
+          <TextBlock Text="同步冲突" TextWrapping="Wrap"/>
+          <TextBlock Text="设置迁移" TextWrapping="Wrap"/>
+          <TextBlock Text="VM 命令" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="Headless" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="打开主窗视图（Headless）&#x0a;导航/绑定冒烟&#x0a;包：Avalonia.Headless.XUnit 或 NUnit 12.1.0" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="可选 Appium：真窗口一条「打开-退出」" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：CI 或本地 dotnet test 绿；报告提交" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：单元 + Headless 冒烟绿" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.PlatformMatrixDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§14 三桌面平台能力矩阵" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="4" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="能力" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="Windows" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="macOS" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="Linux" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="安装包" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="MSIX/Setup/zip" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="dmg/app" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="AppImage/deb/zip" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="托盘" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="🟢" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="🟢" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="🟡 DE 依赖" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="文件关联" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="安装器写" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="Info.plist" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text=".desktop" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="单实例" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="🟢" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="🟢" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="🟢" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="Secure storage" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="CredMgr" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="Keychain" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="Secret Service/降级" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="每一行在 README 写清「已测/降级」" Foreground="DarkGreen" TextWrapping="Wrap"/>
+      <TextBlock Text="发布命令示例（附录 E）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="dotnet publish src/Product.Desktop -c Release -r win-x64 --self-contained true -o artifacts/win&#x0a;dotnet publish src/Product.Desktop -c Release -r osx-arm64 --self-contained true -o artifacts/osx&#x0a;dotnet publish src/Product.Desktop -c Release -r linux-x64 --self-contained true -o artifacts/linux" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="验收：每行 README 写已测/降级" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

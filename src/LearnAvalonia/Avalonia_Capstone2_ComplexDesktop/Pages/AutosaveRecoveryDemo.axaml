@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.AutosaveRecoveryDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 Autosave 与崩溃恢复" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="行为" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="编辑 → 防抖写 %LocalAppData%/Product/Recovery/&#x0a;正常保存 → 清除对应 recovery&#x0a;启动 → 发现 recovery → 模态「恢复/丢弃」" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="演练" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="1. 新建内容不点保存" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 等 autosave" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 任务管理器结束进程" TextWrapping="Wrap"/>
+          <TextBlock Text="4. 重启见恢复" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="证据：日志时间戳 + 截图" TextWrapping="Wrap"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="模拟编辑（写 recovery）" Click="SimulateEditButton_Click"/>
+        <Button Content="模拟杀进程（演练说明）" Click="KillButton_Click"/>
+        <Button Content="正常保存（清 recovery）" Click="NormalSaveButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="RecoveryLog" Text="日志：点击按钮模拟 autosave/recovery 流..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="验收：杀进程演练可恢复" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage21_AppArchitecture.Pages.PluginAlcDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 插件与 AssemblyLoadContext" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="场景：第三方扩展 · 可选行业包 · 脚本宿主" TextWrapping="Wrap"/>
+      <TextBlock Text="ALC 要点" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="默认 ALC：主应用&#x0a;插件 ALC：collectible 可尝试卸载&#x0a;  - 类型泄漏到默认 ALC → 无法卸载&#x0a;  - 静态事件订阅 → 泄漏&#x0a;  - UI 控件类型跨边界 → 复杂&#x0a;&#x0a;public sealed class PluginLoadContext : AssemblyLoadContext&#x0a;{&#x0a;    public PluginLoadContext(string path) : base(isCollectible: true) {}&#x0a;    // 重写 Load，优先共享契约程序集&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="契约程序集" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="MyApp.Plugin.Abstractions（仅接口/DTO）" TextWrapping="Wrap"/>
+          <TextBlock Text="↑ 主程序实现宿主服务" TextWrapping="Wrap"/>
+          <TextBlock Text="↑ 插件只引用 Abstractions + 允许的 API" TextWrapping="Wrap"/>
+          <TextBlock Text="禁止插件直接引用 MyApp.Presentation 实现细节" Foreground="OrangeRed" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="版本与兼容：语义化 API 版本 · 启动校验 · 失败隔离（一插件挂不影响主程序）" TextWrapping="Wrap"/>
+      <TextBlock Text="Trim/AOT：动态插件与 AOT 敌对；生产若 AOT 需外进程或禁用插件" Foreground="OrangeRed" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：ALC 隔离与卸载限制" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

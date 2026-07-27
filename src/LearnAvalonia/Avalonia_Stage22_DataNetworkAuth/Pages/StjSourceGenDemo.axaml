@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.StjSourceGenDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 System.Text.Json 与 Source Gen" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="为什么 source gen：反射序列化在 trim/AOT 下脆弱；source gen 生成明确契约" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="[JsonSerializable(typeof(NoteDto))]&#x0a;[JsonSerializable(typeof(List&lt;NoteDto&gt;))]&#x0a;internal partial class AppJsonContext : JsonSerializerContext { }&#x0a;&#x0a;var dto = JsonSerializer.Deserialize(&quot;{}&quot;, AppJsonContext.Default.NoteDto);" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="选项：属性命名 · 忽略 null · 大小写不敏感 —— 统一放 Options，避免每处 new JsonSerializerOptions" TextWrapping="Wrap"/>
+      <TextBlock Text="版本化 DTO：API v1/v2 字段变化 → 客户端 DTO 与契约测试；勿用匿名动态 JSON 当主路径" TextWrapping="Wrap"/>
+      <Button x:Name="RoundTripButton" Content="source gen 序列化往返（List&lt;NoteDto&gt;）" Click="RoundTripButton_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="StjLog" Text="点击按钮执行 STJ source gen 往返..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="验收：STJ source gen 主 DTO" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.DocumentTabDemo"
+             x:DataType="pages:DocumentTabDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 Document / Tab 模型" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="行为：打开→新 Tab 或聚焦已开 · 关闭→脏文档确认 · 多 Tab 切换保滚动/光标 · 保存→单文档/全部保存" TextWrapping="Wrap"/>
+      <TextBlock Text="IDocumentWorkspace" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public interface IDocumentWorkspace&#x0a;{&#x0a;    IReadOnlyList&lt;IDocument&gt; OpenDocuments { get; }&#x0a;    IDocument? Active { get; }&#x0a;    Task OpenAsync(string path, CancellationToken ct = default);&#x0a;    Task CloseAsync(IDocument doc, CancellationToken ct = default);&#x0a;    Task SaveAsync(IDocument doc, CancellationToken ct = default);&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="本 Capstone 至少单主窗多 Tab；多窗加分（状态进会话文件）" TextWrapping="Wrap"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="新建 Tab" Click="NewTabButton_Click"/>
+        <Button Content="标记脏（编辑）" Click="MarkDirtyButton_Click"/>
+        <Button Content="保存" Click="SaveButton_Click"/>
+        <Button Content="关闭选中 Tab" Click="CloseTabButton_Click"/>
+      </StackPanel>
+      <TextBlock Text="已开文档列表" FontWeight="SemiBold" Margin="0,4,0,0"/>
+      <ListBox x:Name="TabList" ItemsSource="{Binding Tabs}" Height="160">
+        <ListBox.ItemTemplate>
+          <DataTemplate x:DataType="pages:DocumentTabDemo+DocVm">
+            <StackPanel Orientation="Horizontal" Spacing="8" Margin="4,2">
+              <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+              <TextBlock Text="脏" Foreground="OrangeRed" IsVisible="{Binding IsDirty}"/>
+            </StackPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+      <TextBlock x:Name="TabLog" Text="日志：新建 Tab 后操作..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="验收：多 Tab 文档 + 脏文档确认" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

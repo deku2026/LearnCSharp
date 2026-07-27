@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.OverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§0 导读：数据面全图" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="完成后你应能：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="1. IHttpClientFactory 配置命名客户端、超时、处理程序管道" TextWrapping="Wrap"/>
+          <TextBlock Text="2. STJ source gen 做 AOT/trim 友好序列化" TextWrapping="Wrap"/>
+          <TextBlock Text="3. REST 调用取消、重试（谨慎）、超时、错误映射" TextWrapping="Wrap"/>
+          <TextBlock Text="4. SQLite 本地缓存；Preferences 轻设置" TextWrapping="Wrap"/>
+          <TextBlock Text="5. ISecureStore 对接各平台密钥保管" TextWrapping="Wrap"/>
+          <TextBlock Text="6. OAuth2/OIDC + PKCE 客户端形状；token 安全区；刷新注销" TextWrapping="Wrap"/>
+          <TextBlock Text="7. 离线同步冲突策略（LWW 或手动标记）" TextWrapping="Wrap"/>
+          <TextBlock Text="8. 不把「手写 JWT 校验算法课」当主线" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="数据面全图" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="UI/VM → Application Services&#x0a;     ├─ IApiClient (HTTP/gRPC)&#x0a;     ├─ ILocalDb / IRepository&#x0a;     ├─ IPreferences&#x0a;     ├─ ISecureStore&#x0a;     └─ IAuthService&#x0a;          ├─ 登录（PKCE/密码/企业）&#x0a;          ├─ 刷新&#x0a;          └─ 注销" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="安全先验：公网客户端无 client_secret · refresh_token 进安全存储 · Https 默认 · 取消令牌跟页面/窗口生命周期绑定" Foreground="DarkGreen" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：口述数据面四大目标" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

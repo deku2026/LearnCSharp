@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage21_AppArchitecture.Pages.OverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§0 导读：从「会写窗口」到「可演进的生产工程」" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="完成后你应能：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="1. MVVM/Reactive MVVM/MVU 间做可辩护选型并固定团队规范" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 分层 + 垂直切片组织中大型方案，画清依赖方向" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 设计模块边界；说明插件 ALC 的隔离与卸载限制" TextWrapping="Wrap"/>
+          <TextBlock Text="4. 使用 DI / Hosting / Options / Logging 做组合根" TextWrapping="Wrap"/>
+          <TextBlock Text="5. 实现导航/对话框服务（不落业务到 code-behind）" TextWrapping="Wrap"/>
+          <TextBlock Text="6. 做 undo/redo + 文档模型 + autosave + 崩溃恢复" TextWrapping="Wrap"/>
+          <TextBlock Text="7. 管理多窗口状态（打开列表、布局、脏标记）" TextWrapping="Wrap"/>
+          <TextBlock Text="8. 埋点遥测边界（隐私/开关）" TextWrapping="Wrap"/>
+          <TextBlock Text="9. 桌面生产：单实例/IPC/CLI/文件关联/更新/设置迁移" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="一页总图：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="┌─────────────────────────────┐&#x0a;│ Presentation (Views, code-behind)│&#x0a;│ ViewModels / UI Services        │&#x0a;├─────────────────────────────┤&#x0a;│ Application (use cases, DTOs)    │&#x0a;├─────────────────────────────┤&#x0a;│ Domain (entities, rules, events)│&#x0a;├─────────────────────────────┤&#x0a;│ Infrastructure (db/http/files)  │&#x0a;└─────────────────────────────┘&#x0a;    ▲ hosts 组合根（Desktop/Mobile/Browser)" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="没有架构纪律的崩坏：god Window.xaml.cs · 静态 ServiceLocator 蔓延 · 插件反射改内部 · 设置文件无法升级" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：口述三大目标与一页总图" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

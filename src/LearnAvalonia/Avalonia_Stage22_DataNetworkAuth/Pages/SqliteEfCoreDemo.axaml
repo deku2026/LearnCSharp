@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.SqliteEfCoreDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 SQLite 与 EF Core" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="为何 SQLite：嵌入式 · 零配置 · 桌面/移动友好 · 结构化查询与事务" TextWrapping="Wrap"/>
+      <TextBlock Text="EF Core 客户端" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public sealed class AppDbContext : DbContext&#x0a;{&#x0a;    public DbSet&lt;NoteEntity&gt; Notes =&gt; Set&lt;NoteEntity&gt;();&#x0a;}&#x0a;services.AddDbContext&lt;AppDbContext&gt;(opt =&gt;&#x0a;    opt.UseSqlite($&quot;Data Source={dbPath}&quot;));" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="路径：桌面 LocalApplicationData/MyApp/app.db · 移动个人库目录 · Browser 特殊（WASM 或不用文件）" TextWrapping="Wrap"/>
+      <TextBlock Text="迁移：EF migrations 打进应用 · 启动 Database.Migrate() 或轻量 schema_version 表 · 大迁移放后台显示进度" TextWrapping="Wrap"/>
+      <TextBlock Text="不用 EF 时：Microsoft.Data.Sqlite 手写 SQL + 仓储；更少魔法更多样板" TextWrapping="Wrap"/>
+      <TextBlock Text="本 demo 使用 :memory: 连接（不写盘，进程退出即消失）" Foreground="DarkGreen" TextWrapping="Wrap"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="建表 + 插入（:memory:）" Click="CreateAndInsertButton_Click"/>
+        <Button Content="查询全部（:memory:）" Click="QueryButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="SqliteLog" Text="日志：点击按钮操作 SQLite 内存数据库..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="第三方 LiteDB 等用前查维护状态；不默认推荐进主线" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：SQLite 可读写" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

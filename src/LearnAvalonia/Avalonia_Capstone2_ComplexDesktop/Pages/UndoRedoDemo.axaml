@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.UndoRedoDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 Undo/Redo" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="每文档独立栈或工作区栈（写清）· Ctrl+Z/Ctrl+Y（macOS Cmd）· 连续输入合并 · 保存不自动清空栈" TextWrapping="Wrap"/>
+      <TextBox x:Name="UndoInput" Text="X" PlaceholderText="输入要追加的文本" Margin="0,4,0,0"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="追加（Execute）" Click="AppendButton_Click"/>
+        <Button Content="Undo" Click="UndoButton_Click"/>
+        <Button Content="Redo" Click="RedoButton_Click"/>
+        <Button Content="自动执行 10 步（验收）" Click="RunTenButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="UndoStatus" Text="步骤：0 · 当前文本：&#x0a;Undo 栈深度：0 · Redo 栈深度：0" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="验收：10 步编辑可逐步撤销" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

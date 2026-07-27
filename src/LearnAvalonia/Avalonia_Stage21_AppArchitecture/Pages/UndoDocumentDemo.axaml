@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage21_AppArchitecture.Pages.UndoDocumentDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 状态 / Undo/Redo / 文档模型" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="IDocument" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public interface IDocument&#x0a;{&#x0a;    string Title { get; }&#x0a;    bool IsDirty { get; }&#x0a;    Task SaveAsync(CancellationToken ct = default);&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="IUndoableCommand / IUndoStack" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public interface IUndoableCommand&#x0a;{&#x0a;    void Execute(); void Undo(); string Description { get; }&#x0a;}&#x0a;public interface IUndoStack { ... Push/CanUndo/CanRedo/Undo/Redo }" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="策略：命令式适合结构化编辑 · 快照式适合小文档 · 合并连续输入" TextWrapping="Wrap"/>
+      <TextBlock Text="最小 Undo/Redo 演示" FontWeight="SemiBold"/>
+      <TextBox x:Name="UndoInput" Text="A" PlaceholderText="输入要追加的文本" Margin="0,4,0,0"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="追加（Execute）" Click="AppendButton_Click"/>
+        <Button Content="Undo (Ctrl+Z)" Click="UndoButton_Click"/>
+        <Button Content="Redo (Ctrl+Y)" Click="RedoButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="UndoStatus" Text="当前文本：&#x0a;Undo 栈深度：0 · Redo 栈深度：0" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="多文档：IDocumentService（打开/关闭/激活/保存全部，与多窗口映射）" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：Undo 最小演示" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

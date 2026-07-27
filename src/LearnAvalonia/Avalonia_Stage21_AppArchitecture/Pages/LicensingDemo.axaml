@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage21_AppArchitecture.Pages.LicensingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§13 授权许可边界（简述）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="开源 Avalonia MIT 核心 vs Pro 控件" TextWrapping="Wrap"/>
+          <TextBlock Text="你的应用许可证检查勿阻塞 UI 线程" TextWrapping="Wrap"/>
+          <TextBlock Text="插件许可证与主程序分离" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="不展开法律文本；工程上 → 功能开关 + 校验服务接口" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：功能开关 + 校验服务接口" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

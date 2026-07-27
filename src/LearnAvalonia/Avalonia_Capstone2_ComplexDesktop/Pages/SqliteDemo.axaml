@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.SqliteDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 SQLite 本地索引" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="元数据：最近文件 · 标签 · 索引全文（可选） · 路径在用户数据目录 · 启动迁移 · 备份命令导出 DB 或 JSON" TextWrapping="Wrap"/>
+      <TextBlock Text="与远程 API：本地为源 of truth 离线优先，或服务器优先 —— 选一种写进 README" TextWrapping="Wrap"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="启动迁移（:memory:）" Click="MigrateButton_Click"/>
+        <Button Content="备份/导出说明" Click="BackupButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="SqliteLog" Text="日志：点击按钮演示 SQLite 迁移/备份..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="验收：元数据 + 启动迁移 + 备份" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.PreferencesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 Preferences" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public interface IPreferences&#x0a;{&#x0a;    Task SetAsync(string key, string value, CancellationToken ct = default);&#x0a;    Task&lt;string?&gt; GetAsync(string key, CancellationToken ct = default);&#x0a;    Task RemoveAsync(string key, CancellationToken ct = default);&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="用途：主题 · 窗口态 · 功能开关缓存 · 非敏感标记" TextWrapping="Wrap"/>
+      <TextBlock Text="实现：桌面 JSON 文件 · 移动 Xamarin.Essentials 风格/平台偏好 · Browser localStorage" TextWrapping="Wrap"/>
+      <TextBlock Text="演示（内存版）" FontWeight="SemiBold"/>
+      <TextBox x:Name="PrefInput" Text="Dark" PlaceholderText="输入主题值" Margin="0,4,0,0"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="SetAsync(theme, ...)" Click="SetButton_Click"/>
+        <Button Content="GetAsync(theme)" Click="GetButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="PrefLog" Text="日志：等待操作..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="⚠ refresh_token 不可进 Preferences 明文" Foreground="OrangeRed" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：主题进 Preferences" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

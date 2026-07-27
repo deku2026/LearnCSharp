@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage21_AppArchitecture.Pages.DiHostingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 DI 与 Hosting 组合根" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="仅 hosts 与测试入口调用 BuildServiceProvider" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="var builder = Host.CreateApplicationBuilder(args);&#x0a;builder.Services.AddApplication();&#x0a;builder.Services.AddInfrastructure(builder.Configuration);&#x0a;builder.Services.AddPresentation();&#x0a;using var host = builder.Build();&#x0a;// 再启动 Avalonia；注意生命周期衔接" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="寿命：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="Singleton" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="配置、仓库、导航总线" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Scoped" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="范围（请求/文档会话）；每文档窗口一 scope 是常见模式" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Transient" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="轻量 VM 工厂创建" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <Button x:Name="BuildContainerButton" Content="构造真实 ServiceProvider（ServiceCollection）" Click="BuildContainerButton_Click" Margin="0,4,0,0"/>
+      <Button x:Name="ScopeButton" Content="演示 3 个独立 scope + singleton/transient 差异" Click="ScopeButton_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="DiLog" Text="点击按钮构造 DI 容器（无网络/无 IO）..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="反模式：VM 内 new HttpClient · 服务定位器满天飞 · 循环依赖靠 Lazy 硬憋" Foreground="OrangeRed" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：BuildServiceProvider 仅在 host" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

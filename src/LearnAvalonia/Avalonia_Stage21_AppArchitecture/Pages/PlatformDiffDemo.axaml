@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage21_AppArchitecture.Pages.PlatformDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§14 平台差异（架构层）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="4" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="主题" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="桌面" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="移动" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="Browser" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="多窗" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="一等" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="基本无" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="无" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="单实例" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="常见" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="系统管" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="多标签即多实例" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="CLI" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="有" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="无" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="无" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="文件关联" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="有" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="分享/深链" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="MIME 有限" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="插件 ALC" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="可能" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="少见" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="基本否" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：桌面/移动/Browser 架构差异" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.PlatformDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§12 平台差异总表" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="4" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="能力" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="桌面" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="移动" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="Browser" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="HttpClient" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="🟢" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="🟢" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="🟢+CORS" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="SQLite 文件" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="🟢" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="🟢" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="🟡 特殊" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="Preferences" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="🟢" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="🟢" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="localStorage" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="SecureStore" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="🟢 各异" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="🟢" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="🔴 弱" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="PKCE 登录" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="Broker/浏览器" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="浏览器/URI" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="redirect" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="后台刷新" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="易" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="受限" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="页活着才易" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="网络栈是 .NET，不是 Avalonia 特有；本阶段价值在与 UI 生命周期、平台存储结合" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：桌面/移动/Browser 差异书面" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage21_AppArchitecture.Pages.LayeringSlicingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 分层 vs 垂直切片" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="经典分层" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="UI → Application → Domain ← Infrastructure&#x0a;规则：内层不引用外层；Domain 不引用 Avalonia/EF/HttpClient" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="垂直切片（Feature folders）" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="Features/&#x0a;  Notes/&#x0a;    NoteListView.axaml · NoteListViewModel.cs&#x0a;    NoteService.cs · INoteRepository.cs&#x0a;  Settings/  Auth/" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="混合推荐：物理文件夹按功能；依赖规则仍按分层。避免每个 feature 复制一套基础设施" TextWrapping="Wrap"/>
+      <TextBlock Text="项目拆分时机：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="小 → 单 Presentation + 可选 Domain" TextWrapping="Wrap"/>
+          <TextBlock Text="中 → Domain / Application / Infra / UI / Hosts" TextWrapping="Wrap"/>
+          <TextBlock Text="大 → 上 + 按边界上下文拆程序集" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="过早拆 20 个项目 与 永不拆 都是病" Foreground="OrangeRed" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：画清依赖方向" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.MinExperimentsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§16 最小实验 A-H" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="实验 A · HttpClientFactory（主）：命名客户端打 mock API；取消按钮可中止" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 B · STJ source gen（主）：DTO 往返；trim 发布配置下仍可用（桌面）" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 C · SQLite 缓存（主）：列表缓存本地；离线读缓存" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 D · Preferences + SecureStore（主）：主题进 Preferences；假 refresh 进 SecureStore，重启仍在" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 E · PKCE 环（主）：对接演示 IdP 或 mock token 端点；登录/刷新/注销" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 F · 401 单飞刷新（主）：模拟双请求并发 401；只刷新一次" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 G · 冲突标记（主）：本地与假服务器版本冲突；UI 选 KeepLocal/KeepRemote" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 H · Browser CORS 说明（主）：同代码在 Browser 的失败路径有 UX" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：完成 8 个最小实验" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

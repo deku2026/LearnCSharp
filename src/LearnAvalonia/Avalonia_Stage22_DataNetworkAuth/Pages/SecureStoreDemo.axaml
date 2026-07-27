@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.SecureStoreDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 安全存储 ISecureStore" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="平台映射" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="Windows" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="Credential Manager / DPAPI 封装" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="macOS" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Keychain" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Linux" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="Secret Service (libsecret) / 降级加密文件" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="Android" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="Keystore 支持的 EncryptedSharedPreferences" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="iOS" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="Keychain" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="Browser" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="无对等；HttpOnly Cookie / 内存 / 后端会话" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="ISecureStore 接口" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public interface ISecureStore&#x0a;{&#x0a;    Task SetAsync(string key, string value, CancellationToken ct = default);&#x0a;    Task&lt;string?&gt; GetAsync(string key, CancellationToken ct = default);&#x0a;    Task RemoveAsync(string key, CancellationToken ct = default);&#x0a;}&#x0a;// 键名常量：auth.access / auth.refresh" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="禁止" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="refresh_token 写 Preferences 明文" TextWrapping="Wrap" Foreground="OrangeRed"/>
+          <TextBlock Text="token 打进日志/遥测" TextWrapping="Wrap" Foreground="OrangeRed"/>
+          <TextBlock Text="截图教程用真生产 token" TextWrapping="Wrap" Foreground="OrangeRed"/>
+        </StackPanel>
+      </Border>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="SetAsync(auth.refresh)" Click="SetSecretButton_Click"/>
+        <Button Content="GetAsync(auth.refresh)" Click="GetSecretButton_Click"/>
+        <Button Content="RemoveAsync（注销）" Click="ClearButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="SecureLog" Text="日志：点击按钮模拟 SecureStore 操作..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="验收：Preferences 与 SecureStore 分离" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

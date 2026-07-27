@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage21_AppArchitecture.Pages.AcceptanceChecklistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§19 验收标准" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="[ ] 书面 UI 架构选型（MVVM/Rx/MVU）及理由" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] 解决方案分层清晰，Domain 无 Avalonia" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] DI 组合根仅在 host/测试" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] INavigationService + IDialogService 被真实使用" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] Undo/Redo 最小演示" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] Autosave + 崩溃恢复演示" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] 用户设置带 version + 一次迁移" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] 桌面单实例或写明不做的产品理由" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] 日志可定位启动失败" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] 插件/模块边界文档（即使未做热插拔）" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] 遥测接口存在且默认安全" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="工程宪法模板（可复制）：Domain 零 UI 框架引用 · 新功能先接口后实现 · VM 不引用 Window/Page 具体类型 · 跨功能通信走中介者/事件 · 用户数据可迁移 · 失败可观测 · 插件仅经 Abstractions · 共享层少 #if" TextWrapping="Wrap"/>
+      <TextBlock Text="完成标志：验收全勾；工程宪法入库；崩溃恢复演示通过" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：勾选 11 条验收清单" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

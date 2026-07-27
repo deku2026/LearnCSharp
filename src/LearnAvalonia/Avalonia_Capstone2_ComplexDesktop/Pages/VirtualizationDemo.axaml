@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.VirtualizationDemo"
+             x:DataType="pages:VirtualizationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 大数据虚拟化" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="要求：数据源 ≥ 10,000 行（可生成） · Avalonia 虚拟化列表 · 滚动 UI 线程不长期阻塞 · 过滤/搜索防抖" TextWrapping="Wrap"/>
+      <TextBlock Text="禁止：一次性生成 1 万复杂可视化控件无虚拟化；在 GetHashCode/Equals 绑定路径里做重 I/O" Foreground="OrangeRed" TextWrapping="Wrap"/>
+      <TextBlock Text="实现提示：ObservableCollection 或分页/增量 VM · 轻量项模板 · 图片异步 + 占位 · 选中与虚拟化回收勿在容器存不可恢复状态" TextWrapping="Wrap"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="生成 10,000 行假数据" Click="GenerateButton_Click"/>
+        <Button Content="清空" Click="ClearButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="VirtLog" Text="日志：点击生成 10,000 行（虚拟化只渲染可见项）..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="虚拟化列表预览（实际 ListBox 虚拟化只渲染可见行）" FontWeight="SemiBold" Margin="0,4,0,0"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="0" CornerRadius="4" Height="240">
+        <ListBox ItemsSource="{Binding Items}">
+          <ListBox.ItemTemplate>
+            <DataTemplate x:DataType="pages:VirtualizationDemo+ItemVm">
+              <StackPanel Orientation="Horizontal" Spacing="8" Margin="4,2">
+                <TextBlock Text="{Binding Id}" FontFamily="Consolas,Monaco,monospace" Width="60"/>
+                <TextBlock Text="{Binding Title}" />
+                <TextBlock Text="{Binding Tag}" Foreground="CadetBlue" Margin="8,0,0,0"/>
+              </StackPanel>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </Border>
+      <TextBlock Text="验收测量：dotnet-trace / 平台 Profiler 记录滚动 10 秒可交互、内存是否线性爆涨" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：万级条目可滚动" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>
