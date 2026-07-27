@@ -45,9 +45,11 @@ public partial class DiHostingDemo : UserControl
             using IServiceScope scope = provider.CreateScope();
             GreetingViewModel vm = scope.ServiceProvider.GetRequiredService<GreetingViewModel>();
             transientCount++;
+            // 读 vm.SayHello() 确保每次 scope 解析出独立 transient 实例（CodeQL: useless assignment）。
+            string hello = vm.SayHello();
             if (DiLog is not null && i == 2)
             {
-                DiLog.Text = $"3 个独立 scope，每个 scope 内 GreetingViewModel 为 transient：{transientCount} 次创建\nIGreetingService 全局 singleton：{provider.GetRequiredService<IGreetingService>().GetHash()}";
+                DiLog.Text = $"3 个独立 scope，每个 scope 内 GreetingViewModel 为 transient：{transientCount} 次创建\n末次 SayHello()={hello}\nIGreetingService 全局 singleton：{provider.GetRequiredService<IGreetingService>().GetHash()}";
             }
         }
         sw.Stop();

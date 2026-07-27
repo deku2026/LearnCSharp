@@ -38,6 +38,16 @@ public partial class ApplicationLifetimeSourceDemo : UserControl
         Type single = typeof(ISingleViewApplicationLifetime);
         Entries.Add(new ReflectionEntry("IClassicDesktop", "MainWindow / ShutdownMode / Windows"));
         Entries.Add(new ReflectionEntry("ISingleView", "MainView"));
+        Entries.Add(new ReflectionEntry("Activity", "MainViewFactory（Android 12，本仓库桌面主线不实现）"));
+        // 反射 desktop/single 的属性，避免变量未读（CodeQL: useless assignment）。
+        foreach (PropertyInfo p in desktop.GetProperties())
+        {
+            Entries.Add(new ReflectionEntry("  IClassicDesktop 属性", p.PropertyType.Name + " " + p.Name));
+        }
+        foreach (PropertyInfo p in single.GetProperties())
+        {
+            Entries.Add(new ReflectionEntry("  ISingleView 属性", p.PropertyType.Name + " " + p.Name));
+        }
         Entries.Add(new ReflectionEntry("三分支序", "Activity → SingleView → Desktop（铁律）"));
     }
 

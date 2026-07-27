@@ -29,7 +29,8 @@ public partial class LayoutCountDemo : UserControl
         }
 
         _layoutCount = 0;
-        LayoutProbe.Width = LayoutProbe.Width == 200 ? 220 : 200;
+        // 用容差比较 double，避免浮点相等判定（CodeQL: Equality check on floating point）。
+        LayoutProbe.Width = Math.Abs(LayoutProbe.Width - 200) < 0.001 ? 220 : 200;
         LayoutProbe.InvalidateMeasure();
         CountText.Text = "Width 切换 + InvalidateMeasure 后\n→ LayoutUpdated 触发次数=" + _layoutCount + "\n→ 一次视觉变更应只触发 1-2 轮；多次表示级联 Invalidate";
     }

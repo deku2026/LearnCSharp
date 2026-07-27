@@ -159,8 +159,8 @@ public class GaugeControl : TemplatedControl
 
         protected override string GetNameCore()
         {
-            string? name = G.GetValue(AutomationProperties.NameProperty) as string;
-            return string.IsNullOrEmpty(name) ? "Gauge" : name!;
+            string name = G.GetValue(AutomationProperties.NameProperty);
+            return string.IsNullOrEmpty(name) ? "Gauge" : name;
         }
 
         public double Minimum => 0;

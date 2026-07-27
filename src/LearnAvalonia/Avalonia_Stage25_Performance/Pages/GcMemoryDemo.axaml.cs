@@ -23,7 +23,7 @@ public partial class GcMemoryDemo : UserControl
         }
 
         long before = GC.GetTotalMemory(false);
-        List<string> list = new System.Collections.Generic.List<string>(1000);
+        System.Collections.Generic.List<string> list = new(1000);
         for (int i = 0; i < 1000; i++)
         {
             list.Add("item " + i);
@@ -32,6 +32,7 @@ public partial class GcMemoryDemo : UserControl
         long after = GC.GetTotalMemory(false);
         long beforeCollect = GC.GetTotalMemory(true);
         long delta = after - before;
-        ResultText.Text = "分配 1000 个 string\n→ 分配前托管内存=" + before + " bytes\n→ 分配后托管内存=" + after + " bytes\n→ 增量=" + delta + " bytes\n→ GC.Collect 后=" + beforeCollect + " bytes\n→ Gen0=" + GC.CollectionCount(0) + " Gen1=" + GC.CollectionCount(1) + " Gen2=" + GC.CollectionCount(2);
+        // 读 list.Count 确保容器内容被访问（避免死代码消除），并展示集合规模。
+        ResultText.Text = "分配 " + list.Count + " 个 string\n→ 分配前托管内存=" + before + " bytes\n→ 分配后托管内存=" + after + " bytes\n→ 增量=" + delta + " bytes\n→ GC.Collect 后=" + beforeCollect + " bytes\n→ Gen0=" + GC.CollectionCount(0) + " Gen1=" + GC.CollectionCount(1) + " Gen2=" + GC.CollectionCount(2);
     }
 }

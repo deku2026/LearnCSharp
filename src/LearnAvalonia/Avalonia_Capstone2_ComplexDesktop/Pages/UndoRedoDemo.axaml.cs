@@ -60,12 +60,14 @@ public partial class UndoRedoDemo : UserControl
 
     private void RunTenButton_Click(object? sender, RoutedEventArgs e)
     {
-        // 验收：10 步编辑可逐步撤销。
+        // 验收：10 步编辑可逐步撤销。用 StringBuilder 避免循环内字符串拼接（CodeQL）。
+        System.Text.StringBuilder sb = new(_text);
         for (int i = 1; i <= 10; i++)
         {
             _undo.Add(_text);
             _redo.Clear();
-            _text = _text + $"S{i}";
+            sb.Append("S").Append(i);
+            _text = sb.ToString();
             _steps++;
         }
         Update();

@@ -29,10 +29,7 @@ public partial class UndoDocumentDemo : UserControl
         _undoStack.Add(_text);
         _redoStack.Clear();
         _text = _text + UndoInput.Text;
-        if (UndoInput is not null)
-        {
-            UndoInput.Text = string.Empty;
-        }
+        UndoInput.Text = string.Empty;
         UpdateStatus();
     }
 
