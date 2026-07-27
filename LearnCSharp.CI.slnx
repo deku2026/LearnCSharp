@@ -35,6 +35,7 @@
     <Project Path="src/LearnAvalonia/Avalonia_Stage22_DataNetworkAuth/Avalonia_Stage22_DataNetworkAuth.csproj" />
     <Project Path="src/LearnAvalonia/Avalonia_Stage23_AccessibilityI18n/Avalonia_Stage23_AccessibilityI18n.csproj" />
     <Project Path="src/LearnAvalonia/Avalonia_Stage24_TestingSystem/Avalonia_Stage24_TestingSystem.csproj" />
+    <Project Path="src/LearnAvalonia/Avalonia_Stage24_TestingSystem.Tests/Avalonia_Stage24_TestingSystem.Tests.csproj" />
     <Project Path="src/LearnAvalonia/Avalonia_Stage25_Performance/Avalonia_Stage25_Performance.csproj" />
     <Project Path="src/LearnAvalonia/Avalonia_Stage26_TrimmingAOT/Avalonia_Stage26_TrimmingAOT.csproj" />
     <Project Path="src/LearnAvalonia/Avalonia_Stage27_PackagingCI/Avalonia_Stage27_PackagingCI.csproj" />
