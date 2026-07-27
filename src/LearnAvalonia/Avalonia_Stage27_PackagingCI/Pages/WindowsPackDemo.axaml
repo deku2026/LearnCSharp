@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage27_PackagingCI.Pages.WindowsPackDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 Windows" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Self-contained publish" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="dotnet publish -c Release -r win-x64 &#x0a;  --self-contained true &#x0a;  /p:PublishSingleFile=true &#x0a;  /p:PublishTrimmed=true &#x0a;  /p:IncludeNativeLibrariesForSelfExtract=true" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="MSIX 清单（AppxManifest.xml 节选）" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;Package&gt;&#x0a;  &lt;Identity Name=&quot;MyApp&quot; Publisher=&quot;CN=MyOrg&quot; Version=&quot;1.0.0.0&quot; /&gt;&#x0a;  &lt;Applications&gt;&#x0a;    &lt;Application Id=&quot;App&quot; Executable=&quot;MyApp.exe&quot; EntryPoint=&quot;Windows.FullTrustApplication&quot;&gt;&#x0a;      &lt;uap:VisualElements DisplayName=&quot;MyApp&quot; /&gt;&#x0a;    &lt;/Application&gt;&#x0a;  &lt;/Applications&gt;&#x0a;&lt;/Package&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="打包" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="# MSIX&#x0a;MakeAppx pack /d publish /p MyApp.msix&#x0a;signtool sign /fd SHA256 /a /f cert.pfx MyApp.msix&#x0a;# MSI（WiX）&#x0a;candle MyApp.wxs&#x0a;light MyApp.wixobj -out MyApp.msi" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="验收：MSIX/MSI 命令可演示" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

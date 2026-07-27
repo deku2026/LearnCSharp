@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.VirtualizationPrincipleDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.1 虚拟化原理与容器" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="ItemsSource → 生成 ItemContainer（ContentPresenter/ListBoxItem）" TextWrapping="Wrap"/>
+          <TextBlock Text="→ 应用 ItemTemplate 填充容器" TextWrapping="Wrap"/>
+          <TextBlock Text="→ MeasureOverride：测量可见范围 + cache" TextWrapping="Wrap"/>
+          <TextBlock Text="→ ArrangeOverride：定位可见容器" TextWrapping="Wrap"/>
+          <TextBlock Text="→ 滚动移出视口 → 容器进入 recycle 池（不立即释放）" TextWrapping="Wrap"/>
+          <TextBlock Text="→ 新项目进入视口 → 从池中取容器复用（清旧 DataContext，设新值）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="关键类：VirtualizingStackPanel（默认 ItemsPanel）；ItemsRepeater + 自定义 Layout。" TextWrapping="Wrap"/>
+      <TextBlock Text="容器复用 ≠ 容器销毁；复用降低 GC 压力。" TextWrapping="Wrap"/>
+      <TextBlock Text="可视化：1k 行 ListBox 只产生 ~25 个 ListBoxItem 实例。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：闭卷画出虚拟化容器/recycle 原理" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

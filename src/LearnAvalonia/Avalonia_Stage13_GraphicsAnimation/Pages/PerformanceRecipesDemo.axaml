@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.PerformanceRecipesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 性能配方" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="1. 静态图层可栅格化缓存（权衡内存）" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 动画属性合并；避免同时改布局与渲染" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 虚化阴影降级：滚动中关闭" TextWrapping="Wrap"/>
+          <TextBlock Text="4. 路径点简化（RDP 算法等）" TextWrapping="Wrap"/>
+          <TextBlock Text="5. 禁止在绑定转换器里 new Geometry 无缓存" TextWrapping="Wrap"/>
+          <TextBlock Text="6. 大图下采样到显示尺寸" TextWrapping="Wrap"/>
+          <TextBlock Text="7. 动画 Duration 与业务情绪匹配，勿炫技" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="§10.1 帧时序" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="输入 → 布局 → 渲染 → Present&#10;动画 Tick 对齐合成时钟&#10;掉帧：查布局颠簸 / 重绘面积 / GC" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="§10.2 设计资源工作流" FontWeight="SemiBold"/>
+      <TextBlock Text="Figma/设计稿 → 导出 SVG/PDF → 简化路径 → 转 Geometry 资源字典或受控 SVG 包 → 主题色用 DynamicResource 而非写死。" TextWrapping="Wrap"/>
+      <TextBlock Text="§10.3 与主题系统" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;SolidColorBrush x:Key=&quot;AccentBrush&quot;&#10;            Color=&quot;{DynamicResource SystemAccentColor}&quot;/&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="深浅色切换时动画 BrushTransition 可平滑；确保资源键在 FluentTheme 下存在。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：帧时序/设计资源/主题联动" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

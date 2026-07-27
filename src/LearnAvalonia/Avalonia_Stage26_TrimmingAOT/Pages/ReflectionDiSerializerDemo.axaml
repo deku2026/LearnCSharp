@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage26_TrimmingAOT.Pages.ReflectionDiSerializerDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 反射、DI、序列化、插件" FontWeight="Bold" FontSize="14"/>
+      <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="场景" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="反射依赖（不友好）" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="AOT 友好替代" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="DI" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Microsoft.Extensions.DependencyInjection 反射" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="DI.SourceGen（构造器签名）" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="序列化" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Newtonsoft.Json 反射" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="System.Text.Json SourceGen" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="插件" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Assembly.LoadFrom 反射" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="接口+工厂；AOT 不支持运行时加载" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="验收：反射替代方案" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

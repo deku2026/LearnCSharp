@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.PlatformSettingsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 PlatformSettings / HotkeyConfiguration" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="PlatformSettings：访问 OS 级设置（字体、颜色主题、超时、快捷键）。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="IPlatformSettings? ps = TopLevel.GetTopLevel(this)?.PlatformSettings;&#10;HotkeyGroup copy = ps?.HotkeyConfiguration.Copy; // Ctrl+C / Cmd+C&#10;foreach (KeyGesture g in copy.Next) { ... }" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="HotkeyConfiguration：Copy / Paste / Cut / SelectAll / Undo 等" TextWrapping="Wrap"/>
+      <TextBlock Text="用途：自定义控件尊重系统快捷键（macOS 用 Cmd，Win/Linux 用 Ctrl）。" TextWrapping="Wrap"/>
+      <TextBlock Text="Validation：LongTextTrimming、LongTextTimeout 等。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：HotkeyConfiguration 读取" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

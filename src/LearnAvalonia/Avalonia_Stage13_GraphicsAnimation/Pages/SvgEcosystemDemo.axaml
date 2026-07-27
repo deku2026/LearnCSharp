@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.SvgEcosystemDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.5 SVG 生态（选学前查）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.6*,1.4*,1.6*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="包" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="状态（2026-07）" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="注意" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Avalonia.Svg.Skia" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="多见 11.3 线" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="与 12 TFM 可能不匹配" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Svg.Controls.Skia.Avalonia" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="12.x 生态分支" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="查 NuGet 与维护活跃度" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="其他社区 SVG" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="分叉多" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="评估许可证/AOT/Skia 版本" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="选型检查单：" FontWeight="SemiBold"/>
+      <TextBlock Text="□ 支持 Avalonia 12.1 / net10.0  □ 最近提交/issue 响应  □ trim/AOT 说明  □ 与官方 Skia 绑定不冲突  □ API：SvgImage vs 转 Geometry" TextWrapping="Wrap"/>
+      <TextBlock Text="策略：图标优先字体图标 / 预转 Path Geometry / PNG 多尺寸；复杂插画再引入 SVG 包。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：11.x 包不硬上 12；图标优先 Path" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

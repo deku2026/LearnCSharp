@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.AutomationPeerDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.11 AutomationPeer" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="protected override AutomationPeer OnCreateAutomationPeer()&#10;    =&gt; new RatingControlAutomationPeer(this);&#10;&#10;sealed class RatingControlAutomationPeer : ControlAutomationPeer {&#10;    public RatingControlAutomationPeer(RatingControl owner) : base(owner) { }&#10;&#10;    protected override string GetClassNameCore() =&gt; &quot;RatingControl&quot;;&#10;    protected override string GetNameCore() =&gt;&#10;        Owner.GetValue(AutomationProperties.NameProperty) ?? &quot;Rating&quot;;&#10;    // 实现 RangeValue / Invoke 等模式（按控件语义）&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="最低要求：名称、控件类型、可键盘操作路径。" TextWrapping="Wrap"/>
+      <TextBlock Text="无视 AutomationPeer 是无障碍失败——读屏无法识别控件语义。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：OnCreateAutomationPeer 名称/类型" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

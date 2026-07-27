@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage03_AvaloniaXaml.Pages.Xaml12ChangesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§13 Avalonia 12 / 12.1 最新变化" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• 编译绑定默认 true —— XAML {Binding} → CompiledBinding" TextWrapping="Wrap"/>
+          <TextBlock Text="• 代码 Binding = ReflectionBinding —— 应显式 CompiledBinding/ReflectionBinding" TextWrapping="Wrap"/>
+          <TextBlock Text="• IBinding 删除 —— 使用 BindingBase" TextWrapping="Wrap"/>
+          <TextBlock Text="• InstancedBinding 删除 —— BindingExpressionBase" TextWrapping="Wrap"/>
+          <TextBlock Text="• Binding plugins 删除 —— 数据注解插件默认关；减少与 Toolkit 冲突" TextWrapping="Wrap"/>
+          <TextBlock Text="• TextBox.Watermark → PlaceholderText —— 旧名 obsolete" TextWrapping="Wrap"/>
+          <TextBlock Text="• 动态 XAML Loader —— 仍可用但 AOT 敌对" TextWrapping="Wrap"/>
+          <TextBlock Text="• 手势附加事件迁到 InputElement —— XAML 去掉 Gestures. 前缀" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：列出 12/12.1 XAML 关键变化" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.PropertyExperimentsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§16 最小实验 A-F" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <TextBlock Text="实验 A · 实现三类属性" FontWeight="SemiBold"/>
+          <TextBlock Text="独立控件中注册 Styled + Direct + Attached；XAML 与代码各读写一次（见 §3/§8 demo）" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 B · 优先级" FontWeight="SemiBold"/>
+          <TextBlock Text="完成第 5.2 节矩阵；记录每步 GetValue 颜色（见 §5 demo）" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 C · ClearValue" FontWeight="SemiBold"/>
+          <TextBlock Text="本地值覆盖样式后 ClearValue；验收样式返回" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 D · 继承" FontWeight="SemiBold"/>
+          <TextBlock Text="父 inherits: true 属性，子读取；子本地覆盖再 Clear" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 E · coerce" FontWeight="SemiBold"/>
+          <TextBlock Text="Progress 输入 -1 / 2 → 夹到 0..1；UI 永不显示非法值" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 F · enableDataValidation" FontWeight="SemiBold"/>
+          <TextBlock Text="双绑到会报错的 VM 属性；确认无需手写 UpdateDataValidation 样板" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：完成 6 个最小实验" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

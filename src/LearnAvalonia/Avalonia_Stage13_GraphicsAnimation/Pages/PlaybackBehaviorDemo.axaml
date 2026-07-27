@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.PlaybackBehaviorDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.12 PlaybackBehavior 与不可见停动画（🆕 12）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="问题：列表/翻页后离开视口的控件若仍跑无限动画 → 耗电与 CPU。" TextWrapping="Wrap"/>
+      <TextBlock Text="12 行为：样式动画可按 PlaybackBehavior 等机制在控件不可见时停止（具体枚举名与默认值以 12.1 文档为准）。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;!-- 示意：查阅 Animation.PlaybackBehavior --&gt;&#10;&lt;Animation Duration=&quot;0:0:1&quot;&#10;           IterationCount=&quot;Infinite&quot;&#10;           PlaybackBehavior=&quot;...&quot;&gt;&#10;  ...&#10;&lt;/Animation&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="工程建议：" FontWeight="SemiBold"/>
+      <TextBlock Text="1. 无限动画仅用于真正需要的状态指示" TextWrapping="Wrap"/>
+      <TextBlock Text="2. 离开视觉树/不可见时主动移除 Classes 或取消 RunAsync" TextWrapping="Wrap"/>
+      <TextBlock Text="3. 列表容器回收时验证动画时钟已停（阶段 15 一起测）" TextWrapping="Wrap"/>
+      <TextBlock Text="4. 用性能分析器对比「滚动时是否仍有动画 Tick」" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Infinite 动画离开视口治理" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

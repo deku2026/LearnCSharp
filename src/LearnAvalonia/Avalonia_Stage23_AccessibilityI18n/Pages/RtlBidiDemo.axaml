@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage23_AccessibilityI18n.Pages.RtlBidiDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 RTL、BiDi 与布局镜像" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="FlowDirection：LeftToRight / RightToLeft；控件继承父级；窗体设 RTL 整树镜像。" TextWrapping="Wrap"/>
+      <Button Content="切换 RTL/LTR" Click="ToggleRtl_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="DirectionStatus" Text="当前 FlowDirection=LeftToRight" FontFamily="Consolas,Monaco,monospace"/>
+      <Border x:Name="RtlTarget" BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="مرحبا بالعالم (Hello World 阿拉伯语)"/>
+          <TextBlock Text="שלום עולם (Hello World 希伯来语)"/>
+          <TextBlock Text="این یک آزمایش است (波斯语 RTL)"/>
+          <TextBlock Text="混合：Hello مرحبا שלום 世界（BiDi 自动重排）" TextWrapping="Wrap"/>
+          <StackPanel Orientation="Horizontal" Spacing="6">
+            <Button Content="← 上一页"/>
+            <Button Content="下一页 →"/>
+          </StackPanel>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="图标镜像：方向性图标（返回箭头）需镜像；非方向性（搜索/设置）保持。" TextWrapping="Wrap"/>
+      <TextBlock Text="BiDi：Avalonia/Skia 用 ICU Bidirectional 算法；不要手动拼字符串方向。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：FlowDirection 切换可演示" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

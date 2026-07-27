@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.ResilienceCancellationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 弹性、重试、取消" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="取消模式" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="private CancellationTokenSource? _loadCts;&#x0a;[RelayCommand]&#x0a;private async Task LoadAsync()&#x0a;{&#x0a;    _loadCts?.Cancel();&#x0a;    _loadCts = new CancellationTokenSource();&#x0a;    try { Items = await _api.ListAsync(_loadCts.Token); }&#x0a;    catch (OperationCanceledException) { /* 忽略 */ }&#x0a;}&#x0a;导航离开页面 → Cancel" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="重试：仅幂等 GET 自动重试 · POST 慎用 · 指数退避 + 抖动 · 尊重 429 Retry-After · 区分瞬时网络 vs 4xx 业务错误" TextWrapping="Wrap"/>
+      <TextBlock Text="超时分层：HttpClient.Timeout 总超时 · 单 API 更短 CTS · UI 进度 + 可取消按钮" TextWrapping="Wrap"/>
+      <TextBlock Text="离线：IConnectivity 抽象 · 失败缓存只读 · 队列写出" TextWrapping="Wrap"/>
+      <TextBlock Text="可取消加载演示" FontWeight="SemiBold"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="开始加载（模拟 3s）" Click="StartLoadButton_Click"/>
+        <Button Content="取消加载" Click="CancelLoadButton_Click"/>
+        <Button Content="模拟离开页面" Click="LeavePageButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="ResilienceLog" Text="日志：等待操作..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="验收：取消贯穿列表加载" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

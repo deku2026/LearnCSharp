@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.UiThreadDisciplineDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 为什么 UI 线程纪律决定稳定性" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="典型事故：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.4*,1.6*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="事故" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="常见原因" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="随机崩溃/断言失败" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="后台线程 SetValue、改 Children、碰 Window" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="界面卡死数秒" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="UI 线程同步 I/O 或重 CPU，或 .Result 死锁" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="有时更新有时不" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="后台改 CLR 字段但未在 UI 线程触发属性通知" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="离开页面后仍更新" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="未取消；continuation 仍 Post 到已关闭窗口" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="与阶段 1 的关系：lifetime 与 MainWindow/MainView 在 UI 线程创建；从 Android 工厂创建的 View 附着在该次 Activity 的 UI 上下文；单例服务若缓存 Control 引用，后台线程使用几乎必炸" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：说明事故成因与 lifetime 关系" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

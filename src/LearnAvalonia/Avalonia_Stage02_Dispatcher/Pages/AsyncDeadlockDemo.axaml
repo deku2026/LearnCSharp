@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.AsyncDeadlockDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 与 async/await 的关系及死锁场景清单" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.8*,1.2*,2.2*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="场景" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="是否危险" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="说明" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="UI async void 事件里 await 改 UI" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="安全"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="靠同步上下文回 UI" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="UI 上 .Result/.Wait()" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="死锁" Foreground="OrangeRed"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="堵死 dispatcher" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="线程池 await InvokeAsync" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="安全"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="等待 UI 执行" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="剪贴板回调同步 Invoke UI" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="死锁" Foreground="OrangeRed"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="见 §7" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="未取消 Post 更新已关闭窗口" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="崩溃/无效"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="用 CTS + 存活检查" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="库 ConfigureAwait(false) 后直接碰 UI" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="崩溃" Foreground="OrangeRed"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="必须再封送" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="UI 上同步 Invoke 嵌套重入" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="视实现"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="可能重入布局，难推理" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="诊断：tid=Environment.CurrentManagedThreadId + CheckAccess()" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace"/>
+      <TextBlock Text="验收：列出至少 3 种死锁/卡顿禁令（含剪贴板回调）" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.PlatformDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 跨平台差异" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.4*,1.4*,1.4*,1*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="主题" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="📱 Android/iOS" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="🪟🍎🐧 Desktop" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="🌍 Browser" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="主壳" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Pages 强烈推荐" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="Window + 可选 Pages" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="单视图 + 路由" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="手势返回" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="系统/边缘手势" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="鼠标后退键可选" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="浏览器历史自接" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="safe area" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="必须测" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="通常无刘海" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="CSS safe 另一套" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="Drawer" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="触控扫出" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="可常驻侧栏" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="汉堡覆盖层" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="Modal" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="ModalStack" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="ShowDialog 或 ModalStack" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="有限" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="多栈 Tab" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="每 Tab NavigationPage" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="TabControl + 状态" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="类似 SPA" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="Lifetime 差异：Desktop 用 MainWindow.Content；移动常用 ISingleViewApplicationLifetime.MainView；Android 12 起注意 MainViewFactory / Activity 生命周期。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：移动/Desktop/Browser 主壳差异" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

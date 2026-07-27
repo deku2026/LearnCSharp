@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone1_DesktopFoundation.Pages.DeliveryInterfaceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9-18 目录骨架·测试·交付·接口" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="§9 目录骨架示例：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="/TaskBox&#10;  Directory.Packages.props&#10;  README.md&#10;  /src&#10;    /TaskBox.Core (Entities/ Abstractions/)&#10;    /TaskBox.Infrastructure (Persistence/ Services/)&#10;    /TaskBox.App (Program.cs App.axaml Views/ ViewModels/ Themes/ Styles/ Assets/Lang/)&#10;  /tests&#10;    /TaskBox.Tests&#10;    /TaskBox.Headless.Tests"/>
+      </Border>
+      <TextBlock Text="§10 测试规格摘要：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="单元测试（xUnit）：EditTaskVM_Save_WhenInvalid_DoesNotCallRepository · MainVM_Filter_NarrowsItems · SettingsVM_Theme_Persists · JsonRepo_RoundTrip · DeleteCmd_CanExecute_TracksSelection"/>
+          <TextBlock Text="Headless：App_Starts_MainWindow_HasAutomationId_SearchBox · Click_New_Creates_Draft_In_List"/>
+          <TextBlock Text="手工用例：M1 切换深浅色 · M2 切换语言 · M3 导出后打开 · M4 删最后一项 · M5 子窗打开时关主窗 · M6 键盘 Tab 走完主路径"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="§12 交付物清单：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="1. 源代码仓库与 capstone-1 标记"/>
+          <TextBlock Text="2. README.md：环境、运行、测试、已知限制"/>
+          <TextBlock Text="3. 三平台运行证据（截图或 CI 日志）"/>
+          <TextBlock Text="4. 第 7 节勾选副本"/>
+          <TextBlock Text="5. 简短架构说明（1 页：分层图 + 关键接口）"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="§13 与后续 Capstone 的接口：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="2" ColumnSpacing="4">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="后续" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="本 Capstone 可复用" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Capstone 2 生产增强" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="DI、设置、测试金字塔、多窗" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="大数据/虚拟化专项" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="TableView 列表基线" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="移动/全平台" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="导航抽象换 Pages 宿主" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="§16 启动命令速参考：dotnet new avalonia.mvvm -o TaskBox -m CommunityToolkit -f net10.0 -av 12.1.0 -rvl true" TextWrapping="Wrap"/>
+      <TextBlock Text="提交前：Release build · test · 手测 CRUD/导出/主题/语言；搜禁词：FileDialog · Avalonia.ReactiveUI · 默认 ViewLocator · VM→Window" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：交付物清单齐全" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

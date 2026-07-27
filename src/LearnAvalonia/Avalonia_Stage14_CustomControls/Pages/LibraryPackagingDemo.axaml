@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.LibraryPackagingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.12 默认主题与组件库打包" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="MyControls/&#10;  MyControls.csproj          → net10.0, Avalonia 12.1.0&#10;  Controls/RatingControl.cs&#10;  Themes/Fluent/RatingControl.axaml&#10;  Themes/Fluent/Index.axaml&#10;  Themes/Simple/...（可选）&#10;&#10;&lt;!-- Themes/Fluent/Index.axaml --&gt;&#10;&lt;Styles xmlns=&quot;...&quot;&gt;&#10;  &lt;StyleInclude Source=&quot;avares://MyControls/Themes/Fluent/RatingControl.axaml&quot;/&gt;&#10;&lt;/Styles&gt;&#10;&#10;// App 使用方 App.axaml：&#10;// &lt;StyleInclude Source=&quot;avares://MyControls/Themes/Fluent/Index.axaml&quot;/&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="csproj 注意：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;PackageReference Include=&quot;Avalonia&quot; Version=&quot;12.1.0&quot; /&gt;&#10;&lt;AvaloniaResource Include=&quot;Themes/**/*.axaml&quot; /&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="提供 ThemeVariant 感知颜色；文档写清依赖 Fluent 还是自带字典。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Themes/Fluent/Index.axaml + StyleInclude" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

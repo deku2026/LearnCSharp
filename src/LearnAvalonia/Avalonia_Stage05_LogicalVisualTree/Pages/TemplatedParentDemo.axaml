@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.TemplatedParentDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 Templated Parent：模板内外的归属" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="当 Button 应用 ControlTemplate 时，模板里的 Border/ContentPresenter 视觉上是 Button 后代，通过 TemplatedParent 指回 Button" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;ControlTemplate&gt;&#10;  &lt;Border Background=&quot;{TemplateBinding Background}&quot;&gt;&#10;    &lt;ContentPresenter Content=&quot;{TemplateBinding Content}&quot; /&gt;&#10;  &lt;/Border&gt;&#10;&lt;/ControlTemplate&gt;"/>
+      </Border>
+      <TextBlock Text="TemplateBinding 绑定到应用模板的控件的属性，不是 DataContext" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="为何重要：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• 在模板里找资源 → 查错字典" TextWrapping="Wrap"/>
+          <TextBlock Text="• 写自定义控件模板 → 绑定到错误源" TextWrapping="Wrap"/>
+          <TextBlock Text="• 事件里 sender 是零件 → 误以为是外部逻辑子" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="从模板零件回到控件本体：if (border.TemplatedParent is Button b) { ... }" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace"/>
+      <TextBlock Text="验收：说明 TemplatedParent 与 TemplateBinding" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

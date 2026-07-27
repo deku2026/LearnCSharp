@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage23_AccessibilityI18n.Pages.UnicodeGraphemeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 Unicode、Grapheme、Shaping、字体回退、Emoji、IME" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="字素簇 ≠ 码点：Unicode 组合字符（ZWJ/修饰符）让多个码点合并为一个字素。" TextWrapping="Wrap"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <TextBox x:Name="SampleInput" PlaceholderText="输入含 emoji/组合字符的文本" Text="🏳️‍🌈👩‍👩‍👧‍👧café" Width="320"/>
+        <Button Content="分析字素" Click="AnalyzeButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="ResultText" Text="点击「分析字素」查看结果" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      <TextBlock Text="Shaping：HarfBuzz 把码点序列塑形为字形 + 位置；Avalonia 默认 UseSkia+UseHarfBuzz。" TextWrapping="Wrap"/>
+      <TextBlock Text="字体回退：缺失字形自动找 fallback 字体；缺 emoji 时落到 Segoe UI Emoji / Noto Color Emoji。" TextWrapping="Wrap"/>
+      <TextBlock Text="Emoji 演示" FontWeight="SemiBold"/>
+      <Border Background="#F4F4F4" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="🏳️‍🌈 彩虹旗（ZWJ + 修饰符）" TextWrapping="Wrap"/>
+          <TextBlock Text="👩‍👩‍👧‍👧 四口之家（多个 ZWJ）" TextWrapping="Wrap"/>
+          <TextBlock Text="🇨🇳 国旗（两个 Regional Indicator）" TextWrapping="Wrap"/>
+          <TextBlock Text="café é 组合（e + U+0301 重音）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="IME：输入法组合态 TextInputClient；CompositionOffset/SelectionStart；Windows TSF / macOS IMK / Linux IBus/Fcitx。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：StringInfo 字素拆解可演示" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

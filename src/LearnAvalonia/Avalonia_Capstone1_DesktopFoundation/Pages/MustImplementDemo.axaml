@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone1_DesktopFoundation.Pages.MustImplementDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 必须项详述（XAML/DI/Theme/导航/对话框/Storage）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <TextBlock Text="§4.1 XAML 与 compiled bindings" FontWeight="SemiBold"/>
+          <TextBlock Text="· 所有业务 View：x:CompileBindings=True + x:DataType" TextWrapping="Wrap"/>
+          <TextBlock Text="· DataTemplate 必须带 x:DataType" TextWrapping="Wrap"/>
+          <TextBlock Text="· 验收：编译器能抓住故意错误路径；运行无 binding error 刷屏" TextWrapping="Wrap"/>
+          <TextBlock Text="§4.2 CommunityToolkit.Mvvm" FontWeight="SemiBold"/>
+          <TextBlock Text="· ObservableObject / [ObservableProperty] / [RelayCommand]" TextWrapping="Wrap"/>
+          <TextBlock Text="· 异步加载 async Task 命令；可选 ObservableValidator 做表单校验" TextWrapping="Wrap"/>
+          <TextBlock Text="§4.3 DI" FontWeight="SemiBold"/>
+          <TextBlock Text="· 组合根唯一；服务接口在 Core；实现 Infrastructure；测试可替换 Fake" TextWrapping="Wrap"/>
+          <TextBlock Text="§4.4 Styles 与 ControlTheme" FontWeight="SemiBold"/>
+          <TextBlock Text="· 全局工具类 Style（标题、卡片）；至少一个 ControlTheme 变体（如 DangerButton）" TextWrapping="Wrap"/>
+          <TextBlock Text="§4.5 导航" FontWeight="SemiBold"/>
+          <TextBlock Text="· 主壳内≥3 个内容状态；返回/面包屑或导航列表高亮当前项；导航参数类型安全" TextWrapping="Wrap"/>
+          <TextBlock Text="§4.6 对话框" FontWeight="SemiBold"/>
+          <TextBlock Text="· Task&lt;bool&gt; ConfirmAsync(string title, string message); Task AlertAsync(...)" TextWrapping="Wrap"/>
+          <TextBlock Text="· 删除前必须 Confirm" TextWrapping="Wrap"/>
+          <TextBlock Text="§4.7 多窗口" FontWeight="SemiBold"/>
+          <TextBlock Text="· 最低二选一：设置独立 Window 或详情/编辑独立 Window（Owner 设置正确）" TextWrapping="Wrap"/>
+          <TextBlock Text="§4.8 StorageProvider" FontWeight="SemiBold"/>
+          <TextBlock Text="· IFilePickerService + TopLevel.GetTopLevel(...).StorageProvider；禁止旧 FileDialog API" TextWrapping="Wrap"/>
+          <TextBlock Text="§4.9-4.11 设置/本地化/a11y" FontWeight="SemiBold"/>
+          <TextBlock Text="· 持久化 ThemeVariant/语言/其他项；en + zh-Hans；AutomationId + 焦点顺序 + 对比度" TextWrapping="Wrap"/>
+          <TextBlock Text="§4.12-4.13 单元测试/Headless" FontWeight="SemiBold"/>
+          <TextBlock Text="· VM 单测≥5；Headless 冒烟用 Avalonia.Headless.XUnit 12.1.0" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：VM 零 Window 类型引用" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

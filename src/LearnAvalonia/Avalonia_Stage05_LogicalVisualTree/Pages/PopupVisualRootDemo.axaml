@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.PopupVisualRootDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 Popup：独立视觉根的典型" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="关键心智（必须背）：" FontWeight="SemiBold" Foreground="OrangeRed"/>
+      <Border BorderBrush="OrangeRed" BorderThickness="1" Padding="8" CornerRadius="4">
+        <TextBlock Text="Popup 的内容不一定是宿主的普通视觉子节点。它常常挂在独立的弹出层/额外 visual root 上，以便逃逸裁剪与窗口边界" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="交互演示 —— 点击按钮打开 Flyout：" FontWeight="SemiBold"/>
+      <Button Content="打开 Flyout（观察弹出层）" Margin="0,4,0,0">
+        <Button.Flyout>
+          <Flyout Placement="Bottom">
+            <StackPanel Spacing="4">
+              <TextBlock Text="Flyout 内容" FontWeight="SemiBold"/>
+              <TextBlock Text="此处内容挂在独立弹出层，不受外层 ClipToBounds 裁剪" TextWrapping="Wrap"/>
+            </StackPanel>
+          </Flyout>
+        </Button.Flyout>
+      </Button>
+      <TextBlock Text="后果清单：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.6*,1.6*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="期望" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="现实" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="GetVisualParent 回到页面" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="可能在 Popup 根断开" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="ClipToBounds 裁掉菜单" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="弹出层可不受同一裁剪" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="事件冒泡到 Window 根" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="可能止于 Popup 宿主边界" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：说明 Popup 独立 visual root 后果" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

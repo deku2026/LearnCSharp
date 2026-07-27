@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.NavigationPageDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.3 NavigationPage 与 INavigation" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="INavigation API 心智：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="PushAsync(page)          → 压入 NavigationStack&#10;PopAsync()               → 弹出当前&#10;PopToRootAsync()         → 回到栈根&#10;PushModalAsync(page)     → 压入 ModalStack&#10;PopModalAsync()          → 弹出模态&#10;属性：NavigationStack / ModalStack / CurrentPage / PageTransition" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="ViewModel 导航服务：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public interface INavigationService {&#10;    Task PushAsync(object viewModel);&#10;    Task PopAsync();&#10;    Task PopToRootAsync();&#10;    Task PushModalAsync(object viewModel);&#10;    Task PopModalAsync();&#10;}&#10;&#10;public sealed class PageNavigationService : INavigationService {&#10;    public Task PushAsync(object vm) {&#10;        var page = _views.CreatePage(vm);&#10;        page.DataContext = vm;&#10;        return _nav.PushAsync(page);&#10;    }&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="传参纪律：构造 VM 时注入参数（最清晰、可测）；避免页面间静态全局；字符串路由集中路由表 + 参数 DTO 并保证 AOT 安全。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：PushAsync/PopAsync/ModalStack 心智" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.CarouselPageDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.7 CarouselPage 与 PipsPager" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;DockPanel&gt;&#10;  &lt;PipsPager DockPanel.Dock=&quot;Bottom&quot;&#10;             HorizontalAlignment=&quot;Center&quot;&#10;             NumberOfPages=&quot;{Binding PageCount}&quot;&#10;             SelectedPageIndex=&quot;{Binding Index}&quot;/&gt;&#10;  &lt;CarouselPage SelectedIndex=&quot;{Binding Index}&quot;&gt;&#10;    &lt;ContentPage Header=&quot;欢迎&quot;&gt;&lt;TextBlock Text=&quot;第 1 页&quot;/&gt;&lt;/ContentPage&gt;&#10;    &lt;ContentPage Header=&quot;权限&quot;&gt;&lt;TextBlock Text=&quot;第 2 页&quot;/&gt;&lt;/ContentPage&gt;&#10;    &lt;ContentPage Header=&quot;完成&quot;&gt;&lt;TextBlock Text=&quot;第 3 页&quot;/&gt;&lt;/ContentPage&gt;&#10;  &lt;/CarouselPage&gt;&#10;&lt;/DockPanel&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="用于引导流程、媒体画廊；不要用 Carousel 替代深层业务导航栈。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：引导流程用 Carousel 非深层导航" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

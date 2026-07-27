@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.DirtyRegionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 Dirty Region / 失效区域" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="InvalidateVisual → 标记 dirty rect → Renderer 合并 → 只重绘 dirty 区域。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="InvalidateVisual()&#10;  → _dirtyRects.Add(Bounds)&#10;  → Renderer.Paint(dirtyRects)&#10;     → foreach visual in scene: if visual.Bounds ∩ dirty → visual.Render(ctx)" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="12.1 变化：dirty region 改用 dirty rect 矩形合并；Clip 引擎更早裁剪。" TextWrapping="Wrap"/>
+      <TextBlock Text="实验方法：随机矩形 InvalidateVisual → 用 Rendered 事件统计实际绘制的 Visual 数量。" TextWrapping="Wrap"/>
+      <TextBlock Text="陷阱：Bounds=∞、Visual 跨 dirty 边界仍重绘整体；过度 Invalidate → 全屏重绘。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：解释失效与重绘边界" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

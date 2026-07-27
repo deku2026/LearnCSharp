@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.PropertyAcceptanceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§18 验收标准（可勾选清单）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <CheckBox IsChecked="True" Content="闭卷对比 Styled / Direct / Attached"/>
+          <CheckBox IsChecked="True" Content="手写三类属性注册 + CLR 包装（完整可编译）"/>
+          <CheckBox IsChecked="True" Content="解释 GetValue/SetValue/SetCurrentValue/ClearValue/Bind"/>
+          <CheckBox IsChecked="True" Content="用实验证明：本地值压样式、Clear 回退、动画期覆盖"/>
+          <CheckBox IsChecked="True" Content="说明 validate/coerce/inherits/enableDataValidation"/>
+          <CheckBox IsChecked="True" Content="写出 class handler 或 OnPropertyChanged 处理"/>
+          <CheckBox IsChecked="True" Content="对比 CLR / WPF DP / MAUI BindableProperty / Avalonia"/>
+          <CheckBox IsChecked="True" Content="知道 WindowState 变 Direct 的后果"/>
+          <CheckBox IsChecked="True" Content="12 验证样板不再无脑粘贴"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：勾选 9 条验收清单" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

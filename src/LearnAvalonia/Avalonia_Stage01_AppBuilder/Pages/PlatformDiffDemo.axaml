@@ -1,0 +1,54 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage01_AppBuilder.Pages.PlatformDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 跨平台差异表" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.6*,1.4*,1*,1.8*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="平台" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="入口形态" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="Lifetime" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="特殊注意" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="🪟 Win32"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Program.Main + STA"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="Classic Desktop"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="Skia；无 D2D1" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="🍎 macOS"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="Program / 原生 host"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="Classic Desktop"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="菜单/Dock" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="🐧 X11"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="Program"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="Classic Desktop"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="默认 Linux 桌面" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="🐧 Wayland 🧪"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="显式 UseWayland"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="Classic Desktop"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="不在 PlatformDetect" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="📱 Android"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="AvaloniaAndroidApplication"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="Activity + Factory"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="禁止旧泛型 Activity" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="🍎 iOS"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="AvaloniaAppDelegate + scene"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="SingleView"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="Window 可能 null" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="🌍 Browser"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="WASM bootstrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="SingleView"/>
+          <TextBlock Grid.Row="7" Grid.Column="3" Text="静态托管；CanvasKit" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="8" Grid.Column="0" Text="🔌 framebuffer"/>
+          <TextBlock Grid.Row="8" Grid.Column="1" Text="LinuxFramebuffer host"/>
+          <TextBlock Grid.Row="8" Grid.Column="2" Text="SingleView/Controlled"/>
+          <TextBlock Grid.Row="8" Grid.Column="3" Text="DRM/输入权限" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="9" Grid.Column="0" Text="设计时"/>
+          <TextBlock Grid.Row="9" Grid.Column="1" Text="预览器进程"/>
+          <TextBlock Grid.Row="9" Grid.Column="2" Text="null"/>
+          <TextBlock Grid.Row="9" Grid.Column="3" Text="勿创建真实窗口" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：平台表覆盖 8 类宿主" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

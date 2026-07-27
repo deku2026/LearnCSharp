@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.SourceReadingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§14 源码精读一面" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="一页模板（每个子系统一份）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="类型：GaugeControl : TemplatedControl"/>
+          <TextBlock Text="入口：Render(DrawingContext) / OnValueChanged"/>
+          <TextBlock Text="调用链：Value setter → SetValue → AffectsRender → InvalidateVisual → Render"/>
+          <TextBlock Text="注意：AffectsRender 注册一组 StyledProperty；DirectProperty 不走 AvaloniaProperty 表"/>
+          <TextBlock Text="验收：闭卷画属性优先级 / Render 调用序"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="范围：源码精读应覆盖 Template / Property / RoutedEvent / Render / AutomationPeer / Panel。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：一页模板" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,6 +1,8 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.App">
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.App"
+             RequestedThemeVariant="Default">
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>

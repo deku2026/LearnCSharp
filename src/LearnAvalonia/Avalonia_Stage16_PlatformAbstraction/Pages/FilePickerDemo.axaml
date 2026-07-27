@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages"
+             x:DataType="pages:FilePickerDemo"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.FilePickerDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.2 最小文件选择器（StorageProvider）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="代码：TopLevel.GetTopLevel(this)?.StorageProvider?.OpenFilePickerAsync(...)" TextWrapping="Wrap"/>
+      <Button Content="选择文件…" Click="OnPickFile" HorizontalAlignment="Left" Margin="0,4"/>
+      <TextBlock Text="已选择：" FontWeight="SemiBold" Margin="0,8,0,2"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="6" CornerRadius="4" MaxHeight="180">
+        <ItemsControl ItemsSource="{Binding Picked}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="x:String">
+              <TextBlock Text="{Binding}" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace" FontSize="11"/>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </Border>
+      <TextBlock Text="Options：Title / AllowMultiple / FileTypeFilter；FileTypeFilter 用 FilePickerFileTypeDef.Create()." TextWrapping="Wrap"/>
+      <TextBlock Text="验收：StorageProvider.OpenFilePickerAsync" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

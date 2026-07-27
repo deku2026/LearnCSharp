@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.SyncConflictDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 同步与冲突" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="模型" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="本地 Dirty → 推送服务器&#x0a;  → 200 应用服务器版本 → Clean&#x0a;  → 409 Conflict → 策略" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="策略表" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="Last-Write-Wins" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="比时间戳；简单易丢数据" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Server-Wins" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="强制拉服务器" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Client-Wins" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="强制推本地" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="Manual" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="UI 展示两边 diff" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="CRDT" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="复杂协作；本阶段不强制" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="最小实现" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public enum ConflictResolution { KeepLocal, KeepRemote, MergeManual }&#x0a;public sealed class SyncResult&#x0a;{&#x0a;    public int Pushed { get; init; }&#x0a;    public int Pulled { get; init; }&#x0a;    public IReadOnlyList&lt;Conflict&gt; Conflicts { get; init; } = [];&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="点击策略演示" FontWeight="SemiBold"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="KeepLocal" Click="KeepLocalButton_Click"/>
+        <Button Content="KeepRemote" Click="KeepRemoteButton_Click"/>
+        <Button Content="Manual" Click="ManualButton_Click"/>
+        <Button Content="LWW" Click="LwwButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="SyncLog" Text="日志：点击策略查看行为说明..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="时钟：客户端时间不可靠；优先服务器 updatedAt / ETag / 版本向量" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：冲突策略可演示" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

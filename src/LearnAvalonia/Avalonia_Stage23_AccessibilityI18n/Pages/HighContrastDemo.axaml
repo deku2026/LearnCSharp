@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage23_AccessibilityI18n.Pages.HighContrastDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 语义、高对比、减弱动效、动态字号" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="ThemeVariant：Default / Light / Dark / HighContrast；Application.RequestedThemeVariant 全局切换。" TextWrapping="Wrap"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="切换 HighContrast" Click="ToggleHighContrast_Click"/>
+        <Button Content="切换动效可见性" Click="ToggleAnimations_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="StatusText" Text="当前 ThemeVariant=Default" FontFamily="Consolas,Monaco,monospace"/>
+      <TextBlock Text="减弱动效：用户系统偏好（Windows 设置/Apple Reduce Motion）；Avalonia 12.1 暂无直接属性，应用层读 PreferencesControlledAnimation 并禁用动画。" TextWrapping="Wrap"/>
+      <Border x:Name="AnimationTarget" Background="#F4F4F4" Padding="8" CornerRadius="4">
+        <TextBlock Text="动画目标区（点上面按钮隐藏/显示模拟减弱动效）" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="动态字号：用 Spacing/FontSize 跟随系统缩放；不要硬编码 px，使用主题资源。" TextWrapping="Wrap"/>
+      <TextBlock Text="语义属性" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="AutomationProperties.Name" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="读屏名称" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="AutomationProperties.HelpText" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="扩展提示" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="AutomationProperties.LabeledBy" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="关联标签控件" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="AutomationProperties.AccessibilityView" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Raw/Control/Content（控制树层级）" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="验收：切换 ThemeVariant 与动效开关" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

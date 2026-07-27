@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage15_Virtualization.Pages"
+             x:DataType="pages:ItemsRepeaterDemo"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.ItemsRepeaterDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.6 ItemsRepeater" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="包：Avalonia.Controls.ItemsRepeater（独立 NuGet，retired 状态，兼容到 12.0）。" TextWrapping="Wrap"/>
+      <TextBlock Text="特性：轻量，无内置选择/滚动条 chrome——需自己包 ScrollViewer + 选择行为。" TextWrapping="Wrap"/>
+      <TextBlock Text="适用：高度自定义虚拟化布局（瀑布流、UniformGrid 等）。普通业务列表优先 ListBox/TableView。" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：500 项 ItemsRepeater（默认 StackLayout 垂直）" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="4" CornerRadius="4">
+        <ScrollViewer Height="220" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+          <ItemsRepeater ItemsSource="{Binding Items}">
+            <ItemsRepeater.ItemTemplate>
+              <DataTemplate x:DataType="x:String">
+                <Border Background="#F4F4F4" Padding="6,3" Margin="2" CornerRadius="3">
+                  <TextBlock Text="{Binding}"/>
+                </Border>
+              </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+          </ItemsRepeater>
+        </ScrollViewer>
+      </Border>
+      <TextBlock Text="Layout：默认 StackLayout；可换 UniformGridLayout / WrapLayout（同命名空间）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：ItemsRepeater 布局虚拟化" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

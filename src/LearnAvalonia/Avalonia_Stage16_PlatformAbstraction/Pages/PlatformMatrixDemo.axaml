@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.PlatformMatrixDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§12 平台差异总表（能力支持度）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="6" CornerRadius="4">
+        <Grid ColumnDefinitions="2*,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="能力" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="Windows" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="macOS" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="Linux" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="StorageProvider" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="✅" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="✅ Sandbox" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="✅ Portal" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Clipboard" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="✅" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="✅" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="✅" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="Launcher" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="✅ Shell" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="✅ NSWorkspace" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="✅ xdg-open" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="Screens" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="✅ 多屏" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="✅ 多屏" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="✅ RandR" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="TrayIcon" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="✅" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="⚠️ NSStatusItem" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="⚠️ AppIndicator" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="通知" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="✅ Toast" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="✅ NSUserNotif" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="⚠️ Freedesktop" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：三平台能力总表" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

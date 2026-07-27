@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.UserControlDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.1 UserControl 快路径" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;!-- MyCard.axaml --&gt;&#10;&lt;UserControl xmlns=&quot;...&quot;&#10;             x:Class=&quot;MyApp.Controls.MyCard&quot;&#10;             x:DataType=&quot;vm:CardViewModel&quot;&gt;&#10;  &lt;Border Padding=&quot;12&quot; CornerRadius=&quot;8&quot;&#10;          Background=&quot;{DynamicResource CardBackground}&quot;&gt;&#10;    &lt;StackPanel Spacing=&quot;4&quot;&gt;&#10;      &lt;TextBlock Text=&quot;{Binding Title}&quot; FontWeight=&quot;Bold&quot;/&gt;&#10;      &lt;TextBlock Text=&quot;{Binding Subtitle}&quot; Opacity=&quot;0.7&quot;/&gt;&#10;    &lt;/StackPanel&gt;&#10;  &lt;/Border&gt;&#10;&lt;/UserControl&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="适合：设置页区块、业务卡片。" TextWrapping="Wrap"/>
+      <TextBlock Text="不适合：要在多个应用主题下深度换肤的基础控件。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：App 内复用块；难换肤" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

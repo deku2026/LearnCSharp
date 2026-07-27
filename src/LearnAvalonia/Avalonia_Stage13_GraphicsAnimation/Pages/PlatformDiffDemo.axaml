@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.PlatformDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 跨平台差异" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.2*,*,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="主题" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="桌面" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="移动" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="Browser" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="4" Text="Embedded" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Skia" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="默认主线" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="优化重点" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="CanvasKit/WebGL" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="4" Text="软/硬路径" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="模糊阴影" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="视 GPU" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="注意电量" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="成本高" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="4" Text="可能禁用" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="字体 shaping" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="系统+HarfBuzz" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="字体子集" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="包体敏感" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="4" Text="嵌入字体" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="高 DPI" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="多屏差异" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="设备像素比" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="devicePixelRatio" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="4" Text="单缓冲" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="动画预算" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="较宽松" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="严格" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="主线程敏感" HorizontalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="4" Text="低 GPU" HorizontalAlignment="Center"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="Wayland 🧪 / framebuffer：特效与 vsync 行为需单独测，勿假设与 X11 完全一致。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Skia/模糊/字体/DPI 差异" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

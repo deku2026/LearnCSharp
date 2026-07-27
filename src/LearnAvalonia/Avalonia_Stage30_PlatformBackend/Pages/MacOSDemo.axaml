@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage30_PlatformBackend.Pages.MacOSDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 macOS (Avalonia.Native / AppKit)" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="职责边界：通过 libAvaloniaNative.dylib 调用 AppKit；窗口走 NSWindow/NSView。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="AppBuilder.Configure&lt;App&gt;()&#10;    .UsePlatformDetect()  // macOS 自动选 AvaloniaNative&#10;    .With(new AvaloniaNativePlatformOptions&#10;    {&#10;        UseGpu = true,&#10;        RenderingMode = new[] { AvaloniaNativeRenderingMode.Metal },&#10;    })" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="源码入口（Avalonia.Native.dll + libAvaloniaNative.dylib）：" FontWeight="SemiBold"/>
+      <TextBlock Text="• AvaloniaNativePlatform — IWindowingPlatform"/>
+      <TextBlock Text="• AvnWindow — NSWindow 包装"/>
+      <TextBlock Text="• AvnView — NSView 子类（接收 input + draw）"/>
+      <TextBlock Text="• MetalRenderer — GPU 路径"/>
+      <TextBlock Text="时间线：AppKit 事件 → AvnView → Avalonia Pointer/Key"/>
+      <TextBlock Text="验收：列出 AppKit 桥" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

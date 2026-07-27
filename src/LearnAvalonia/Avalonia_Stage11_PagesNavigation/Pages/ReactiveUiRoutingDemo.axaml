@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.ReactiveUiRoutingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.12 ReactiveUI 路由（🟡 选学）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="包：ReactiveUI.Avalonia（12.0.3 稳定；版本跟 Avalonia 主线）" TextWrapping="Wrap"/>
+      <TextBlock Text="⚠ 禁止：停更的 Avalonia.ReactiveUI 11.x 线" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="概念：&#10;  RoutingState / IScreen / RoutedViewHost&#10;  与官方 NavigationPage 是不同栈模型&#10;  团队二选一为主，另一为边界适配&#10;&#10;public class MainViewModel : ReactiveObject, IScreen {&#10;    public RoutingState Router { get; } = new();&#10;}&#10;// IScreen + Router.Navigate.Execute(vm)" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="纪律：Toolkit MVVM + 官方 Pages 为默认主线；ReactiveUI 适合已有 Rx 代码基。勿无边界混用两套路由。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：RoutingState 与官方栈不混用" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

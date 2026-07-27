@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.PluginDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 插件边界" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="抽象" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public interface IProductPlugin&#x0a;{&#x0a;    string Id { get; }&#x0a;    string Name { get; }&#x0a;    SemanticVersion Version { get; }&#x0a;    void Initialize(IPluginHost host);&#x0a;}&#x0a;public interface IPluginHost&#x0a;{&#x0a;    IServiceProvider Services { get; }&#x0a;    void RegisterMenu(MenuRegistration reg);&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="加载：目录 plugins/*/plugin.json + DLL · ALC 或简单 Assembly.Load（开发简单，写清生产风险） · 失败日志+跳过主程序仍启动" TextWrapping="Wrap"/>
+      <TextBlock Text="示例插件：贡献菜单「插入时间戳」或「额外导出格式」" TextWrapping="Wrap"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="加载示例插件（概念）" Click="LoadPluginButton_Click"/>
+        <Button Content="示例插件贡献菜单" Click="SamplePluginButton_Click"/>
+        <Button Content="坏插件处理" Click="BadPluginButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="PluginLog" Text="日志：点击按钮查看插件加载/贡献/失败隔离..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="验收：无插件可跑 + 有插件菜单出现 + 坏插件不拖垮宿主" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

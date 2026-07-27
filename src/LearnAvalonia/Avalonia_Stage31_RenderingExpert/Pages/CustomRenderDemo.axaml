@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.CustomRenderDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§15 自定义 Render 示例" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="下方 CustomDrawnControl 重写 Render(DrawingContext)，画矩形 + 椭圆 + 对角线 + 文本。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public override void Render(DrawingContext context) {&#10;    base.Render(context);&#10;    context.DrawRectangle(...);&#10;    context.DrawEllipse(...);&#10;    context.DrawLine(pen, p1, p2);&#10;    context.DrawText(brush, pt, formattedText);&#10;}&#10;static CustomDrawnControl() {&#10;    AffectsRender&lt;CustomDrawnControl&gt;(FillProperty);&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <pages:CustomDrawnControl Width="280" Height="200" Fill="MediumSeaGreen"/>
+      <TextBlock Text="属性变更 → AffectsRender → InvalidateVisual → 下一帧重绘。" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：写 Control + Render 自绘" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

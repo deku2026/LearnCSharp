@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.OAuthPkceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 OAuth2 / OIDC / PKCE" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="为什么 PKCE：公有客户端（桌面/移动/SPA）防止授权码拦截" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="生成 code_verifier（高熵）&#x0a;code_challenge = BASE64URL(SHA256(verifier))&#x0a;授权请求带 challenge&#x0a;用 code + verifier 换 token" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="角色：授权服务器（IdP） · 客户端（你的 App） · 资源服务器（API）" TextWrapping="Wrap"/>
+      <TextBlock Text="OidcOptions" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public sealed class OidcOptions&#x0a;{&#x0a;    public required string Authority { get; init; }&#x0a;    public required string ClientId { get; init; }&#x0a;    public required string RedirectUri { get; init; }&#x0a;    public required string Scope { get; init; }&#x0a;}&#x0a;// 无 client_secret 字段在公有客户端" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="登录管道" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="IAuthService.LoginAsync → 构造授权 URL" TextWrapping="Wrap"/>
+          <TextBlock Text="→ IAuthBrowser / WebAuthenticationBroker / 系统浏览器" TextWrapping="Wrap"/>
+          <TextBlock Text="→ 收到 redirect?code=" TextWrapping="Wrap"/>
+          <TextBlock Text="→ TokenEndpoint 交换" TextWrapping="Wrap"/>
+          <TextBlock Text="→ ISecureStore 保存" TextWrapping="Wrap"/>
+          <TextBlock Text="→ 可选 UserInfo" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="不为 JWT 开主线：access 常是 JWT 由资源服务器校验；客户端可解码 claim 做 UX（过期时间/名字），不要当唯一安全边界" TextWrapping="Wrap" Foreground="Gray"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="生成 PKCE verifier+challenge" Click="GeneratePkceButton_Click"/>
+        <Button Content="刷新流（概念）" Click="RefreshButton_Click"/>
+        <Button Content="注销（概念）" Click="LogoutButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="PkceLog" Text="日志：点击按钮生成 PKCE 值（不发起真 auth）..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="验收：PKCE 流文档 + 演示" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

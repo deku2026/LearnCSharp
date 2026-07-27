@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage27_PackagingCI.Pages.CiMatrixDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 CI 矩阵" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="GitHub Actions YAML 片段" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="jobs:&#x0a;  publish:&#x0a;    strategy:&#x0a;      matrix:&#x0a;        include:&#x0a;          - os: windows-latest&#x0a;            rid: win-x64&#x0a;          - os: ubuntu-latest&#x0a;            rid: linux-x64&#x0a;          - os: macos-latest&#x0a;            rid: osx-arm64&#x0a;    runs-on: ${{{{ matrix.os }}}}&#x0a;    steps:&#x0a;      - uses: actions/checkout@v4&#x0a;      - uses: actions/setup-dotnet@v4&#x0a;        with:&#x0a;          dotnet-version: '10.0.x'&#x0a;      - run: dotnet publish -c Release -r ${{{{ matrix.rid }}}} --self-contained true /p:PublishSingleFile=true /p:PublishTrimmed=true&#x0a;      - uses: actions/upload-artifact@v4&#x0a;        with:&#x0a;          name: app-${{{{ matrix.rid }}}}&#x0a;          path: bin/Release/net10.0/publish" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="触发：on push tags 'v*'；release 创建 + 上传资产。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：GitHub Actions matrix" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

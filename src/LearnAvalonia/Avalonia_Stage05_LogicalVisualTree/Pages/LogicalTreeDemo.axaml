@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.LogicalTreeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 Logical Tree：内容与语义之树" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="逻辑树描述控件内容模型上的父子：" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;Window&gt;&#10;  &lt;DockPanel&gt;&#10;    &lt;Menu DockPanel.Dock=&quot;Top&quot; /&gt;&#10;    &lt;Grid&gt;&#10;      &lt;TextBox x:Name=&quot;Query&quot; /&gt;&#10;    &lt;/Grid&gt;&#10;  &lt;/DockPanel&gt;&#10;&lt;/Window&gt;&#10;&#10;逻辑：Window → DockPanel → Grid → TextBox"/>
+      </Border>
+      <TextBlock Text="逻辑树影响什么：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.6*,2*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="机制" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="与逻辑树关系" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="DataContext 继承" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="沿逻辑父链向下传递" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="资源查找" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="元素 → 逻辑父 → Application" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="部分路由事件" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="隧道/冒泡路径参考逻辑关系" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="逻辑父 API：control.GetLogicalParent(); control.GetSelfAndLogicalAncestors()" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace"/>
+      <TextBlock Text="验收：说明逻辑树影响什么" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

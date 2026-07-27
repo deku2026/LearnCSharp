@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage25_Performance.Pages.OverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§0 导读：性能与诊断" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="三目标" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="启动" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="冷启动 &lt; 1s；热启动 &lt; 300ms" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="响应" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="UI 线程帧 &lt; 16ms（60 FPS）" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="内存" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="稳定不增长；GC 暂停短" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="原则：先测后优；profile 找热点；不早优化。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：口述性能三目标" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

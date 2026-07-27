@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.WidthMinMaxClipDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§C3-C4 Width/Height 与 Min/Max 与 Clip" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="优先级直觉：强制 Width/Height（若设置）夹在 Min/Max 之间，再与 availableSize 取协调" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：Width=200 与 MinWidth=300 同时设置 → 强制到合法区间 300" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <Border Background="SteelBlue" Width="200" MinWidth="300" Height="24" HorizontalAlignment="Left">
+            <TextBlock Text="Width=200, MinWidth=300 → 实际 300" Foreground="White" VerticalAlignment="Center" Padding="4"/>
+          </Border>
+          <Border Background="OrangeRed" Width="400" MaxWidth="250" Height="24" HorizontalAlignment="Left">
+            <TextBlock Text="Width=400, MaxWidth=250 → 实际 250" Foreground="White" VerticalAlignment="Center" Padding="4"/>
+          </Border>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="ClipToBounds 与溢出：" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+        <Border Grid.Column="0" BorderBrush="DarkGreen" BorderThickness="1" ClipToBounds="True" Height="60" Background="#2200FF00">
+          <TextBlock Text="ClipToBounds=True（子绘制裁剪到边界）" TextWrapping="Wrap" Padding="4"/>
+        </Border>
+        <Border Grid.Column="1" BorderBrush="OrangeRed" BorderThickness="1" ClipToBounds="False" Height="60" Background="#22FF0000">
+          <TextBlock Text="ClipToBounds=False（子可溢出父）" TextWrapping="Wrap" Padding="4"/>
+        </Border>
+      </Grid>
+      <TextBlock Text="· double.NaN（XAML 中不写或 Auto 语义）= 由布局测量决定" TextWrapping="Wrap"/>
+      <TextBlock Text="· 负 Margin 可造成重叠，调试时用背景色区分层级" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：说明 Width/Min/Max 优先级与 Clip" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

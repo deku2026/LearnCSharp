@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage24_TestingSystem.Pages.OverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§0 导读：测试体系" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="金字塔（底大顶小）" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="层" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="目标" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="工具" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Unit" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="纯逻辑 ViewModel/Service" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="xUnit + moq" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Headless" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="控件树/绑定/布局" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="Avalonia.Headless.XUnit" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Visual/Appium" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="像素回归/真窗口交互" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="Skia 截图 + Appium" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="原则：默认不依赖真实窗口；Headless 在内存里构造控件 + 触发 measure/arrange 即可断言。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：口述三层测试金字塔" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

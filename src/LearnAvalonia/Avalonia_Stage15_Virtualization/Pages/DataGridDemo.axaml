@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage15_Virtualization.Pages"
+             x:DataType="pages:DataGridDemo"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.DataGridDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.4 DataGrid（⚠️ deprecated）" FontWeight="Bold" FontSize="14" Foreground="OrangeRed"/>
+      <TextBlock Text="状态：Avalonia 12.1 起 deprecated，仅 bugfix；不再推荐新项目使用。" TextWrapping="Wrap"/>
+      <TextBlock Text="包：Avalonia.Controls.DataGrid（独立 NuGet，已添加）+ App.axaml 需 StyleInclude Fluent.xaml。" TextWrapping="Wrap"/>
+      <TextBlock Text="替代：只读 → TableView；编辑/树 → TreeDataGrid（Pro，商业）或自研编辑行。" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：DataGrid 可编辑三列" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <DataGrid ItemsSource="{Binding People}" AutoGenerateColumns="False"
+                  IsReadOnly="False" CanUserSortColumns="True"
+                  GridLinesVisibility="All" BorderThickness="1" BorderBrush="Gray"
+                  MaxHeight="220">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="名" Binding="{Binding FirstName}" Width="*"/>
+            <DataGridTextColumn Header="姓" Binding="{Binding LastName}" Width="*"/>
+          </DataGrid.Columns>
+        </DataGrid>
+      </Border>
+      <TextBlock Text="⚠️ 演示用；新项目只读表用 §2.3 TableView。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：DataGrid 用法 + deprecated 标注" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

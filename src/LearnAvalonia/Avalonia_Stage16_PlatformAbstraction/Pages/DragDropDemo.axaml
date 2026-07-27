@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.DragDropDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 拖放（DnD）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="应用内 DnD（同 Avalonia 进程）：" FontWeight="SemiBold"/>
+          <TextBlock Text="· DragDrop.DoDragDrop(e.DataObject, DragDropEffects.Copy)" TextWrapping="Wrap"/>
+          <TextBlock Text="· 接收方：DragDrop.SetAllowDrop(control, true)" TextWrapping="Wrap"/>
+          <TextBlock Text="· 事件：DragEnter / DragOver / DragLeave / Drop" TextWrapping="Wrap"/>
+          <TextBlock Text="应用外 DnD（跨进程 / OS）：" FontWeight="SemiBold"/>
+          <TextBlock Text="· 桌面：DataObject 携带 FileDrop/Text/Bitmap" TextWrapping="Wrap"/>
+          <TextBlock Text="· 移动：一般不支持跨应用 DnD" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="DataObject 抽象：与 Clipboard 共享接口（DataObjectPaths / DataObjectFiles）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：应用内 vs 应用外 DnD" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

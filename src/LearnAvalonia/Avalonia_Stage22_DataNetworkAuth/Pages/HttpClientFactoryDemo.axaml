@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.HttpClientFactoryDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 HttpClient 与 IHttpClientFactory" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="为什么工厂" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="静态 new HttpClient 经典坑：&#x0a;  - DNS 不刷新 / Socket 耗尽&#x0a;  - 或相反：每次 new 浪费&#x0a;IHttpClientFactory：管理寿命、处理器管道、命名配置" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="注册（命名客户端 + 委托处理程序管道）" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="services.AddHttpClient(&quot;api&quot;, (sp, client) =&gt;&#x0a;{&#x0a;    var opt = sp.GetRequiredService&lt;IOptions&lt;ApiOptions&gt;&gt;().Value;&#x0a;    client.BaseAddress = new Uri(opt.BaseUrl);&#x0a;    client.Timeout = TimeSpan.FromSeconds(100);&#x0a;})&#x0a;.AddHttpMessageHandler&lt;AuthHeaderHandler&gt;()&#x0a;.AddHttpMessageHandler&lt;CorrelationIdHandler&gt;();" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="AuthHeaderHandler 委托处理程序" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public sealed class AuthHeaderHandler : DelegatingHandler&#x0a;{&#x0a;    protected override async Task&lt;HttpResponseMessage&gt; SendAsync(...)&#x0a;    {&#x0a;        var token = await _tokens.GetAccessTokenAsync(ct);&#x0a;        if (!string.IsNullOrEmpty(token))&#x0a;            request.Headers.Authorization =&#x0a;                new AuthenticationHeaderValue(&quot;Bearer&quot;, token);&#x0a;        return await base.SendAsync(request, ct);&#x0a;    }&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="Avalonia 注意：回调 UI 更新必须回 Dispatcher · 长上传显示进度 · Browser TFM 走 CORS" TextWrapping="Wrap"/>
+      <Button x:Name="BuildFactoryButton" Content="构造真实 IHttpClientFactory（ServiceCollection.AddHttpClient）" Click="BuildFactoryButton_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="FactoryLog" Text="点击按钮构造工厂（不发起真网络调用）..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="验收：命名客户端 + 委托处理程序" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

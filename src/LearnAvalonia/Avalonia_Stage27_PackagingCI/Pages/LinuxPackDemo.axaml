@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage27_PackagingCI.Pages.LinuxPackDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 Linux 桌面" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="发布" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="dotnet publish -c Release -r linux-x64 --self-contained true /p:PublishSingleFile=true" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="AppImage" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="# AppImageBuilder（AppImageCraft）&#x0a;appimage-builder --recipe AppImageBuilder.yml&#x0a;# 产物：MyApp-x86_64.AppImage（单文件可执行）" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="Flatpak manifest（节选）" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="app-id: org.myorg.MyApp&#x0a;runtime: org.freedesktop.Platform/x86_64/23.08&#x0a;sdk: org.freedesktop.Sdk/x86_64/23.08&#x0a;command: MyApp&#x0a;modules:&#x0a;  - name: myapp&#x0a;    buildsystem: simple&#x0a;    sources:&#x0a;      - type: dir&#x0a;        path: publish" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="deb/rpm" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="# deb：dpkg-deb --build myapp_1.0 myapp_1.0_amd64.deb&#x0a;# rpm：rpmbuild -bb myapp.spec" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text=".desktop 文件：/usr/share/applications/myapp.desktop，Icon + Exec + Categories。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：AppImage/Flatpak/deb/rpm" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

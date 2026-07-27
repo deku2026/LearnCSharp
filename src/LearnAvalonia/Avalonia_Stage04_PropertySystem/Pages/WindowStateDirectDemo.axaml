@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.WindowStateDirectDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 特殊 12 案例：Window.WindowState 变 Direct" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="12 起 Window.WindowState 从 Styled 改为 DirectProperty" TextWrapping="Wrap"/>
+      <TextBlock Text="❌ 不再有效：用样式设置 WindowState" FontWeight="SemiBold" Foreground="OrangeRed"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;Style Selector=&quot;Window&quot;&gt;&#10;  &lt;Setter Property=&quot;WindowState&quot; Value=&quot;Maximized&quot; /&gt;&#10;&lt;/Style&gt;"/>
+      </Border>
+      <TextBlock Text="✅ 代码 / 本地设置：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="window.WindowState = WindowState.Maximized;"/>
+      </Border>
+      <TextBlock Text="教训：属性类别会变；升级后若样式失效，先查是否改为 Direct" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：知道 WindowState 变 Direct 的后果" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

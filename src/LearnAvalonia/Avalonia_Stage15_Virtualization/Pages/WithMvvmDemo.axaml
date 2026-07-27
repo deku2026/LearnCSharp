@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.WithMvvmDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.11 虚拟化与 MVVM" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="① ObservableCollection 增删触发 NotifyCollectionChanged" FontWeight="SemiBold"/>
+          <TextBlock Text="· Add/Remove 单项 → O(1) 通知，虚拟化友好" TextWrapping="Wrap"/>
+          <TextBlock Text="· 避免一次 Reset/Refresh 10w 项 → 重新实例化全部容器" TextWrapping="Wrap"/>
+          <TextBlock Text="② 容器复用：ListBoxItem 被回收时清旧 DataContext，新数据进入" FontWeight="SemiBold"/>
+          <TextBlock Text="· 项级 ViewModel 不要持有 UI 引用（避免复用脏状态）" TextWrapping="Wrap"/>
+          <TextBlock Text="· 选中/展开态用 SelectionModel 而非项内 bool 字段" TextWrapping="Wrap"/>
+          <TextBlock Text="③ 分页/虚拟加载：ICollectionView / 自研 IPagedSource" FontWeight="SemiBold"/>
+          <TextBlock Text="· 仅加载可见窗口数据，滚动到底再请求下一页" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：虚拟化下 MVVM 注意点" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

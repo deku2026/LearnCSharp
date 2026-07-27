@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.ResourceLookupDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 资源查找路径" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="典型顺序：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <TextBlock FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="1. 元素自身 Resources&#10;2. 逻辑父链上的 Resources&#10;3. Application.Resources&#10;4. 主题 / 系统 ThemeResource"/>
+      </Border>
+      <TextBlock Text="实际演示 —— 近者优先（外层 Red vs 内层 Border Blue）：" FontWeight="SemiBold"/>
+      <Border Margin="0,4,0,0" Padding="8" BorderBrush="LightGray" BorderThickness="1" CornerRadius="4">
+        <Border.Resources>
+          <SolidColorBrush x:Key="DemoBrush" Color="Blue"/>
+        </Border.Resources>
+        <StackPanel Spacing="4">
+          <Border Background="{StaticResource DemoBrush}" Height="24" CornerRadius="4"/>
+          <TextBlock Text="↑ 近者 Border.Resources 的 Blue 胜出" FontSize="11" Foreground="Gray"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="DynamicResource/ThemeResource 更新传播不依赖手动重找逻辑父" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：说明资源沿逻辑父链查找" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

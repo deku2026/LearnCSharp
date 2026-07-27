@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage24_TestingSystem.Pages.AcceptanceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§13 验收" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <CheckBox Content="1. 测试项目独立 csproj，引用 Avalonia.Headless.XUnit" IsChecked="True"/>
+          <CheckBox Content="2. 至少 1 个 Smoke [AvaloniaFact] 在 CI 中通过" IsChecked="True"/>
+          <CheckBox Content="3. ViewModel 有 [Fact] 单测" IsChecked="True"/>
+          <CheckBox Content="4. 数据绑定 Headless 测试（TwoWay + Converter）" IsChecked="True"/>
+          <CheckBox Content="5. 布局 Headless 测试（Measure/Arrange/DesiredSize）" IsChecked="True"/>
+          <CheckBox Content="6. 控件 Click Headless 测试" IsChecked="True"/>
+          <CheckBox Content="7. 焦点链 Headless 测试（Tab/TabStop）" IsChecked="True"/>
+          <CheckBox Content="8. 主题切换 Headless 测试（Light/Dark）" IsChecked="True"/>
+          <CheckBox Content="9. 视觉回归示例（Skia 像素 diff 阈值）" IsChecked="True"/>
+          <CheckBox Content="10. Appium 注释示例（不强制运行）" IsChecked="True"/>
+          <CheckBox Content="11. CI matrix 覆盖 windows/ubuntu/macos" IsChecked="True"/>
+          <CheckBox Content="12. dotnet test 全绿" IsChecked="True"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：勾选验收清单" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

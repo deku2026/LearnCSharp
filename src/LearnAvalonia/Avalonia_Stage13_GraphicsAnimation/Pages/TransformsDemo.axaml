@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.TransformsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.6 Transforms" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="TransformGroup 示例：" FontWeight="SemiBold"/>
+      <Border Width="120" Height="120" Background="Tomato" CornerRadius="8">
+        <Border.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+            <RotateTransform Angle="15"/>
+            <TranslateTransform X="10" Y="0"/>
+          </TransformGroup>
+        </Border.RenderTransform>
+        <Border.RenderTransformOrigin>0.5,0.5</Border.RenderTransformOrigin>
+        <TextBlock Text="旋转 15°" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      </Border>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.4*,2*" RowDefinitions="Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="类型" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="是否影响布局" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="RenderTransform" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="否（绘制时变换）" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="动画旋转/缩放通常用 RenderTransform 以免每帧 relayout。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：RenderTransform 不影响布局" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

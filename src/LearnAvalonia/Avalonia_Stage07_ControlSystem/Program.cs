@@ -2,16 +2,17 @@ using Avalonia;
 
 namespace LearnAvalonia.Avalonia_Stage07_ControlSystem;
 
-public static class Program
+internal static class Program
 {
-    [STAThread]
-    public static void Main(string[] args) => BuildAvaloniaApp()
-        .StartWithClassicDesktopLifetime(args);
-
+    // Doc: 第4部分-阶段7-控件体系.md §A
+    // Notes: BuildAvaloniaApp doubles as design-time preview entrypoint; keep signature stable.
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
-            .UseSkia()
-            .UseHarfBuzz()
+            .WithInterFont()
             .LogToTrace();
+
+    [STAThread]
+    public static int Main(string[] args)
+        => BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 }

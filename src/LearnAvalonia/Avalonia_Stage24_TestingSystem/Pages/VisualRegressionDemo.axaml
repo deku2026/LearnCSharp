@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage24_TestingSystem.Pages.VisualRegressionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 Visual regression（Headless + Skia 像素）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="思路：Headless 渲染控件到 Skia bitmap → 存基线 PNG → 下次 diff → 容差阈值通过/失败。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="[AvaloniaFact]&#x0a;public void Card_Renders_Match_Baseline()&#x0a;{&#x0a;    Border card = new()&#x0a;    {&#x0a;        Background = Brushes.White,&#x0a;        Child = new TextBlock { Text = &quot;Hi&quot; }&#x0a;    };&#x0a;    card.Measure(new Size(120, 60));&#x0a;    card.Arrange(new Rect(0, 0, 120, 60));&#x0a;    using var bmp = RenderTargetBitmap.Render(card);&#x0a;    using var ms = new MemoryStream();&#x0a;    bmp.Save(ms);&#x0a;    // 与基线 baseline_card.png 比较：差异像素 &lt; 阈值&#x0a;    Assert.True(ms.Length &gt; 0);&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="阈值：0.1% 像素差异通过；基线放 tests/baselines/；抗锯齿差异需容忍。" TextWrapping="Wrap"/>
+      <TextBlock Text="Avalonia 12.1：RenderTargetBitmap.Render 可在 Headless 中工作（Skia 后端）。" TextWrapping="Wrap"/>
+      <TextBlock Text="注意：不同 OS 字体回退会引入差异；CI 固定字体（Inter）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Skia 像素 diff 阈值" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

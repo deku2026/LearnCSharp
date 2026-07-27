@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage28_WpfMigration.Pages.PlatformServiceDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 平台服务差异" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="必铲的 Windows 假设" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="WPF 假设" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="问题" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="Avalonia 抽象" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="注册表" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Linux/macOS 无" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Preferences + 文件" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="WMI" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="仅 Windows" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="SysInfo 抽象 / 条件编译" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="MessageBox.Show" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="WPF 专属" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="StorageProvider / 自定义 Dialog" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Frame/Page 导航" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="WPF 专属" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="ContentControl + 自管 VM" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="验收：Windows 假设铲除" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

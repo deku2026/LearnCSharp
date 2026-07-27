@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.CustomPanelDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.2 自定义 Panel" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public class DiagonalPanel : Panel {&#10;    protected override Size MeasureOverride(Size availableSize) {&#10;        double width = 0, height = 0;&#10;        foreach (var child in Children) {&#10;            child.Measure(availableSize);&#10;            width += child.DesiredSize.Width;&#10;            height += child.DesiredSize.Height;&#10;        }&#10;        return new Size(width, height);&#10;    }&#10;&#10;    protected override Size ArrangeOverride(Size finalSize) {&#10;        double x = 0, y = 0;&#10;        foreach (var child in Children) {&#10;            child.Arrange(new Rect(new Point(x, y), child.DesiredSize));&#10;            x += child.DesiredSize.Width;&#10;            y += child.DesiredSize.Height;&#10;        }&#10;        return finalSize;&#10;    }&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="测试：嵌套 ScrollViewer、最小尺寸、无限 availableSize（double.PositiveInfinity）不要 NaN。" TextWrapping="Wrap"/>
+      <TextBlock Text="Panel 只负责子元素 Measure/Arrange，不提供业务 API。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：MeasureOverride/ArrangeOverride" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

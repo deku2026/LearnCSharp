@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.ConverterMultiBindingDemo">
+  <UserControl.Resources>
+    <pages:BoolToOpacityConverter x:Key="BoolToOpacity"/>
+  </UserControl.Resources>
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§A5-A6 Converter 与 MultiBinding·诊断" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="现场：BoolToOpacityConverter（启用 → 1.0，禁用 → 0.4）" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="8">
+          <ToggleSwitch x:Name="toggle" IsChecked="True" Content="启用"/>
+          <Button Content="受 Converter 控制的按钮" Opacity="{Binding #toggle.IsChecked, Converter={StaticResource BoolToOpacity}}"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="MultiBinding 示意（StringFormat）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;TextBlock&gt;&#10;  &lt;TextBlock.Text&gt;&#10;    &lt;MultiBinding StringFormat=&quot;{}{0} - {1}&quot;&gt;&#10;      &lt;Binding Path=&quot;FirstName&quot; /&gt;&#10;      &lt;Binding Path=&quot;LastName&quot; /&gt;&#10;    &lt;/MultiBinding&gt;&#10;  &lt;/TextBlock.Text&gt;&#10;&lt;/TextBlock&gt;"/>
+      </Border>
+      <TextBlock Text="纪律：能 partial 属性/源生成计算属性就少写 Converter；Converter 保持纯函数、无 IO" TextWrapping="Wrap"/>
+      <TextBlock Text="绑定诊断：编译绑定错误（编译期路径/类型）· 调试输出/DevTools（运行期失败）· 临时 TextBlock 绑同一路径（二分法）· 单元测试 VM 属性（不依赖绑定引擎）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：使用 Converter 与绑定诊断" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

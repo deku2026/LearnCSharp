@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.RemoteApiOfflineDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 远程 API 与离线" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="IHttpClientFactory + STJ source gen · 模拟服务器或公共 mock · 离线读缓存/队列上传" TextWrapping="Wrap"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="在线模式" Click="OnlineButton_Click"/>
+        <Button Content="离线模式" Click="OfflineButton_Click"/>
+        <Button Content="同步状态 UX" Click="SyncStateButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="ApiLog" Text="日志：点击按钮查看在线/离线/同步状态..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="认证最低：API Key 进 SecureStore；推荐 PKCE 演示" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：同步状态 UX + 脏标记" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages"
+             x:DataType="pages:DataContextBindingVm"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.DataContextBindingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§A1-A2 DataContext 与绑定模式" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="DataContext 继承：Window.DataContext = MainViewModel → 子树默认继承 → 某子级可覆盖" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：OneWay（显示）与 TwoWay（输入）" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="8">
+          <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="6" ColumnSpacing="8">
+            <Label Grid.Row="0" Grid.Column="0" Content="Name (TwoWay)"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name, Mode=TwoWay}"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="显示 (OneWay)"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Name, Mode=OneWay}"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Progress (OneWay)"/>
+            <ProgressBar Grid.Row="2" Grid.Column="1" Value="{Binding Progress}" Maximum="100"/>
+          </Grid>
+          <TextBlock Text="修改 TextBox → 上方 OneWay TextBlock 同步更新（TwoWay 回写源）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="绑定模式：OneWay（源→目标，显示文本/进度）· TwoWay（双向，TextBox/开关/选中项）· OneTime（一次）· OneWayToSource（较少见）" TextWrapping="Wrap"/>
+      <TextBlock Text="原则：View 尽量只知 VM 类型；VM 不引用具体 Window 类型" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：解释 DataContext 继承与绑定模式" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

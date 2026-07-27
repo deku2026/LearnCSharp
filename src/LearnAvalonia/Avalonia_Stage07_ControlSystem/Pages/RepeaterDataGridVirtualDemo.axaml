@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.RepeaterDataGridVirtualDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§C7-C10 ItemsRepeater·DataGrid·TreeDataGrid·虚拟化" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <TextBlock Text="ItemsRepeater（独立包 Avalonia.Controls.ItemsRepeater）" FontWeight="SemiBold"/>
+          <TextBlock Text="· 无内置选择、滚动条 chrome——你自己包 ScrollViewer + 选择行为" TextWrapping="Wrap"/>
+          <TextBlock Text="· 适合高度自定义虚拟化布局（瀑布流等）" TextWrapping="Wrap"/>
+          <TextBlock Text="· 普通业务列表优先 ListBox/TableView" TextWrapping="Wrap"/>
+          <TextBlock Text="DataGrid（⚠️ deprecated，仅 bugfix）" FontWeight="SemiBold" Foreground="OrangeRed"/>
+          <TextBlock Text="· 何时用：确实需要单元格编辑且短期无替代" TextWrapping="Wrap"/>
+          <TextBlock Text="· 何时不用：只读表 → TableView；新架构长期表 → 规划自研/Pro" TextWrapping="Wrap"/>
+          <TextBlock Text="· 主题需正确引入样式，否则无外观" TextWrapping="Wrap"/>
+          <TextBlock Text="TreeDataGrid（💼 Avalonia Pro）" FontWeight="SemiBold"/>
+          <TextBlock Text="· Flat + Hierarchical；v12 API 有 breaking" TextWrapping="Wrap"/>
+          <TextBlock Text="· 主线验收不依赖；用 TreeView + 自定义列或开源方案完成" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="虚拟化·容器·选择·模板：ItemsSource → 生成 Item Container → 应用 ItemTemplate；滚动移出视口 → 容器复用" TextWrapping="Wrap"/>
+      <TextBlock Text="DataTemplate / TreeDataTemplate：数据 → 可视；DataTemplateSelector：按类型/状态换模板" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：区分各表控件包/许可/维护边界" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.AcceptanceChecklistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§K1-K4 最小实验·验收·链接" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="最小实验：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="1. 表单页：TextBox/Combo/Date/Toggle/Slider/Progress"/>
+          <TextBlock Text="2. ListBox 多选 + 上下文菜单"/>
+          <TextBlock Text="3. TableView 三列只读 + 行虚拟化滚 1k 行"/>
+          <TextBlock Text="4. （可选）DataGrid 一列可编辑，文档标注 deprecated"/>
+          <TextBlock Text="5. 桌面 SplitView + ContentControl 三页切换"/>
+          <TextBlock Text="6. NavigationPage Push/Pop/Modal 各一次"/>
+          <TextBlock Text="7. ColorPicker 包接入改主题色"/>
+          <TextBlock Text="8. 触摸设备或模拟：列表选择在抬起生效观察"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收标准：" FontWeight="SemiBold"/>
+      <Border BorderBrush="DarkGreen" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="☐ 能按 G1 表做选型口述（抽查 8 个场景全对）"/>
+          <TextBlock Text="☐ 准确说出 TableView / DataGrid / TreeDataGrid / ItemsRepeater 的包与状态"/>
+          <TextBlock Text="☐ PlaceholderText 用于新 TextBox；无新代码依赖旧 FileDialog"/>
+          <TextBlock Text="☐ 至少一页 TableView + 一页桌面壳 + 一次 Pages 栈操作"/>
+          <TextBlock Text="☐ 关键按钮具 AutomationId；Command 绑定优于业务 Click"/>
+          <TextBlock Text="☐ 解释触摸/笔选择在 release 的意义"/>
+          <TextBlock Text="☐ 不把 BottomSheet、TreeDataGrid 写成免费必会"/>
+          <TextBlock Text="☐ ColorPicker 以独立包 12.1.0 引用"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="速记：只读表 TableView · 编辑表 DataGrid⚠️ · 树表 TreeDataGrid💼 · 自定义虚拟化 ItemsRepeater · 输入 PlaceholderText · 移动 NavigationPage · 桌面 SplitView+Content · 弹层 Flyout/ContextMenu" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：勾选验收清单 8 条" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.SkiaMainDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 Skia 主线" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Avalonia 12 后 Skia 是唯一主渲染器（Direct2D1 已移除）。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="Control.Render(DrawingContext)&#10;  → DrawingContext.DrawRectangle / DrawEllipse / DrawText&#10;     → SkiaDrawingContextImpl&#10;        → SKCanvas.drawRect / drawPath / drawImage&#10;           → GPU surface (Metal / Vulkan / GL) or raster" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="自定义渲染：用 DrawingContext 顶层 API；底层 SKCanvas 互操作需自定义 ICustomDrawOperation。" TextWrapping="Wrap"/>
+      <TextBlock Text="文本：UseHarfBuzz 配对 UseSkia；Shape 文本走 HarfBuzz shaping。" TextWrapping="Wrap"/>
+      <TextBlock Text="源码导引：Avalonia.Skia / DrawingContextImpl / SkiaDrawingContextImpl。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：画出 Draw 调用栈" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

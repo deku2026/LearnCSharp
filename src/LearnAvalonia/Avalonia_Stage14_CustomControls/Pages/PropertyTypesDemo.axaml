@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.PropertyTypesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.8 属性：Styled / Direct / Attached" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// Styled：可样式、可动画、主题默认&#10;public static readonly StyledProperty&lt;int&gt; ValueProperty =&#10;    AvaloniaProperty.Register&lt;RatingControl, int&gt;(nameof(Value),&#10;        defaultValue: 0, coerce: CoerceValue);&#10;&#10;// Direct：实例存储、可 INPC 感、常用于高频/窗口状态&#10;public static readonly DirectProperty&lt;RatingControl, string&gt; TextProperty =&#10;    AvaloniaProperty.RegisterDirect&lt;RatingControl, string&gt;(&#10;        nameof(Text), o =&gt; o.Text, (o, v) =&gt; o.Text = v);&#10;&#10;// Attached：挂到任意子元素&#10;public static readonly AttachedProperty&lt;bool&gt; IsStarProperty =&#10;    AvaloniaProperty.RegisterAttached&lt;RatingControl, Control, bool&gt;(&quot;IsStar&quot;);" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="Affects*：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="static RatingControl() {&#10;    AffectsRender&lt;RatingControl&gt;(ValueProperty);&#10;    AffectsMeasure&lt;RatingControl&gt;(StarCountProperty);&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="验收：三类属性 + Affects* 注册" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

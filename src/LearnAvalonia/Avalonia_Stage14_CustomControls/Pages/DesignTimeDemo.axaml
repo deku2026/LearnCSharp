@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.DesignTimeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.13 Design-time" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;Design.DataContext&gt;&#10;  &lt;local:RatingControl Design.Value=&quot;3&quot;/&gt;&#10;&lt;/Design.DataContext&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="要点：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 预览器可加载的默认主题" TextWrapping="Wrap"/>
+      <TextBlock Text="• 避免构造函数里要求运行时单例" TextWrapping="Wrap"/>
+      <TextBlock Text="• Design.IsDesignMode 跳过硬件访问" TextWrapping="Wrap"/>
+      <TextBlock Text="Design.DataContext 提供预览 VM；Design. 附加属性设示例值。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Design.DataContext + Design.IsDesignMode" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

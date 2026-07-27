@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage30_PlatformBackend.Pages.OverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 平台后端概览" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="本应用运行时检测：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="OperatingSystem.IsWindows() = true" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace"/>
+          <TextBlock Text="OperatingSystem.IsLinux()   = false" Foreground="#888888" FontFamily="Consolas,Monaco,monospace"/>
+          <TextBlock Text="OperatingSystem.IsMacOS()   = false" Foreground="#888888" FontFamily="Consolas,Monaco,monospace"/>
+          <TextBlock Text="RuntimeInformation.OSDescription = Microsoft Windows NT" Foreground="#888888" FontFamily="Consolas,Monaco,monospace"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="桌面后端表（本阶段覆盖）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="• Win32 — Windows 默认（Avalonia.Win32.dll）"/>
+          <TextBlock Text="• WinUI Composition — Win11 渲染/输入路径（Avalonia.Win32）"/>
+          <TextBlock Text="• macOS — Avalonia.Native / AppKit（Avalonia.Native.dll）"/>
+          <TextBlock Text="• X11 — Linux 默认（Avalonia.X11.dll）"/>
+          <TextBlock Text="• Headless — 单测 / CI（Avalonia.Headless）"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="非桌面分支（见 roadmap，不实现）：Android / iOS / Browser-WASM / framebuffer-DRM" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：覆盖桌面 5 后端" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage01_AppBuilder.Pages.OtherPlatformsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 其他平台入口要点" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <TextBlock Text="Browser (WASM)" FontWeight="SemiBold"/>
+          <TextBlock Text="包 Avalonia.Browser；HTML+JS bootstrap；ISingleViewApplicationLifetime；Avalonia.Browser.Blazor 已移除，需要 Blazor 混嵌用 Avalonia.Browser + AvaloniaView" TextWrapping="Wrap"/>
+          <TextBlock Text="Linux X11 vs Wayland" FontWeight="SemiBold"/>
+          <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto">
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="项" FontWeight="SemiBold"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="X11" FontWeight="SemiBold"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="Wayland 🧪" FontWeight="SemiBold"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="默认"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="PlatformDetect 桌面主线"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" Text="不自动选中"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="启用"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="无需额外"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="Avalonia.Wayland + UseWayland()"/>
+          </Grid>
+          <TextBlock Text="Embedded / framebuffer" FontWeight="SemiBold"/>
+          <TextBlock Text="包 Avalonia.LinuxFramebuffer；StartLinuxFramebuffer；依赖 DRM/GBM/libinput；视图模型接近 SingleView" TextWrapping="Wrap"/>
+          <TextBlock Text="Headless" FontWeight="SemiBold"/>
+          <TextBlock Text="测试宿主，非产品 UI 后端；配合 Avalonia.Headless.XUnit（12 抬升到 xUnit v3）；不能替代真机 smoke" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：覆盖 Browser/X11/Wayland/framebuffer" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.GpuLossDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§13 GPU 失效恢复" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="触发场景：TDR / 驱动崩溃 / sleep / GPU 切换 / 离屏 RDP。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="PlatformGraphicsContext.GpuLost?&#10;  → Renderer 暂停 GPU&#10;  → 释放所有 GPU 资源（texture / shader / pipeline）&#10;  → 切 Software&#10;  → 等待 GPU 重置 → 重建资源 → 切回 GPU" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="正确行为：" FontWeight="SemiBold"/>
+      <TextBlock Text="• UI 不崩，只是短暂卡顿或模糊"/>
+      <TextBlock Text="• 应用代码不感知（Renderer 封装）"/>
+      <TextBlock Text="• Compositor 在重建期间继续走 CPU"/>
+      <TextBlock Text="验收：列出降级行为" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

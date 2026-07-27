@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.EndToEndDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.11 完整 NavigationPage 端到端场景" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="用户故事：启动 → 首页 → 详情 → 模态登录 → 登录成功关模态 → 返回首页。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="var nav = new NavigationPage(home);&#10;var navService = new PageNavigationService(nav, viewFactory);&#10;nav.PageTransition = new CrossFade(TimeSpan.FromMilliseconds(150));" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="测试脚本（手动）：" FontWeight="SemiBold"/>
+      <TextBlock Text="1. Push 详情，见导航栏返回" TextWrapping="Wrap"/>
+      <TextBlock Text="2. PushModal 登录，背景页不可交互" TextWrapping="Wrap"/>
+      <TextBlock Text="3. PopModal 后仍在详情" TextWrapping="Wrap"/>
+      <TextBlock Text="4. Pop 回首页；PopToRoot 从更深栈一次回根" TextWrapping="Wrap"/>
+      <TextBlock Text="5. 系统/手势返回与按钮返回一致" TextWrapping="Wrap"/>
+      <TextBlock Text="6. 快速连点 Push 不产生重复页（命令 CanExecute 或导航锁）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：首页→详情→模态登录→返回全链" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -2,16 +2,17 @@ using Avalonia;
 
 namespace LearnAvalonia.Avalonia_Stage29_SourceReading;
 
-public static class Program
+internal static class Program
 {
-    [STAThread]
-    public static void Main(string[] args) => BuildAvaloniaApp()
-        .StartWithClassicDesktopLifetime(args);
-
+    // Doc: 第11部分-阶段29-必读子系统源码精读.md §0.5
+    // Notes: BuildAvaloniaApp doubles as design-time preview entrypoint; keep signature stable.
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
-            .UseSkia()
-            .UseHarfBuzz()
+            .WithInterFont()
             .LogToTrace();
+
+    [STAThread]
+    public static int Main(string[] args)
+        => BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 }

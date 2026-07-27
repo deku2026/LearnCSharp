@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage26_TrimmingAOT.Pages.ViewLocatorDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 ViewLocator 不友好" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="反射版（AOT ❌）" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public static Control BuildByReflection(object vm)&#x0a;{&#x0a;    Type t = vm.GetType();&#x0a;    string viewName = t.FullName.Replace(&quot;ViewModel&quot;, &quot;View&quot;);&#x0a;    Type? viewType = Type.GetType(viewName);&#x0a;    return (Control)Activator.CreateInstance(viewType);&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="编译期版（AOT ✅）" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public static CompiledBindingDemoView Build(CompiledBindingDemoVm vm)&#x0a;    =&gt; new(vm);   // 类型已知，无反射" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="Avalonia 12.1：用 SourceGen ViewLocator（GeneratedViewLocator）替代反射；xml 配置 + SourceGen 输出强类型工厂。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：ViewLocator 反射 vs CompiledBinding" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.SingleInstanceCliDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 全局激活 · 单实例 · CLI" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="mutex/pipe&#x0a;  → 第二进程发送 args&#x0a;  → 主进程 Activate + Open&#x0a;myapp.exe path\\to\\file&#x0a;myapp.exe --new" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="单实例伪码" Click="SingleInstanceButton_Click"/>
+        <Button Content="CLI 激活" Click="CliButton_Click"/>
+        <Button Content="文件关联" Click="FileAssocButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="CliLog" Text="日志：点击按钮查看单实例/CLI/文件关联..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="验收：再双击不出现双实例" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

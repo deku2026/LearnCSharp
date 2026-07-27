@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage03_AvaloniaXaml.Pages.CompileIlDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 XAML 编译、IL 与动态加载" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="编译进 IL 的含义：Avalonia 构建任务把 .axaml 变成可执行加载逻辑（而非每次运行时解析大字符串）" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• 启动更快" TextWrapping="Wrap"/>
+          <TextBlock Text="• 错误更早" TextWrapping="Wrap"/>
+          <TextBlock Text="• 与 trim 协同更好" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="Avalonia.Markup.Xaml.Loader —— 运行时从字符串/流加载 XAML：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="// var control = AvaloniaRuntimeXamlLoader.Load(xmlStream);"/>
+      </Border>
+      <TextBlock Text="场景建议：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.6*,2*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="场景" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="建议" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="主应用 UI" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="编译 axaml" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="主题可下载皮肤" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="评估复杂度；优先资源字典热切换" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="Native AOT / 重度 trim" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="禁止依赖反射式动态 XAML 作为主路径" TextWrapping="Wrap" Foreground="OrangeRed"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="项目开关：AvaloniaUseCompiledBindingsByDefault（12 默认 true）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：说明编译进 IL 与 Loader 的 AOT 边界" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

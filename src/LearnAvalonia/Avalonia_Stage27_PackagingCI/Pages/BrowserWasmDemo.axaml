@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage27_PackagingCI.Pages.BrowserWasmDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 Browser（WASM）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="准备" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="dotnet workload install wasm-tools&#x0a;dotnet publish -c Release -f net10.0-browserwasm" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="PWA manifest（manifest.json 节选）" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="{}{&#x0a;  &quot;name&quot;: &quot;MyApp&quot;,&#x0a;  &quot;short_name&quot;: &quot;MyApp&quot;,&#x0a;  &quot;start_url&quot;: &quot;/&quot;,&#x0a;  &quot;display&quot;: &quot;standalone&quot;,&#x0a;  &quot;icons&quot;: [&#x0a;    {}{ &quot;src&quot;: &quot;icon-192.png&quot;, &quot;sizes&quot;: &quot;192x192&quot; }&#x0a;  ]&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="托管：静态文件放 nginx/GitHub Pages/CDN；service worker 离线缓存。" TextWrapping="Wrap"/>
+      <TextBlock Text="AOT：PublishAot=true 大幅减体积，但 WASM 编译慢。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：WASM + PWA" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

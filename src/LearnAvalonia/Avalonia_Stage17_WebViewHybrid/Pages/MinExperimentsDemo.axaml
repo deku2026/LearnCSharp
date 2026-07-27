@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.MinExperimentsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§15 最小实验 A-G（汇总）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="A：嵌入远程页（demo §2.1 已示）" FontWeight="SemiBold"/>
+          <TextBlock Text="B：导航 前进/后退/刷新（demo §2.3）" FontWeight="SemiBold"/>
+          <TextBlock Text="C：注入 HTML（NavigateToLocal 或 invokeScript）" FontWeight="SemiBold"/>
+          <TextBlock Text="D：Bridge：JS → C# 通过 WebMessageReceived" FontWeight="SemiBold"/>
+          <TextBlock Text="E：OAuth：WebAuthenticationBroker.AuthenticateAsync（demo §6）" FontWeight="SemiBold"/>
+          <TextBlock Text="F（可选）：Windows Runtime 缺失模拟（平台特化）" FontWeight="SemiBold"/>
+          <TextBlock Text="G（WASM，仅概念）：Browser 端菜单页用 iframe 替代" FontWeight="SemiBold"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="桌面三平台跑 A-E；F 仅 Win；G 见 §10 WASM 硬边界。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：完成最小实验 A-G" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

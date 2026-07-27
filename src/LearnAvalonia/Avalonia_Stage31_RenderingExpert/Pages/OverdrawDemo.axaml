@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.OverdrawDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§14 Overdraw / 关键字限制" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Overdraw = 每像素被绘制次数；过度 = 性能红线。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="启用：With(new SkiaOptions { MaxGpuResourceSizeBytes = ... })&#10;诊断：WithRenderingMode(PlatformRenderingMode.Software) + 自定义 DebugOverlay&#10;可视化：CompositionDebugOverlays" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="关键字限制：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 不要在 Render 里创建大对象"/>
+      <TextBlock Text="• 不要在 Layout 同帧多次 InvalidateVisual"/>
+      <TextBlock Text="• 不要嵌套透明 Border 一摞（每层都重绘）"/>
+      <TextBlock Text="• 滚动列表禁用透明背景"/>
+      <TextBlock Text="验收：解释 overdraw 红线" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.DevToolsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 DevTools 对照法" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="使用步骤：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="1. 安装 AvaloniaUI.DiagnosticsSupport（12；旧 Avalonia.Diagnostics 已移除）" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 选中控件" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 分别查看 logical parent 链与 visual parent 链" TextWrapping="Wrap"/>
+          <TextBlock Text="4. 对 Button 内容与模板根各看一次" TextWrapping="Wrap"/>
+          <TextBlock Text="5. 打开 Flyout/Popup 再查内容的父链 —— 确认独立根现象" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="没有 DevTools 时，用 TreeDump 打日志（见 §2 demo 的实际实现）" TextWrapping="Wrap"/>
+      <TextBlock Text="本应用 §2 VisualTree demo 即是 TreeDump 方法的实际实现" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：用 DevTools 对照两棵树" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

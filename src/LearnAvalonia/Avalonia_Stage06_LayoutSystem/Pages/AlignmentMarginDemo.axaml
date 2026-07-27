@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.AlignmentMarginDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§C1-C2 Alignment 与 Margin/Padding" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="HorizontalAlignment（父分给的 final 尺寸大于子 DesiredSize 时决定位置）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4" Height="120">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto" Background="#22000000">
+          <Border Grid.Row="0" Background="SteelBlue" HorizontalAlignment="Stretch" Height="20">
+            <TextBlock Text="Stretch（默认）填满槽" Foreground="White" VerticalAlignment="Center" Padding="4"/>
+          </Border>
+          <Border Grid.Row="1" Background="SteelBlue" HorizontalAlignment="Left" Height="20">
+            <TextBlock Text="Left 贴左" Foreground="White" VerticalAlignment="Center" Padding="4"/>
+          </Border>
+          <Border Grid.Row="2" Background="SteelBlue" HorizontalAlignment="Center" Height="20">
+            <TextBlock Text="Center 居中" Foreground="White" VerticalAlignment="Center" Padding="4"/>
+          </Border>
+          <Border Grid.Row="3" Background="SteelBlue" HorizontalAlignment="Right" Height="20">
+            <TextBlock Text="Right 贴右" Foreground="White" VerticalAlignment="Center" Padding="4"/>
+          </Border>
+        </Grid>
+      </Border>
+      <TextBlock Text="Margin 在外，Padding 在内：" FontWeight="SemiBold"/>
+      <Border Margin="8" Padding="12" Background="Gray" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="4">
+        <Border Background="White" Padding="8">
+          <TextBlock Text="外层 Margin=8（与父间距），内层 Padding=12（内容区边距）" Foreground="Black"/>
+        </Border>
+      </Border>
+      <TextBlock Text="Grid 单元格与 DockPanel 末子 Stretch 最常见；图标按钮常用 Center" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：正确说明 Alignment 与 Margin/Padding" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

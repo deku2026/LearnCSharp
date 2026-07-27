@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.TemplatedControlDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.4 TemplatedControl 结构" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public class MyControl : TemplatedControl {&#10;    // 属性、事件、伪类&#10;    protected override void OnApplyTemplate(TemplateAppliedEventArgs e) {&#10;        base.OnApplyTemplate(e);&#10;        // 解绑旧 PART&#10;        // var part = e.NameScope.Find&lt;Button&gt;(&quot;PART_IncreaseButton&quot;);&#10;    }&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="ControlTheme（外部模板）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;ControlTheme x:Key=&quot;{x:Type local:MyControl}&quot;&#10;               TargetType=&quot;local:MyControl&quot;&gt;&#10;  &lt;Setter Property=&quot;Template&quot;&gt;&#10;    &lt;ControlTemplate&gt;&#10;      &lt;Border Background=&quot;{TemplateBinding Background}&quot;&gt;&#10;        &lt;ContentPresenter Content=&quot;{TemplateBinding Content}&quot;/&gt;&#10;      &lt;/Border&gt;&#10;    &lt;/ControlTemplate&gt;&#10;  &lt;/Setter&gt;&#10;&lt;/ControlTheme&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="TemplatedControl 是 lookless 控件基础；视觉由 ControlTheme 提供。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：OnApplyTemplate + ControlTheme" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

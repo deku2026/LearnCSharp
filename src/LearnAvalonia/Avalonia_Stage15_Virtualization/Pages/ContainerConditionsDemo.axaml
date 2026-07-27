@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.ContainerConditionsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.2 容器与要满足的条件" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="虚拟化启动三条件（缺一不可）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="① 有限视口：ScrollViewer 给定 bounded viewport（不能是 Infinity）" TextWrapping="Wrap"/>
+          <TextBlock Text="② ItemTemplate 可测：模板内控件尺寸可计算（不要 Auto+Infinity 嵌套）" TextWrapping="Wrap"/>
+          <TextBlock Text="③ ItemsPanel 支持：VirtualizingStackPanel / ItemsRepeater 自带 Layout" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="常见断点：" FontWeight="SemiBold"/>
+      <TextBlock Text="· 把 ListBox 放进 ScrollViewer 的 ScrollViewer —— 外层 ScrollViewer 给 Infinity，内层放弃虚拟化。" TextWrapping="Wrap"/>
+      <TextBlock Text="· ItemTemplate 根用 Grid 且行高 Auto + 内容无限 —— 无法预测项目高度。" TextWrapping="Wrap"/>
+      <TextBlock Text="· ItemsPanel 换成普通 StackPanel —— 没有虚拟化逻辑。" TextWrapping="Wrap"/>
+      <TextBlock Text="验证：ListBox 容器计数 &lt; 50（无论数据量多大）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：列出虚拟化启动 3 条件" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

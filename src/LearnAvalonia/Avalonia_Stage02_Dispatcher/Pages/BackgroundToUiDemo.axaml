@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.BackgroundToUiDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 后台 → UI：正确与错误写法" FontWeight="Bold" FontSize="14"/>
+      <Button x:Name="CorrectButton" Content="✅ 正确：后台计算 + 显式封送" Click="CorrectButton_Click" Margin="0,4,0,0"/>
+      <Button x:Name="VmButton" Content="✅ 正确：ViewModel 属性 + 绑定（推荐）" Click="VmButton_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="ResultText" Text="结果：等待操作..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="❌ 错误：在 Task.Run 内 titleText.Text = &quot;Hi&quot;（跨线程崩溃）" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="❌ 错误：在 UI 事件 LoadAsync().Result（死锁高风险）" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="async void 纪律：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.4*,1.4*" RowDefinitions="Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="允许" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="禁止" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="UI 事件处理器" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="库公开 API" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="部分 override async void 生命周期" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="业务服务方法；可 await 却选 void 导致异常丢失" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：给出正确与错误示例各一" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

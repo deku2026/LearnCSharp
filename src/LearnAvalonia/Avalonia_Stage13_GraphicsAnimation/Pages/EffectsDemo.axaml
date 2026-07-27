@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.EffectsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.8 Effects / 阴影" FontWeight="Bold" FontSize="14"/>
+      <Border Background="White" CornerRadius="8" Padding="16" Width="160" HorizontalAlignment="Left">
+        <Border.Effect>
+          <DropShadowEffect BlurRadius="16" OffsetX="0" OffsetY="4" Color="#40000000"/>
+        </Border.Effect>
+        <TextBlock Text="卡片" Foreground="Black"/>
+      </Border>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;Border Background=&quot;White&quot; CornerRadius=&quot;8&quot; Padding=&quot;16&quot;&gt;&#10;  &lt;Border.Effect&gt;&#10;    &lt;DropShadowEffect BlurRadius=&quot;16&quot; OffsetX=&quot;0&quot;&#10;                   OffsetY=&quot;4&quot; Color=&quot;#40000000&quot;/&gt;&#10;  &lt;/Border.Effect&gt;&#10;  &lt;TextBlock Text=&quot;卡片&quot;/&gt;&#10;&lt;/Border&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="性能：大面积模糊/阴影昂贵；列表项避免每项重阴影；滚动时考虑降低效果。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：DropShadowEffect 性能敏感" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

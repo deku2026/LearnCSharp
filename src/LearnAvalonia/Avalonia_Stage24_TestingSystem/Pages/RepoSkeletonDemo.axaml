@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage24_TestingSystem.Pages.RepoSkeletonDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§12 完整样例：从零最小仓库清单" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="目录结构" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="myapp/&#x0a;├── MyApp.csproj          (WinExe + Avalonia packages)&#x0a;├── App.axaml(.cs)&#x0a;├── MainWindow.axaml(.cs)&#x0a;├── Program.cs&#x0a;└── Pages/&#x0a;    └── HomeDemo.axaml(.cs)&#x0a;myapp.tests/&#x0a;├── MyApp.Tests.csproj    (Avalonia.Headless + xunit.v3)&#x0a;├── Usings.cs             (global using Avalonia.Headless.XUnit; global using Xunit;)&#x0a;├── SmokeTests.cs&#x0a;├── BindingHeadlessTests.cs&#x0a;├── LayoutHeadlessTests.cs&#x0a;└── ControlHeadlessTests.cs" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="Tests csproj 最小配置" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;Project Sdk=&quot;Microsoft.NET.Sdk&quot;&gt;&#x0a;  &lt;PropertyGroup&gt;&#x0a;    &lt;IsPackable&gt;false&lt;/IsPackable&gt;&#x0a;    &lt;IsTestProject&gt;true&lt;/IsTestProject&gt;&#x0a;  &lt;/PropertyGroup&gt;&#x0a;  &lt;ItemGroup&gt;&#x0a;    &lt;PackageReference Include=&quot;Avalonia.Headless&quot; /&gt;&#x0a;    &lt;PackageReference Include=&quot;Avalonia.Headless.XUnit&quot; /&gt;&#x0a;    &lt;PackageReference Include=&quot;xunit.v3&quot; /&gt;&#x0a;    &lt;PackageReference Include=&quot;Microsoft.NET.Test.Sdk&quot; /&gt;&#x0a;  &lt;/ItemGroup&gt;&#x0a;&lt;/Project&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="验收：从零最小仓库结构" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage01_AppBuilder.Pages.StartupChainDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 启动链总览：从 OS 到首帧" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="平台入口（OS / 宿主进程）" FontWeight="SemiBold"/>
+          <TextBlock Text="→ AppBuilder.Configure&lt;TApp&gt;()" TextWrapping="Wrap"/>
+          <TextBlock Text="→ UsePlatformDetect() / 显式平台（Win32 / X11 / macOS）" TextWrapping="Wrap"/>
+          <TextBlock Text="→ UseSkia() · UseHarfBuzz()（自定义渲染配置时）" TextWrapping="Wrap"/>
+          <TextBlock Text="→ （可选）UseReactiveUI() / UseWayland() 🧪 / Inter 字体 / 日志" TextWrapping="Wrap"/>
+          <TextBlock Text="→ StartWithClassicDesktopLifetime / 平台宿主 Start / Start(手动)" TextWrapping="Wrap"/>
+          <TextBlock Text="→ Application 构造 → Initialize() → 加载 App.axaml" TextWrapping="Wrap"/>
+          <TextBlock Text="→ OnFrameworkInitializationCompleted" TextWrapping="Wrap"/>
+          <TextBlock Text="→ IApplicationLifetime 分支：Desktop→MainWindow / Activity→Factory / SingleView→MainView" TextWrapping="Wrap"/>
+          <TextBlock Text="→ TopLevel / Window 显示 · Visual Tree 附着" TextWrapping="Wrap"/>
+          <TextBlock Text="→ Layout → Render → Compositor 合成首帧" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="三条不变量：" FontWeight="SemiBold"/>
+      <TextBlock Text="1. Main 里 AppBuilder 就绪前不要碰任何 Avalonia 类型" TextWrapping="Wrap"/>
+      <TextBlock Text="2. Lifetime 决定应用如何活、如何死；UI 树挂在 lifetime 上" TextWrapping="Wrap"/>
+      <TextBlock Text="3. 设计时预览器没有 lifetime —— ApplicationLifetime 为 null 是契约" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：闭卷画出此链" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

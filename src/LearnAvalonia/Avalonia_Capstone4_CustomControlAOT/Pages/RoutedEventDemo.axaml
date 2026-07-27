@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.RoutedEventDemo"
+             x:DataType="pages:RoutedEventDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 路由事件 ValueChanged" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="GaugeControl 注册 ValueChanged 路由事件；点击 +10 触发并写日志。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public static readonly RoutedEvent&lt;ValueChangedEventArgs&gt; ValueChangedEvent =&#10;    RoutedEvent.Register&lt;GaugeControl, ValueChangedEventArgs&gt;(&#10;        nameof(ValueChanged), RoutingStrategies.Bubble);&#10;&#10;public event EventHandler&lt;ValueChangedEventArgs&gt;? ValueChanged { add; remove; }&#10;gauge.AddHandler(ValueChangedEvent, handler);" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <pages:GaugeControl x:Name="EvtGauge" Width="200" Height="200" Maximum="100" Value="20"
+                          AutomationProperties.Name="路由事件示例仪表"/>
+      <Button Content="Value + 10" Click="IncButton_Click" HorizontalAlignment="Left"/>
+      <TextBlock x:Name="EvtLog" Text="(等触发)" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：订阅 routed event" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage26_TrimmingAOT.Pages.ProjectConfigDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 项目配置基础" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Trimming 配置" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;PropertyGroup&gt;&#x0a;  &lt;PublishTrimmed&gt;true&lt;/PublishTrimmed&gt;&#x0a;  &lt;TrimMode&gt;full&lt;/TrimMode&gt;&#x0a;  &lt;TrimmerRootDescriptor&gt;app.xml&lt;/TrimmerRootDescriptor&gt;&#x0a;&lt;/PropertyGroup&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="Native AOT 配置" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;PropertyGroup&gt;&#x0a;  &lt;PublishAot&gt;true&lt;/PublishAot&gt;&#x0a;  &lt;InvariantGlobalization&gt;true&lt;/InvariantGlobalization&gt;&#x0a;  &lt;StripSymbols&gt;true&lt;/StripSymbols&gt;&#x0a;&lt;/PropertyGroup&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="发布命令" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="dotnet publish -c Release -r win-x64 /p:PublishAot=true&#x0a;dotnet publish -c Release -r linux-x64 /p:PublishTrimmed=true" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="Avalonia 12.1：自身已 IsAotCompatible；第三方控件需逐包验证。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：PublishTrimmed/PublishAot 配置" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

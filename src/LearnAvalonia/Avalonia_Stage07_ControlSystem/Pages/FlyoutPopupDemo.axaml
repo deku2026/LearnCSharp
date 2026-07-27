@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.FlyoutPopupDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§E1-E2 弹层 Popup·Flyout·MenuFlyout·ContextMenu" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="分层心智：ToolTip（悬停轻）→ Flyout/MenuFlyout（轻量弹出命令/菜单）→ ContextMenu（右键/长按）→ Popup（底层弹出原语）" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：Button.Flyout = MenuFlyout" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Orientation="Horizontal" Spacing="8">
+          <Button Content="更多">
+            <Button.Flyout>
+              <MenuFlyout>
+                <MenuItem Header="复制"/>
+                <MenuItem Header="删除"/>
+              </MenuFlyout>
+            </Button.Flyout>
+          </Button>
+          <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+            <TextBlock Text="右键此区域 → ContextMenu"/>
+            <Border.ContextMenu>
+              <ContextMenu>
+                <MenuItem Header="属性"/>
+                <MenuItem Header="复制"/>
+              </ContextMenu>
+            </Border.ContextMenu>
+          </Border>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="· Popup：需要精确放置、自定义内容时" TextWrapping="Wrap"/>
+      <TextBlock Text="· 注意 Popup 的 visual root / 焦点范围（阶段 5）" TextWrapping="Wrap"/>
+      <TextBlock Text="· 移动上长按 ≈ 上下文菜单，需真机手感验证" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：使用 MenuFlyout 与 ContextMenu" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

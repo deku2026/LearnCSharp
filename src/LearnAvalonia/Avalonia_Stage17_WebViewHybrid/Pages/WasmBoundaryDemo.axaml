@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.WasmBoundaryDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 WASM 硬边界" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Browser 平台（Avalonia WebAssembly）：不能嵌套 NativeWebView——浏览器自身就是 webview。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="Browser 平台替代：" FontWeight="SemiBold"/>
+          <TextBlock Text="· iframe 嵌入第三方页（受 CORS / X-Frame-Options 限制）" TextWrapping="Wrap"/>
+          <TextBlock Text="· 直接 fetch + 渲染到 Avalonia 控件" TextWrapping="Wrap"/>
+          <TextBlock Text="· 用 WebAuthenticationBroker.Browser（CORS 配置 redirect 页）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="桌面主线不涉及 WASM；本节为知识完整保留。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Browser 端无 WebView" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

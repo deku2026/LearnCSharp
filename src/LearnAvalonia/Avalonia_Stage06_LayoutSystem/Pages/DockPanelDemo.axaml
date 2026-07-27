@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.DockPanelDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§D5 DockPanel" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="顺序敏感：先声明的先占边；末子 Fill 得剩余区域（LastChildFill=True）" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：经典壳 Top/Bottom/Left + 中心填充" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Height="200">
+        <DockPanel LastChildFill="True">
+          <Border DockPanel.Dock="Top" Background="SteelBlue" Height="32">
+            <TextBlock Text="顶栏 Dock=Top" Foreground="White" VerticalAlignment="Center" Padding="8"/>
+          </Border>
+          <Border DockPanel.Dock="Bottom" Background="DimGray" Height="24">
+            <TextBlock Text="底栏 Dock=Bottom" Foreground="White" VerticalAlignment="Center" Padding="8"/>
+          </Border>
+          <Border DockPanel.Dock="Left" Background="CadetBlue" Width="120">
+            <TextBlock Text="侧栏 Dock=Left" Foreground="White" VerticalAlignment="Center" Padding="8" TextWrapping="Wrap"/>
+          </Border>
+          <Border Background="#2200FF00">
+            <TextBlock Text="中心填充（末子，LastChildFill=True）" Padding="8"/>
+          </Border>
+        </DockPanel>
+      </Border>
+      <TextBlock Text="验收：使用 Dock 与 LastChildFill" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

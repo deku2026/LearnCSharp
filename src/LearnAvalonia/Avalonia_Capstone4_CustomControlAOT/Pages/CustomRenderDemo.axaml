@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.CustomRenderDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 自定义 Render (DrawingContext)" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="GaugeControl.Render 用 DrawingContext 画背景圆 + 圆弧（值进度）+ 11 条刻度 + 数字。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="context.DrawEllipse(null, new Pen(Brushes.Gray, 2), bounds);&#10;context.DrawArc(null, valuePen, side, side, 0, false, sweep&gt;π, p0, p1);&#10;for i in 0..10: context.DrawLine(pen, inner, outer);&#10;context.DrawText(formattedText, center);" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <pages:GaugeControl Width="220" Height="220" Maximum="100" Value="70" NeedleBrush="OrangeRed"
+                          AutomationProperties.Name="Render 演示仪表"/>
+      <TextBlock Text="关键：AffectsRender 注册 Value/Maximum/NeedleBrush；属性变 → InvalidateVisual → 下一帧重绘。" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：Render 自绘圆弧刻度" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

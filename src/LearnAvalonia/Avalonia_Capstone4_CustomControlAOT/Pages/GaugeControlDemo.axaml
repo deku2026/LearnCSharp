@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.GaugeControlDemo"
+             x:DataType="pages:GaugeControlDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 GaugeControl 控件运行" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="拖动滑块改 Value；GaugeControl.Render 重绘圆弧；ValueChanged 写日志。" TextWrapping="Wrap"/>
+      <pages:GaugeControl x:Name="Gauge" Width="220" Height="220" Maximum="100" Value="40" NeedleBrush="OrangeRed"
+                          AutomationProperties.Name="进度仪表"/>
+      <Slider x:Name="ValueSlider" Minimum="0" Maximum="100" Value="40" SmallChange="1" LargeChange="10"
+              ValueChanged="ValueSlider_ValueChanged" Width="280"/>
+      <TextBlock x:Name="GaugeLog" Text="Value = 40 / 100" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：运行 GaugeControl + Value 变更" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

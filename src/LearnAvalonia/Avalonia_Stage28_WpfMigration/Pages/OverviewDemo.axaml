@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage28_WpfMigration.Pages.OverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§0 导读：WPF/WinUI/WinForms 迁移" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="三策略" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="策略" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="适用" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="代价" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="重写" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="中小项目；想跨平台" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="工作量大；干净" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="增量 + 互操作" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="大型 WPF；分模块换" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="两套 UI 短期共存" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="💼 Avalonia XPF：商业产品，WPF XAML 直接跑 Avalonia 渲染；详见 §6。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：口述迁移三策略" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

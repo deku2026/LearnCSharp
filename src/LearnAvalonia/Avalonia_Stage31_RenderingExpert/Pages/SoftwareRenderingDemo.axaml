@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.SoftwareRenderingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 软件渲染" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="GPU 不可用 / 显式请求时切 Skia raster；CPU 写位图，性能差但保证可见。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="Win32PlatformOptions.RenderingMode =&#10;  [ Win32RenderingMode.Vulkan, Win32RenderingMode.Software ]&#10;X11PlatformOptions.RenderingMode =&#10;  [ X11RenderingMode.Glx, X11RenderingMode.Software ]" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="取舍：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 优点：无 GPU 驱动崩溃；可截图测试（Headless 默认）"/>
+      <TextBlock Text="• 缺点：60fps 在大窗口时吃 CPU；大位图走 RAM 拷贝"/>
+      <TextBlock Text="产品线：服务器 / CI / RDP / 老 GPU 用户"/>
+      <TextBlock Text="验收：解释降级与取舍" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

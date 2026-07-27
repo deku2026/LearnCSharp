@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage23_AccessibilityI18n.Pages.PlatformDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 平台差异汇总" FontWeight="Bold" FontSize="14"/>
+      <Grid ColumnDefinitions="Auto,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="维度" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Windows" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="macOS" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="Linux" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="AT 桥" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="UIA" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="AXUIElement" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="AT-SPI2" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="读屏" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Narrator/NVDA/JAWS" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="VoiceOver" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="Orca" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="高对比" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="HighContrast 主题" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="Increase Contrast" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="3" Text="HighContrast 主题" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="IME" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="TSF" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="IMK" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="3" Text="IBus/Fcitx" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="字体回退" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="DirectWrite fallback" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="2" Text="Core Text fallback" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="3" Text="fontconfig/Pango" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="验收：差异表覆盖三平台" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

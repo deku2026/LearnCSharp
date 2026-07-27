@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage21_AppArchitecture.Pages.NavigationDialogDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 导航与对话框服务" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="INavigationService" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public interface INavigationService&#x0a;{&#x0a;    Task NavigateAsync(string route, object? parameter = null, CancellationToken ct = default);&#x0a;    Task GoBackAsync(CancellationToken ct = default);&#x0a;    bool CanGoBack { get; }&#x0a;}&#x0a;// 桌面 Frame / 移动 Pages / Browser 历史：分实现" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="IDialogService" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public interface IDialogService&#x0a;{&#x0a;    Task&lt;bool&gt; ConfirmAsync(string title, string msg, CancellationToken ct = default);&#x0a;    Task AlertAsync(string title, string msg, CancellationToken ct = default);&#x0a;    Task&lt;string?&gt; PromptAsync(string title, string? def = null, CancellationToken ct = default);&#x0a;    Task&lt;TResult?&gt; ShowDialogAsync&lt;TVM,TResult&gt;(CancellationToken ct = default);&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="VM 用法：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="if (!await _dialogs.ConfirmAsync(&quot;删除&quot;, &quot;确定删除？&quot;)) return;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="禁止 VM 直接 new Window().ShowDialog" Foreground="OrangeRed" TextWrapping="Wrap"/>
+      <Button x:Name="SimulateConfirm" Content="模拟 ConfirmAsync 流（VM 视角）" Click="SimulateConfirm_Click" Margin="0,4,0,0"/>
+      <Button x:Name="SimulateNavigate" Content="模拟 NavigateAsync 流（VM 视角）" Click="SimulateNavigate_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="NavLog" Text="日志：等待操作..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="文件对话框走阶段 16 IFilePickerService，不另造轮子" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：VM 零 Window 类型引用" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

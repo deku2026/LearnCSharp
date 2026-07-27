@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage01_AppBuilder.Pages.ShutdownModeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 Desktop ShutdownMode" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="三种模式：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="OnLastWindowClose —— 最后一个窗口关闭 → 退出（多文档/工具窗口）" TextWrapping="Wrap"/>
+          <TextBlock Text="OnMainWindowClose —— 主窗口关闭 → 退出（即使还有其他窗口）" TextWrapping="Wrap"/>
+          <TextBlock Text="OnExplicitShutdown —— 仅当代码调用 Shutdown() 才退出（托盘常驻）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="实验：点击下方按钮打开第二窗口，观察不同模式下关闭主/子窗的进程行为" TextWrapping="Wrap"/>
+      <Button x:Name="OpenChildButton" Content="打开第二窗口（观察 lifetime）" Click="OpenChildButton_Click" Margin="0,4,0,0"/>
+      <Button x:Name="ExplicitShutdownButton" Content="显式 Shutdown()（OnExplicitShutdown 时用）" Click="ExplicitShutdownButton_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="LogText" Text="日志：等待操作..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="提示：本应用以 ClassicDesktopLifetime 启动，ShutdownMode 默认 OnLastWindowClose" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：配置并验证两种 ShutdownMode" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

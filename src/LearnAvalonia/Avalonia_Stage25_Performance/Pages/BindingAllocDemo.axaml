@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage25_Performance.Pages.BindingAllocDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 绑定与分配" FontWeight="Bold" FontSize="14"/>
+      <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="绑定模式" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="机制" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="性能" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="CompiledBinding" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="编译期生成访问器" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="无反射，零装箱" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="ReflectionBinding" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="运行时反射 PropertyInfo" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="每路径查表 + 装箱" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="x:DataType" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="启用 CompiledBinding" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="12.1 默认开启" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="Avalonia 12.1：项目级 CompiledBindings 默认开启；仅 DataContext=object 时回退 Reflection。" TextWrapping="Wrap"/>
+      <TextBlock Text="减少分配：避免 lambda 闭包；用静态方法替换；缓存 PropertyChangedEventArgs。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：CompiledBinding 减少 alloc" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

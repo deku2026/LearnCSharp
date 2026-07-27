@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.RoutedEventDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.9 路由事件" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public static readonly RoutedEvent&lt;RoutedEventArgs&gt; ValueChangedEvent =&#10;    RoutedEvent.Register&lt;RatingControl, RoutedEventArgs&gt;(&#10;        nameof(ValueChanged), RoutingStrategies.Bubble);&#10;&#10;public event EventHandler&lt;RoutedEventArgs&gt;? ValueChanged {&#10;    add =&gt; AddHandler(ValueChangedEvent, value);&#10;    remove =&gt; RemoveHandler(ValueChangedEvent, value);&#10;}&#10;&#10;void RaiseValueChanged() =&gt; RaiseEvent(new RoutedEventArgs(ValueChangedEvent));" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="路由策略：Bubble / Tunnel / Direct（见阶段 12）。" TextWrapping="Wrap"/>
+      <TextBlock Text="库控件同时提供事件 + 命令，方便 MVVM。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：RoutedEvent.Register + AddHandler" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

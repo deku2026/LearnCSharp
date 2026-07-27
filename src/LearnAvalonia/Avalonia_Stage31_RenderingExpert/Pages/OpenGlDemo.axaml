@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.OpenGlDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 OpenGL / EGL" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Linux X11 走 GLX/EGL；Windows 走 Wgl/Vulkan；macOS 弃 GL。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="Avalonia.OpenGL.dll&#10;  IGlContext / IGlPlatformSurface&#10;  OpenGlPlatformOptions&#10;    Profile = OpenGlProfileVersion.GL &#10;    DefaultCompatibility = true" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="EGL 跨 Wayland/X11；GLX 老 X11；Wgl Windows。" TextWrapping="Wrap"/>
+      <TextBlock Text="陷阱：GL Context 在 UI 或 Render 线程；MakeCurrent 必须 single。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：列出 GL 入口" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone3_CrossPlatform.Pages.HostRoleDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.2 Host 做什么（桌面三平台）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Host 职责：启动 AppBuilder、装配 Lifetime、注入平台服务、显示 MainWindow。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// MyApp.Desktop/Program.cs&#10;AppBuilder.Configure&lt;App&gt;()&#10;    .UsePlatformDetect()&#10;    .WithInterFont()&#10;    .StartWithClassicDesktopLifetime(args);&#10;&#10;// App.OnFrameworkInitializationCompleted&#10;if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)&#10;{&#10;    desktop.MainWindow = new MainWindow { DataContext = new MainViewModel() };&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="桌面三平台统一：IClassicDesktopStyleApplicationLifetime（同 1 个 Program.cs 跑三平台）。" TextWrapping="Wrap"/>
+      <TextBlock Text="移动 Activity / Browser SingleView 见 roadmap，本 Capstone 不实现。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：桌面平台入口与生命周期" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

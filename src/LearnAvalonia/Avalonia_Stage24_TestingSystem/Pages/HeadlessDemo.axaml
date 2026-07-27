@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage24_TestingSystem.Pages.HeadlessDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 Headless 测试完整示例" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Avalonia.Headless.XUnit：[AvaloniaFact] 在内存里启动 Avalonia 应用；构造控件、Measure/Arrange、断言。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="[AvaloniaFact]&#x0a;public void Button_Click_Raises_Event()&#x0a;{&#x0a;    Button btn = new() { Content = &quot;Click&quot; };&#x0a;    btn.Measure(new Size(200, 100));&#x0a;    btn.Arrange(new Rect(0, 0, btn.DesiredSize.Width, btn.DesiredSize.Height));&#x0a;    bool clicked = false;&#x0a;    btn.Click += (_, _) =&gt; clicked = true;&#x0a;    btn.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));&#x0a;    Assert.True(clicked);&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="现场：点击下面按钮在运行时模拟 Headless 模式" FontWeight="SemiBold"/>
+      <Button Content="运行 snippet（构造 Button + Click）" Click="RunSnippetButton_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="SnippetResult" Text="等待运行..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      <TextBlock Text="Usings.cs：global using Avalonia.Headless.XUnit; global using Xunit;" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：AvaloniaFact 构造控件 + 断言" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

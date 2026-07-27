@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage24_TestingSystem.Pages.LayeringDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 分层职责与命名" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="项目结构" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="src/&#x0a;  MyApp/                 &lt;-- 应用&#x0a;  MyApp.Tests/          &lt;-- 测试（独立 csproj）&#x0a;    Usings.cs            &lt;-- global using Avalonia.Headless.XUnit;&#x0a;    SmokeTests.cs&#x0a;    BindingHeadlessTests.cs&#x0a;    LayoutHeadlessTests.cs" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="命名约定" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="类名" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="&lt;Topic&gt;Tests（如 BindingHeadlessTests）" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="方法" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Should_&lt;expected&gt;_When_&lt;context&gt;" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="特性" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="[AvaloniaFact] / [AvaloniaTheory]" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="文件头" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Doc/Title/Stage/Accept/Notes 注释" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="测试项目 csproj：引用 Avalonia.Headless + Avalonia.Headless.XUnit + xunit.v3 + Microsoft.NET.Test.Sdk。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Unit/Headless/Visual/Appium 职责" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

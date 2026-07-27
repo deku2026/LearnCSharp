@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.MetalDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 Metal (macOS)" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="macOS 后端 GPU 路径走 Metal；Avalonia.Native 优先 Metal。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="AvaloniaNativePlatformOptions.RenderingMode = [Metal]&#10;Avalonia.Metal.dll → IMetalDevice → Skia GRMetalTexture" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="为什么用 Metal：" FontWeight="SemiBold"/>
+      <TextBlock Text="• Apple 弃 OpenGL；Metal 是 macOS/iOS 唯一 GPU 高性能路径"/>
+      <TextBlock Text="• Skia GRMetal 后端；与 Vulkan/GL 同层"/>
+      <TextBlock Text="时间线：和 macOS NSView 共享 CAMetalLayer；Swapchain 由 Avalonia.Native 提供。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：macOS Metal 角色" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

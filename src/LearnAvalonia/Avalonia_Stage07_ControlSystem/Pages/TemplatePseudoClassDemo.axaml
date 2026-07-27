@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.TemplatePseudoClassDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§F1-F3 控件与模板·伪类·AutomationId" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Lookless：多数控件外观来自 ControlTheme/ControlTemplate，不是子类里写死绘制" TextWrapping="Wrap"/>
+      <TextBlock Text="改外观优先级：1. 样式属性/Classes → 2. 换 ControlTheme → 3. 最后才派生子类改行为" TextWrapping="Wrap"/>
+      <TextBlock Text="常用伪类（写样式时）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text=":pointerover  :pressed  :disabled  :focus  :focus-visible&#10;:checked  :indeterminate  :selected  :invalid"/>
+      </Border>
+      <TextBlock Text="现场：AutomationId（Headless/自动化打 ID）" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Orientation="Horizontal" Spacing="8">
+          <Button Content="保存" x:Name="SaveButton"/>
+          <TextBox PlaceholderText="搜索" x:Name="SearchBox"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="从现在起为 Headless/自动化打 ID——Capstone 1 硬性" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：为关键控件补 AutomationId" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

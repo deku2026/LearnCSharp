@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage23_AccessibilityI18n.Pages"
+             x:Class="LearnAvalonia.Avalonia_Stage23_AccessibilityI18n.Pages.AutomationPeerDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 AutomationPeer 与 a11y 树" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="视觉树 ↔ AutomationPeer 树：每个 Control 可重写 OnCreateAutomationPeer 返回 Peer。" TextWrapping="Wrap"/>
+      <TextBlock Text="Peer 职责" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="protected override AutomationPeer OnCreateAutomationPeer()&#x0a;    => new AccessibleCardPeer(this);&#x0a;&#x0a;protected override string? GetNameCore()&#x0a;    => _owner.AccessibleName ?? base.GetNameCore();&#x0a;&#x0a;protected override string GetClassNameCore()&#x0a;    => &quot;AccessibleCard&quot;;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="关键方法" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="GetNameCore" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="读屏朗读名；优先 AutomationProperties.Name" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="GetClassNameCore" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="角色类别名（button/list/item 等）" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="GetControlType" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="映射到平台 UIA ControlType" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="GetHelpTextCore" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="扩展提示（可选）" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="GetPattern" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="Invoke/Selection/Value 等 Pattern" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="现场：可访问卡片（下方的 AccessibleCard 自定义控件）" FontWeight="SemiBold"/>
+      <Border Background="#F4F4F4" Padding="8" CornerRadius="4">
+        <pages:AccessibleCard AccessibleName="订单卡片 · 金额 128 元 · 待发货">
+          <StackPanel Spacing="2">
+            <TextBlock Text="订单 #20250727-001" FontWeight="SemiBold"/>
+            <TextBlock Text="金额：¥128.00 · 状态：待发货"/>
+          </StackPanel>
+        </pages:AccessibleCard>
+      </Border>
+      <TextBlock Text="读屏优先级：AutomationProperties.Name &gt; 内置 Content/Text &gt; GetNameCore 兜底。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：自定义 Peer 暴露名称/角色" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

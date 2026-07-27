@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.MinExperimentsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 最小实验清单" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <TextBlock Text="实验 A · Shape + Gradient + Transform" FontWeight="SemiBold"/>
+          <TextBlock Text="1. Canvas 上组合 Path/Ellipse" TextWrapping="Wrap"/>
+          <TextBlock Text="2. hover 时 RenderTransform 缩放 Transitions" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 B · DrawingContext 折线图" FontWeight="SemiBold"/>
+          <TextBlock Text="1. PlotControl 绑定 ObservableCollection 数据" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 定时追加点；验证 AffectsRender" TextWrapping="Wrap"/>
+          <TextBlock Text="3. Profiler 看分配" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 C · 动画可见性" FontWeight="SemiBold"/>
+          <TextBlock Text="1. Infinite 动画放列表" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 滚出视口观察 CPU（PlaybackBehavior）" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 D · 文本 shaping 样例" FontWeight="SemiBold"/>
+          <TextBlock Text="1. 阿拉伯/印地字符串在 TextBlock" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 验证不断字、不乱序" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 E · SVG 选型（文档实验）" FontWeight="SemiBold"/>
+          <TextBlock Text="1. 评估 SVG 包 12 兼容/AOT/许可" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 图标优先 Path Geometry 对照" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：完成 Shape/DrawingContext/动画 5 实验" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

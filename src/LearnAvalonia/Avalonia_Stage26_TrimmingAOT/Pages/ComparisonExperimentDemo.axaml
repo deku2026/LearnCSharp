@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage26_TrimmingAOT.Pages.ComparisonExperimentDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 对比实验设计" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="同一 app 三配置对比" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="Auto,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="指标" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="默认" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="Trimmed" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="NativeAOT" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="体积" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="~80 MB" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="~30 MB" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="~15 MB" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="启动" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="800 ms" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="400 ms" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="80 ms" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="内存" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="120 MB" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="80 MB" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="3" Text="50 MB" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="反射" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="可用" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="受限" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="3" Text="禁用" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="数字仅供参考；以本机实测为准。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：trim/AOT 体积对比表" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

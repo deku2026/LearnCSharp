@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.AnimatedGaugeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.15 组合示例：可动画仪表" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public class Gauge : Control {&#10;    public static readonly StyledProperty&lt;double&gt; ValueProperty =&#10;        AvaloniaProperty.Register&lt;Gauge, double&gt;(nameof(Value),&#10;            coerce: (_, v) =&gt; Math.Clamp(v, 0, 100));&#10;&#10;    static Gauge() {&#10;        AffectsRender&lt;Gauge&gt;(ValueProperty);&#10;    }&#10;&#10;    public override void Render(DrawingContext context) {&#10;        // 画弧（按 Value 0-100 映射 0-270°）&#10;    }&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="对 Value 使用 DoubleTransition 即可平滑过渡，无需手写帧循环：" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;Gauge Value=&quot;{Binding Load}&quot;&gt;&#10;  &lt;Gauge.Transitions&gt;&#10;    &lt;Transitions&gt;&#10;      &lt;DoubleTransition Property=&quot;Value&quot; Duration=&quot;0:0:0.3&quot;/&gt;&#10;    &lt;/Transitions&gt;&#10;  &lt;/Gauge.Transitions&gt;&#10;&lt;/Gauge&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="组合 StyledProperty + AffectsRender + DoubleTransition 实现声明式平滑动画。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Gauge+AffectsRender+Transition" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

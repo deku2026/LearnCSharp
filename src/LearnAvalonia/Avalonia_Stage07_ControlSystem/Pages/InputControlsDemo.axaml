@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.InputControlsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§B1-B7 输入控件速览" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="TextBox（PlaceholderText）· MaskedTextBox · AutoCompleteBox · NumericUpDown · Slider · 日期 · ComboBox · ColorPicker（独立包）" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="6" ColumnSpacing="8">
+          <Label Grid.Row="0" Grid.Column="0" Content="TextBox"/>
+          <TextBox Grid.Row="0" Grid.Column="1" PlaceholderText="请输入姓名"/>
+          <Label Grid.Row="1" Grid.Column="0" Content="NumericUpDown"/>
+          <NumericUpDown Grid.Row="1" Grid.Column="1" Value="1" Minimum="1" Maximum="99"/>
+          <Label Grid.Row="2" Grid.Column="0" Content="Slider"/>
+          <Slider Grid.Row="2" Grid.Column="1" Minimum="0" Maximum="100" Value="50"/>
+          <Label Grid.Row="3" Grid.Column="0" Content="ComboBox"/>
+          <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" PlaceholderText="选择">
+            <ComboBoxItem Content="选项一"/>
+            <ComboBoxItem Content="选项二"/>
+          </ComboBox>
+          <Label Grid.Row="4" Grid.Column="0" Content="CalendarDatePicker"/>
+          <CalendarDatePicker Grid.Row="4" Grid.Column="1"/>
+          <Label Grid.Row="5" Grid.Column="0" Content="AutoCompleteBox"/>
+          <AutoCompleteBox Grid.Row="5" Grid.Column="1"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="12 用 PlaceholderText 为主占位 API（旧 Watermark 心智对齐）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：使用 PlaceholderText 与各输入控件" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

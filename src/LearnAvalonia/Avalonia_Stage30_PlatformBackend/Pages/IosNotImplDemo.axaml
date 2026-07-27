@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage30_PlatformBackend.Pages.IosNotImplDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 iOS / iPadOS（非桌面 — 见 roadmap）" FontWeight="Bold" FontSize="14" Foreground="Gray"/>
+      <TextBlock Text="状态：本应用为 WinExe 桌面主线，不在此 build/run iOS 入口。" TextWrapping="Wrap"/>
+      <TextBlock Text="概念入口（Avalonia.iOS.dll）：" FontWeight="SemiBold"/>
+      <TextBlock Text="• AppDelegate — UIKit 生命周期"/>
+      <TextBlock Text="• Scene-based — UISceneSession"/>
+      <TextBlock Text="• Metal / GLKView — 渲染"/>
+      <TextBlock Text="• ⚠️ Window 可能 null（scene 尚未附接）"/>
+      <TextBlock Text="⚠️ 见 roadmap，不在本桌面 Capstone 实现" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：见 roadmap，桌面策略不实现" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

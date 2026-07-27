@@ -1,0 +1,62 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.PlatformPerfAcceptanceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§G-J 平台差 · 12 变化 · 专家 · 验收" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="§G 平台差异速查表：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="主题" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="Win" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="macOS" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="Linux" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="4" Text="移动" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="5" Text="Browser" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="分数缩放" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="高发" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="多为 2x" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="视 DE" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="4" Text="密度桶" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="5" Text="CSS/浏览器" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Safe area" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="弱" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="弱" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="弱" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="4" Text="强" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="5" Text="视口/刘海" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="多显示器" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="强" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="强" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="中" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="4" Text="少" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="5" Text="无" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="方向变化" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="少" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="少" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="少" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="4" Text="强" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="5" Text="移动浏览器" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="默认后端" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="Win32" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="AppKit" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="X11（Wayland 🧪）" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="4" Text="各自主机" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="5" Text="CanvasKit" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="§I 专家：嵌套昂贵——成本近似 C ≈ O(树节点数 × 每节点测量复杂度 × 每帧失效次数)；虚拟化把节点数从 N 降到视口大小 k" TextWrapping="Wrap"/>
+      <TextBlock Text="§I 降本口诀：砍深度 · 砍模板层 · 虚拟化 · 动画用 RenderTransform（少动 Margin/Width）· 卸载不可见大树 · 转换器禁布局循环" TextWrapping="Wrap"/>
+      <TextBlock Text="§J 验收清单：" FontWeight="SemiBold"/>
+      <TextBlock Text="· 闭卷画出 Measure→Arrange，并解释 Desired vs Available vs Final" TextWrapping="Wrap"/>
+      <TextBlock Text="· 正确说明 Margin/Padding、Alignment、Min/Max、IsVisible vs Opacity" TextWrapping="Wrap"/>
+      <TextBlock Text="· 按场景选型 Stack/Grid/Wrap/Dock/Canvas/Relative/Uniform，无全用 Canvas" TextWrapping="Wrap"/>
+      <TextBlock Text="· 解释 ScrollViewer 与虚拟化为何能降低成本" TextWrapping="Wrap"/>
+      <TextBlock Text="· 提交一个自定义 Panel + 至少 1 个布局断言测试" TextWrapping="Wrap"/>
+      <TextBlock Text="· 记录一次 resize 下布局计数对比（深嵌套 vs 扁平）" TextWrapping="Wrap"/>
+      <TextBlock Text="· 在分数缩放或双平台之一验证无恒定 1px 错位灾难" TextWrapping="Wrap"/>
+      <TextBlock Text="· 无布局循环（Measure 中乱改属性）代码" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：统计 resize 布局次数与平台差异" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

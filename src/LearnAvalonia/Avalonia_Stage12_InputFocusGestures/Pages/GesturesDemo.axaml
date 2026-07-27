@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.GesturesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.3 手势事件在 InputElement（🆕 12 心智）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="旧代码常写静态 Gestures.Tapped 等。12 主线：手势事件在 InputElement 上，订阅方式与其它输入事件一致，去掉对「Gestures. 前缀静态事件」的依赖心智。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// 现行心智：实例事件 / AddHandler on InputElement&#10;inputElement.Tapped += OnTapped;&#10;inputElement.DoubleTapped += OnDoubleTapped;&#10;inputElement.Holding += OnHolding;&#10;// 捏合、滚动等以 12.1 API 表面为准" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;!-- XAML 事件属性示意 --&gt;&#10;&lt;Border Tapped=&quot;OnTapped&quot;&#10;        DoubleTapped=&quot;OnDoubleTapped&quot;&#10;        Holding=&quot;OnHolding&quot;&#10;        Background=&quot;Transparent&quot;/&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="与 Button：Button.Click 已封装指针/键盘激活；自定义可点击表面优先 Button，避免重复实现 Access Key 与无障碍。" TextWrapping="Wrap"/>
+      <TextBlock Text="选择行为变化：触摸/笔选择常在 pointer release 触发——测试列表多选时勿假设 press 即选中。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Tapped/DoubleTapped/Holding 实例事件" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

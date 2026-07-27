@@ -3,6 +3,8 @@
     <OutputType>WinExe</OutputType>
     <AssemblyName>Avalonia_Stage22_DataNetworkAuth</AssemblyName>
     <RootNamespace>LearnAvalonia.Avalonia_Stage22_DataNetworkAuth</RootNamespace>
+    <!-- SQLitePCLRaw.lib.e_sqlite3 2.1.11 transitive advisory (CPM pins Microsoft.Data.Sqlite 10.0.0) -->
+    <NoWarn>$(NoWarn);NU1903</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,5 +12,9 @@
     <PackageReference Include="Avalonia.Desktop" />
     <PackageReference Include="Avalonia.Themes.Fluent" />
     <PackageReference Include="Avalonia.Fonts.Inter" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Microsoft.Data.Sqlite" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
   </ItemGroup>
 </Project>

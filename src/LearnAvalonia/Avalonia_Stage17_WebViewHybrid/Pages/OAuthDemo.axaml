@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.OAuthDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 OAuth + WebAuthenticationBroker" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="WebAuthenticationBroker：封装 OAuth/ OIDC 授权码流程；弹 webview 打开登录页，监听 redirect。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="var opts = new WebAuthenticatorOptions(&#10;    RequestUri: new Uri(&#34;https://accounts.google.com/o/oauth2/auth?...&#34;),&#10;    RedirectUri: new Uri(&#34;http://localhost&#34;));&#10;var result = await WebAuthenticationBroker.AuthenticateAsync(mainWindow, opts);&#10;string? code = HttpUtility.ParseQueryString(result.CallbackUri.Query)[&#34;code&#34;];" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="兼容：Google / Azure / 自定义 OAuth（基于 redirect URI）。" TextWrapping="Wrap"/>
+      <TextBlock Text="PKCE：现代 OAuth 推荐用 PKCE（code_verifier + code_challenge）；Broker 不替代 PKCE。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：WebAuthenticationBroker.AuthenticateAsync" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

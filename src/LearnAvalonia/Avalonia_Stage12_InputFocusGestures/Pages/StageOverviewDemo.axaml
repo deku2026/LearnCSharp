@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.StageOverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 为什么输入是专家分水岭" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="输入是 Avalonia 用户与控件交互的最底层通道。阶段 1–9 解决「能画、能绑」，但生产应用必须正确处理四类输入：" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="1. 按键 — 路由事件、KeyGesture、热键、命令" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 指针 — mouse/touch/pen、Capture、命中测试" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 手势 — Tapped/DoubleTapped/Holding/Pinch（InputElement 上）" TextWrapping="Wrap"/>
+          <TextBlock Text="4. IME — 中文/日文/韩文组合上屏、TextInput" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="专家分水岭在于：理解路由策略（tunnel/bubble/direct）、Handled 纪律、焦点 scopes、跨平台差异（macOS Command、Linux IME）、以及 12 的异步剪贴板/DnD 模型。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：区分按键/指针/手势/IME 四通道" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

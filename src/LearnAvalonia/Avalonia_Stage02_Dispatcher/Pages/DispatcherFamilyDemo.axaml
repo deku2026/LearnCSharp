@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.DispatcherFamilyDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 Dispatcher 家族 API" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="Dispatcher.UIThread —— 主 UI dispatcher（应用代码最常见）" TextWrapping="Wrap"/>
+          <TextBlock Text="Dispatcher.CurrentDispatcher —— 当前线程关联的 dispatcher；线程池上勿假设等于 UIThread" TextWrapping="Wrap"/>
+          <TextBlock Text="Dispatcher.FromThread(thread) —— 显式跨线程查找；可能为 null" TextWrapping="Wrap"/>
+          <TextBlock Text="AvaloniaObject.Dispatcher —— 库/控件作者首选，自动找对队列" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="CheckAccess / VerifyAccess：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="if (Dispatcher.UIThread.CheckAccess()) { /* 已在 UI */ }&#10;Dispatcher.UIThread.VerifyAccess(); // 不在则抛"/>
+      </Border>
+      <TextBlock Text="应用用 UIThread 可以；库和控件应使用 AvaloniaObject.Dispatcher / CurrentDispatcher 以正确支持多 dispatcher 实例" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：讲清 UIThread/CurrentDispatcher/AvaloniaObject.Dispatcher" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

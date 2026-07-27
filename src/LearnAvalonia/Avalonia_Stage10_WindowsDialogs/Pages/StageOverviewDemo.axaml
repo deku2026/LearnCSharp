@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.StageOverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 为什么桌面窗口是独立阶段" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="阶段 1–9 保证「能画 UI、能绑定、有主题」。生产桌面应用还要解决六类系统级问题：" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="1. 多窗口文档模型 — 编辑器、对比、浮动工具面板" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 模态与非模态 — 生命周期与 Owner 级联" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 原生观感 — 系统按钮、圆角、暗色标题栏、macOS 红绿灯" TextWrapping="Wrap"/>
+          <TextBlock Text="4. 托盘常驻、全局菜单、Dock" TextWrapping="Wrap"/>
+          <TextBlock Text="5. 会话恢复 — 位置/最大化/显示器指纹" TextWrapping="Wrap"/>
+          <TextBlock Text="6. 系统入口 — 文件关联、协议激活、单实例唤起" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="这些能力在 Desktop Lifetime 下最完整；Browser/移动是另一套约束（阶段 11/16）。" TextWrapping="Wrap"/>
+      <TextBlock Text="本阶段把桌面壳做成「可验收的工程能力」，而不是零散 API 备忘。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：列出 6 类桌面壳需求" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

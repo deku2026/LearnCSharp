@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.ArchitectureDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 架构落位（强制）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="解决方案目录" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="src/&#x0a;  Product.Domain/&#x0a;  Product.Application/&#x0a;  Product.Infrastructure/&#x0a;  Product.Presentation/        # Avalonia UI&#x0a;  Product.Desktop/               # 唯一桌面 host（多 RID）&#x0a;  Product.Plugin.Abstractions/&#x0a;  plugins/  SamplePlugin/&#x0a;tests/  Product.UnitTests/  Product.HeadlessTests/&#x0a;installer/                       # 打包脚本与元数据" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="依赖规则" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="Domain 无 Avalonia" TextWrapping="Wrap"/>
+          <TextBlock Text="插件只引 Abstractions" TextWrapping="Wrap"/>
+          <TextBlock Text="Presentation 不直接 new HttpClient" TextWrapping="Wrap"/>
+          <TextBlock Text="组合根在 Desktop host" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="UI 架构：默认 CommunityToolkit.Mvvm；若用 ReactiveUI 必须 ReactiveUI.Avalonia 12 线" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：插件只引 Abstractions + 组合根在 Desktop host" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

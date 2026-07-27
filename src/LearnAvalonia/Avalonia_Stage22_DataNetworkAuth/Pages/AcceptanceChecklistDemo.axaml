@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.AcceptanceChecklistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§17 验收标准" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="[ ] 所有 HTTP 经 IHttpClientFactory（或文档化的等价策略）" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] STJ source gen 用于主 DTO" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] 取消贯穿列表加载" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] 本地 SQLite（或声明的替代）可读写" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] Preferences 与 SecureStore 分离正确" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] OAuth/OIDC+PKCE 或等价安全登录流文档 + 演示" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] token 不进普通日志" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] 刷新单飞" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] 冲突策略可演示" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] Browser 存储/CORS 限制有书面策略" TextWrapping="Wrap"/>
+          <TextBlock Text="[ ] 无「JWT 算法课」喧宾夺主" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="完成标志：验收全勾；登录序列图入库；冲突演示可重复" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：勾选 11 条验收清单" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

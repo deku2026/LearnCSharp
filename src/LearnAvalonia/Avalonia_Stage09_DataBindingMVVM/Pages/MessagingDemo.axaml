@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages"
+             x:DataType="pages:MessagingVm"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.MessagingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§E3 Messaging" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Toolkit WeakReferenceMessenger：弱引用防泄漏；消息不能替代正规导航参数；注销随 Dispose" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：发送 ThemeChangedMessage → 注册方接收" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="8">
+          <Button Content="发送消息" Command="{Binding SendCommand}"/>
+          <TextBlock Text="{Binding LastMessage}" FontWeight="SemiBold"/>
+        </StackPanel>
+      </Border>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="WeakReferenceMessenger.Default.Register&lt;ThemeChangedMessage&gt;(this, (_, m) =&gt; { /* */ });&#10;WeakReferenceMessenger.Default.Send(new ThemeChangedMessage(ThemeVariant.Dark));"/>
+      </Border>
+      <TextBlock Text="验收：使用 WeakReferenceMessenger 收发消息" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

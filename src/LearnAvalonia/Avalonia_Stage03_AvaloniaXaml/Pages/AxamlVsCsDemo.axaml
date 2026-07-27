@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage03_AvaloniaXaml.Pages.AxamlVsCsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 同一 UI：axaml 与纯 C# 对照实验" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="axaml 版（PersonCard）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;Border Padding=&quot;12&quot; CornerRadius=&quot;8&quot; Background=&quot;{DynamicResource CardBg}&quot;&gt;&#10;  &lt;StackPanel Spacing=&quot;8&quot;&gt;&#10;    &lt;TextBlock FontWeight=&quot;Bold&quot; Text=&quot;{Binding Name}&quot; /&gt;&#10;    &lt;TextBlock Opacity=&quot;0.7&quot; Text=&quot;{Binding Email}&quot; /&gt;&#10;    &lt;Button Content=&quot;编辑&quot; Command=&quot;{Binding EditCommand}&quot; /&gt;&#10;  &lt;/StackPanel&gt;&#10;&lt;/Border&gt;"/>
+      </Border>
+      <TextBlock Text="纯 C# 版（对等）—— 下方实际渲染的卡片来自 C# 构造：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="var name = new TextBlock { FontWeight = FontWeight.Bold };&#10;name.Bind(TextBlock.TextProperty, CompiledBinding.Create((PersonVm p) => p.Name));&#10;Content = new Border { Padding = new Thickness(12), CornerRadius = new CornerRadius(8),&#10;    Child = new StackPanel { Spacing = 8, Children = { name, email, edit } } };"/>
+      </Border>
+      <TextBlock Text="实际 C# 构造的卡片（PersonCardViewCs）：下方 ContentControl 由代码注入" FontWeight="SemiBold"/>
+      <ContentControl x:Name="CsCardHost" Margin="0,4,0,0"/>
+      <TextBlock Text="验收点：两种写法创建等价对象图；绑定均用编译路径；XAML 只是构造的一种前端" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：完成 PersonCard 双实现" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

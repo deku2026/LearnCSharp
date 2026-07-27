@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone1_DesktopFoundation.Pages.AcceptanceChecklistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 验收勾选清单" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="§7.1 功能：" FontWeight="SemiBold"/>
+      <Border BorderBrush="DarkGreen" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="☐ F01 主壳自适应 resize 无崩布局"/>
+          <TextBlock Text="☐ F02 CRUD 全路径"/>
+          <TextBlock Text="☐ F03 列表/TableView 可用"/>
+          <TextBlock Text="☐ F04 表单编辑 + PlaceholderText"/>
+          <TextBlock Text="☐ F05 搜索过滤"/>
+          <TextBlock Text="☐ F06 ≥3 内容导航"/>
+          <TextBlock Text="☐ F07 删除确认 + 错误提示"/>
+          <TextBlock Text="☐ F08 多窗口"/>
+          <TextBlock Text="☐ F09 StorageProvider 导入或导出"/>
+          <TextBlock Text="☐ F10 设置项持久化"/>
+          <TextBlock Text="☐ F11 en + zh-Hans"/>
+          <TextBlock Text="☐ F12 浅/深/跟随系统"/>
+          <TextBlock Text="☐ F13 AutomationId 与键盘"/>
+          <TextBlock Text="☐ F14 重启恢复数据"/>
+          <TextBlock Text="☐ F15 测试数量达标"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="§7.2 工程与架构：" FontWeight="SemiBold"/>
+      <Border BorderBrush="DarkGreen" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="☐ Avalonia 全家桶 12.1.0 对齐 · net10.0 · CommunityToolkit.Mvvm 8.4.2"/>
+          <TextBlock Text="☐ 默认 compiled bindings；无故意 ReflectionBinding 主路径"/>
+          <TextBlock Text="☐ DI 组合根清晰 · VM 零 Window 类型引用"/>
+          <TextBlock Text="☐ 无 Avalonia.ReactiveUI 11.x · 无默认 ViewLocator · 无旧 FileDialog"/>
+          <TextBlock Text="☐ 只读表未误用 deprecated DataGrid · 未依赖 Pro 控件"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="§7.3-7.5 平台/质量/知识回流：" FontWeight="SemiBold"/>
+      <Border BorderBrush="DarkGreen" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="☐ Windows/macOS/Linux(X11) 运行证据"/>
+          <TextBlock Text="☐ Release 可运行 · 无持续 binding error · 分数缩放抽检 · Headless 冒烟绿"/>
+          <TextBlock Text="☐ Measure/Arrange 与壳布局选型 · TableView vs DataGrid · Style vs ControlTheme vs DataTemplate · CompiledBinding · 对话框/导航抽象"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：验收勾选全绿" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

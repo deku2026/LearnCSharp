@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.StageOverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 为什么需要 Pages" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Avalonia 11 时代跨平台团队常自建 Shell（帧导航、返回栈、标题栏）。Avalonia 12 将移动优先的页面导航一等公民化：" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="• 统一生命周期与焦点在过渡中的行为" TextWrapping="Wrap"/>
+          <TextBlock Text="• 与主题化装饰、safe area 集成" TextWrapping="Wrap"/>
+          <TextBlock Text="• 手势返回、抽屉与 Tab 的平台惯用交互" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="桌面仍可继续用 Window/Tab——但移动与触控优先产品应优先掌握官方 Pages，避免重复造轮子。" TextWrapping="Wrap"/>
+      <TextBlock Text="⚠ 命名警告：BottomSheet 不是当前核心控件清单标准名；勿与 MAUI/第三方笔记混淆。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：区分 Window 壳与 Pages 跨平台导航" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

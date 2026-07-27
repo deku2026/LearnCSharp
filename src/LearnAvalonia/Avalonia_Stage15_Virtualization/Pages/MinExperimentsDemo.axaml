@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.MinExperimentsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 最小实验 A-E（汇总）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="实验 A：虚拟化对比" FontWeight="SemiBold"/>
+          <TextBlock Text="· 同样 10k 行：ListBox（默认虚拟化）vs ItemsControl（无）" TextWrapping="Wrap"/>
+          <TextBlock Text="· 观察启动时间与滚动 FPS" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 B：TableView 三列只读" FontWeight="SemiBold"/>
+          <TextBlock Text="· 1k 行日志；行虚拟化滚动；可调列宽" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 C：DataGrid 编辑边界（demo §2.4 已示）" FontWeight="SemiBold"/>
+          <TextBlock Text="· 三列可编辑；标注 deprecated" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 D：ItemsRepeater 布局" FontWeight="SemiBold"/>
+          <TextBlock Text="· 500 项；StackLayout（demo §2.6 已示）" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 E：性能协作" FontWeight="SemiBold"/>
+          <TextBlock Text="· 线程池预解码图片 + UI 线程只绑缩略图" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：完成 5 个最小实验" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.UpdateServiceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 更新服务" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// FakeUpdateService：检查到版本 99.0，提示「演示更新」&#x0a;// 或真 Velopack 通道加分&#x0a;public interface IUpdateService&#x0a;{&#x0a;    Task&lt;UpdateInfo?&gt; CheckAsync(CancellationToken ct = default);&#x0a;    Task ApplyAsync(UpdateInfo info, CancellationToken ct = default);&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="要求：用户可「稍后」· 不在 UI 线程同步下载无反馈 · 签名校验在真更新路径必须有设计" TextWrapping="Wrap"/>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="检查更新（Fake）" Click="CheckButton_Click"/>
+        <Button Content="应用更新" Click="ApplyButton_Click"/>
+        <Button Content="稍后" Click="LaterButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="UpdateLog" Text="日志：点击按钮模拟 IUpdateService..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="验收：IUpdateService 可演示" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

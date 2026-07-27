@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.RadialPanelDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 RadialPanel 自定义布局" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="下方 RadialPanel 重写 MeasureOverride + ArrangeOverride，把 6 个圆点均匀分布在圆周上。" TextWrapping="Wrap"/>
+      <pages:RadialPanel Width="240" Height="240" Radius="80" StartAngle="-90">
+        <Border Width="20" Height="20" CornerRadius="10" Background="DodgerBlue"/>
+        <Border Width="20" Height="20" CornerRadius="10" Background="Crimson"/>
+        <Border Width="20" Height="20" CornerRadius="10" Background="MediumSeaGreen"/>
+        <Border Width="20" Height="20" CornerRadius="10" Background="Orange"/>
+        <Border Width="20" Height="20" CornerRadius="10" Background="Purple"/>
+        <Border Width="20" Height="20" CornerRadius="10" Background="Teal"/>
+      </pages:RadialPanel>
+      <TextBlock Text="实现要点：AffectsMeasure(Radius/StartAngle)；测子时用 +∞；排子用极坐标。" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：MeasureOverride + ArrangeOverride" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

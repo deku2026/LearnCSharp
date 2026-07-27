@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.SingleInstanceIpcDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.10 单实例与 IPC 激活" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="目标：第二次启动时激活已有实例，并把命令行/URI/文件路径传给它。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// Program.cs 启动早段：&#10;if (!SingleInstance.TryAcquire(&quot;Global\MyApp.SingleInstance&quot;)) {&#10;    await IpcClient.SendActivateAsync(args);&#10;    return;&#10;}&#10;&#10;_mutex = new Mutex(true, name, out var created);&#10;&#10;// 主实例监听 → Dispatcher.UIThread.Post：&#10;//  WindowState 还原 + Activate + 处理 msg.Files / msg.Uri" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="跨平台可选方案：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="Mutex + 命名管道 — 🪟 常见" TextWrapping="Wrap"/>
+          <TextBlock Text="Unix domain socket / 锁文件 — 🐧 🍎" TextWrapping="Wrap"/>
+          <TextBlock Text="第三方单实例库 — 评估许可证与 AOT" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="激活主实例时：IsVisible 检查 → Show；Minimized → Normal；Activate()。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Mutex + 命名管道激活已运行实例" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

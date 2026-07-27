@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.FileAssociationUriDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.11 文件关联与 URI" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="系统在「打开方式 / 自定义协议」时启动进程并传入参数：" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// myapp.exe &quot;C:\docs\a.myext&quot;&#10;// myapp.exe myapp://open?id=42&#10;&#10;public static LaunchRequest Parse(string[] args) {&#10;    // 过滤宿主参数；识别 file path vs URI&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="打包侧（简要）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="🪟 安装程序写注册表 HKCR\.myext / myapp 协议；MSIX 用 manifest" TextWrapping="Wrap"/>
+          <TextBlock Text="🍎 Info.plist CFBundleDocumentTypes / URL types；沙盒 entitlement" TextWrapping="Wrap"/>
+          <TextBlock Text="🐧 .desktop + MIME x-scheme-handler" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="应用内：收到路径后用 StorageProvider / 直接 File API（注意沙盒与书签）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：解析命令行 file path vs URI" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

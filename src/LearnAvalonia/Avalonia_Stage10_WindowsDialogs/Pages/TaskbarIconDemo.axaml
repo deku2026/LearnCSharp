@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.TaskbarIconDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.14 任务栏与窗口图标" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="window.Icon = new WindowIcon(AssetLoader.Open(&#10;    new Uri(&quot;avares://MyApp/Assets/icon.ico&quot;)));&#10;window.ShowInTaskbar = true;&#10;window.Title = &quot;文档 - MyApp&quot;;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="• 多文档时标题显示文件名" TextWrapping="Wrap"/>
+      <TextBlock Text="• 未保存加 * 标记" TextWrapping="Wrap"/>
+      <TextBlock Text="• 托盘图标与窗口图标可共用资源但注意尺寸（多分辨率）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Icon/ShowInTaskbar/未保存 * 标记" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

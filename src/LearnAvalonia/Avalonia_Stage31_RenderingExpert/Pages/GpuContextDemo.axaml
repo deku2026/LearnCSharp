@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.GpuContextDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 GPU 上下文" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="IPlatformGraphics → IPlatformGraphicsContext（per-render thread 或 per-window）。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="Win32:    Vulkan / Wgl / D3D（via WinUI Comp）&#10;macOS:    Metal&#10;X11:      Glx / EGL&#10;Wayland:  EGL（实验）&#10;Browser:  WebGL / WebGPU（CanvasKit）" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="失败模式：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 设备丢失（TDR / sleep / 切 GPU）"/>
+      <TextBlock Text="• 上下文 lost → Renderer 切软件回退"/>
+      <TextBlock Text="• 软件回退：Skia raster → RAM buffer"/>
+      <TextBlock Text="配置：With(new Win32PlatformOptions { RenderingMode = [Vulkan, Wgl, Software] }) — 顺序回退" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：列出失败模式与切换" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage28_WpfMigration.Pages.ConceptMappingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 概念映射总表" FontWeight="Bold" FontSize="14"/>
+      <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="WPF" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Avalonia 12.1" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="说明" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Window" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Window" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="几乎一致" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="UserControl" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="UserControl" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="一致" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Style/ControlTemplate" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="ControlTheme" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="12 起 ControlTheme 替代 Style" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Triggers" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="PseudoClasses + Selector" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="Avalonia 不支持 Trigger" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="DataTrigger" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="Selector :is(...)" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="2" Text="用 PseudoClasses 触发" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="MultiBinding" Padding="4"/>
+        <TextBlock Grid.Row="6" Grid.Column="1" Text="MultiBinding" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="6" Grid.Column="2" Text="API 一致" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="x:Static" Padding="4"/>
+        <TextBlock Grid.Row="7" Grid.Column="1" Text="x:Static" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="7" Grid.Column="2" Text="一致" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="8" Grid.Column="0" Text="Visibility=Collapsed" Padding="4"/>
+        <TextBlock Grid.Row="8" Grid.Column="1" Text="IsVisible=false" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="8" Grid.Column="2" Text="Avalonia 用 bool" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="9" Grid.Column="0" Text="DispatcherObject" Padding="4"/>
+        <TextBlock Grid.Row="9" Grid.Column="1" Text="Dispatcher.UIThread" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="9" Grid.Column="2" Text="静态 API" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="验收：WPF→Avalonia 概念对照" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

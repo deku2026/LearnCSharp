@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.DeprecatedApisDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 过时 / 禁止（虚拟化）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="⚠️ deprecated：" FontWeight="SemiBold" Foreground="OrangeRed"/>
+          <TextBlock Text="· DataGrid（12.1 起 deprecated，仅 bugfix）" TextWrapping="Wrap"/>
+          <TextBlock Text="· TreeDataGrid（商业 Pro，主线不依赖）" TextWrapping="Wrap"/>
+          <TextBlock Text="🚫 retired：" FontWeight="SemiBold" Foreground="OrangeRed"/>
+          <TextBlock Text="· ItemsRepeater 独立仓库，仅兼容到 12.0；不再进主线" TextWrapping="Wrap"/>
+          <TextBlock Text="❌ 反模式：" FontWeight="SemiBold" Foreground="OrangeRed"/>
+          <TextBlock Text="· ItemsPanel 用 StackPanel（无虚拟化）" TextWrapping="Wrap"/>
+          <TextBlock Text="· ListBox 外层套 ScrollViewer（破坏虚拟化）" TextWrapping="Wrap"/>
+          <TextBlock Text="· ItemTemplate 内做同步 IO / 重活" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="替代对照：只读表 → TableView；编辑 → TreeDataGrid(Pro) 或自研；自定义布局 → 自研 Panel。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：已删除/废弃 API" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.MetadataDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 Metadata：默认值、校验、强制、继承、验证" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="validate / coerce：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="public static readonly StyledProperty&lt;double&gt; ProgressProperty =&#10;    AvaloniaProperty.Register&lt;Meter, double&gt;(&#10;        nameof(Progress), defaultValue: 0d,&#10;        coerce: static (o, v) => v &lt; 0 ? 0 : v &gt; 1 ? 1 : v);"/>
+      </Border>
+      <TextBlock Text="• validate：回答是否可接受（非法则抛/拒绝）" TextWrapping="Wrap"/>
+      <TextBlock Text="• coerce：把值夹到合法域（trim、范围夹取）" TextWrapping="Wrap"/>
+      <TextBlock Text="enableDataValidation（12 行为）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="AvaloniaProperty.Register&lt;EmailBox, string?&gt;(&#10;    nameof(Email), enableDataValidation: true);&#10;// 12 默认自动处理；不再需手写 UpdateDataValidation 样板"/>
+      </Border>
+      <TextBlock Text="❌ 12 不再需要的样板：override UpdateDataValidation + DataValidationErrors.SetError" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="继承：inherits: true 时子树可继承有效值（如字体类属性）；子 SetValue 后打断继承链" TextWrapping="Wrap"/>
+      <TextBlock Text="Class handlers：静态构造函数中订阅类型级变更" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：说明 validate/coerce/inherits/enableDataValidation" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

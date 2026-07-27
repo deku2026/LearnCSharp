@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage25_Performance.Pages.OverdrawFpsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 Overdraw、Compositor、帧率" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Compositor：Avalonia 12 引入批量合成；脏矩形 + 离屏层减少 GPU 调用。" TextWrapping="Wrap"/>
+      <TextBlock Text="Overdraw：多层透明背景叠加 → 同一像素多次绘制。" TextWrapping="Wrap"/>
+      <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="诊断" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Avalonia.Diagnostics DEV 工具显示 overdraw" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="优化" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="减少透明层；不透明背景；合并 Border" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="帧率" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="RenderTimer 监控；&gt; 16ms 掉帧" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="验收：帧率与 overdraw 说明" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

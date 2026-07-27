@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.NativeMenuBarDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.6 NativeMenuBar 与 macOS Dock" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="窗口或应用级原生菜单（macOS 顶部菜单栏融合）：" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;NativeMenu.Menu&gt;&#10;  &lt;NativeMenu&gt;&#10;    &lt;NativeMenuItem Header=&quot;文件&quot;&gt;&#10;      &lt;NativeMenu&gt;&#10;        &lt;NativeMenuItem Header=&quot;新建&quot; Gesture=&quot;Ctrl+N&quot; .../&gt;&#10;        &lt;NativeMenuItemSeparator/&gt;&#10;        &lt;NativeMenuItem Header=&quot;退出&quot; Gesture=&quot;Alt+F4&quot; .../&gt;&#10;      &lt;/NativeMenu&gt;&#10;    &lt;/NativeMenuItem&gt;&#10;  &lt;/NativeMenu&gt;&#10;&lt;/NativeMenu.Menu&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="macOS 注意：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 应用菜单（About / Quit）与文档菜单的系统约定；交叉编译到 mac 后用真机验证" TextWrapping="Wrap"/>
+      <TextBlock Text="• Dock 图标、启动时隐藏窗口、从 Dock 再激活主窗——与 ShutdownMode、单实例策略联动" TextWrapping="Wrap"/>
+      <TextBlock Text="• Windows 上 NativeMenu 可能映射为窗口菜单或有限支持；跨平台要做能力探测与降级（Windows 用 Menu 控件栏 + 托盘 NativeMenu）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：NativeMenu.Menu 用法与跨平台降级" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

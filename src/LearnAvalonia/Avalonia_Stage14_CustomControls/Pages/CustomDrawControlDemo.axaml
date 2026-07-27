@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.CustomDrawControlDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.3 自定义绘制 Control" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="见阶段 13 PlotControl；本阶段强调：" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="• 属性用 StyledProperty + AffectsRender / AffectsMeasure" TextWrapping="Wrap"/>
+          <TextBlock Text="• 无障碍：提供 AutomationPeer 名称与值" TextWrapping="Wrap"/>
+          <TextBlock Text="• 命中测试：重写 HitTestCore 如需非矩形" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="static PlotControl() {&#10;    AffectsRender&lt;PlotControl&gt;(ValuesProperty);&#10;}&#10;&#10;public override void Render(DrawingContext context) {&#10;    base.Render(context);&#10;    // FillRectangle / DrawGeometry / DrawText&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="Control + Render：无子可视化结构或极少，自绘。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：StyledProperty+AffectsRender+AutomationPeer" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

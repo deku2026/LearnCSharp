@@ -3,6 +3,10 @@
     <OutputType>WinExe</OutputType>
     <AssemblyName>Avalonia_Capstone2_ComplexDesktop</AssemblyName>
     <RootNamespace>LearnAvalonia.Avalonia_Capstone2_ComplexDesktop</RootNamespace>
+    <!-- SQLitePCLRaw.lib.e_sqlite3 2.1.11 (transitive via Microsoft.Data.Sqlite) has a known advisory
+         (GHSA-2m69-gcr7-jv3q); no patched version available on the Microsoft.Data.Sqlite 10.0.0 line.
+         Demo-only project, not shipped; suppress to keep CI 0-warning. -->
+    <NoWarn>$(NoWarn);NU1903</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,5 +14,7 @@
     <PackageReference Include="Avalonia.Desktop" />
     <PackageReference Include="Avalonia.Themes.Fluent" />
     <PackageReference Include="Avalonia.Fonts.Inter" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Microsoft.Data.Sqlite" />
   </ItemGroup>
 </Project>

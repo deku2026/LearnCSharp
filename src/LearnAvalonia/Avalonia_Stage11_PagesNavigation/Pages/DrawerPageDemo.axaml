@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.DrawerPageDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.6 DrawerPage" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="var drawer = new DrawerPage { ... };&#10;var nav = new NavigationPage(new HomePage());&#10;drawer.Content = nav;&#10;&#10;// 打开设置：&#10;if (drawer.Content is NavigationPage navigation)&#10;    await navigation.PushAsync(new SettingsPage());" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="DrawerPage 构建在 SplitView 之上，并增加页面生命周期、safe area、与 NavigationPage 的汉堡/返回自动切换。" TextWrapping="Wrap"/>
+      <TextBlock Text="• 根页显示汉堡；Push 后自动变返回（官方集成行为）" TextWrapping="Wrap"/>
+      <TextBlock Text="• 侧栏列表点击切换根或 Push" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Drawer+Navigation 汉堡/返回切换" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

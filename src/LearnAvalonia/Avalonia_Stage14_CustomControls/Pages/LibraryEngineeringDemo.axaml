@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.LibraryEngineeringDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 组件库工程化" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="§11.1 版本与包" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="MyControls 1.0.0&#10;  依赖 Avalonia 12.1.0（上限/下限策略写清）&#10;  不捆绑 App 业务&#10;  README：主题接入一步&#10;  样本 App：Gallery" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="§11.2 API 稳定性" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public 控件与属性 = 契约&#10;PART_ 名称变更 = 破坏性&#10;伪类名称变更 = 破坏性&#10;默认主题视觉微调 = 次要" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="§11.3 测试金字塔" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="单元：coerce、命令 CanExecute&#10;Headless：模板 apply、点击改值&#10;视觉回归：可选截图" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="§11.4 文档即控件" FontWeight="SemiBold"/>
+      <TextBlock Text="每个控件：用途、属性表、PART 表、伪类表、示例 axaml、无障碍说明、平台限制。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：版本/API 稳定性/测试金字塔/文档" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

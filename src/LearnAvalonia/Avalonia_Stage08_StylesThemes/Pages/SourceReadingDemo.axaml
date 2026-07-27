@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage08_StylesThemes.Pages.SourceReadingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§J3-J4 源码阅读·官方链接" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="源码阅读检索点：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="4" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="检索" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="读什么" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Style / Selector" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="匹配引擎直觉" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="ControlTheme" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="查找与 BasedOn" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="FluentTheme" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="官方如何组织字典" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="ThemeVariant / ThemeDictionary" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="变体切换" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="官方链接：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="· Styling basics: docs.avaloniaui.net/docs/basics/user-interface/styling/"/>
+          <TextBlock Text="· Selectors: docs.avaloniaui.net/docs/reference/styles/style-selectors"/>
+          <TextBlock Text="· Control themes: docs.avaloniaui.net/docs/basics/user-interface/styling/control-themes"/>
+          <TextBlock Text="· Resources: docs.avaloniaui.net/docs/guides/styles-and-resources/resources"/>
+          <TextBlock Text="· GitHub: github.com/AvaloniaUI/Avalonia"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="速记：Style=选择器改属性 · ControlTheme=类型外观包 · ControlTemplate=内部树 · DataTemplate=数据UI · Static/Dynamic/ThemeResource=解析与主题" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：列出源码阅读检索点" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

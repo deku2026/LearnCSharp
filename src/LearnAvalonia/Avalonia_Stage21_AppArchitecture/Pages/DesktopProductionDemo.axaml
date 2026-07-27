@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage21_AppArchitecture.Pages.DesktopProductionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§12 桌面生产补充" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="单实例" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="第二进程 → IPC 把参数发给第一 → 自己退出 → 第一激活窗口/打开文件&#x0a;命名管道 / Mutex + 本地 socket（自选）&#x0a;ISingleInstanceApp: TryBecomePrimary/BroadcastActivation/Activated" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="IPC：单实例激活 · 工具进程（预览渲染分离）· 自动化有限命令通道" TextWrapping="Wrap"/>
+      <TextBlock Text="注意安全：仅本地 · 鉴权 · 勿暴露任意命令执行" Foreground="OrangeRed" TextWrapping="Wrap"/>
+      <TextBlock Text="CLI 激活" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="myapp.exe --new&#x0a;myapp.exe file.dat&#x0a;myapp.exe --goto item/42&#x0a;ICommandLineActivation 解析 → 导航/打开" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="文件关联与 URI：Windows 注册表/稀疏清单 · macOS Info.plist · Linux .desktop MimeType · IActivationHandler 统一" TextWrapping="Wrap"/>
+      <TextBlock Text="更新" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="检查 → 下载 → 校验签名 → 应用 → 重启&#x0a;Velopack / Squirrel 遗留 / 自研 / 商店更新&#x0a;IUpdateService: CheckAsync/ApplyAsync" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="设置版本迁移" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="读 version → while &lt; current: 应用 migration → 写回 version&#x0a;迁移必须幂等或有备份" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="验收：单实例/IPC/CLI/文件关联/更新/迁移" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

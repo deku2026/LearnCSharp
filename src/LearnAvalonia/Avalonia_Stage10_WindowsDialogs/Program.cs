@@ -2,16 +2,17 @@ using Avalonia;
 
 namespace LearnAvalonia.Avalonia_Stage10_WindowsDialogs;
 
-public static class Program
+internal static class Program
 {
-    [STAThread]
-    public static void Main(string[] args) => BuildAvaloniaApp()
-        .StartWithClassicDesktopLifetime(args);
-
+    // Doc: 第5部分-阶段10-桌面窗口对话框与系统集成.md §2.1
+    // Notes: BuildAvaloniaApp doubles as design-time preview entrypoint; keep signature stable.
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
-            .UseSkia()
-            .UseHarfBuzz()
+            .WithInterFont()
             .LogToTrace();
+
+    [STAThread]
+    public static int Main(string[] args)
+        => BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 }

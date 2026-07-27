@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage27_PackagingCI.Pages.OverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§0 导读：打包、部署、更新与 CI" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="三目标" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="体积" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Trim/AOT 减包；按 RID 分发" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="签名" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Authenticode/Apple Notarization/Play/App Store" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="分发" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="商店/官网/CI artifact" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="CI 矩阵：win-x64/win-arm64/linux-x64/linux-arm64/osx/osx-arm64；每 RID 独立 publish。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：口述打包三目标" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

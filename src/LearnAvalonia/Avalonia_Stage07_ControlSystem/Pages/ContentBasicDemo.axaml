@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.ContentBasicDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§A1-A5 内容与基础控件" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="继承心智图：AvaloniaObject → Visual → Layoutable → Interactive → InputElement → Control → Decorator/ContentControl/ItemsControl/文本类" TextWrapping="Wrap"/>
+      <TextBlock Text="选型第一刀：单内容 vs 多项目 vs 纯文本 vs 装饰" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <TextBlock Text="ContentControl + ContentPresenter（单内容 + 模板内部署点）" FontWeight="SemiBold"/>
+          <ContentControl Content="单内容示例"/>
+          <TextBlock Text="Decorator / Border（卡片首选）" FontWeight="SemiBold"/>
+          <Border Background="{DynamicResource SystemRegionBrush}" BorderBrush="Gray" BorderThickness="1" CornerRadius="8" Padding="16" BoxShadow="0 2 8 0 #40000000">
+            <TextBlock Text="卡片容器 Border"/>
+          </Border>
+          <TextBlock Text="TextBlock / SelectableTextBlock / Label" FontWeight="SemiBold"/>
+          <StackPanel Spacing="4">
+            <Label Content="邮箱" Target="EmailBox"/>
+            <TextBox x:Name="EmailBox" PlaceholderText="请输入邮箱"/>
+            <SelectableTextBlock Text="可选择复制的展示文本" TextWrapping="Wrap"/>
+          </StackPanel>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：区分单内容/多项目/纯文本/装饰" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

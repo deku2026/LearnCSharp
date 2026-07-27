@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.TrayIconDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.5 TrayIcon 必须配 NativeMenu" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="官方硬性要求：托盘菜单必须是 NativeMenu，禁止使用普通 Menu 控件。" Foreground="OrangeRed" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;TrayIcon.Icons&gt;&#10;  &lt;TrayIcons&gt;&#10;    &lt;TrayIcon Icon=&quot;/Assets/tray.ico&quot;&#10;              ToolTipText=&quot;MyApp&quot;&#10;              Command=&quot;{Binding ShowMainCommand}&quot;&gt;&#10;      &lt;TrayIcon.Menu&gt;&#10;        &lt;NativeMenu&gt;&#10;          &lt;NativeMenuItem Header=&quot;显示主窗口&quot; .../&gt;&#10;          &lt;NativeMenuItemSeparator/&gt;&#10;          &lt;NativeMenuItem Header=&quot;退出&quot; .../&gt;&#10;        &lt;/NativeMenu&gt;&#10;      &lt;/TrayIcon.Menu&gt;&#10;    &lt;/TrayIcon&gt;&#10;  &lt;/TrayIcons&gt;&#10;&lt;/TrayIcon.Icons&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="托盘常驻：desktop.ShutdownMode = OnExplicitShutdown；退出走 desktop.Shutdown()，不要 OnLastWindowClose 杀进程。" TextWrapping="Wrap"/>
+      <TextBlock Text="平台行为：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="🪟 通知区域；左/右键习惯与 Windows 版本有关" TextWrapping="Wrap"/>
+          <TextBlock Text="🍎 菜单栏额外图标区；与 Dock 分离" TextWrapping="Wrap"/>
+          <TextBlock Text="🐧 依赖桌面环境；Wayland/门户限制下可能降级" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：托盘菜单用 NativeMenu 不是 Menu" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

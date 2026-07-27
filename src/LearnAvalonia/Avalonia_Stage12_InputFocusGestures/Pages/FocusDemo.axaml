@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.FocusDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.5 焦点：scopes、Tab、FocusManager" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="Focusable = true 的控件可聚焦&#10;TabIndex / 树序决定 Tab 导航&#10;FocusScope：子树内 Tab 循环（工具栏、对话框、菜单）&#10;&#10;// 请求焦点&#10;target.Focus();&#10;&#10;var fm = TopLevel.GetTopLevel(control)?.FocusManager;&#10;var focused = fm?.GetFocusedElement();&#10;&#10;// 监听焦点变化&#10;InputElement.GotFocusEvent.AddClassHandler&lt;Control&gt;((c, e) =&gt; { /* */ });" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="FocusChangedEventArgs（🆕 关注）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="void OnGotFocus(object? s, GotFocusEventArgs e) {&#10;    // e.NavigationMethod: Pointer / Tab / Directional 等&#10;    // 可用于「键盘导航时显示焦点框，指针点击时弱化」&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="导航页过渡：新页出现后应把焦点设到合理控件（标题/第一个字段），避免焦点留在已出栈视觉树。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Focus/IsFocusScope/GotFocus 导航方式" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

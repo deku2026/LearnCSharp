@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.GridPanelDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§D3 Grid" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="列/行尺寸类型：Auto（按子 Desired）· */2*（剩余空间按权重分）· 120（固定 DIP）" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：ColumnDefinitions=Auto,*,2* + RowDefinitions=Auto,*,Auto + ColumnSpacing/RowSpacing=8" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*,2*" RowDefinitions="Auto,*,Auto" ColumnSpacing="8" RowSpacing="8" Height="160">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="名称" VerticalAlignment="Center"/>
+          <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" PlaceholderText="TextBox 跨两列"/>
+          <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Background="#220000FF">
+            <TextBlock Text="Border 跨三列填充" Padding="8"/>
+          </Border>
+          <Button Grid.Row="2" Grid.Column="2" Content="保存" HorizontalAlignment="Right"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="专家坑：" FontWeight="SemiBold" Foreground="OrangeRed"/>
+      <TextBlock Text="1. 嵌套多层 * Grid，每次内容变化都可能连锁重测" TextWrapping="Wrap"/>
+      <TextBlock Text="2. SharedSizeGroup 跨网格同步列宽，成本更高" TextWrapping="Wrap"/>
+      <TextBlock Text="3. 用 Grid.IsSharedSizeScope 时明确作用域，避免整窗共享" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：使用 Auto/*/固定 列定义" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

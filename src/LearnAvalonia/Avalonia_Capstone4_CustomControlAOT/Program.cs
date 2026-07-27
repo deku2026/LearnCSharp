@@ -2,16 +2,17 @@ using Avalonia;
 
 namespace LearnAvalonia.Avalonia_Capstone4_CustomControlAOT;
 
-public static class Program
+internal static class Program
 {
-    [STAThread]
-    public static void Main(string[] args) => BuildAvaloniaApp()
-        .StartWithClassicDesktopLifetime(args);
-
+    // Doc: 第10部分-Capstone4-自定义控件渲染与Native-AOT.md §5
+    // Notes: IsAotCompatible=true 演示；BuildAvaloniaApp doubles as design-time preview.
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
-            .UseSkia()
-            .UseHarfBuzz()
+            .WithInterFont()
             .LogToTrace();
+
+    [STAThread]
+    public static int Main(string[] args)
+        => BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 }

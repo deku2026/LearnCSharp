@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage14_CustomControls.Pages.ControlTypesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 三类（+Panel/绘制）对照" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.2*,1.4*,1.4*,1.2*,0.8*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="维度" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="UserControl" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="TemplatedControl" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="ContentControl" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="4" Text="Panel" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="视觉定义" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="自带 axaml" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="外部模板" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="ContentPresenter" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="4" Text="无（布局）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="换肤" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="难（逻辑绑死）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="易" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="易（主题化）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="4" Text="N/A" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="适用" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="App 内复用块" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="控件库" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="有内容投影" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="4" Text="自定义布局" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="学习成本" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="低" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="高" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="中" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="4" Text="中" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="AOT" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="友好" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="友好（避免反射）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="友好" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="4" Text="友好" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="Control + Render：无子可视化结构或极少，自绘（见阶段 13 PlotControl）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：UserControl/Templated/Content 对照" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

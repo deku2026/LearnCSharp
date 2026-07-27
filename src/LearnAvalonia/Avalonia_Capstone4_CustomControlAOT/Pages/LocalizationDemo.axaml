@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.LocalizationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 本地化" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="资源选择：.resx (ResourceManager) 或代码内嵌字符串字典。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// 代码内嵌&#10;static readonly Dictionary&lt;string, Dictionary&lt;string, string&gt;&gt; Res = new() {&#10;  [&quot;en&quot;] = new() { [&quot;Title&quot;] = &quot;Gauge Control&quot; },&#10;  [&quot;zh&quot;] = new() { [&quot;Title&quot;] = &quot;仪表控件&quot; },&#10;};&#10;string Localize(string key, string culture) => Res[culture][key];" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="绑定：用 {Binding Localized[Title]} + IMultiValueConverter 切 culture。" TextWrapping="Wrap"/>
+      <TextBlock Text="AOT 注意：ResourceManager 用反射；Native AOT 需 [DynamicallyAccessedMembers]。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：ResourceProvider + 多语言" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

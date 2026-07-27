@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.ImeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.7 IME 与文本输入" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="按键 →（IME 组合）→ TextInput 事件上屏 → 文本控件缓冲&#10;&#10;textBox.TextInput += (_, e) =&gt;&#10;{&#10;    // e.Text 为将插入的文本（可能是组合结果）&#10;};&#10;&#10;textBox.KeyDown += (_, e) =&gt;&#10;{&#10;    // IME 组合期间 Enter/Space 可能用于上屏而非提交表单&#10;    if (e.Key == Key.Enter) {&#10;        // 仅在非组合时提交&#10;    }&#10;};" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="实践清单：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.2*,2*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="场景" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="注意" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="中/日/韩输入" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="候选窗位置、焦点丢失取消组合" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="数字字段" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="过滤 TextInput；注意全角数字" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="移动" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="软键盘遮挡→滚动进视口；InputMethod 选项" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="真机验证不可替代模拟器：尤其是第三方输入法。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：TextInput 上屏 + 组合期 Enter" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

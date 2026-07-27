@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.PropertySystemCompareDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 对比：CLR · WPF DP · MAUI BindableProperty · Avalonia" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.2*,1*,1.2*,1.4*,1.2*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="维度" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="CLR" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="WPF DP" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="MAUI Bindable" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="4" Text="Avalonia" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="存储"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="字段"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="有效值表"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="有效值表"/>
+          <TextBlock Grid.Row="1" Grid.Column="4" Text="Styled表/Direct字段" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="样式"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="否"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="是"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="是"/>
+          <TextBlock Grid.Row="2" Grid.Column="4" Text="Styled 是"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="继承"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="手写"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="FrameworkMetadata"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="有限"/>
+          <TextBlock Grid.Row="3" Grid.Column="4" Text="metadata inherits"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="附加属性"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="否"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="是"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="是"/>
+          <TextBlock Grid.Row="4" Grid.Column="4" Text="是"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="绑定"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="需 INPC"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="一等"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="一等"/>
+          <TextBlock Grid.Row="5" Grid.Column="4" Text="一等"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="动画"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="否"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="是"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="有限"/>
+          <TextBlock Grid.Row="6" Grid.Column="4" Text="Styled 主线"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="双轨"/>
+          <TextBlock Grid.Row="7" Grid.Column="4" Text="Styled+Direct 分流" Foreground="DarkGreen"/>
+          <TextBlock Grid.Row="8" Grid.Column="0" Text="平台"/>
+          <TextBlock Grid.Row="8" Grid.Column="1" Text="任意"/>
+          <TextBlock Grid.Row="8" Grid.Column="2" Text="Windows"/>
+          <TextBlock Grid.Row="8" Grid.Column="3" Text="跨平台原生"/>
+          <TextBlock Grid.Row="8" Grid.Column="4" Text="跨平台自绘"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="Avalonia 相对 WPF：DirectProperty 一等公民；Selector 体系；12 编译绑定影响属性表达式" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：对比四种属性系统" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

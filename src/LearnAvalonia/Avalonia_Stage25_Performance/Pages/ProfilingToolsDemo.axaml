@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage25_Performance.Pages.ProfilingToolsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 工具箱" FontWeight="Bold" FontSize="14"/>
+      <Grid ColumnDefinitions="Auto,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="工具" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="用途" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="平台" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="dotTrace" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="CPU 采样/调用树" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Windows/Linux/macOS" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="dotMemory" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="内存/GC/对象 retaining" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="Windows/Linux/macOS" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="PerfView" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="ETW 事件 + GC/JIT" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="Windows" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="dotnet-counters" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="runtime 计数器" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="全平台" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Avalonia Diagnostics" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="F12 DEV 工具，可视化树/overdraw" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="5" Grid.Column="2" Text="全平台" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="验收：dotTrace/dotMem/perfview 列表" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

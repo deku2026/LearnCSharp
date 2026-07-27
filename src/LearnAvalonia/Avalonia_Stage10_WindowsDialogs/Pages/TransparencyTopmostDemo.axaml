@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage10_WindowsDialogs.Pages.TransparencyTopmostDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.4 透明、亚克力与 Topmost" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="window.TransparencyLevelHint = new[]&#10;{&#10;    AcrylicBlur, Blur, Transparent&#10;};&#10;window.Background = Brushes.Transparent;&#10;window.Topmost = true;  // 置顶工具窗；慎用于主窗" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="注意：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 透明 + 自定义装饰在 Linux 合成器差异大；X11 vs 🧪 Wayland 路径都要测" TextWrapping="Wrap"/>
+      <TextBlock Text="• 浏览器宿主不支持完整桌面 Window chrome 模型" TextWrapping="Wrap"/>
+      <TextBlock Text="• 生产优先「可降级」：无法模糊时退回实色背景" TextWrapping="Wrap"/>
+      <TextBlock Text="TrayIcon + Topmost + ShutdownMode.OnExplicitShutdown 是工具型常驻应用组合。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：TransparencyLevelHint 可降级" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

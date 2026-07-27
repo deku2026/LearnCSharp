@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage26_TrimmingAOT.Pages.SymbolsCrashDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 符号与崩溃诊断" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Native AOT 编译产物：原生 EXE + .pdb（可选）+ .dbg（macOS dSYM）。" TextWrapping="Wrap"/>
+      <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="StripSymbols" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="true → 产物不含符号，体积小" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="保留 PDB" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Debug=true 或 &lt;StripSymbols&gt;false&lt;/StripSymbols&gt;" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="崩溃 dump" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="dotnet-dump collect；Windows MiniDump" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="分析" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="lldb / WinDbg + SOS" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="验收：Native AOT 崩溃 dump" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

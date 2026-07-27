@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.OverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§0 导读：复杂桌面生产应用" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="产品切片建议：「桌面知识库 / 文档工作台」或「数据标注工作台」，必须包含：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="大数据列表" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="虚拟化，万级条目可滚动" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Document/Tab" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="多文档或多标签编辑" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Undo/Redo" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="编辑可撤销" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="Autosave" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="崩溃可恢复" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="SQLite" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="本地索引/元数据" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="远程 API" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="同步或搜索（可 mock）" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="离线" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="本地可编辑 + 脏标记" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="插件" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="≥1 扩展点 + ≥1 示例插件" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="0" Text="Tray" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="8" Grid.Column="1" Text="托盘 + NativeMenu" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="9" Grid.Column="0" Text="Native menu" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="9" Grid.Column="1" Text="应用/窗口菜单" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="10" Grid.Column="0" Text="DnD" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="10" Grid.Column="1" Text="文件拖入打开" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="11" Grid.Column="0" Text="全局激活" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="11" Grid.Column="1" Text="单实例 + 二次启动传参" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="12" Grid.Column="0" Text="崩溃恢复" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="12" Grid.Column="1" Text="杀进程演练" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="13" Grid.Column="0" Text="更新" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="13" Grid.Column="1" Text="IUpdateService 可演示（真/假通道）" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="14" Grid.Column="0" Text="UI 自动化" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="14" Grid.Column="1" Text="至少一条 Headless 或 Appium 脚本" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="与 Capstone 3 区别：Capstone 2 深度（桌面生产：插件/托盘/安装包/虚拟化），三桌面 Release；Capstone 3 宽度（六平台）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收铁律：列表流畅 · 异常退出可恢复 · 插件边界清晰 · 三桌面能力分别实现 · Release 安装包通过" Foreground="DarkGreen" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：口述必做模块与三桌面铁律" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

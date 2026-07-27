@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage01_AppBuilder.Pages.DeprecatedApisDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§13 过时与禁止" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.6*,1.6*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="禁止 / 过时" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="替代" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="AvaloniaMainActivity&lt;TApp&gt;" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="AvaloniaMainActivity + AvaloniaAndroidApplication&lt;TApp&gt;" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Activity CreateAppBuilder/CustomizeAppBuilder" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="Application 子类 / 共享 BuildAvaloniaApp" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="仅用 ISingleView 服务 Android" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="IActivityApplicationLifetime.MainViewFactory" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="UseDirect2D1 / Avalonia.Direct2D1" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="UseSkia + UseHarfBuzz" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="显式 UseSkia 却不 UseHarfBuzz" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="补齐 HarfBuzz 包与调用" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="Avalonia.ReactiveUI 11.x" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="ReactiveUI.Avalonia 或 CommunityToolkit" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="Avalonia.Browser.Blazor" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="Avalonia.Browser" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="8" Grid.Column="0" Text="Avalonia.Tizen 主线" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="8" Grid.Column="1" Text="已移出；不进生产验收" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="9" Grid.Column="0" Text="Main 里过早使用 Avalonia 类型" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="9" Grid.Column="1" Text="仅 BuildAvaloniaApp + Start*" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="10" Grid.Column="0" Text="把根 Visual 强转 TopLevel" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="10" Grid.Column="1" Text="TopLevel.GetTopLevel" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：点名已删除 API 与替代" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

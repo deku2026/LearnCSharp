@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.PointerReleaseDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§H1-H3 12 输入选择行为：触摸/笔在 pointer release" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Avalonia 12 起，触摸与笔的选择相关逻辑对齐到在 pointer release（抬起）时提交，而不是简单照搬鼠标 pressed 语义" TextWrapping="Wrap"/>
+      <TextBlock Text="影响：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="1. 列表/文本选择：按住滑动与抬起完成选择的手感" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 自定义控件若在 PointerPressed 里立刻改 SelectedItem，触摸上可能与系统/框架不一致" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 拖拽与选择竞争：需明确阈值与阈值优先级" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="实践建议：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="// 自定义可选择项时：&#10;// - 鼠标：可按平台惯例处理&#10;// - 触摸/笔：优先在 Released 确认选择，Pressed 用于准备/滚动手势判断"/>
+      </Border>
+      <TextBlock Text="· 使用框架自带 ListBox/TableView 选择，少重写" TextWrapping="Wrap"/>
+      <TextBlock Text="· 若重写：读 PointerUpdateKind、指针类型，写集成测试（Headless 指针事件）" TextWrapping="Wrap"/>
+      <TextBlock Text="其他 12 控件相关注意：PlaceholderText · Pages 全家 · TableView · 旧 FileDialog 用 StorageProvider · TrayIcon 必须 NativeMenu" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：解释触摸/笔选择在 release 的意义" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

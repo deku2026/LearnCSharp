@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.AcceptanceChecklistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§K1-K4 最小实验·验收·链接" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="最小实验：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="1. Toolkit VM + 编译绑定表单（主线）"/>
+          <TextBlock Text="2. 故意错误路径看编译失败（compiled）"/>
+          <TextBlock Text="3. ObservableCollection 增删（集合通知）"/>
+          <TextBlock Text="4. async RelayCommand + IsBusy（异步）"/>
+          <TextBlock Text="5. IDialogService 假实现单测（可测性）"/>
+          <TextBlock Text="6. DI 构造注入 Window/VM（组合根）"/>
+          <TextBlock Text="7. （可选）Behaviors 一次（事件命令）"/>
+          <TextBlock Text="8. -rvl 模板与 DataTemplate 映射（AOT 友好）"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收标准：" FontWeight="SemiBold"/>
+      <Border BorderBrush="DarkGreen" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="☐ 默认方案口述：Toolkit 8.4.2 + compiled bindings + DI"/>
+          <TextBlock Text="☐ 解释 compiled vs reflection 与 12 代码侧 CompiledBinding.Create"/>
+          <TextBlock Text="☐ 说出绑定插件移除、DataAnnotations 默认关"/>
+          <TextBlock Text="☐ VM 单测不启动 UI 至少 2 例"/>
+          <TextBlock Text="☐ 无 VM 引用具体 Window；对话框走抽象"/>
+          <TextBlock Text="☐ 禁止推荐 Avalonia.ReactiveUI 11.x"/>
+          <TextBlock Text="☐ 知 ViewLocator 默认 AOT 问题与 -rvl"/>
+          <TextBlock Text="☐ 异步命令无 async void；集合改动在 UI 线程"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="速记：compiled + x:DataType · Toolkit 8.4.2 · OC+UI 线程 · VM 无 Window · 对话框/导航抽象 · -rvl · ReactiveUI.Avalonia 12.0.3（勿 11.x）· Behaviors 12.0.5 · 12 去绑定插件 / Annotations 默认关 / CompiledBinding.Create" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：勾选验收清单 8 条" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

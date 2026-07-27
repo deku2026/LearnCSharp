@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.PointerDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.2 指针：mouse / touch / pen" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="control.PointerPressed += (_, e) =&gt;&#10;{&#10;    var point = e.GetCurrentPoint(control);&#10;    var props = point.Properties;&#10;    if (props.IsLeftButtonPressed) { /* 主按钮 */ }&#10;    if (props.IsRightButtonPressed) { /* 右键 */ }&#10;&#10;    var type = e.Pointer.Type;  // Mouse / Touch / Pen&#10;    var pressure = props.Pressure;  // 压力、倾斜（笔）&#10;&#10;    e.Pointer.Capture(control);  // 拖动跟踪&#10;};&#10;&#10;control.PointerCaptureLost += (_, e) =&gt; { /* 必须清理拖动状态 */ };" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="多点触控：每个 IPointer 有独立 Id；捏合/旋转用手势事件或自行跟踪多 Pointer。" TextWrapping="Wrap"/>
+      <TextBlock Text="命中测试：IsHitTestVisible；透明背景是否参与命中；IsEnabled 影响。覆盖层拦截点击用全透明 Background=Transparent 的 Panel。" TextWrapping="Wrap"/>
+      <TextBlock Text="⚠ 捕获后必须处理 CaptureLost（系统抢走捕获时清理拖动状态）。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：Pointer.Capture 与 CaptureLost" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

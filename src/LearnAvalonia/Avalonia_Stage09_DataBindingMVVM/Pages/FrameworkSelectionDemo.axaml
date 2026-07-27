@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.FrameworkSelectionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§G1-G4 MVVM 框架选型表" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="2" ColumnSpacing="4">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="方案" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="包/版本" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="状态" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="路线角色" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="CommunityToolkit.Mvvm" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="8.4.2" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="官方 How-to + 模板默认" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="🟢 默认" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="ReactiveUI" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="ReactiveUI.Avalonia 12.0.3" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="活跃" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="🟡 Rx/路由" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="Prism.Avalonia" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="多为 pre" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="预览" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="🟡 团队已有" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="手写 MVVM" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="—" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="—" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="理解原理/教学" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="ViewLocator" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="模板默认" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="AOT/trim 不友好" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="生产用 -rvl" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="CommunityToolkit 优点：源生成、学习曲线平、与 Microsoft 生态一致、Avalonia 模板默认、AOT 相对友好" TextWrapping="Wrap"/>
+      <TextBlock Text="用法：ObservableObject · [ObservableProperty] · [RelayCommand] · ObservableValidator · WeakReferenceMessenger" TextWrapping="Wrap"/>
+      <TextBlock Text="模板：dotnet new avalonia.mvvm -o MyApp -m CommunityToolkit -f net10.0；AOT/生产建议 -rvl true" TextWrapping="Wrap"/>
+      <TextBlock Text="ReactiveUI 纪律：不要与 Toolkit 无边界混用同一 VM 基类；可桥接但团队规范要写清" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：默认方案口述：Toolkit+compiled+DI" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

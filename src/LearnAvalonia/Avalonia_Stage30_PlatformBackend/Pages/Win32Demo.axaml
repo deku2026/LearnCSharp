@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage30_PlatformBackend.Pages.Win32Demo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 Win32 后端" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="职责边界：Hwnd 窗口 + WM_* 消息循环 + IMM 键盘 + Drag/Drop OLE" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="AppBuilder.Configure&lt;App&gt;()&#10;    .UsePlatformDetect()&#10;    // Windows 自动选 Win32 后端&#10;    .With(new Win32PlatformOptions&#10;    {&#10;        UseOverlayPopups = false,&#10;        UseWgl = false,&#10;        RenderingMode = new[] { Win32RenderingMode.Vulkan, Win32RenderingMode.Wgl },&#10;    })" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="源码入口（Avalonia.Win32.dll）：" FontWeight="SemiBold"/>
+      <TextBlock Text="• Win32Platform — IWindowingPlatform 实现"/>
+      <TextBlock Text="• WindowImpl — IWindowImpl（Hwnd 创建、消息泵）"/>
+      <TextBlock Text="• OleDragDrop — 拖放 OLE 实现"/>
+      <TextBlock Text="• ImmTextInputEngine — IMM 输入法"/>
+      <TextBlock Text="渲染路径：DirectX Vulkan / Wgl / WIC + Skia → SwapChain" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：列出 Win32 入口" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

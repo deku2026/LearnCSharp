@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.EnvironmentDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.5 WebView Environment 与初始化" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="WebViewEnvironment：webview 引擎级配置（数据目录、可执行路径、自定义 UserAgent 等）。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// Windows WebView2 示例&#10;var opts = new WebView2CreationOptions&#10;{&#10;    UserDataFolder = &#34;...&#34;,&#10;    BrowserExecutableFolder = &#34;...&#34;&#10;};&#10;await webView.InitializeWithOptions(opts);" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="macOS WKWebView：WKWebViewConfiguration（preferences / dataStore）。" TextWrapping="Wrap"/>
+      <TextBlock Text="Linux WPE：通过环境变量配置（WPE_BACKEND 等）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：WebViewEnvironment 平台配置" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

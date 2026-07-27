@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.BehaviorsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§F1-F2 Behaviors" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="包：Xaml.Behaviors.Avalonia 12.0.5（⚠️ 旧 Avalonia.Xaml.Behaviors 停在 11.3 线 → 12 不要用）" TextWrapping="Wrap"/>
+      <TextBlock Text="用途：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="· 事件 → Command（无 code-behind）"/>
+          <TextBlock Text="· 焦点、选择变化触发"/>
+          <TextBlock Text="· 保持稀少：能 Command 直接绑就不用 Behavior"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="示例心智：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="xmlns:i=&quot;using:Avalonia.Xaml.Interactivity&quot;&#10;xmlns:ia=&quot;using:Avalonia.Xaml.Interactions.Core&quot;&#10;&#10;&lt;TextBox&gt;&#10;  &lt;!-- EventTriggerBehavior EventName=&quot;KeyDown&quot; → InvokeCommandBinding --&gt;&#10;&lt;/TextBox&gt;"/>
+      </Border>
+      <TextBlock Text="验收：说清 Behaviors 包与用途" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

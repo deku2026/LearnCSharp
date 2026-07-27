@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage27_PackagingCI.Pages.SbomAuditDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 SBOM 与依赖审计" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Avalonia 12.1 推荐：每次 publish 生成 SBOM（CycloneDX 或 SPDX）。" TextWrapping="Wrap"/>
+      <TextBlock Text="生成命令" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="dotnet CycloneDX --output bom.xml --format json&#x0a;# 或 microsoft SBOM tool&#x0a;sbom-tool generate -b MyApp.dll -bc . -pn MyApp -pv 1.0.0 -nsb https://myorg" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="审计" FontWeight="SemiBold"/>
+      <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="PR 审计" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="github/dependency-review-action" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="自动升级" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Dependabot / Renovate" TextWrapping="Wrap" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="漏洞扫描" FontWeight="SemiBold" Padding="4"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="dotnet list package --vulnerable" TextWrapping="Wrap" Padding="4"/>
+      </Grid>
+      <TextBlock Text="验收：SBOM 生成与审计" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.PropertyPlatformDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§13 跨平台差异表" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.2*,2.4*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="平台" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="属性系统差异" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="全平台"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="同一套 AvaloniaProperty 引擎" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="桌面"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="窗口状态等桌面属性（WindowState=Direct）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="移动"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="安全区/insets 经 TopLevel/平台服务暴露" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="Browser"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="同控件属性；宿主缩放影响布局不改属性语义" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="Headless"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="属性与绑定可测；动画/焦点需按测试泵" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="属性系统本身无 Android 版 GetValue；差异在平台特性属性与宿主，不在引擎分叉" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：覆盖 5 类平台属性差异" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

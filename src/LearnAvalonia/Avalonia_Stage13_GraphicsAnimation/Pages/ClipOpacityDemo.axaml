@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.ClipOpacityDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.7 Clip / Opacity / OpacityMask" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;Border Width=&quot;120&quot; Height=&quot;120&quot; ClipToBounds=&quot;True&quot;&gt;&#10;  &lt;Image Source=&quot;avares://MyApp/Assets/large.png&quot; Stretch=&quot;UniformToFill&quot;/&gt;&#10;&lt;/Border&gt;&#10;&#10;&lt;Path Data=&quot;M...&quot; Fill=&quot;Blue&quot; Opacity=&quot;0.5&quot;/&gt;&#10;&#10;&lt;!-- OpacityMask 以画刷 alpha 调制（性能敏感） --&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="几何裁剪：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="control.Clip = new EllipseGeometry(&#10;    new Rect(0, 0, 100, 100));" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="ClipToBounds 裁剪溢出；Clip 用几何裁剪；Opacity 整体透明度；OpacityMask 以画刷 alpha 调制（性能敏感）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：ClipToBounds/Clip 几何/OpacityMask" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

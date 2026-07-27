@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage08_StylesThemes.Pages.VmThemeSwitchDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§F4-F5 VM 切换主题与跨平台抽检" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="现场：ComboBox 切换 ThemeVariant" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="8">
+          <ComboBox SelectedIndex="0" SelectionChanged="OnThemeChanged" PlaceholderText="选择主题">
+            <ComboBoxItem Content="跟随系统"/>
+            <ComboBoxItem Content="浅色"/>
+            <ComboBoxItem Content="深色"/>
+          </ComboBox>
+          <Border Background="{DynamicResource SystemControlBackgroundAltMediumBrush}" Padding="12" CornerRadius="4">
+            <TextBlock Text="此卡片背景随 ThemeVariant 即时变化"/>
+          </Border>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="VM 模式（Toolkit 源生成）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="partial class MainViewModel : ObservableObject&#10;{&#10;    [ObservableProperty] private int themeIndex;&#10;&#10;    partial void OnThemeIndexChanged(int value)&#10;    {&#10;        Application.Current!.RequestedThemeVariant = value switch&#10;        {&#10;            1 => ThemeVariant.Light,&#10;            2 => ThemeVariant.Dark,&#10;            _ => ThemeVariant.Default&#10;        };&#10;    }&#10;}"/>
+      </Border>
+      <TextBlock Text="跨平台字体抽检：中英混排 · 字体回退 · 对比度 · 模板 DPI 150% 缩放边框" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：VM 切换 ThemeVariant 即时生效" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

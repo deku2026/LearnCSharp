@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.MultiDispatcherDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 多 Dispatcher，但仍是单 UI 线程模型" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="官方边界（必须背）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.6*,1.6*" RowDefinitions="Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="支持" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="不支持" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="每个线程可有自己的 Dispatcher；库通过 AvaloniaObject.Dispatcher 找对队列" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="多个 UI 线程同时驱动多套独立 Avalonia UI；假设任意线程 new Window 跨线程操作" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="多 dispatcher 支持主要服务：正确性、嵌入、测试、未来扩展与库隔离 —— 不是开放每窗口一线程的产品模型" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="DispatcherTimer 与当前 dispatcher：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• 在 UI 线程构造 DispatcherTimer：正常，滴答在 UI dispatcher" TextWrapping="Wrap"/>
+          <TextBlock Text="• 在线程池构造且未指定 dispatcher：错误线程上滴答" TextWrapping="Wrap"/>
+          <TextBlock Text="• 显式构造时传入目标 Dispatcher：可移植、可测" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：默写每线程 Dispatcher；多 UI 线程不支持" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

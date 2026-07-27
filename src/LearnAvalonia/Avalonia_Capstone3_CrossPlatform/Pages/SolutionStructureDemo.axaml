@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone3_CrossPlatform.Pages.SolutionStructureDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 解决方案结构（桌面三平台主线）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="说明：本 Capstone 已 redesign 为桌面三平台（Win/macOS/Linux）。移动 / Browser 见 roadmap 不实现。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="MyApp.slnx&#10;├─ MyApp.Core        (net10.0)  共享 VM/Service contracts/Models&#10;├─ MyApp.Desktop     (net10.0)  Win/macOS/Linux 三合一入口&#10;└─ MyApp.Headless.Tests (net10.0)  Avalonia.Headless 单测&#10;&#10;（roadmap：MyApp.Mobile / MyApp.Browser 不实现）" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="推荐分层：" FontWeight="SemiBold"/>
+      <TextBlock Text="· Core：MVVM + 业务逻辑 + 抽象接口（无 UI 引用）" TextWrapping="Wrap"/>
+      <TextBlock Text="· Desktop：UI Views + 平台入口（Program/App.axaml）" TextWrapping="Wrap"/>
+      <TextBlock Text="· Tests：Headless 覆盖 VM 行为" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：桌面三平台 TFM 与项目分层" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

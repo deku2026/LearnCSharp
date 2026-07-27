@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.Property12ChangesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§14 Avalonia 12 / 12.1 最新变化" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• 数据验证默认自动 —— 删样板 UpdateDataValidation" TextWrapping="Wrap"/>
+          <TextBlock Text="• Window.WindowState → Direct —— 样式不能设" TextWrapping="Wrap"/>
+          <TextBlock Text="• 绑定优先级旧名清理 —— TemplatedParent → Template 等" TextWrapping="Wrap"/>
+          <TextBlock Text="• IBinding → BindingBase —— Bind 参数类型" TextWrapping="Wrap"/>
+          <TextBlock Text="• 多 Dispatcher —— SetValue 仍须正确线程" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：列出 12/12.1 属性系统变化" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

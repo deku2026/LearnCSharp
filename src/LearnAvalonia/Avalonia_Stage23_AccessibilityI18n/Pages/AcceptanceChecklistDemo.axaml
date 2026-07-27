@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage23_AccessibilityI18n.Pages.AcceptanceChecklistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§12 验收清单" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <CheckBox Content="1. 自定义 Control 暴露 AutomationPeer（名称/角色）" IsChecked="True"/>
+          <CheckBox Content="2. 全键盘可达：Tab/Shift+Tab/Arrow/Drag 等价" IsChecked="True"/>
+          <CheckBox Content="3. 焦点视觉可见（:focus-visible）" IsChecked="True"/>
+          <CheckBox Content="4. HighContrast 主题切换可演示" IsChecked="True"/>
+          <CheckBox Content="5. 减弱动效偏好检测并禁用动画" IsChecked="True"/>
+          <CheckBox Content="6. FlowDirection=RTL 布局镜像正确" IsChecked="True"/>
+          <CheckBox Content="7. StringInfo 拆解字素簇（emoji+组合字符）" IsChecked="True"/>
+          <CheckBox Content="8. IME 组合态在 TextBox 中可见" IsChecked="True"/>
+          <CheckBox Content="9. 字体回退：缺字自动 fallback" IsChecked="True"/>
+          <CheckBox Content="10. 运行时切 CultureInfo 后 UI 文本刷新" IsChecked="True"/>
+          <CheckBox Content="11. 三平台 AT 桥接点书面列出" IsChecked="True"/>
+          <CheckBox Content="12. 不使用已删除 API（AutomationPeerFactory 等）" IsChecked="True"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：勾选 12 条验收清单" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

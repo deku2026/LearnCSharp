@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.PostInvokeAsyncDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 Post、InvokeAsync 与优先级" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Post：火后不管（异步排队，当前线程立即继续）" FontWeight="SemiBold"/>
+      <TextBlock Text="InvokeAsync：可等待；12 起捕获 ExecutionContext（AsyncLocal 会流动）" TextWrapping="Wrap"/>
+      <Button x:Name="PostButton" Content="Post 更新文本" Click="PostButton_Click" Margin="0,4,0,0"/>
+      <Button x:Name="InvokeAsyncButton" Content="InvokeAsync 更新文本（可等待）" Click="InvokeAsyncButton_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="ResultText" Text="结果：等待操作..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="优先级经验：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• 响应用户后立刻改 UI：默认/正常优先级" TextWrapping="Wrap"/>
+          <TextBlock Text="• 布局后测量依赖：勿用过低优先级导致晚一帧错位" TextWrapping="Wrap"/>
+          <TextBlock Text="• 大量非紧急刷新：合并/节流" TextWrapping="Wrap"/>
+          <TextBlock Text="• 与输入抢占：拆片 + Yield" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="❌ 死锁经典：Dispatcher.UIThread.InvokeAsync(Work).GetAwaiter().GetResult()" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：说明 Post 与 InvokeAsync 差异及 ExecutionContext 捕获" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

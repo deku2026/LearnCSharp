@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage21_AppArchitecture.Pages.AutosaveRecoveryDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 Autosave 与崩溃恢复" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Autosave 流" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="文档变更 → 防抖（1–2s）→ 写旁路文件 *.autosave&#x0a;显式保存 → 写主文件 → 删 autosave" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="IAutosaveService" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public interface IAutosaveService&#x0a;{&#x0a;    void NotifyChanged(IDocument doc);&#x0a;    Task FlushAsync(CancellationToken ct = default);&#x0a;}&#x0a;// 生命周期 Pausing 时强制 Flush（移动关键）" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="崩溃恢复" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="启动 → 扫描 autosave / recovery 目录" TextWrapping="Wrap"/>
+          <TextBlock Text="→ 提示用户恢复或丢弃" TextWrapping="Wrap"/>
+          <TextBlock Text="→ 校验完整性（哈希/版本头）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="测试：杀进程后启动见恢复提示" TextWrapping="Wrap"/>
+      <TextBlock Text="异常全局捕获：AppDomain / 未观察任务 / Dispatcher 未处理 → 日志 + 尝试 Flush autosave + 友好退出" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：杀进程后可恢复" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

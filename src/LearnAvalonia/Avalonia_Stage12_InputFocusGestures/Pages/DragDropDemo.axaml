@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage12_InputFocusGestures.Pages.DragDropDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.8 拖放 DnD 与 IAsyncDataTransfer" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="已删除（禁止再写）：IDataObject · DataObject · DataFormats.* · 同步 DragDrop.DoDragDrop。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="现行：IAsyncDataTransfer / DataTransfer / DataTransferItem · DataFormat.* · DragDrop.DoDragDropAsync · DragEventArgs.DataTransfer。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// 源：开始拖拽（12 API）&#10;var data = new DataTransfer();&#10;data.Add(DataTransferItem.CreateText(&quot;Hello&quot;));&#10;var result = await DragDrop.DoDragDropAsync(&#10;    e, data, DragDropEffects.Copy | DragDropEffects.Move);&#10;&#10;// 目标&#10;DragDrop.SetAllowDrop(target, true);&#10;target.AddHandler(DragDrop.DragOverEvent, (_, e) =&gt; {&#10;    e.DragEffects = DragDropEffects.Copy;&#10;});&#10;target.AddHandler(DragDrop.DropEvent, async (_, e) =&gt; {&#10;    await using var transfer = e.DataTransfer;&#10;    if (transfer is null) return;&#10;    var text = await transfer.TryGetTextAsync();&#10;    if (text is not null) { /* use text */ }&#10;});" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="IAsyncDataTransfer 心智：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 大数据/文件内容可能延迟提供" TextWrapping="Wrap"/>
+      <TextBlock Text="• UI 线程勿同步死等" TextWrapping="Wrap"/>
+      <TextBlock Text="• 回调里禁止再 Dispatcher.Invoke/InvokeAsync 回 UI（可能死锁）" TextWrapping="Wrap"/>
+      <TextBlock Text="• Linux 12.1：X11 已有完整 XDND 跨进程拖放；Wayland 🧪" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：DoDragDropAsync + DataTransfer" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

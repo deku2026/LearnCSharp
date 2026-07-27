@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage25_Performance.Pages.LayoutCountDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 布局次数与树规模" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="LayoutUpdated 事件每次布局后触发；计数即布局轮次。" TextWrapping="Wrap"/>
+      <Button Content="触发一次 InvalidateMeasure" Click="TriggerLayoutButton_Click" Margin="0,4,0,0"/>
+      <Border x:Name="LayoutProbe" Background="#F4F4F4" Width="200" Height="60" Padding="8" CornerRadius="4">
+        <TextBlock Text="探测控件（Width 切换触发布局）" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock x:Name="CountText" Text="等待触发..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      <TextBlock Text="树规模：深度 &gt; 10 或广度 &gt; 1000 时考虑虚拟化/延迟加载。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：LayoutUpdated 计数器可演示" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

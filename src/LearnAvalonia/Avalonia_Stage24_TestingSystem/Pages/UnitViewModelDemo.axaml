@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage24_TestingSystem.Pages.UnitViewModelDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 Unit：ViewModel 与服务" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="纯逻辑 ViewModel 测试，不需要 Avalonia 运行时——普通 [Fact] 即可。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public sealed class CounterVmTests&#x0a;{&#x0a;    [Fact]&#x0a;    public void Increment_Raises_Value_To_One()&#x0a;    {&#x0a;        CounterVm vm = new();&#x0a;        vm.IncrementCommand.Execute(null);&#x0a;        Assert.Equal(1, vm.Count);&#x0a;    }&#x0a;&#x0a;    [Fact]&#x0a;    public void Decrement_Does_Not_Go_Negative()&#x0a;    {&#x0a;        CounterVm vm = new();&#x0a;        vm.DecrementCommand.Execute(null);&#x0a;        Assert.Equal(0, vm.Count);&#x0a;    }&#x0a;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="服务测试：用接口 + 假实现（或 moq）；避免依赖文件/网络。" TextWrapping="Wrap"/>
+      <TextBlock Text="覆盖率：Coverlet 收集；CI gate ≥ 80%。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：xUnit 单测 ViewModel" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

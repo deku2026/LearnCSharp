@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage15_Virtualization.Pages"
+             x:DataType="pages:SelectionModesDemo"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.SelectionModesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.7 选择模式" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="SelectionMode 枚举：Single / Multiple / Extended（默认）。" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="*,4,*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="Single" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="一次只能选一项" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Multiple" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="点击切换每项选中态（无需修饰键）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Extended" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="Ctrl 点击多选；Shift 点击范围选" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="现场：200 项 ListBox（Single 模式 + 虚拟化）" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="4" CornerRadius="4">
+        <ListBox ItemsSource="{Binding Items}" SelectionMode="Single" MaxHeight="200"/>
+      </Border>
+      <TextBlock Text="注意：虚拟化下选择行为不变；SelectionModel 与 ItemsSource 解耦。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：区分 Single/Multiple/Extended" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage22_DataNetworkAuth.Pages.RestGrpcWebSocketDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 REST · gRPC · WebSocket" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="REST（主）" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public interface INotesApi&#x0a;{&#x0a;    Task&lt;IReadOnlyList&lt;NoteDto&gt;&gt; ListAsync(CancellationToken ct = default);&#x0a;    Task&lt;NoteDto&gt; UpsertAsync(NoteDto note, CancellationToken ct = default);&#x0a;}&#x0a;&#x0a;public sealed class NotesApi : INotesApi&#x0a;{&#x0a;    public NotesApi(IHttpClientFactory factory)&#x0a;        =&gt; _http = factory.CreateClient(&quot;api&quot;);&#x0a;    // 用 source gen 上下文反序列化流" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="错误映射" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public sealed class ApiException : Exception&#x0a;{&#x0a;    public int StatusCode { get; init; }&#x0a;    public string? ProblemDetails { get; init; }&#x0a;}&#x0a;// UI：401 → 尝试刷新 → 失败则登录；403/404/500 区分文案" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="gRPC" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="适合" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="注意" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="内网高效率、流式、强契约 protobuf" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Browser 需 gRPC-Web；移动证书；代码生成进 CI" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="WebSocket：实时协作/推送通道 · 重连/心跳/鉴权/后台断连 · IRealtimeClient.ReadEvents(ct) IAsyncEnumerable" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：REST 主路径 + 错误映射" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

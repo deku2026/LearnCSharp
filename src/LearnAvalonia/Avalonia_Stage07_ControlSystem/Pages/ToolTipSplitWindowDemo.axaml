@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage07_ControlSystem.Pages.ToolTipSplitWindowDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§E3-E4 ToolTip·Expander·SplitView·Window·TopLevel" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="现场：ToolTip + Expander + SplitView 桌面壳" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="8">
+          <Button ToolTip.Tip="保存文档" Content="💾 保存"/>
+          <Expander Header="高级选项" IsExpanded="False">
+            <StackPanel Spacing="4">
+              <CheckBox Content="启用日志"/>
+              <CheckBox Content="自动保存"/>
+            </StackPanel>
+          </Expander>
+          <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Height="120">
+            <SplitView IsPaneOpen="True" DisplayMode="Inline">
+              <SplitView.Pane>
+                <ListBox>
+                  <ListBoxItem Content="首页"/>
+                  <ListBoxItem Content="设置"/>
+                </ListBox>
+              </SplitView.Pane>
+              <Border Padding="8">
+                <TextBlock Text="主内容区（ContentControl 绑定当前页 VM）"/>
+              </Border>
+            </SplitView>
+          </Border>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="Window：桌面窗口；标题、状态、Owner、Show/ShowDialog" TextWrapping="Wrap"/>
+      <TextBlock Text="TopLevel：抽象顶层；取 StorageProvider、Clipboard、Screens、缩放" TextWrapping="Wrap"/>
+      <TextBlock Text="桌面主壳高频组合：SplitView（导航）+ ContentControl（页面）+ TabControl（多文档）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：使用 SplitView+ContentControl 桌面壳" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

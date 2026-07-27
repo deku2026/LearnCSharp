@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.NavigationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.3 前进 / 后退 / 刷新" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="NativeWebView 历史导航 API：" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="webView.GoBack();      // 历史 back&#10;webView.GoForward();   // 历史 forward&#10;webView.Reload();      // 重新加载&#10;webView.Stop();        // 停止加载&#10;bool can = webView.CanGoBack;  // 通过属性/事件通知" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="事件：NavigationStarting / NavigationCompleted / ContentLoading。" TextWrapping="Wrap"/>
+      <TextBlock Text="典型 UI：工具栏 ← → ⟳ 三按钮，按 CanGoBack/CanGoForward 启用态切换。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：GoBack/GoForward/Reload" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

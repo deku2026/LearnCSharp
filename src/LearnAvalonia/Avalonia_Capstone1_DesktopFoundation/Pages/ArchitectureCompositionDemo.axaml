@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone1_DesktopFoundation.Pages.ArchitectureCompositionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 架构建议与组合根" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="逻辑分层：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="TaskBox.Desktop          // 主机：Program、AppBuilder、多窗实现&#10;TaskBox.App              // Application、Views、Styles、Themes、axaml&#10;TaskBox.ViewModels       // VM；仅依赖抽象&#10;TaskBox.Core             // 实体、接口、领域服务&#10;TaskBox.Infrastructure   // 文件存储、JSON、对话框/导航桌面实现&#10;TaskBox.Tests            // xUnit + VM 测试&#10;TaskBox.Headless.Tests   // Avalonia.Headless.XUnit 冒烟"/>
+      </Border>
+      <TextBlock Text="小团队可合并为 3 项目：App（含 Desktop 入口）+ Core + Tests。禁止单文件上帝窗口" TextWrapping="Wrap"/>
+      <TextBlock Text="组合根示例：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="var services = new ServiceCollection();&#10;services.AddSingleton&lt;IAppSettings, FileAppSettings&gt;();&#10;services.AddSingleton&lt;ITaskRepository, JsonTaskRepository&gt;();&#10;services.AddSingleton&lt;IDialogService, AvaloniaDialogService&gt;();&#10;services.AddSingleton&lt;INavigationService, ContentNavigationService&gt;();&#10;services.AddTransient&lt;MainViewModel&gt;();&#10;services.AddTransient&lt;MainWindow&gt;();"/>
+      </Border>
+      <TextBlock Text="导航模型（桌面）：MainViewModel.CurrentPage + ContentControl + DataTemplate 映射（不要默认 ViewLocator 反射）" TextWrapping="Wrap"/>
+      <TextBlock Text="MVVM 纪律（硬）：CommunityToolkit.Mvvm 8.4.2 · x:DataType + compiled · VM 不引用 Window/Control · 对话框/文件/导航全部接口 · 禁 Avalonia.ReactiveUI 11.x · 禁默认 ViewLocator · 禁业务写在 code-behind" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：DI 组合根清晰" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

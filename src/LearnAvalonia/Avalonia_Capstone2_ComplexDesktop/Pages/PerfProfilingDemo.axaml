@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone2_ComplexDesktop.Pages.PerfProfilingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§13 性能剖析" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="必测场景" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="3" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="场景" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="记录" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="冷启动到可输入" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="ms" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="加载 1 万行" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="ms" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="快速滚动 / 打开 10 Tab" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="是否卡顿 / 内存增量" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="工具：dotnet-trace · dotnet-counters · DevTools · 平台 Profiler" TextWrapping="Wrap"/>
+      <TextBlock Text="优化方向（若不过线）：虚拟化 · 减启动同步 I/O · 字体/图片 · 日志级别" TextWrapping="Wrap"/>
+      <TextBlock Text="一切结论带数字" Foreground="DarkGreen" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：冷启动/加载/滚动/Tab 内存数字" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage13_GraphicsAnimation.Pages.EasingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.11 Easing" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="animation.Easing = new CubicEaseOut();&#10;// LinearEasing · SineEaseInOut · BounceEaseOut · Spring 等" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;Animation Duration=&quot;0:0:0.4&quot; Easing=&quot;CubicEaseOut&quot;&gt;&#10;  ...&#10;&lt;/Animation&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="常见 Easing 函数：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="• LinearEasing — 匀速" TextWrapping="Wrap"/>
+          <TextBlock Text="• CubicEaseOut — 快入慢出（常用）" TextWrapping="Wrap"/>
+          <TextBlock Text="• SineEaseInOut — 平滑起止" TextWrapping="Wrap"/>
+          <TextBlock Text="• BounceEaseOut — 弹跳" TextWrapping="Wrap"/>
+          <TextBlock Text="• Spring — 弹簧物理" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：CubicEaseOut/SineEaseInOut/Spring" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

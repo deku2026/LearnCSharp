@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone3_CrossPlatform.Pages.RoutingStrategyDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3.1 路由策略（桌面三平台）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="桌面路由方案：" FontWeight="SemiBold"/>
+          <TextBlock Text="· ContentControl + ViewBinder：单页切换（本 nav-shell 同款）" TextWrapping="Wrap"/>
+          <TextBlock Text="· Frame + NavigationStack：栈式（适合向导）" TextWrapping="Wrap"/>
+          <TextBlock Text="· 自研 Router：在 Core 定义 IRouter 接口，Desktop 实现" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// Core: IRouter&#10;public interface IRouter { void Navigate(string key); }&#10;&#10;// Desktop: ContentControlRouter&#10;void IRouter.Navigate(string key) {&#10;    _content.Content = _viewFactory(key);&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="移动 ShellContent/NavigationPage 见 roadmap，不实现。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：桌面三平台统一路由" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

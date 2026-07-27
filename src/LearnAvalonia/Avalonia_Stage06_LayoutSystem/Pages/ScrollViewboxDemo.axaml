@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage06_LayoutSystem.Pages.ScrollViewboxDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§E1-E2 Viewbox 与 ScrollViewer" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Viewbox：将子视觉等比（或指定）缩放到可用空间；Stretch=Uniform/UniformToFill/Fill/None" TextWrapping="Wrap"/>
+      <TextBlock Text="ScrollViewer：内容在滚动方向上常以 infinity measure → 得到完整 Desired；Viewport=可视窗口，Extent=内容范围，Offset=滚动偏移" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：Viewbox Stretch=Uniform 等比缩放 200×100 Canvas" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4" Height="120">
+        <Viewbox Stretch="Uniform">
+          <Canvas Width="200" Height="100" Background="SteelBlue">
+            <TextBlock Canvas.Left="20" Canvas.Top="40" Text="等比缩放" Foreground="White"/>
+          </Canvas>
+        </Viewbox>
+      </Border>
+      <TextBlock Text="现场：ScrollViewer VerticalScrollBarVisibility=Auto 承载长内容" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Height="120">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+          <StackPanel Spacing="4" Margin="8">
+            <TextBlock Text="第 1 行（按内容扩展，由滚动承载溢出）"/>
+            <TextBlock Text="第 2 行（按内容扩展，由滚动承载溢出）"/>
+            <TextBlock Text="第 3 行（按内容扩展，由滚动承载溢出）"/>
+            <TextBlock Text="第 4 行（按内容扩展，由滚动承载溢出）"/>
+            <TextBlock Text="第 5 行（按内容扩展，由滚动承载溢出）"/>
+            <TextBlock Text="第 6 行（按内容扩展，由滚动承载溢出）"/>
+            <TextBlock Text="第 7 行（按内容扩展，由滚动承载溢出）"/>
+            <TextBlock Text="第 8 行（按内容扩展，由滚动承载溢出）"/>
+          </StackPanel>
+        </ScrollViewer>
+      </Border>
+      <TextBlock Text="反模式：ScrollViewer 内再塞无限扩展且无虚拟化的大列表 → 内存与首测爆炸" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：解释 ScrollViewer 与 Viewbox 的 infinity measure" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

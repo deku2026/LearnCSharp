@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.ResourceInterceptDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 资源拦截 / 虚拟主机映射" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="WebResourceRequested 事件：拦截指定 URI 模式的请求，返回自定义内容（Stream/字节数组）。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="webView.WebResourceRequested += (s, e) =&gt;&#10;{&#10;    if (e.Request.RequestUri.StartsWith(&#34;https://app.local/&#34;))&#10;    {&#10;        e.Response = BuildResponseFromAssets(e.Request.RequestUri);&#10;    }&#10;};" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="用例：把 avares:// 内嵌资源暴露为 https://app.local/...；JS 不感知是本地资源。" TextWrapping="Wrap"/>
+      <TextBlock Text="注意：拦截要按 URI 范围；不要拦截全 https（破坏正常浏览）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：WebResourceRequested 拦截" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

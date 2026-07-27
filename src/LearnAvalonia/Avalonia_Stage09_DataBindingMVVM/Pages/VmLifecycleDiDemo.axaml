@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.VmLifecycleDiDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§E1-E2 VM 生命周期与 DI" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="生命周期：创建（DI）→ 注入服务 → 激活/首次导航 LoadAsync → 失活取消 CTS → Dispose 释放" TextWrapping="Wrap"/>
+      <TextBlock Text="多窗口：每窗独立 VM 实例 vs 单例——设置单例、文档多例是常见策略" TextWrapping="Wrap"/>
+      <TextBlock Text="现场：DI 组合根（ServiceCollection）" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="var services = new ServiceCollection();&#10;services.AddSingleton&lt;IFileService, FileService&gt;();&#10;services.AddTransient&lt;MainViewModel&gt;();&#10;services.AddTransient&lt;MainWindow&gt;();&#10;var sp = services.BuildServiceProvider();&#10;&#10;desktop.MainWindow = sp.GetRequiredService&lt;MainWindow&gt;();&#10;&#10;public MainWindow(MainViewModel vm)&#10;{&#10;    InitializeComponent();&#10;    DataContext = vm;&#10;}"/>
+      </Border>
+      <TextBlock Text="寿命策略：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="4" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="Singleton" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="配置、会话、消息总线" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Transient" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="窗口 VM、对话框 VM" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Scoped" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="若引入 scope（桌面较少硬用）" TextWrapping="Wrap" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="禁止：VM 内 new ServiceLocator 全局乱取；构造函数注入优先" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：写 DI 组合根注册 VM/服务" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

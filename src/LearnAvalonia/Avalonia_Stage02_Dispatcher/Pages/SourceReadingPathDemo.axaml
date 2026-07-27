@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.SourceReadingPathDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§14 源码阅读路径" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="仓库：https://github.com/AvaloniaUI/Avalonia（标签对齐 12.1.0）" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="0.8*,1.8*,2*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="优先级" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="类型" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="关注点" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Dispatcher"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="队列、优先级、Post/InvokeAsync" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="UIThread/CurrentDispatcher/FromThread" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="12 多实例" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="AvaloniaObject.Dispatcher"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="对象亲和性" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="AvaloniaSynchronizationContext"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="与 async 衔接" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="DispatcherTimer"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="默认 dispatcher 选择" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="🟢"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="InvokeAsync 与 ExecutionContext 捕获" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="PR #19163 行为" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="🟢"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="剪贴板 IAsyncDataTransfer 路径" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="回调线程模型" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="阅读法：先接口契约 → 再 Dispatcher 实现 → 再剪贴板线程模型" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：列出关键类型与关注点" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

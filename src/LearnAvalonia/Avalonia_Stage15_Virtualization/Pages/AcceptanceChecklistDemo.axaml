@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.AcceptanceChecklistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 验收清单" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="☐ 1 能解释虚拟化与非虚拟化临界点"/>
+          <TextBlock Text="☐ 2 列出虚拟化启动三条件"/>
+          <TextBlock Text="☐ 3 闭卷画出虚拟化容器/recycle 原理"/>
+          <TextBlock Text="☐ 4 TableView 三列只读 + 行虚拟化 1k 行"/>
+          <TextBlock Text="☐ 5 DataGrid 一列可编辑 + 标注 deprecated"/>
+          <TextBlock Text="☐ 6 TreeDataGrid 为 Pro，主线不依赖"/>
+          <TextBlock Text="☐ 7 ItemsRepeater retired 状态 + 用法"/>
+          <TextBlock Text="☐ 8 区分 Single/Multiple/Extended 选择模式"/>
+          <TextBlock Text="☐ 9 识别 5 种反模式"/>
+          <TextBlock Text="☐ 10 虚拟化下 MVVM 注意点"/>
+          <TextBlock Text="☐ 11 描述 FPS + 内存测量方法"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：勾选验收清单" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

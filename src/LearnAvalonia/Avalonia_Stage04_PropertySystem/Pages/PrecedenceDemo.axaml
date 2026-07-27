@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.PrecedenceDemo">
+  <UserControl.Styles>
+    <Style Selector="Border.precedence">
+      <Setter Property="Background" Value="DodgerBlue"/>
+    </Style>
+  </UserControl.Styles>
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 Value Precedence（值优先级）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="优先级阶梯（高→低）：动画 → 本地值 → 模板 → 样式触发器 → 普通样式 → 绑定 → 继承 → 默认值" TextWrapping="Wrap"/>
+      <TextBlock Text="实验矩阵（交互）：" FontWeight="SemiBold"/>
+      <Border x:Name="TargetBorder" Classes="precedence" CornerRadius="4" Height="40" Margin="0,4,0,0">
+        <TextBlock Text="观察背景色变化" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+      </Border>
+      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+        <Button Content="1. 仅样式蓝色" Click="StyleOnlyButton_Click"/>
+        <Button Content="2. SetValue 红色" Click="SetValueRedButton_Click"/>
+        <Button Content="3. ClearValue 回蓝" Click="ClearValueButton_Click"/>
+      </StackPanel>
+      <TextBlock x:Name="LogText" Text="日志：初始状态（样式蓝色）" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="调试为什么样式不生效的第一反应：是否被本地值或更高优先级来源压住。ClearValue 是常用手术刀" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：实验证明覆盖关系" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

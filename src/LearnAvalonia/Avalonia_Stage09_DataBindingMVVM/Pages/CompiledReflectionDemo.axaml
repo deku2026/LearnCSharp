@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage09_DataBindingMVVM.Pages.CompiledReflectionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§B1-B2 Compiled vs Reflection" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="2" ColumnSpacing="8">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="对比项" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="Compiled" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="Reflection" FontWeight="SemiBold" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="解析" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="编译期/源生成" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="运行期反射" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="性能" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="更好" Padding="4"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="较差" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="错误时机" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="编译期" Padding="4"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="运行期" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="Trim/AOT" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="友好" Padding="4"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="易被裁掉成员" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="12 默认" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="默认倾向编译绑定" TextWrapping="Wrap" Padding="4"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="需显式" Padding="4"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="XAML 侧：x:DataType 是编译绑定的类型上下文；DataTemplate 内同样设置 x:DataType" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;Window x:DataType=&quot;vm:MainViewModel&quot; x:CompileBindings=&quot;True&quot;&gt;&#10;  &lt;TextBlock Text=&quot;{Binding Title}&quot; /&gt;&#10;&lt;/Window&gt;&#10;&#10;&lt;DataTemplate x:DataType=&quot;vm:Person&quot;&gt;&#10;  &lt;TextBlock Text=&quot;{Binding FullName}&quot; /&gt;&#10;&lt;/DataTemplate&gt;"/>
+      </Border>
+      <TextBlock Text="验收：解释 compiled vs reflection 与 x:DataType" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

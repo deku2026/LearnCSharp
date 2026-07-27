@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage26_TrimmingAOT.Pages.DynamicXamlForbiddenDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 动态 XAML 禁区" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="AOT 下禁区" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// ❌ AOT 下会失败&#x0a;var xaml = File.ReadAllText(&quot;plugin.xaml&quot;);&#x0a;var control = (Control)AvaloniaXamlLoader.Load(new StringReader(xaml));" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="原因：AOT 编译期已知类型；运行时字符串解析需反射构造。" TextWrapping="Wrap"/>
+      <TextBlock Text="替代" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• 编译期 .axaml → 代码生成（默认）" TextWrapping="Wrap"/>
+          <TextBlock Text="• 插件用接口 + 工厂；不传 XAML 字符串" TextWrapping="Wrap"/>
+          <TextBlock Text="• 必须 XAML 热更新 → 用 SourceGenerator 生成" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：运行时 XAML 不兼容 AOT" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

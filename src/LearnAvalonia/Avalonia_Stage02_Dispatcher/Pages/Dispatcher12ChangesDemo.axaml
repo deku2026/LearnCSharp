@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.Dispatcher12ChangesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 Avalonia 12 / 12.1 最新变化" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• 每线程 Dispatcher —— 多实例 API 面；仍无多 UI 线程" TextWrapping="Wrap"/>
+          <TextBlock Text="• 库优先 AvaloniaObject.Dispatcher —— 可移植控件必备" TextWrapping="Wrap"/>
+          <TextBlock Text="• InvokeAsync 捕获 ExecutionContext —— AsyncLocal 等会流动" TextWrapping="Wrap"/>
+          <TextBlock Text="• DispatcherTimer 默认当前 dispatcher —— 创建线程必须正确" TextWrapping="Wrap"/>
+          <TextBlock Text="• 剪贴板全面异步 + IAsyncDataTransfer —— 旧同步 IDataObject 路径删除；回调禁同步 Invoke" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：列出 12/12.1 Dispatcher 关键变化" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

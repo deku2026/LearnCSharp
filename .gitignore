@@ -47,6 +47,7 @@ appsettings.*.local.json
 # Local AI assistant workspaces
 .claude/
 .cursor/
+.superpowers/sdd/
 
 # OS junk
 .DS_Store

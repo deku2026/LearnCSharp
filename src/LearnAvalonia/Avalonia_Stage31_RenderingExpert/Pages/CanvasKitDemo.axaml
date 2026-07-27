@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.CanvasKitDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 CanvasKit (Browser / WASM)" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Browser 后端走 Skia CanvasKit + WebGL；非桌面 demo 不在此运行。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="Avalonia.Browser.dll&#10;  JSExport main → CanvasKit surface&#10;    → HTMLCanvasElement + WebGL2 context&#10;    → CanvasKitSurface.MakeFromCanvas" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="优化路径：" FontWeight="SemiBold"/>
+      <TextBlock Text="• WebGL2 + WASM SIMD → 60fps"/>
+      <TextBlock Text="• 字体加载走 fetch + JSFontCollection"/>
+      <TextBlock Text="• DOM 事件 → Avalonia PointerEvent"/>
+      <TextBlock Text="⚠️ 本桌面 demo 不 build/run WASM（见 Stage30 §9）" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：WASM CanvasKit 说明" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

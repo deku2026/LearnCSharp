@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage11_PagesNavigation.Pages.CommandBarDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.8 CommandBar" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;ContentPage Header=&quot;编辑&quot;&gt;&#10;  &lt;DockPanel&gt;&#10;    &lt;CommandBar DockPanel.Dock=&quot;Top&quot; Placement=&quot;Top&quot;&gt;&#10;      &lt;CommandBarButton Label=&quot;保存&quot; Command=&quot;{Binding SaveCommand}&quot;/&gt;&#10;      &lt;CommandBarButton Label=&quot;分享&quot; Command=&quot;{Binding ShareCommand}&quot;/&gt;&#10;    &lt;/CommandBar&gt;&#10;    &lt;!-- 内容 --&gt;&#10;  &lt;/DockPanel&gt;&#10;&lt;/ContentPage&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="Placement — Top / Bottom 等（以 API 为准）" TextWrapping="Wrap"/>
+          <TextBlock Text="与导航栏关系 — 导航栏负责返回/标题；CommandBar 放页级动作" TextWrapping="Wrap"/>
+          <TextBlock Text="桌面 — 可用工具栏/菜单替代，保持命令同一 VM" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：页级动作条与导航栏分工" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>
