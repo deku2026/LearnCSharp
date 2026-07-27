@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.JsInteropDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 JS ↔ C# 互操作（双向）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="C# → JS：NativeWebView.InvokeScript(string)" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="await webView.InvokeScript(&#34;console.log('Hello')&#34;);" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="JS → C#：invokeCSharpAction + WebMessageReceived 事件" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="private void OnNavCompleted(object? s, WebViewNavigationCompletedEventArgs e)&#10;{&#10;    ((NativeWebView)s!).InvokeScript(&#34;invokeCSharpAction('{\\\&#34;key\\\&#34;:10}')&#34;);&#10;}&#10;private void OnMessage(object? s, WebMessageReceivedEventArgs e)&#10;{&#10;    string body = e.Body; // '{\\\&#34;key\\\&#34;:10}'&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="注意：JS 沙盒中 invokeCSharpAction 由 webview 注入；不要在 JS 里 eval 用户输入（XSS）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：InvokeScript + WebMessageReceived" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

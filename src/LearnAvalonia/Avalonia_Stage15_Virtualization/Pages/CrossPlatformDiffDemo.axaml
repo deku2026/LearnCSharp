@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.CrossPlatformDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 跨平台差异（虚拟化）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="项" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="Windows" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="macOS" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="Linux/X11" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="渲染" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Skia+GR" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="Skia+GR" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="Skia（软/GR）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="滚动" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="高刷流畅" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="惯性平滑" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="视驱动" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="DPI" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="PerMonitor" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="Retina" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="Xrandr" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="结论：虚拟化算法本身平台无关；差异主要在滚动惯性与 DPI 缩放。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：虚拟化在三平台差异表" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

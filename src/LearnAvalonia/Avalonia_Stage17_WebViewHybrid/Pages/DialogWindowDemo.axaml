@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.DialogWindowDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.2 独立对话框窗口（NativeWebDialog）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="NativeWebDialog：独立 OS 窗口承载 webview，不嵌入主 UI 树；适合 OAuth 弹窗/帮助页。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="var dialog = new NativeWebDialog&#10;{&#10;    Title = &#34;Avalonia Docs&#34;,&#10;    CanUserResize = true,&#10;    Source = new Uri(&#34;https://docs.avaloniaui.net/&#34;)&#10;};&#10;dialog.NavigationCompleted += (s, e) =&gt; { ... };&#10;dialog.Show();" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="优势：不依赖 NativeControlHost；macOS/Linux 全平台支持。" TextWrapping="Wrap"/>
+      <TextBlock Text="劣势：不嵌入 UI 树，不能与 Avalonia 控件混合排版。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：NativeWebDialog.Show()" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

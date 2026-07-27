@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.Avalonia12ChangesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 Avalonia 12 / 12.1 变化（虚拟化）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="12.1 新增：TableView 进 Avalonia.Controls 核心包（只读表首选）" TextWrapping="Wrap"/>
+          <TextBlock Text="12.1 deprecated：DataGrid 标记 deprecated，仅 bugfix" TextWrapping="Wrap"/>
+          <TextBlock Text="12.0 retired：ItemsRepeater 独立仓库，仅兼容到 12.0；推荐 ListBox/TableView" TextWrapping="Wrap"/>
+          <TextBlock Text="12 起默认 ItemsPanel = VirtualizingStackPanel（不再需显式声明）" TextWrapping="Wrap"/>
+          <TextBlock Text="12 起 SelectionModel 与 ItemsSource 解耦" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="迁移信号：旧 DataGrid 只读 → TableView；ItemsRepeater → 评估 ListBox/TableView 是否够用。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：12/12.1 关键变化" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

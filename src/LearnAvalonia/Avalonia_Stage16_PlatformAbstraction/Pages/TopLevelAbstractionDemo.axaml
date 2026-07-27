@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.TopLevelAbstractionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 TopLevel：统一平台抽象的根" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="TopLevel 是所有窗口/控件树的根，承载平台特定能力（Storage/Clipboard/Launcher/Screens/...）。" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="三模式（IApplicationLifetime 决定）：" FontWeight="SemiBold"/>
+          <TextBlock Text="· Desktop → TopLevel = Window" TextWrapping="Wrap"/>
+          <TextBlock Text="· SingleView → TopLevel = TopLevel（嵌入宿主）" TextWrapping="Wrap"/>
+          <TextBlock Text="· Activity（移动） → TopLevel = Activity" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="安全取值（key）：TopLevel.GetTopLevel(this)?.StorageProvider —— 永远判空。" TextWrapping="Wrap"/>
+      <TextBlock Text="设计时预览器 TopLevel 可能为 null；不要在 ctor 里假设能力可用。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：解释 TopLevel 三模式" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

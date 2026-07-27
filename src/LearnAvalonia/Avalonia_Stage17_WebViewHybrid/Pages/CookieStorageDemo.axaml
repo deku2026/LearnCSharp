@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.CookieStorageDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 Cookie / 存储 / 隐私" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="Cookie：" FontWeight="SemiBold"/>
+          <TextBlock Text="· Win WebView2：跟随 userDataFolder 隔离" TextWrapping="Wrap"/>
+          <TextBlock Text="· macOS WKWebView：WKWebsiteDataStore 隔离" TextWrapping="Wrap"/>
+          <TextBlock Text="· Linux WPE：进程级隔离" TextWrapping="Wrap"/>
+          <TextBlock Text="localStorage / IndexedDB：" FontWeight="SemiBold"/>
+          <TextBlock Text="· 同样受 userDataFolder 隔离" TextWrapping="Wrap"/>
+          <TextBlock Text="· 多账户场景：每个账户独立 Environment（不同 userDataFolder）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="隐私清单：清除数据用 userDataFolder 删除；用户主动退出登录应清 Cookie/localStorage。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Cookie + localStorage 隔离" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

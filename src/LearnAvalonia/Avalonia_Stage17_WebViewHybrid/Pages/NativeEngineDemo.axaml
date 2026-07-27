@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.NativeEngineDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 原生引擎细节" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="项" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="Windows" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="macOS/iOS" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="引擎" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Edge WebView2（Chromium）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="WKWebView（WebKit）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="预装" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="Win11 预装 / Win10 需装" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="系统预装" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="兜底" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="WebView1（旧 Edge）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="无兜底" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="Linux：WPE WebKit（NativeWebView）或 WebKitGTK（NativeWebDialog）。" TextWrapping="Wrap"/>
+      <TextBlock Text="chromium 版本：WebView2 跟随用户 Edge 更新（不随应用打包）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Win WebView2 / macOS WKWebView" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

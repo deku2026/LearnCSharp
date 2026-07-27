@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone3_CrossPlatform.Pages.ConditionalCompilationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 #if 编译开关（桌面三平台）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="原则：能不 #if 就不 #if；只在真正平台特化时用。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="public static class PlatformInfo&#10;{&#10;    public static string Name =&gt;&#10;#if WINDOWS&#10;        &#34;Windows&#34;;&#10;#elif MACOS&#10;        &#34;macOS&#34;;&#10;#elif LINUX&#10;        &#34;Linux&#34;;&#10;#else&#10;        &#34;Unknown&#34;;&#10;#endif&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="桌面三平台特化点：" FontWeight="SemiBold"/>
+      <TextBlock Text="· WINDOWS：托盘图标（NotifyIcon）/ 注册表 / WebView2 路径" TextWrapping="Wrap"/>
+      <TextBlock Text="· MACOS：NSStatusBar / AppDelegate / WKWebView 配置" TextWrapping="Wrap"/>
+      <TextBlock Text="· LINUX：DBus 通知 / XDG 路径 / WebKitGTK" TextWrapping="Wrap"/>
+      <TextBlock Text="缺点：#if 太多难维护；优先接口 + DI 注入。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：桌面三平台 #if 例子" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

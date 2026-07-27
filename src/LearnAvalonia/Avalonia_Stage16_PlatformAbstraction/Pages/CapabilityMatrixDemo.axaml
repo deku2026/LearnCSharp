@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.CapabilityMatrixDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 接口能力清单（TopLevel 访问器）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="· StorageProvider — 文件/文件夹" TextWrapping="Wrap"/>
+          <TextBlock Text="· Clipboard — IAsyncDataTransfer" TextWrapping="Wrap"/>
+          <TextBlock Text="· Launcher — URI / 外部程序" TextWrapping="Wrap"/>
+          <TextBlock Text="· Screens — 多显示器 / DPI" TextWrapping="Wrap"/>
+          <TextBlock Text="· PlatformSettings — OS 设置 / Hotkey" TextWrapping="Wrap"/>
+          <TextBlock Text="· INotificationService — 系统通知" TextWrapping="Wrap"/>
+          <TextBlock Text="· ISystemDialogManager — 旧式 system dialog 兼容" TextWrapping="Wrap"/>
+          <TextBlock Text="· IInsetsManager — safe area / 全屏" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="统一访问：TopLevel.GetTopLevel(this)?.&lt;CapabilityName&gt;" TextWrapping="Wrap"/>
+      <TextBlock Text="判空：能力可能为 null（设计时/移动受限平台）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：TopLevel 能力访问器" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

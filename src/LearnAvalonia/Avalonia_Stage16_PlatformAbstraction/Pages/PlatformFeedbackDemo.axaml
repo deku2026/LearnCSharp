@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.PlatformFeedbackDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 PlatformFeedback（触觉反馈）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="定位：触觉/振动反馈抽象；以移动平台为主，桌面一般无触觉硬件。" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="IFeedbackReceiver / PlatformFeedback API（概念性）：" FontWeight="SemiBold"/>
+          <TextBlock Text="· Light Impact / Medium Impact / Heavy Impact" TextWrapping="Wrap"/>
+          <TextBlock Text="· Selection feedback（轻触）" TextWrapping="Wrap"/>
+          <TextBlock Text="· Success / Warning / Error 通知反馈" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="桌面应用：通常 NoOp（无副作用）。移动应用：iOS Taptic / Android Vibrate。" TextWrapping="Wrap"/>
+      <TextBlock Text="桌面主线验收不依赖；知其存在即可。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：PlatformFeedback 触觉反馈" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

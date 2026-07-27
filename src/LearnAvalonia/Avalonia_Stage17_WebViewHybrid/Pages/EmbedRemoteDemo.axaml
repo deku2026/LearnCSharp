@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.EmbedRemoteDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.1 嵌入远程页（NativeWebView）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="XAML 嵌入 NativeWebView；Source 绑定 Uri；NavigationCompleted 事件回调。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;NativeWebView Source=&#34;https://avaloniaui.net/&#34;&#10;           NavigationCompleted=&#34;WebView_NavigationCompleted&#34; /&gt;&#10;&#10;private void WebView_NavigationCompleted(object? s, WebViewNavigationCompletedEventArgs e)&#10;{&#10;    if (e.IsSuccess) { /* OK */ }&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="现场：实际 NativeWebView 控件（需平台 webview 后端，本机 Windows 装有 WebView2）" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="2" CornerRadius="4">
+        <NativeWebView Source="https://avaloniaui.net/" Height="320"/>
+      </Border>
+      <TextBlock Text="若 webview 后端缺失，控件可能为空；Linux 需 WPE WebKit（见 §11）。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：NativeWebView Source=URL" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

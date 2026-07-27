@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.MinExperimentsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§16 最小实验 A-E（汇总）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="A：TopLevel 取文件打开 → 显示文件名（本 demo §2.2 已示）" FontWeight="SemiBold"/>
+          <TextBlock Text="B：Clipboard 写读文本（本 demo §3 已示概念）" FontWeight="SemiBold"/>
+          <TextBlock Text="C：Launcher 打开 https://avaloniaui.net（本 demo §4 已示）" FontWeight="SemiBold"/>
+          <TextBlock Text="D：Screens 列出所有显示器 Bounds/Scaling（本 demo §5 已示）" FontWeight="SemiBold"/>
+          <TextBlock Text="E：Tray + NativeMenu 显示「退出」（可选桌面）" FontWeight="SemiBold"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="桌面三平台均可跑；移动/Browser 受限不强制。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：完成 5 个最小实验" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

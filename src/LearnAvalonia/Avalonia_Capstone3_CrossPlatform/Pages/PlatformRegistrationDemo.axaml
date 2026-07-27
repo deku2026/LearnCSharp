@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone3_CrossPlatform.Pages.PlatformRegistrationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 平台差异注册（DI）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="DI 容器：Microsoft.Extensions.DependencyInjection（与 ASP.NET 同生态）。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="var services = new ServiceCollection();&#10;services.AddSingleton&lt;MainViewModel&gt;();&#10;services.AddSingleton&lt;IFileStorage, DesktopFileStorage&gt;();&#10;services.AddSingleton&lt;INotifier, PlatformNotifier&gt;();&#10;// 平台特化（如需）：#if WINDOWS 注册 WinNotifier...&#10;var sp = services.BuildServiceProvider();" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="DI 细节：" FontWeight="SemiBold"/>
+      <TextBlock Text="· ViewModels 注册为 transient（每次新建）或 singleton（共享状态）" TextWrapping="Wrap"/>
+      <TextBlock Text="· 平台服务用 #if WINDOWS/MACOS/LINUX 切换实现类" TextWrapping="Wrap"/>
+      <TextBlock Text="· 设计时 previewer 可注入 fake DI（避免真实平台服务）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：DI 容器选型 + 平台注册" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

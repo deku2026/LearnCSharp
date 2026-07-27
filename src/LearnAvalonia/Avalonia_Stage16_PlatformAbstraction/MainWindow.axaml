@@ -1,10 +1,34 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.ViewModels"
+        xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages"
         x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.MainWindow"
-        Title="Stage16_PlatformAbstraction - Unified Platform Abstraction"
-        Width="800" Height="450">
-    <TextBlock Text="Hello from Stage16_PlatformAbstraction"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               FontSize="24" />
+        Title="Stage 16 · 统一平台抽象"
+        Width="1100" Height="720"
+        x:DataType="vm:MainViewModel">
+  <Grid RowDefinitions="Auto,*,Auto">
+    <Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundAltMediumBrush}" Padding="12,8">
+      <TextBlock Text="Stage 16 · 统一平台抽象 — Avalonia 12.1 桌面主线" FontSize="16" FontWeight="SemiBold"/>
+    </Border>
+    <Grid Grid.Row="1" ColumnDefinitions="280,5,*">
+      <ListBox Grid.Column="0" x:Name="TopicList" ItemsSource="{Binding Topics}"
+               SelectedItem="{Binding SelectedTopic}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding Title}" Padding="4"/>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+      <GridSplitter Grid.Column="1" Background="Gray" ResizeDirection="Columns"/>
+      <ScrollViewer Grid.Column="2" Padding="12">
+        <ContentControl Content="{Binding SelectedTopic.DemoFactory, Converter={x:Static pages:DemoFactoryConverter.Instance}}"/>
+      </ScrollViewer>
+    </Grid>
+    <Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundAltMediumBrush}" Padding="12,6">
+      <StackPanel Orientation="Vertical" Spacing="2">
+        <TextBlock Text="{Binding SelectedTopic.Doc}" FontSize="12" Foreground="Gray"/>
+        <TextBlock Text="{Binding SelectedTopic.Accept}" FontSize="12" Foreground="DarkGreen"/>
+      </StackPanel>
+    </Border>
+  </Grid>
 </Window>

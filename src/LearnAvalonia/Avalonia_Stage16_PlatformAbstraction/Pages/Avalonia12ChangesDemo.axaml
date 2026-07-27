@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.Avalonia12ChangesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§13 Avalonia 12/12.1 变化（平台抽象）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="12 起：" FontWeight="SemiBold"/>
+          <TextBlock Text="· Clipboard 走 IAsyncDataTransfer（全部异步）" TextWrapping="Wrap"/>
+          <TextBlock Text="· Screen 类 abstract（不能 new）" TextWrapping="Wrap"/>
+          <TextBlock Text="· 旧 FileDialog 删除 → 改用 StorageProvider" TextWrapping="Wrap"/>
+          <TextBlock Text="· TopLevel 引入统一能力访问器" TextWrapping="Wrap"/>
+          <TextBlock Text="12.1：" FontWeight="SemiBold"/>
+          <TextBlock Text="· StorageProvider API 微调" TextWrapping="Wrap"/>
+          <TextBlock Text="· INotificationService 路径稳定" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="迁移重点：旧 FileDialog → StorageProvider；同步 Clipboard → async Clipboard。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：12/12.1 平台抽象变化" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

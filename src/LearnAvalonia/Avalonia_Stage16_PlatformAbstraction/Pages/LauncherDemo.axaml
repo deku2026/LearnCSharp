@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.LauncherDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 Launcher（URI / 外部资源）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Launcher.LaunchUriAsync(Uri)：让系统打开 URI（浏览器/邮件/文件关联程序）。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="var launcher = TopLevel.GetTopLevel(this)?.Launcher;&#10;if (launcher is null) return;&#10;bool ok = await launcher.LaunchUriAsync(new Uri(&#34;https://avaloniaui.net&#34;));" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="安全：" FontWeight="SemiBold"/>
+      <TextBlock Text="· 只接受 http/https/mailto 等公认 scheme；不接受 file:// / 自定义 scheme（防注入）" TextWrapping="Wrap"/>
+      <TextBlock Text="· 用户系统会弹确认（macOS Gatekeeper 等）" TextWrapping="Wrap"/>
+      <TextBlock Text="返回 bool：true 表示系统接受；不代表实际打开成功（异步外部程序）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Launcher.LaunchUriAsync" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

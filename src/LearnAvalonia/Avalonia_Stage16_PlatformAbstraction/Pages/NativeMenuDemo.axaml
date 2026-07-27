@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.NativeMenuDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 原生菜单 / 通知" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="NativeMenu vs Menu：" FontWeight="SemiBold"/>
+          <TextBlock Text="· Menu：Avalonia 自己绘制（Fluent 外观）" TextWrapping="Wrap"/>
+          <TextBlock Text="· NativeMenu：OS 原生菜单（macOS 顶部菜单 / Win/Linux 托盘右键）" TextWrapping="Wrap"/>
+          <TextBlock Text="关键：TrayIcon 右键菜单必须用 NativeMenu（不能用 Menu）。" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="macOS 应用菜单：Application.TopMenu（App/About/Quit）+ Window 菜单。" TextWrapping="Wrap"/>
+      <TextBlock Text="通知：INotificationService；权限申请 + 显示（系统通知中心）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：NativeMenu vs Menu + 通知" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

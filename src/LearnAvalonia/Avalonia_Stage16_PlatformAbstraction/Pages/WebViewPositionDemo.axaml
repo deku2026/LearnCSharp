@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.WebViewPositionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 WebView 在本阶段的位置" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="WebView 也是一种「平台抽象」延伸：封装各平台原生 web 引擎（WebView2/WebKit/WKWebView）。" TextWrapping="Wrap"/>
+      <TextBlock Text="本阶段不展开；放阶段 17 单独讲。" TextWrapping="Wrap"/>
+      <TextBlock Text="要点提示：" FontWeight="SemiBold"/>
+      <TextBlock Text="· 独立包 Avalonia.Controls.WebView（12.0.1，单独 pin）" TextWrapping="Wrap"/>
+      <TextBlock Text="· 平台宿主：Win WebView2 / macOS WKWebView / Linux WebKitGTK" TextWrapping="Wrap"/>
+      <TextBlock Text="· JS interop + 资源拦截 + Cookie/CSP 等" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：WebView 放阶段17" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

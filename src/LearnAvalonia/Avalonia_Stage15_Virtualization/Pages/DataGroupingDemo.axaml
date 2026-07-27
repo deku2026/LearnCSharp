@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.DataGroupingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.8 数据分组" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Avalonia 12 的分组：通过 CollectionViewSource 或自研 GroupItemsSource 协调。" TextWrapping="Wrap"/>
+      <TextBlock Text="关键：分组头本身也是 ItemContainer，会参与虚拟化（不展开的组不实例化子项）。" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="推荐做法：" FontWeight="SemiBold"/>
+          <TextBlock Text="· 大数据分组优先 TreeView（树虚拟化）或自研两级虚拟化" TextWrapping="Wrap"/>
+          <TextBlock Text="· 避免对 10w 项做客户端分组（O(N log N) 排序会卡 UI 线程）" TextWrapping="Wrap"/>
+          <TextBlock Text="· 服务端分组 + 虚拟加载：分页/按需展开" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="反模式：ObservableCollection + GroupDescriptions 强行分组 10w 项 → UI 卡顿。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：分组虚拟化：Grouping 协调" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

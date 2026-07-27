@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.ScreensDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 Screens（Screen 12 起 abstract）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="变化：Avalonia 12 起 Screen 类标记 abstract；不能再 new Screen(...)。" TextWrapping="Wrap"/>
+      <TextBlock Text="用途：多显示器布局/全屏窗口定位/DPI 感知。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="var screens = window.Screens;&#10;Screen primary = screens.Primary ?? screens.All[0];&#10;foreach (Screen s in screens.All) { /* s.Bounds / s.WorkingArea / s.Scaling */ }" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="属性：Bounds（像素矩形）/ WorkingArea（去任务栏）/ Scaling（DPI 比）/ PixelDensity。" TextWrapping="Wrap"/>
+      <TextBlock Text="注意：移动/Browser 平台通常只有一个 Screen；不要假设多显示器可用。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Screen 12 起 abstract" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

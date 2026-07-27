@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.TreeDataGridDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.5 TreeDataGrid（💼 Avalonia Pro）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="许可：Avalonia Pro（商业授权），非免费主线。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="特性：Flat + Hierarchical；v12 API 有 breaking changes。" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="TreeDataGrid 适用：" FontWeight="SemiBold"/>
+          <TextBlock Text="· 文件树 + 大小列（Hierarchical + 多列）" TextWrapping="Wrap"/>
+          <TextBlock Text="· 任务 WBS（多级 + 进度列）" TextWrapping="Wrap"/>
+          <TextBlock Text="· 编辑：TreeDataGrid 提供 flat+hierarchical 两套编辑模式" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="主线验收不依赖；如需树表用 TreeView + 自定义列或开源方案替代。" TextWrapping="Wrap"/>
+      <TextBlock Text="本页：仅说明，不实现（避免引入商业包）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：TreeDataGrid 为商业 Pro，不实现" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

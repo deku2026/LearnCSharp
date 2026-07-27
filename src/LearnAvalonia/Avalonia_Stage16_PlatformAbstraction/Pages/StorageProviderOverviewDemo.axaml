@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.StorageProviderOverviewDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.1 StorageProvider 职责" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="StorageProvider = 平台无关的文件/文件夹访问抽象，取代旧的 FileDialog。" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="三件套 API：" FontWeight="SemiBold"/>
+          <TextBlock Text="· OpenFilePickerAsync(StorageProviderOptions) → IReadOnlyList&lt;IStorageFile&gt;" TextWrapping="Wrap"/>
+          <TextBlock Text="· OpenFolderPickerAsync(FolderPickerOpenOptions) → IReadOnlyList&lt;IStorageFolder&gt;" TextWrapping="Wrap"/>
+          <TextBlock Text="· SaveFilePickerAsync(FilePickerSaveOptions) → IStorageFile?" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="IStorageItem 抽象：Path/Name/OpenReadAsync/OpenWriteAsync；屏蔽 Win32/macOS/Linux 路径差异。" TextWrapping="Wrap"/>
+      <TextBlock Text="获取方式：TopLevel.GetTopLevel(this)?.StorageProvider（永远判空）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：StorageProvider 三件套" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

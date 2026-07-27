@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone3_CrossPlatform.Pages.ShellPatternDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.3 Shell 模式（桌面三平台）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="桌面 Shell 候选：" FontWeight="SemiBold"/>
+          <TextBlock Text="· Menu + Content（顶部菜单 + 主区域）—— 经典桌面" TextWrapping="Wrap"/>
+          <TextBlock Text="· SplitView + Content（左侧导航 + 右侧内容）—— 现代" TextWrapping="Wrap"/>
+          <TextBlock Text="· TabControl —— 简单工具型" TextWrapping="Wrap"/>
+          <TextBlock Text="· 本 nav-shell：ListBox + GridSplitter + ContentControl —— 学习用" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="三平台共享一个 Shell.axaml；不需要为每平台写不同 Shell（除非密度差异大）。" TextWrapping="Wrap"/>
+      <TextBlock Text="移动 NavigationPage / Browser 单视图见 roadmap，不实现。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：桌面 Shell 选型" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

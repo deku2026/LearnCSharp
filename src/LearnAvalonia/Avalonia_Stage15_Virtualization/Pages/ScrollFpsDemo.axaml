@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.ScrollFpsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.9 滚动 FPS 与内存分析（概念性）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="FPS 测量思路（不在本 demo 实装）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="· 订阅 CompositionTarget.Rendering 或 Avalonia MediaContext.Rendering" TextWrapping="Wrap"/>
+          <TextBlock Text="· 累计 1s 内渲染帧数 → FPS" TextWrapping="Wrap"/>
+          <TextBlock Text="· 滚动 ListBox 1k 行时观察 FPS 是否稳定 ≥ 55" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="内存分析思路：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="· dotnet-counters monitor --process-id &lt;pid&gt; System.Runtime[gc-heap-size]" TextWrapping="Wrap"/>
+          <TextBlock Text="· dotnet-trace collect --providers Microsoft-Windows-DotNETRuntime -- GC 事件" TextWrapping="Wrap"/>
+          <TextBlock Text="· 滚动 10s 后堆增量应接近 0（容器复用）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="基线：1k 行虚拟化 ListBox，GC heap 增量 &lt; 1MB；非虚拟化同条件增量大。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：能描述 FPS + 内存测量方法" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

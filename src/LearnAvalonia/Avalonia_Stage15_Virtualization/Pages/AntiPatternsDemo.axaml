@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.AntiPatternsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.10 反模式：虚拟化失败的 5 种典型" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="40,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="#" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="反模式" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="正确做法" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="1" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="ListBox 套在 ScrollViewer 里（视口 Infinity）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="ListBox 自己滚；不要外层 ScrollViewer" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="2" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="ItemTemplate 根用 Grid Height=Auto + 无界内容" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="模板高度可测（固定/约束）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="3" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="ItemsPanel 换成 StackPanel（无虚拟化）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="用默认 VirtualizingStackPanel" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="4" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="每个容器做 Decode Bitmap/同步 IO" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="异步预加载 + 缓存缩略图" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="⑤ 容器内同步网络/磁盘 IO：拖累 UI 线程，破坏虚拟化节奏。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：识别 5 种反模式" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

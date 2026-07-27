@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone3_CrossPlatform.Pages.StorageAbstractionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 存储抽象（桌面三平台）" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// Core: IFileStorage 接口&#10;public interface IFileStorage&#10;{&#10;    Task&lt;string?&gt; ReadAsync(string name);&#10;    Task WriteAsync(string name, string content);&#10;}&#10;&#10;// Desktop 实现：环境目录 + StorageProvider&#10;string dir = Environment.GetFolderPath(&#10;    Environment.SpecialFolder.LocalApplicationData);  // 三平台都有&#10;string path = Path.Combine(dir, &#34;MyApp&#34;, name);" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="桌面三平台 LocalApplicationData：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="*,2*,2*" RowDefinitions="Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="平台" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="LocalApplicationData" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="说明" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Windows" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="%LOCALAPPDATA%" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="C:\Users\&lt;u&gt;\AppData\Local" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="macOS" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="~/Library/Application Support" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="用户级" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：IFileStorage 接口 + 三平台实现" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

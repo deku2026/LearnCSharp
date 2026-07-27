@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.StorageSecurityDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2.3 沙盒 / 书签 / 安全（Storage）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="安全模型：用户选过的路径才被授权访问（Starts 模型）。" FontWeight="SemiBold"/>
+          <TextBlock Text="· Win32：全盘访问；无沙盒" TextWrapping="Wrap"/>
+          <TextBlock Text="· macOS（沙盒应用）：App Sandbox 限制；用户授权文件需 Bookmark 持久化" TextWrapping="Wrap"/>
+          <TextBlock Text="· Linux：XDG Portal（Flatpak 沙盒）；类似授权模型" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="Bookmark：IStorageBookmarkSecurity + StorageItem.SaveBookmark()/ReleaseBookmark()。" TextWrapping="Wrap"/>
+      <TextBlock Text="注意：每次重启应用后访问书签需重新 resolve；不要在 ViewModel 里保存绝对路径字符串。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：Starts/Bookmark 安全模型" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

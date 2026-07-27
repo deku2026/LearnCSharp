@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage16_PlatformAbstraction.Pages.ClipboardDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 Clipboard（IAsyncDataTransfer，12 新）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="12 起 Clipboard 接口走 IAsyncDataTransfer：所有 API 异步。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;&#10;if (clipboard is null) return;&#10;await clipboard.SetTextAsync(&#34;Hello&#34;);&#10;string? text = await clipboard.TryGetTextAsync();" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="要点：" FontWeight="SemiBold"/>
+      <TextBlock Text="· 获取：TopLevel.GetTopLevel(this)?.Clipboard（永远判空）" TextWrapping="Wrap"/>
+      <TextBlock Text="· 写：await SetTextAsync(string)" TextWrapping="Wrap"/>
+      <TextBlock Text="· 读：await TryGetTextAsync() → string?（可能为空）" TextWrapping="Wrap"/>
+      <TextBlock Text="· 其他格式：SetDataAsync(format, data) / TryGetDataAsync(format)" TextWrapping="Wrap"/>
+      <TextBlock Text="反模式：旧的同步 Clipboard.SetText（已删除）—— 必须 await。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：Clipboard.SetTextAsync/TryGetTextAsync" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

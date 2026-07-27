@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.PlatformDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 平台差异细节" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="6" CornerRadius="4">
+        <Grid ColumnDefinitions="2*,2*,2*,2*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="项" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="Win" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="macOS" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="Linux" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="NativeWebView" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="WebView2" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="WKWebView" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="WPE WebKit" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="NativeWebDialog" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="WebView2" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="WKWebView" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="WebKitGTK" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="依赖" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="WebView2 Runtime" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="系统预装" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="libwpewebkit / libwebkit2gtk" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="Linux 缺 WPE 时：fallback 用 NativeWebDialog（WebKitGTK）。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：三平台 webview 后端" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

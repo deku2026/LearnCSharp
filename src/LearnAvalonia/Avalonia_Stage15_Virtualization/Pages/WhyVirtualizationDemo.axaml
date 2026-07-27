@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage15_Virtualization.Pages.WhyVirtualizationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 为什么虚拟化是分水岭" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="事实：1k 行 ItemsControl 还能滚，10k 行就卡；因为非虚拟化一次性实例化所有 ItemContainer。" TextWrapping="Wrap"/>
+      <TextBlock Text="虚拟化的本质：只为可见区域创建容器（~20 个），移出视口后回收复用。" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="*,4,*" RowDefinitions="Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="非虚拟化" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="虚拟化" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="实例化全部 N 个容器" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="只实例化可见 ~20 个" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="内存 O(N) · 启动 O(N)" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="内存 O(可见) · 启动 O(1)" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="分水岭：从「能跑」到「能扛大数据」；100k 行只有虚拟化路径可用。" TextWrapping="Wrap"/>
+      <TextBlock Text="本阶段核心：判断何时必须虚拟化、如何正确启用、反模式识别。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：解释虚拟化与非虚拟化的临界点" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

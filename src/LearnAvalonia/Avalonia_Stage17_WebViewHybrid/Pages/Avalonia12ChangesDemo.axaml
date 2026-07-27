@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.Avalonia12ChangesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§12 Avalonia 12 变化（WebView）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="12 起：" FontWeight="SemiBold"/>
+          <TextBlock Text="· WebView 从 Avalonia 主线分离成 Avalonia.Controls.WebView 独立包" TextWrapping="Wrap"/>
+          <TextBlock Text="· 三件套 API 稳定：NativeWebView / NativeWebDialog / WebAuthenticationBroker" TextWrapping="Wrap"/>
+          <TextBlock Text="· JS interop：InvokeScript + WebMessageReceived" TextWrapping="Wrap"/>
+          <TextBlock Text="12.0.1（当前 pin）：" FontWeight="SemiBold"/>
+          <TextBlock Text="· 兼容 Avalonia 12.1 主线" TextWrapping="Wrap"/>
+          <TextBlock Text="· Linux WPE WebKit 后端完善" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="迁移：旧 11.x CefGlue / WebView 实现已删除；统一用本包。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：WebView 12 单独包" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

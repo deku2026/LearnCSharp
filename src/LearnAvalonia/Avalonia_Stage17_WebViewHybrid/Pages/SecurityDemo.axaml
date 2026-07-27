@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage17_WebViewHybrid.Pages.SecurityDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 CSP / XSS / 安全" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="CSP（Content-Security-Policy）：" FontWeight="SemiBold"/>
+          <TextBlock Text="· 在 HTML 头加 &lt;meta http-equiv=&#34;Content-Security-Policy&#34; content=&#34;default-src 'self'; ...&#34;&gt;" TextWrapping="Wrap"/>
+          <TextBlock Text="· 限制脚本/样式/图片来源" TextWrapping="Wrap"/>
+          <TextBlock Text="XSS 防护：" FontWeight="SemiBold"/>
+          <TextBlock Text="· 不要 eval 用户输入；不要 innerHTML 拼接" TextWrapping="Wrap"/>
+          <TextBlock Text="· JS 接收的 invokeCSharpAction 内容也要转义/校验" TextWrapping="Wrap"/>
+          <TextBlock Text="Source 白名单：" FontWeight="SemiBold"/>
+          <TextBlock Text="· 仅允许 https:// + 必要域名" TextWrapping="Wrap"/>
+          <TextBlock Text="· 禁用 file://（除非本地资源场景）" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：CSP/转义/白名单" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>
