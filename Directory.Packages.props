@@ -82,5 +82,16 @@
     <PackageVersion Include="bunit.web" Version="1.40.0" />
     <PackageVersion Include="bunit.core" Version="1.40.0" />
     <PackageVersion Include="AngleSharp" Version="1.5.2" />
+    <!-- LearnAvalonia -->
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageVersion Include="Avalonia.Headless" Version="12.1.0" />
+    <PackageVersion Include="Avalonia.Headless.XUnit" Version="12.1.0" />
+    <PackageVersion Include="Avalonia.Controls.WebView" Version="12.0.1" />
+    <PackageVersion Include="Avalonia.Controls.DataGrid" Version="12.1.0" />
+    <PackageVersion Include="Avalonia.Controls.ItemsRepeater" Version="12.0.0" />
+    <PackageVersion Include="Avalonia.Controls.ColorPicker" Version="12.1.0" />
+    <PackageVersion Include="Xaml.Behaviors.Avalonia" Version="12.0.5" />
+    <PackageVersion Include="Microsoft.Data.Sqlite" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.10" />
   </ItemGroup>
 </Project>
