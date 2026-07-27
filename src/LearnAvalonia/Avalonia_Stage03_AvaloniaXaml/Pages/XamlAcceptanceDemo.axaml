@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage03_AvaloniaXaml.Pages.XamlAcceptanceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§16 验收标准（可勾选清单）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <CheckBox IsChecked="True" Content="解释 .axaml 命名空间、x:Class/x:Name/x:Key/x:DataType"/>
+          <CheckBox IsChecked="True" Content="说明 content property、属性元素、附加属性、标记扩展"/>
+          <CheckBox IsChecked="True" Content="默写 12：XAML Binding≈Compiled；代码 Binding≈Reflection"/>
+          <CheckBox IsChecked="True" Content="正确使用 BindingBase / CompiledBinding / ReflectionBinding"/>
+          <CheckBox IsChecked="True" Content="区分 StaticResource / DynamicResource / ThemeResource"/>
+          <CheckBox IsChecked="True" Content="说明 XAML 编译与 Loader 在 AOT 下的边界"/>
+          <CheckBox IsChecked="True" Content="完成 axaml 与纯 C# 对照实验"/>
+          <CheckBox IsChecked="True" Content="概念对比 WPF/WinUI/MAUI/纯 C# 至少各一句"/>
+          <CheckBox IsChecked="True" Content="不把 WPF Trigger 心智硬套 Avalonia"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：勾选 9 条验收清单" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

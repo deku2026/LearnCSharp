@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage03_AvaloniaXaml.Pages.XamlExperimentsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§15 最小实验 A-E" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <TextBlock Text="实验 A · 编译绑定报错" FontWeight="SemiBold"/>
+          <TextBlock Text="写 {Binding Nmae} 拼写错误 + 正确 x:DataType；编译读错误；修正为 Name" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 B · 关闭编译绑定对比" FontWeight="SemiBold"/>
+          <TextBlock Text="元素上 x:CompileBindings=&quot;False&quot; + 错误路径；观察改为运行时失败" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 C · Static vs Dynamic" FontWeight="SemiBold"/>
+          <TextBlock Text="按钮切换 Application/窗口资源中的刷色；Static 消费者 vs Dynamic 消费者（见 §5 demo）" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 D · axaml 与 C# 双写" FontWeight="SemiBold"/>
+          <TextBlock Text="完成第 9 节 PersonCard 双实现；同一 DataContext 切换显示（见 §9 demo）" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 E · 代码绑定 API" FontWeight="SemiBold"/>
+          <TextBlock Text="用 CompiledBinding.Create 与 ReflectionBinding 各绑一次；不使用已删除 IBinding" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：完成 5 个最小实验" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage03_AvaloniaXaml.Pages.MarkupExtensionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 标记扩展（Markup Extension）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="{}{...} 即标记扩展：加载时执行 ProvideValue 逻辑" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;TextBlock Text=&quot;{Binding Title}&quot;&#10;           Foreground=&quot;{StaticResource AccentBrush}&quot;&#10;           FontSize=&quot;{DynamicResource FontSize.Body}&quot; /&gt;"/>
+      </Border>
+      <TextBlock Text="12 绑定语义：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.4*,1.6*,1.6*" RowDefinitions="Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="写法" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="XAML（默认编译绑定开启）" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="代码" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="{}{Binding Path}" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="CompiledBinding" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="new Binding = ReflectionBinding" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="{}{CompiledBinding Path}" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="显式编译" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="CompiledBinding.Create(...)" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="{}{ReflectionBinding Path}" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="显式反射" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="new ReflectionBinding(...)" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="代码中创建绑定：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="var reflection = new ReflectionBinding(nameof(PersonVm.Name));&#10;var compiled = CompiledBinding.Create((PersonVm p) => p.Name);&#10;textBlock.Bind(TextBlock.TextProperty, compiled);"/>
+      </Border>
+      <TextBlock Text="基类型是 BindingBase（IBinding 已删）；InstancedBinding 已移除 → BindingExpressionBase" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：默写 12 Binding 语义与 BindingBase" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

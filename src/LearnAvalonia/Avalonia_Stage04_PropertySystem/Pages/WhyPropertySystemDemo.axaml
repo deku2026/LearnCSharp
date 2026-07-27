@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.WhyPropertySystemDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 为什么需要属性系统" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="普通 CLR 属性做不到的事：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.6*,1.6*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="能力" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="AvaloniaProperty" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="样式 Setter 批量赋值" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="✅ Styled" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="动画插值" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="✅ Styled" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="绑定表达式" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="✅" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="继承（如 FontSize）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="✅ metadata Inherit" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="默认值共享" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="默认值在属性元数据" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="变更订阅" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="GetObservable / class handler" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="附加到别人的实例" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="✅ Attached" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="AvaloniaObject：存储有效值（高效稀疏存储）；提供 GetValue/SetValue；暴露 PropertyChanged；持有 Dispatcher" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：说明 CLR 属性做不到的事" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

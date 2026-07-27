@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.RegistrationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 注册与 CLR 包装完整示例" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="StyledProperty 注册（见 Pages/FancyBadge.cs）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="public static readonly StyledProperty&lt;string&gt; TextProperty =&#10;    AvaloniaProperty.Register&lt;FancyBadge, string&gt;(&#10;        name: nameof(Text),&#10;        defaultValue: string.Empty,&#10;        validate: static v => v is not null,&#10;        coerce: static (_, v) => v?.Trim() ?? string.Empty);"/>
+      </Border>
+      <TextBlock Text="实际渲染的 FancyBadge 控件（StyledProperty 工作中）：" FontWeight="SemiBold"/>
+      <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+        <pages:FancyBadge Text="  Hello  " BadgeBackground="DodgerBlue" Width="100" Height="28"/>
+        <pages:FancyBadge Text="Badge" BadgeBackground="Crimson" Width="80" Height="28"/>
+      </StackPanel>
+      <TextBlock Text="注意 coerce 会 Trim 空格；validate 拒绝 null" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="DirectProperty 注册：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="public static readonly DirectProperty&lt;Counter, int&gt; CountProperty =&#10;    AvaloniaProperty.RegisterDirect&lt;Counter, int&gt;(&#10;        nameof(Count), o => o.Count, (o, v) => o.Count = v);&#10;// 字段 _count 是真相源；SetAndRaise 通知引擎"/>
+      </Border>
+      <TextBlock Text="Attached Property 注册：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="public static readonly AttachedProperty&lt;double&gt; PolarRadiusProperty =&#10;    AvaloniaProperty.RegisterAttached&lt;Control, double&gt;(&#10;        &quot;PolarRadius&quot;, typeof(CanvasEx), defaultValue: 0d);"/>
+      </Border>
+      <TextBlock Text="验收：手写三类属性注册" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

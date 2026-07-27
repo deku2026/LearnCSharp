@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.LabeledFieldDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§12 综合示例：自定义带模板的控件与树" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="LabeledField（TemplatedControl）概念代码：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="public class LabeledField : TemplatedControl&#10;{&#10;    public static readonly StyledProperty&lt;string&gt; LabelProperty = ...;&#10;    public static readonly StyledProperty&lt;string?&gt; TextProperty = ...;&#10;&#10;    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)&#10;    {&#10;        base.OnApplyTemplate(e);&#10;        _box = e.NameScope.Find&lt;TextBox&gt;(&quot;PART_TextBox&quot;);&#10;    }&#10;}"/>
+      </Border>
+      <TextBlock Text="ControlTheme 模板：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;ControlTheme TargetType=&quot;c:LabeledField&quot;&gt;&#10;  &lt;Setter Property=&quot;Template&quot;&gt;&#10;    &lt;ControlTemplate&gt;&#10;      &lt;DockPanel&gt;&#10;        &lt;TextBlock DockPanel.Dock=&quot;Top&quot; Text=&quot;{TemplateBinding Label}&quot; /&gt;&#10;        &lt;TextBox x:Name=&quot;PART_TextBox&quot; Text=&quot;{TemplateBinding Text, Mode=TwoWay}&quot; /&gt;&#10;      &lt;/DockPanel&gt;&#10;    &lt;/ControlTemplate&gt;&#10;  &lt;/Setter&gt;&#10;&lt;/ControlTheme&gt;"/>
+      </Border>
+      <TextBlock Text="页面上 x:Name 能指到 LabeledField，但不能直接 FindControl(PART_TextBox) —— 名字在模板 NameScope" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="DescribeTrees() 可打印 _box 的逻辑/视觉链与 TopLevel" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：自定义带模板控件的树" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

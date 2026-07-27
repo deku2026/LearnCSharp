@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.PlatformThreadDiffDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 跨平台差异表" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.2*,1.6*,2*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="平台" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="UI 线程近似" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="注意" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="🪟 Windows"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="STA UI 线程"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="[STAThread] on Main；消息泵" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="🍎 macOS"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="主线程"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="AppKit 约束由后端处理" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="🐧 X11/Wayland"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="启动 UI 的线程"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="与 Xlib/Wayland 事件循环集成" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="📱 Android"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="主 Looper 线程"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="Activity 重建；勿缓存旧 View 跨线程" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="🍎 iOS"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="主线程"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="主线程 checker；scene 生命周期" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="🌍 Browser"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="与 JS 事件循环协同"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="避免同步死等" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="🧪 Headless"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="测试调度"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="按 Headless 文档泵 dispatcher" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="差异在宿主线程模型；应用层纪律相同：碰 Avalonia UI → 对应 dispatcher" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：覆盖 7 类宿主线程模型" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

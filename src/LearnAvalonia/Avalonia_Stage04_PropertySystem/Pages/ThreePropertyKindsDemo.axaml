@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.ThreePropertyKindsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 三种属性：Styled · Direct · Attached" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.2*,1.4*,1.4*,1.4*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="项" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="StyledProperty" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="DirectProperty" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="Attached" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="注册"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Register" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="RegisterDirect" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="RegisterAttached" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="存储"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="引擎有效值表" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="CLR 字段" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="目标实例上" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="样式 Setter"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="✅"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="❌ 基本上"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="✅ 常见"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="动画"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="✅"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="受限/否"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="视情况"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="继承"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="可开"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="一般不"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="可"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="典型"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="Background/Margin/IsVisible" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="Text/Value/选中项" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="Grid.Row/DockPanel.Dock" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="性能"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="默认值共享" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="接近字段" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="3" Text="同 Styled" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="选型口诀：要被样式/动画控制→Styled；高频数据状态→Direct；语义属于父布局却标在子节点→Attached" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：闭卷对比三类属性" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

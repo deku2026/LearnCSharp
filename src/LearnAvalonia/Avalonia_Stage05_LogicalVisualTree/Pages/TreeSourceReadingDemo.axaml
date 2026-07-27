@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.TreeSourceReadingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§17 源码阅读路径" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="0.8*,2*,2.4*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="优先级" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="类型/区域" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="关注" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="ILogical / LogicalTree 扩展"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="逻辑父子" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="Visual / VisualTree 扩展"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="视觉父子、GetVisualAt" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="NameScope / TemplateAppliedEventArgs"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="名字边界" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="TemplatedControl / OnApplyTemplate"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="模板生命周期" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="Popup / Flyout 实现"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="独立根如何挂" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="AdornerLayer"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="装饰层" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="🟢"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="TopLevel / GetTopLevel"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="12 宿主模型" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="8" Grid.Column="0" Text="🟢"/>
+          <TextBlock Grid.Row="8" Grid.Column="1" Text="IPresentationSource"/>
+          <TextBlock Grid.Row="8" Grid.Column="2" Text="呈现源" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="9" Grid.Column="0" Text="🟢"/>
+          <TextBlock Grid.Row="9" Grid.Column="1" Text="FocusManager"/>
+          <TextBlock Grid.Row="9" Grid.Column="2" Text="焦点" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：列出关键类型与关注点" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

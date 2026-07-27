@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage01_AppBuilder.Pages.AppBuilderDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 AppBuilder：配置而不是启动" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="Configure&lt;TApp&gt;() —— 返回 AppBuilder 流式 API，尚未进入 UI 消息循环" TextWrapping="Wrap"/>
+          <TextBlock Text="UsePlatformDetect() —— 按运行 OS 选默认窗口/输入后端" TextWrapping="Wrap"/>
+          <TextBlock Text="UseSkia() + UseHarfBuzz() —— 显式 Skia 时必须配对 HarfBuzz，否则抛 InvalidOperationException" TextWrapping="Wrap"/>
+          <TextBlock Text="Direct2D1 已移除 —— 全平台走 Skia" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="本程序实际使用的 BuildAvaloniaApp()：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="AppBuilder.Configure&lt;App&gt;().UsePlatformDetect().WithInterFont().LogToTrace()" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="可选扩展：" FontWeight="SemiBold"/>
+      <TextBlock Text="• ReactiveUI.Avalonia（勿用停在 11.x 的 Avalonia.ReactiveUI）" TextWrapping="Wrap"/>
+      <TextBlock Text="• Avalonia.Wayland + UseWayland() 🧪 实验" TextWrapping="Wrap"/>
+      <TextBlock Text="• Avalonia.Fonts.Inter + WithInterFont()" TextWrapping="Wrap"/>
+      <TextBlock Text="• LogToTrace() / 自定义日志" TextWrapping="Wrap"/>
+      <TextBlock Text="Main 禁忌：BuildAvaloniaApp 就绪前不要 new Window() 或 Dispatcher.UIThread.Post(...)" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：解释 Configure/UsePlatformDetect/Skia+HarfBuzz" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.Tree12ChangesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§14 Avalonia 12 / 12.1 最新变化" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• TopLevel ≠ 必为视觉根 —— TopLevel.GetTopLevel 强制" TextWrapping="Wrap"/>
+          <TextBlock Text="• IPresentationSource —— 宿主抽象" TextWrapping="Wrap"/>
+          <TextBlock Text="• 旧 IInputRoot 等收敛 —— 用 TopLevel" TextWrapping="Wrap"/>
+          <TextBlock Text="• 焦点事件参数类型 —— FocusChangedEventArgs" TextWrapping="Wrap"/>
+          <TextBlock Text="• 焦点导航 —— FocusManager" TextWrapping="Wrap"/>
+          <TextBlock Text="• 装饰 / Popup host API 精简 —— AdornerLayer.GetAdornerLayer 等" TextWrapping="Wrap"/>
+          <TextBlock Text="• 手势事件到 InputElement —— 路由仍走树，附加写法变" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：列出 12/12.1 树相关变化" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

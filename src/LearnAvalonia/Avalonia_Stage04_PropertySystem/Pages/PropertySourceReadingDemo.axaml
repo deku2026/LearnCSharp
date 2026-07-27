@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.PropertySourceReadingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§17 源码阅读路径" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="0.8*,2*,2.4*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="优先级" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="类型/区域" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="读什么" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="🔷"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="AvaloniaObject"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="Get/Set/Clear/Bind、有效值" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="🔷"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="AvaloniaProperty"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="基类职责" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="🔷"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="StyledProperty/DirectProperty"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="注册与差异" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="🔷"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="Property Store"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="有效值如何算" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="AvaloniaPropertyRegistry"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="全局登记" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="🟡"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="BindingPriority"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="优先级枚举" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="🟢"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="DataValidationErrors"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="12 默认路径" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="阅读顺序：注册 API → SetValue 路径 → 优先级合并 → 样式引擎如何写入" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：列出关键类型与关注点" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

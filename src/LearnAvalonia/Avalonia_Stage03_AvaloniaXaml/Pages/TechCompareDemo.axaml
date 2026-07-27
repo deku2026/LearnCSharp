@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage03_AvaloniaXaml.Pages.TechCompareDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 与其他 UI 技术的概念对比" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.4*,1.2*,1.2*,1.2*,1.2*,1.2*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="维度" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="Avalonia" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="WPF" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="WinUI" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="4" Text="MAUI" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="5" Text="纯 C#" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="文件"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text=".axaml"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text=".xaml"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text=".xaml"/>
+          <TextBlock Grid.Row="1" Grid.Column="4" Text=".xaml"/>
+          <TextBlock Grid.Row="1" Grid.Column="5" Text="无"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="绑定默认"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="编译" Foreground="DarkGreen"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="反射为主"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="x:Bind 编译"/>
+          <TextBlock Grid.Row="2" Grid.Column="4" Text="编译可选"/>
+          <TextBlock Grid.Row="2" Grid.Column="5" Text="手写"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="控件映射"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="自绘一致" Foreground="DarkGreen"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="桌面混"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="原生 WinUI"/>
+          <TextBlock Grid.Row="3" Grid.Column="4" Text="Handler→原生"/>
+          <TextBlock Grid.Row="3" Grid.Column="5" Text="同框架"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="样式"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="Selector/Theme"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="Style Trigger"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="VisualState"/>
+          <TextBlock Grid.Row="4" Grid.Column="4" Text="Style/CSS"/>
+          <TextBlock Grid.Row="4" Grid.Column="5" Text="代码"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="跨平台"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="一等" Foreground="DarkGreen"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="否"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="Windows"/>
+          <TextBlock Grid.Row="5" Grid.Column="4" Text="是（原生）"/>
+          <TextBlock Grid.Row="5" Grid.Column="5" Text="取决于框架"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="AOT"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="友好" Foreground="DarkGreen"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="有限"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="有限"/>
+          <TextBlock Grid.Row="6" Grid.Column="4" Text="改善中"/>
+          <TextBlock Grid.Row="6" Grid.Column="5" Text="通常友好"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="FuncUI / Fabulous 等 F# 声明式 UI 为选学：同一 Avalonia 运行时，不同前端语法" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：概念对比 WPF/WinUI/MAUI/纯 C# 至少各一句" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

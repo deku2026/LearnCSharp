@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.PropertyPitfallsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§12 常见陷阱" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.8*,1.6*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="陷阱" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="正确做法" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="只改 Direct 的后备字段" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="必须 SetAndRaise" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="可变对象当 Styled 默认值" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="共享突变；用工厂/实例初始化" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="样式不生效" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="本地值未 Clear；选择器未命中；Direct 属性" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="继承突然断了" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="子级本地值或动画" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="在错误线程 SetValue" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="阶段 2 · VerifyAccess" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="Attached 注册搞错所有者类型" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="注册泛型参数与 Get/Set 静态方法一致" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="12 仍抄 11 的 UpdateDataValidation 样板" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="删除或按需不调用 base" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：列出 7 类陷阱与正确做法" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

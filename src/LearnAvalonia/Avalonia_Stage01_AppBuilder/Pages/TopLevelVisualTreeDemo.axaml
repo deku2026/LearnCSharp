@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage01_AppBuilder.Pages.TopLevelVisualTreeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 TopLevel、Window、Visual Tree 与渲染" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="概念位置：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <TextBlock FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="Application&#10;  └─ Lifetime&#10;       └─ MainWindow (Window : TopLevel) 或 MainView 附着平台 TopLevel&#10;            └─ Visual Tree（布局 + 渲染）&#10;                 └─ Renderer 产生场景&#10;                      └─ Compositor 合成 / 提交 GPU 或软件表面"/>
+      </Border>
+      <TextBlock Text="12 注意：TopLevel 不一定是视觉树最顶节点" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="❌ visual.GetVisualRoot() as TopLevel  —— 禁止强转" TextWrapping="Wrap"/>
+      <TextBlock Text="✅ TopLevel.GetTopLevel(visual)  —— 正确获取" TextWrapping="Wrap"/>
+      <TextBlock Text="启动成功的标志（不是 Main 返回）：" FontWeight="SemiBold"/>
+      <TextBlock Text="1. lifetime 已设置主 UI  2. TopLevel 已显示或附着  3. 至少一次 layout + render 完成" TextWrapping="Wrap"/>
+      <TextBlock Text="白屏调试链：builder 抛异常 → lifetime null 误判 → MainWindow/View 未赋值 → 主题/资源加载失败" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：说明 TopLevel 与启动成功标志" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

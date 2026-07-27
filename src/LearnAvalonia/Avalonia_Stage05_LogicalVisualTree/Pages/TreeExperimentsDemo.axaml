@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.TreeExperimentsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§16 最小实验 A-F" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <TextBlock Text="实验 A · 双树对照" FontWeight="SemiBold"/>
+          <TextBlock Text="Button 带复杂 Content 时，对 Content 内 TextBlock 打印 logical/visual 祖先（见 §2 demo）" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 B · 模板 NameScope" FontWeight="SemiBold"/>
+          <TextBlock Text="模板内 x:Name=Inner，页面 FindControl(Inner) 失败；OnApplyTemplate 中 NameScope.Find 成功" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 C · DataContext 继承打断" FontWeight="SemiBold"/>
+          <TextBlock Text="父 VM，子控件设自己的 DataContext；绑定路径变化" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 D · Popup 父链" FontWeight="SemiBold"/>
+          <TextBlock Text="打开 Flyout/Popup，对其内容 GetVisualAncestors；观察独立根（见 §7 demo）" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 E · GetTopLevel" FontWeight="SemiBold"/>
+          <TextBlock Text="构造未 Show 的控件树，取 TopLevel → null；附着后非 null" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 F · Hit test" FontWeight="SemiBold"/>
+          <TextBlock Text="上层透明 Border 挡住按钮；设 IsHitTestVisible=False 放行" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：完成 6 个最小实验" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

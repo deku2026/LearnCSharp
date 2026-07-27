@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage01_AppBuilder.Pages.ApplicationLifetimeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 IApplicationLifetime 族详解" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="接口层次：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <TextBlock FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="IApplicationLifetime（标记）&#10;  └─ IControlledApplicationLifetime&#10;        ├─ Startup/Exit 事件 · Shutdown()&#10;        └─ IClassicDesktopStyleApplicationLifetime&#10;              ├─ MainWindow · Windows · ShutdownMode&#10;ISingleViewApplicationLifetime → MainView : Control&#10;IActivityApplicationLifetime → MainViewFactory : Func&lt;Control&gt;"/>
+      </Border>
+      <TextBlock Text="对照表：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="宿主" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="Lifetime" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="挂 UI 方式" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="桌面 Win/macOS/Linux"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Classic Desktop"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="MainWindow"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Android"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="Activity"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="MainViewFactory"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="iOS / Browser"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="SingleView"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="MainView"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="Embedded fb"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="SingleView/Controlled"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="MainView/手动"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="设计时预览"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="null"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="不挂真实 lifetime"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="Android 12 关键：每次新 Activity 必须新 View，因此 API 是工厂而不是单实例" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：区分 Desktop/SingleView/Activity" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

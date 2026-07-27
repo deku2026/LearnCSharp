@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.DispatcherAcceptanceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§15 验收标准（可勾选清单）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <CheckBox IsChecked="True" Content="讲清 UIThread vs CurrentDispatcher vs AvaloniaObject.Dispatcher"/>
+          <CheckBox IsChecked="True" Content="说明 Post 与 InvokeAsync 差异，及 ExecutionContext 捕获"/>
+          <CheckBox IsChecked="True" Content="默写：每线程可有 Dispatcher；多 UI 线程不支持"/>
+          <CheckBox IsChecked="True" Content="列出至少 3 种死锁/卡顿禁令（含剪贴板回调）"/>
+          <CheckBox IsChecked="True" Content="给出后台 → UI 正确示例与错误示例各一"/>
+          <CheckBox IsChecked="True" Content="说明 async void 仅事件边界"/>
+          <CheckBox IsChecked="True" Content="说明 DispatcherTimer 与创建线程/当前 dispatcher 关系"/>
+          <CheckBox IsChecked="True" Content="完成实验 A+B，并能闭卷讲解"/>
+          <CheckBox IsChecked="True" Content="库代码审查：不出现无必要的写死 UIThread（应用代码除外）"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：勾选 9 条验收清单" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

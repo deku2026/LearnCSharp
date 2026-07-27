@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage03_AvaloniaXaml.Pages.FileNamespaceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 文件、命名空间与根约定" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="最小窗口：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;Window xmlns=&quot;https://github.com/avaloniaui&quot;&#10;         xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;&#10;         xmlns:vm=&quot;using:DemoApp.ViewModels&quot;&#10;         x:Class=&quot;DemoApp.Views.MainWindow&quot;&#10;         x:DataType=&quot;vm:MainWindowViewModel&quot;&gt;&#10;  &lt;TextBlock Text=&quot;{Binding Title}&quot; /&gt;&#10;&lt;/Window&gt;"/>
+      </Border>
+      <TextBlock Text="符号含义：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.2*,2.4*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="符号" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="含义" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="默认 xmlns"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Avalonia 控件与属性" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="xmlns:x"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="XAML 语言指令 x:Class/x:Name/x:Key/x:DataType" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="xmlns:vm"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="项目类型映射 using: 或 clr-namespace:" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="x:DataType"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="编译绑定的数据上下文类型" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="x:Name vs x:Key：x:Name 在 NameScope 生成字段；x:Key 是资源字典键" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：解释 axaml 命名空间与 x:Class/Name/Key" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

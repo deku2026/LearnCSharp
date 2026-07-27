@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.PropertyDeprecatedDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§15 过时与禁止" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.8*,1.6*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="禁止" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="替代" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="仅为样式需求却用普通 CLR 字段" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="StyledProperty" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="为高频状态强行 Styled" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="DirectProperty" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="可共享可变默认值" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="工厂/实例初始化" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="11 式强制手写验证转发" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="12 自动；特殊情况再 override" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="样式设置 Direct 的 WindowState" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="代码设置" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="跨线程改属性" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="Dispatcher 封送" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="IBinding" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="BindingBase" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：点名 7 项禁令与替代" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

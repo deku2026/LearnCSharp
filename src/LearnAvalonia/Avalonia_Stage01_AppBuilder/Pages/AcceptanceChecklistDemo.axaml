@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage01_AppBuilder.Pages.AcceptanceChecklistDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§15 验收标准（可勾选清单）" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <CheckBox IsChecked="True" Content="闭卷画出：平台入口 → AppBuilder → 平台/渲染 → Initialize → lifetime → TopLevel → Render/Compositor"/>
+          <CheckBox IsChecked="True" Content="能解释 Desktop vs SingleView vs Activity 各自解决什么平台问题"/>
+          <CheckBox IsChecked="True" Content="说明 Android 为何必须 MainViewFactory 而不是单例 MainView"/>
+          <CheckBox IsChecked="True" Content="手写 Program + App 三分支，且 Activity 判断在 SingleView 前"/>
+          <CheckBox IsChecked="True" Content="配置并验证至少两种 ShutdownMode"/>
+          <CheckBox IsChecked="True" Content="写通过手动 Start + Run 的桌面最小程序"/>
+          <CheckBox IsChecked="True" Content="说明设计时 ApplicationLifetime == null"/>
+          <CheckBox IsChecked="True" Content="列出 Android 12 正确 Application/Activity 类型，并点名已删除 API"/>
+          <CheckBox IsChecked="True" Content="说明 iOS AppDelegate.Window 可能 null"/>
+          <CheckBox IsChecked="True" Content="说明 Direct2D1 移除与 UseSkia+UseHarfBuzz 配对"/>
+          <CheckBox IsChecked="True" Content="平台表能覆盖 Win32/macOS/X11/Wayland/Android/iOS/Browser/framebuffer"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：勾选 11 条验收清单" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

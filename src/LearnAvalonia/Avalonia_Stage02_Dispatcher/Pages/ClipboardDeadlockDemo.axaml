@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.ClipboardDeadlockDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 剪贴板与 IAsyncDataTransfer 死锁禁区" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="12 剪贴板模型：IDataObject 已删除；使用 IAsyncDataTransfer / DataTransfer；读写多为异步" TextWrapping="Wrap"/>
+      <TextBlock Text="致命模式：回调里同步 Invoke UI" FontWeight="SemiBold" Foreground="OrangeRed"/>
+      <Border BorderBrush="OrangeRed" BorderThickness="1" Padding="8" CornerRadius="4">
+        <TextBlock FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="UI 线程：等待剪贴板 API 完成&#10;  ↘ 平台回调索要数据&#10;    ↘ 你的代码同步 Invoke 回 UI&#10;      ↘ UI 仍卡在等待剪贴板 → 死锁"/>
+      </Border>
+      <TextBlock Text="纪律：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="1. 剪贴板数据在进入 Set 之前在 UI 线程准备好快照" TextWrapping="Wrap"/>
+          <TextBlock Text="2. 回调中只返回已就绪的不可变数据，禁止再同步封送到 UI" TextWrapping="Wrap"/>
+          <TextBlock Text="3. 需要 UI 状态时，提前 InvokeAsync 取快照，再交给 transfer" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="✅ 正确：先在 UI 取文本，再异步写入剪贴板" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="var text = inputBox.Text;&#10;var item = new DataTransferItem();&#10;item.Set(DataFormat.Text, text);&#10;var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;&#10;await clipboard.SetDataAsync(data);"/>
+      </Border>
+      <TextBlock Text="验收：列出剪贴板回调禁同步 Invoke" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

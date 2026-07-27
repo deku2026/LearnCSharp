@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:Class="LearnAvalonia.Avalonia_Stage03_AvaloniaXaml.Pages.DesignTimeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§7 design-time 与 Hot Reload" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="设计时数据（本页已使用 d: 命名空间）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;Window xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;&#10;         xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;&#10;         mc:Ignorable=&quot;d&quot;&#10;         d:DesignWidth=&quot;800&quot;&#10;         d:DesignHeight=&quot;450&quot;&gt;"/>
+      </Border>
+      <TextBlock Text="本页声明了 d:DesignWidth=800, d:DesignHeight=450（设计时专用，运行时忽略）" TextWrapping="Wrap"/>
+      <TextBlock Text="设计时 ApplicationLifetime 为 null（阶段 1）；预览器通过 BuildAvaloniaApp 构造应用" TextWrapping="Wrap"/>
+      <TextBlock Text="Hot Reload 预期：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• 改 axaml 边距/文本等常见属性 → 多数可热重载" TextWrapping="Wrap"/>
+          <TextBlock Text="• 改 x:Class、重大类型结构、部分资源图 → 可能需重启" TextWrapping="Wrap"/>
+          <TextBlock Text="• 不要把 Hot Reload 当成无需理解加载管线的借口；发布路径仍是编译 XAML" TextWrapping="Wrap" Foreground="OrangeRed"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：说明设计时数据与 Hot Reload 预期" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

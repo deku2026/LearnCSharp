@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage01_AppBuilder.Pages.DesktopProgramDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 完整桌面 Program + App 示例" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Program.cs（桌面）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="internal static class Program&#10;{&#10;    public static AppBuilder BuildAvaloniaApp()&#10;        => AppBuilder.Configure&lt;App&gt;()&#10;            .UsePlatformDetect().WithInterFont().LogToTrace();&#10;&#10;    [STAThread]&#10;    public static int Main(string[] args)&#10;        => BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);&#10;}"/>
+      </Border>
+      <TextBlock Text="App.axaml.cs —— 三种 lifetime 分支（顺序铁律：Activity 先于 SingleView）：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="switch (ApplicationLifetime)&#10;{&#10;    case IClassicDesktopStyleApplicationLifetime desktop:&#10;        desktop.MainWindow = new MainWindow { DataContext = new VM() };&#10;        break;&#10;    case IActivityApplicationLifetime activity:&#10;        activity.MainViewFactory = () => new MainView(); // ⚠️ 先于 SingleView&#10;        break;&#10;    case ISingleViewApplicationLifetime singleView:&#10;        singleView.MainView = new MainView();&#10;        break;&#10;}"/>
+      </Border>
+      <TextBlock Text="设计时预览：ApplicationLifetime 为 null —— 不要在 else 里假定一定是 desktop" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="本应用正是按此模板构建（见 Program.cs / App.axaml.cs）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：手写 Program + App 三分支" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.TopLevelDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 TopLevel、IPresentationSource 与 12 禁令" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="TopLevel 表示与平台呈现表面关联的 Avalonia 顶级对象：Window、嵌入根等" TextWrapping="Wrap"/>
+      <TextBlock Text="提供：Clipboard、StorageProvider、Screens、焦点作用域、渲染根服务" TextWrapping="Wrap"/>
+      <TextBlock Text="❌ 12 禁止依赖：" FontWeight="SemiBold" Foreground="OrangeRed"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="// var tl = (TopLevel)visual.GetVisualRoot()!;&#10;// 原因：TopLevel 不再保证是视觉树最顶节点"/>
+      </Border>
+      <TextBlock Text="✅ 正确写法：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="var topLevel = TopLevel.GetTopLevel(visual);&#10;if (topLevel is null) return;&#10;var clipboard = topLevel.Clipboard;"/>
+      </Border>
+      <TextBlock Text="IPresentationSource = 宿主抽象；TopLevel = 最常打交道的应用级 API 面" TextWrapping="Wrap"/>
+      <TextBlock Text="旧 IInputRoot/IRenderRoot/ILayoutRoot 在 12 中移除 —— 改用 TopLevel 与新宿主抽象" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：正确调用 GetTopLevel，不盲转" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

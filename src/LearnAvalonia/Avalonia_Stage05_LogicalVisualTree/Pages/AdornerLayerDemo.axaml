@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.AdornerLayerDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 AdornerLayer 与叠加层" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Adorner 层用于在控件之上绘制不参与正常内容流的装饰：验证红框、拖拽指示、选取矩形等" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="var layer = AdornerLayer.GetAdornerLayer(target);&#10;if (layer is not null)&#10;{&#10;    // 添加 adorner 视觉&#10;}"/>
+      </Border>
+      <TextBlock Text="12 变化提示：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• 旧 VisualLayerManager.AdornerLayer 属性访问方式有迁移" TextWrapping="Wrap"/>
+          <TextBlock Text="• 使用 AdornerLayer.GetAdornerLayer" TextWrapping="Wrap"/>
+          <TextBlock Text="• Overlay / Chrome 层与 WindowDrawnDecorations 相关" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="心智：主内容视觉树 + AdornerLayer（同 TopLevel 下叠加）+ Popup 层（另一套附着）" TextWrapping="Wrap"/>
+      <TextBlock Text="调试 z 序问题：先问在不在同一 visual root" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：知道 AdornerLayer 获取方式" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.RoutedEventDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 路由事件、焦点与 Hit Testing" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="路由事件路径（心智）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <TextBlock FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="指针按下 → Hit test 得到视觉最深元素&#10;  → 路由策略：Tunnel（根→源）/ Bubble（源→根）/ Direct&#10;  → 处理器可 Mark Handled 阻止继续"/>
+      </Border>
+      <TextBlock Text="交互演示 —— 点击内层按钮，观察冒泡：" FontWeight="SemiBold"/>
+      <Border Background="#F0F0F0" CornerRadius="4" Padding="12" PointerPressed="OuterBorder_PointPressed" Margin="0,4,0,0">
+        <StackPanel Spacing="4">
+          <TextBlock Text="外层 Border（PointerPressed 处理）" Foreground="Gray"/>
+          <Button Content="内层按钮" Click="InnerButton_Click"/>
+        </StackPanel>
+      </Border>
+      <TextBlock x:Name="EventLog" Text="事件日志：等待点击..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="焦点：queryTextBox.Focus(); 12 用 FocusChangedEventArgs；FocusManager 取代旧 KeyboardNavigationHandler" TextWrapping="Wrap"/>
+      <TextBlock Text="Hit test：IsHitTestVisible / IsVisible / 透明度0仍可能命中（勿靠 Opacity 禁点）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：描述路由事件与 hit test 路径" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

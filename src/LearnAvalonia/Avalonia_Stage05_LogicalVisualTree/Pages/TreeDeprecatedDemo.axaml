@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.TreeDeprecatedDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§15 过时与禁止" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.8*,1.6*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="禁止" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="替代" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="(TopLevel)GetVisualRoot()" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="TopLevel.GetTopLevel(visual)" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="假设 Popup 内容是页面视觉子" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="按独立层调试" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="页面 FindName 模板 PART" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="OnApplyTemplate + 模板 NameScope" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="用 Opacity=0 代替禁点" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="IsHitTestVisible / IsEnabled" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="分离视觉树后仍用 Clipboard" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="附着时取 TopLevel；分离时取消" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="旧 Diagnostics 包" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="AvaloniaUI.DiagnosticsSupport" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="逻辑树/视觉树混为一谈" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="分 API 打印对照" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：点名 7 项禁令与替代" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

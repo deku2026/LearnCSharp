@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.CustomControlDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 完整自定义控件：三类属性齐活" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="FancyBadge 控件（Header=Styled, BadgeBackground=Styled）实际渲染：" FontWeight="SemiBold"/>
+      <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+        <pages:FancyBadge Text="Styled" BadgeBackground="DodgerBlue" Width="90" Height="28"/>
+        <pages:FancyBadge Text="属性演示" BadgeBackground="DarkViolet" Width="110" Height="28"/>
+      </StackPanel>
+      <TextBlock Text="硬性验收点：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="3">
+          <TextBlock Text="• Header = StyledProperty（可被样式/动画控制）" TextWrapping="Wrap"/>
+          <TextBlock Text="• ClickCount = DirectProperty（高频状态，不适合样式）" TextWrapping="Wrap"/>
+          <TextBlock Text="• BadgeMargin = AttachedProperty（语义属于父布局）" TextWrapping="Wrap"/>
+          <TextBlock Text="• 样式能改 HeaderForeground 却不该指望样式改 ClickCount" TextWrapping="Wrap" Foreground="OrangeRed"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="XAML 使用样式：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;Style Selector=&quot;c|MetricTile.accent&quot;&gt;&#10;  &lt;Setter Property=&quot;HeaderForeground&quot; Value=&quot;DodgerBlue&quot; /&gt;&#10;  &lt;Setter Property=&quot;Background&quot; Value=&quot;#102A43&quot; /&gt;&#10;&lt;/Style&gt;"/>
+      </Border>
+      <TextBlock Text="验收：三类属性齐活的 MetricTile" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

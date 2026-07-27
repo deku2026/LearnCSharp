@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.VisualTreeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 Visual Tree：布局、渲染与命中之树" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="视觉树描述为了绘制与布局而存在的 Visual 父子，包含 ControlTemplate 展开的内部零件" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <TextBlock FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="逻辑：Button&#10;视觉：Button&#10;        └─ 模板根 Border&#10;             ├─ ContentPresenter&#10;             │    └─ 你的 Content（TextBlock）&#10;             └─ 其他装饰视觉"/>
+      </Border>
+      <TextBlock Text="点击下方按钮打印本 demo 中 TargetButton 的逻辑/视觉祖先链：" FontWeight="SemiBold"/>
+      <Button x:Name="TargetButton" Content="我是 TargetButton（点我打印树）" Click="TargetButton_Click" Margin="0,4,0,0"/>
+      <TextBlock x:Name="TreeDumpText" Text="树转储结果：等待点击..." FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap" Margin="0,4,0,0"/>
+      <TextBlock Text="视觉父 API：GetVisualParent(); GetVisualAncestors(); GetVisualRoot()（12 根不一定是 TopLevel）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：打印同一控件两棵树" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

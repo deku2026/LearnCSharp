@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.DispatcherDeprecatedDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§12 过时与禁止" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.8*,1.6*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="禁止" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="原因/替代" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="UI 线程 .Result/.Wait()/GetAwaiter().GetResult()" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="死锁 → await" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="后台线程直接改控件/可视化树" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="崩溃 → Post/InvokeAsync" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="控件库写死 Dispatcher.UIThread" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="多 dispatcher 不正确 → control.Dispatcher" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="线程池创建 DispatcherTimer 不指定 dispatcher" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="滴答线程错误 → UI 线程创建或传入" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="剪贴板回调里同步封送 UI" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="死锁 → 预先快照" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="业务 API async void" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="异常丢失 → async Task" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="同步阻塞 UI 做网络/磁盘/重计算" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="卡顿 → 后台 + 封送 / 拆片 Yield" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="8" Grid.Column="0" Text="假设多 UI 线程已支持" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="8" Grid.Column="1" Text="不支持 → 单 UI 线程模型" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：点名 8 项禁令与替代" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

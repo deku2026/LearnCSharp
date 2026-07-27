@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage03_AvaloniaXaml.Pages.MvvmSkeletonDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 完整 MVVM 页面骨架（12 + CommunityToolkit）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="ViewModel：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="public partial class MainWindowViewModel : ObservableObject&#10;{&#10;    [ObservableProperty]&#10;    private string _title = &quot;Avalonia 12&quot;;&#10;&#10;    [ObservableProperty]&#10;    private string _query = string.Empty;&#10;&#10;    [RelayCommand]&#10;    private void Search()&#10;    {&#10;        Title = string.IsNullOrWhiteSpace(Query) ? &quot;空查询&quot; : $&quot;结果：{Query}&quot;;&#10;    }&#10;}"/>
+      </Border>
+      <TextBlock Text="View：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="&lt;Window x:DataType=&quot;vm:MainWindowViewModel&quot; Title=&quot;{Binding Title}&quot;&gt;&#10;  &lt;DockPanel Margin=&quot;16&quot;&gt;&#10;    &lt;StackPanel DockPanel.Dock=&quot;Top&quot; Orientation=&quot;Horizontal&quot; Spacing=&quot;8&quot;&gt;&#10;      &lt;TextBox Text=&quot;{Binding Query}&quot; PlaceholderText=&quot;搜索…&quot; /&gt;&#10;      &lt;Button Content=&quot;搜索&quot; Command=&quot;{Binding SearchCommand}&quot; /&gt;&#10;    &lt;/StackPanel&gt;&#10;    &lt;TextBlock Text=&quot;{Binding Title}&quot; /&gt;&#10;  &lt;/DockPanel&gt;&#10;&lt;/Window&gt;"/>
+      </Border>
+      <TextBlock Text="注意：12 中 TextBox.Watermark 已过时，新代码用 PlaceholderText" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="本应用本身就是一个完整的 MVVM 骨架示例（MainViewModel + TopicItem + MainWindow）" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：写完整 MVVM 页面骨架" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

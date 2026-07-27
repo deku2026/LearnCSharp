@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.YieldResumeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 Yield、Resume 与 SynchronizationContext" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="AvaloniaSynchronizationContext：UI 线程安装同步上下文，await 后常回到 UI 上下文" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="status.Text = &quot;加载中…&quot;;        // UI&#10;var data = await LoadAsync();  // 离开；完成后常回 UI&#10;status.Text = data.Title;       // 通常仍在 UI 线程 —— 安全"/>
+      </Border>
+      <TextBlock Text="ConfigureAwait(false) 边界：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.6*,2*" RowDefinitions="Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="层" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="建议" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="控件/应用 UI 代码" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="通常不要乱加 false；需回 UI 的路径保持上下文" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="无 UI 的库/纯计算/HTTP" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="可用 ConfigureAwait(false) 减少强制回 UI" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="Yield 协作式让出：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="await Dispatcher.UIThread.Yield(DispatcherPriority.Background);&#10;// 让出 dispatcher，允许处理输入与渲染"/>
+      </Border>
+      <TextBlock Text="验收：理解 AvaloniaSynchronizationContext 与 ConfigureAwait" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage05_LogicalVisualTree.Pages.StartupToTreeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 从启动到树：串起阶段 1-5" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <TextBlock FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="AppBuilder → Application → Lifetime&#10;  → MainWindow (TopLevel) 或 MainView 附着平台 TopLevel&#10;    → 逻辑树：你的 axaml 内容&#10;    → 应用模板后：视觉树膨胀&#10;    → 属性有效值 + 样式 + 绑定&#10;    → Layout（视觉树）&#10;    → Hit test / 焦点 / 事件&#10;    → Popup / Adorner 额外层&#10;    → Compositor 提交"/>
+      </Border>
+      <TextBlock Text="树未附着时：GetTopLevel 为 null；部分平台服务不可用；不要假定有剪贴板" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"
+                   Text="protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)&#10;{&#10;    base.OnAttachedToVisualTree(e);&#10;    var tl = TopLevel.GetTopLevel(this);&#10;    // 安全获取平台服务&#10;}"/>
+      </Border>
+      <TextBlock Text="本应用正是此链的产物：Program → App → MainWindow(TopLevel) → 逻辑树(ListBox+ScrollViewer) → 模板视觉树" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：串起阶段 1-5 的树形成过程" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

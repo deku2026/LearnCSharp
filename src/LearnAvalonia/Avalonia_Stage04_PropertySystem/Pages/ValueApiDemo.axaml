@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage04_PropertySystem.Pages.ValueApiDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 GetValue / SetValue / SetCurrentValue / ClearValue / Bind" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="1.4*,2.4*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="API" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="作用" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="GetValue(p)" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="读有效值（已按优先级合并）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="SetValue(p, v)" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="写入本地值（高优先级来源之一）" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="SetCurrentValue(p, v)" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="写入当前值；尽量不破坏样式/动画基线" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="ClearValue(p)" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="清除本地值，回退到样式/绑定/默认" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="Bind(p, binding)" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="在该属性上建立绑定表达式" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="本地值 vs 有效值：本地值存在时常赢过样式；无本地值则看绑定/样式/动画/继承/默认" TextWrapping="Wrap"/>
+      <TextBlock Text="调试样式不生效的第一反应：是否被本地值或更高优先级来源压住" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="SetCurrentValue 使用场景：主题/样式已提供基线，代码只想改当前显示而不把本地值永久钉死" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：解释 5 个 API 差异" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage02_Dispatcher.Pages.DispatcherExperimentsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§13 最小实验 A-F" FontWeight="Bold" FontSize="14"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="6">
+          <TextBlock Text="实验 A · 复现跨线程失败并修复" FontWeight="SemiBold"/>
+          <TextBlock Text="Task.Run(() => textBlock.Text=&quot;x&quot;) 观察异常；改为 await Task.Run(...); textBlock.Text=&quot;x&quot;" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 B · 死锁演示（小心保存）" FontWeight="SemiBold"/>
+          <TextBlock Text="UI 事件 LoadAsync().Result；LoadAsync 内 await Task.Delay(10)；观察挂死；改成 await LoadAsync()" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 C · ExecutionContext 流动" FontWeight="SemiBold"/>
+          <TextBlock Text="设置 AsyncLocal&lt;string&gt;；从后台 await UIThread.InvokeAsync 读值；记录 12 下是否流动" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 D · DispatcherTimer 线程" FontWeight="SemiBold"/>
+          <TextBlock Text="UI 创建 timer 更新时钟；误在 Task.Run 里 new DispatcherTimer 观察问题" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 E · 剪贴板快照纪律" FontWeight="SemiBold"/>
+          <TextBlock Text="实现复制当前 TextBox 文本；代码审查 transfer 回调无 Invoke" TextWrapping="Wrap"/>
+          <TextBlock Text="实验 F · 诊断日志" FontWeight="SemiBold"/>
+          <TextBlock Text="在绑定更新路径打印 CheckAccess()；制造错误路径看 false" TextWrapping="Wrap"/>
+        </StackPanel>
+      </Border>
+      <TextBlock Text="验收：完成 6 个最小实验" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>
