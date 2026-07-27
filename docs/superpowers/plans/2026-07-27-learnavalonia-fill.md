@@ -102,14 +102,20 @@ internal sealed partial class MainViewModel : ObservableObject
     </Border>
     <Grid Grid.Row="1" ColumnDefinitions="280,5,*">
       <ListBox Grid.Column="0" x:Name="TopicList" ItemsSource="{Binding Topics}"
-               SelectedItem="{Binding SelectedTopic}" DisplayMemberPath="Title"/>
+               SelectedItem="{Binding SelectedTopic}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding Title}" Padding="4"/>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
       <GridSplitter Grid.Column="1" Background="Gray" ResizeDirection="Columns"/>
       <ScrollViewer Grid.Column="2" Padding="12">
         <ContentControl Content="{Binding SelectedTopic.DemoFactory, Converter={x:Static pages:DemoFactoryConverter.Instance}}"/>
       </ScrollViewer>
     </Grid>
     <Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundAltMediumBrush}" Padding="12,6">
-      <StackPanel Orientation="Vertical" Gap="2">
+      <StackPanel Orientation="Vertical" Spacing="2">
         <TextBlock Text="{Binding SelectedTopic.Doc}" FontSize="12" Foreground="Gray"/>
         <TextBlock Text="{Binding SelectedTopic.Accept}" FontSize="12" Foreground="DarkGreen"/>
       </StackPanel>
@@ -119,6 +125,8 @@ internal sealed partial class MainViewModel : ObservableObject
 ```
 
 > Note: `ContentControl` binds `SelectedTopic.DemoFactory` and a `DemoFactoryConverter` (IValueConverter) calls the factory to produce the demo instance. This avoids pre-constructing all demos. The converter is defined once per project in `Pages/DemoFactoryConverter.cs`.
+
+> **VERIFIED template — Tasks 4–9:** The nav-shell above was validated in Task 3 (commit 7a43aa0). Two Avalonia 12.1 API fixes are baked in: `StackPanel.Spacing` (NOT `Gap`), `ListBox.ItemTemplate` (NOT `DisplayMemberPath`). The reference implementation to copy from is `src/LearnAvalonia/Avalonia_Stage01_AppBuilder/` (MainWindow.axaml, ViewModels/MainViewModel.cs, ViewModels/TopicItem.cs, Pages/DemoFactoryConverter.cs, and any demo page like Pages/StartupChainDemo.axaml). Use Stage01's exact structure as the template; only change the namespace, Title, and the demo set per the stage doc.
 
 **DemoFactoryConverter (per project, ~15 lines):**
 ```csharp
