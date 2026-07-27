@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.AnimationDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§8 动画（值变更过渡）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="给 GaugeControl.Value 加 Transitions；代码改 Value 时数值平滑过渡，Render 重绘随之插值。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;pages:GaugeControl Value=&quot;{Binding ...}&quot;&gt;&#10;  &lt;pages:GaugeControl.Transitions&gt;&#10;    &lt;Transitions&gt;&#10;      &lt;DoubleTransition Property=&quot;Value&quot; Duration=&quot;0:0:0.5&quot;/&gt;&#10;    &lt;/Transitions&gt;&#10;  &lt;/pages:GaugeControl.Transitions&gt;&#10;&lt;/pages:GaugeControl&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <pages:GaugeControl Width="220" Height="220" Maximum="100" Value="55" NeedleBrush="OrangeRed"
+                          AutomationProperties.Name="动画演示仪表">
+        <GaugeControl.Transitions>
+          <Transitions>
+            <DoubleTransition Property="Value" Duration="0:0:0.5"/>
+          </Transitions>
+        </GaugeControl.Transitions>
+      </pages:GaugeControl>
+      <TextBlock Text="可在 §2 用滑块快速改 Value；本 demo 静态展示 transitions 配置。" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：用 Avalonia.Animation 做过渡" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

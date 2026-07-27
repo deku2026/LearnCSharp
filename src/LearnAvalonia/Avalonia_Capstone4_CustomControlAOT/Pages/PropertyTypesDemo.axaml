@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.PropertyTypesDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 StyledProperty + DirectProperty" FontWeight="Bold" FontSize="14"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// StyledProperty — 后备存储由 AvaloniaObject 维护&#10;public static readonly StyledProperty&lt;double&gt; ValueProperty =&#10;    AvaloniaProperty.Register&lt;GaugeControl, double&gt;(&#10;        nameof(Value), defaultValue: 0d);&#10;public double Value { get => GetValue(ValueProperty); set => SetValue(ValueProperty, value); }&#10;&#10;// DirectProperty — 字段+委托&#10;private double _normalizedRatio;&#10;public static readonly DirectProperty&lt;GaugeControl, double&gt; NormalizedRatioProperty =&#10;    AvaloniaProperty.RegisterDirect&lt;GaugeControl, double&gt;(&#10;        nameof(NormalizedRatio),&#10;        o =&gt; o.NormalizedRatio, (o, v) =&gt; o.NormalizedRatio = v);&#10;public double NormalizedRatio { get => _normalizedRatio; private set => SetAndRaise(...); }" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="选型：" FontWeight="SemiBold"/>
+      <TextBlock Text="• StyledProperty — 通用，参与优先级/继承/绑定"/>
+      <TextBlock Text="• DirectProperty — 包装已有字段，省存储；Value 等参与 Render 选 Styled"/>
+      <TextBlock Text="• 本 GaugeControl：Value/Maximum/NeedleBrush=Styled；NormalizedRatio=Direct"/>
+      <TextBlock Text="验收：区分两种 property 注册" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

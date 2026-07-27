@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage30_PlatformBackend.Pages.WinUICompositionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§3 WinUI Composition（渲染/输入路径）" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="职责边界：Win11 推荐，走 Windows.UI.Composition 桌面合成。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="Win32PlatformOptions.UseCompositing = true&#10;// → WinUI Compositor 取代 GDI paint&#10;//   Draw  → Compositor.CreateSpriteVisual&#10;//   Input → InputMessageSite (Win32 转发)" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="渲染：Avalonia 控制 visual → Composition visual → DWM" TextWrapping="Wrap"/>
+      <TextBlock Text="输入：Win32 msg → InputMessageSite → Avalonia PointerEvent" TextWrapping="Wrap"/>
+      <TextBlock Text="时间线：与经典 Win32 paint 并存；可在 Win10/11 切换。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：解释渲染/输入路径" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

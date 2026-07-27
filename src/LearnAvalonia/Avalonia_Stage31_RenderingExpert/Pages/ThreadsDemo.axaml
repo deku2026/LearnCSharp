@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.ThreadsDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§12 UI 线程 vs 渲染线程" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Compositor 在独立线程；UI 线程更新 CompositionVisual 后提交。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="UI Thread&#10;  - Layout / Input / ViewModel / Control.Render&#10;  - 写 CompositionVisual.X = ...&#10;Compositor Thread&#10;  - 读 visual → GPU draw → swapchain&#10;  - Animation timeline 计算&#10;  - 同步点：Commit / AcquireFrame" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="禁止：在 Render 线程 touch UI 线程对象（除 CompositionVisual）。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="可取消：Frame 可被丢弃（脏窗口被覆盖）；下一帧自动重发。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：解释同步与可取消" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

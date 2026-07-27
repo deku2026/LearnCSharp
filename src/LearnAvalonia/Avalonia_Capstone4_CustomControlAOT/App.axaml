@@ -1,7 +1,18 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.App">
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.App"
+             RequestedThemeVariant="Default">
     <Application.Styles>
         <FluentTheme />
+        <ControlTheme x:Key="{x:Type pages:GaugeControl}" TargetType="pages:GaugeControl">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="NeedleBrush" Value="OrangeRed"/>
+            <Template>
+                <ControlTemplate>
+                    <ContentPresenter Name="PART_ContentPresenter"/>
+                </ControlTemplate>
+            </Template>
+        </ControlTheme>
     </Application.Styles>
 </Application>

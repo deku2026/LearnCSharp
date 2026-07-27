@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.ArchitectureDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 架构与示例题" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="本 Capstone 实现一个完整自定义控件工程：" FontWeight="SemiBold"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="GaugeControl : TemplatedControl&#10;  - StyledProperty Value / Maximum / NeedleBrush&#10;  - DirectProperty NormalizedRatio&#10;  - RoutedEvent ValueChanged&#10;  - 自定义 Render(DrawingContext) 画圆弧 + 刻度&#10;  - OnCreateAutomationPeer (IRangeValueProvider)&#10;&#10;RadialPanel : Panel&#10;  - MeasureOverride / ArrangeOverride 圆周排列&#10;  - StyledProperty Radius / StartAngle&#10;&#10;ControlTheme（App.axaml.Styles）&#10;  - x:Key=typeof(GaugeControl) — 模板/默认外观" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="路径：" FontWeight="SemiBold"/>
+      <TextBlock Text="架构 → property → 事件 → ControlTheme → Panel → Render → 动画 → a11y → 本地化 → 测试 → Benchmark → Trim/AOT → 源码精读 → 平台表"/>
+      <TextBlock Text="验收：列出 GaugeControl + RadialPanel + 仪表表" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

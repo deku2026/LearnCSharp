@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage30_PlatformBackend.Pages.X11Demo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 X11 (Linux 默认)" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="职责边界：Xlib + EGL/GLX + XIM 输入；FreeDesktop 协议做 DND / 菜单。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="AppBuilder.Configure&lt;App&gt;()&#10;    .UsePlatformDetect()  // Linux 自动选 X11&#10;    .With(new X11PlatformOptions&#10;    {&#10;        UseGpu = true,&#10;        RenderingMode = new[] { X11RenderingMode.Glx, X11RenderingMode.Software },&#10;    })" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="源码入口（Avalonia.X11.dll）：" FontWeight="SemiBold"/>
+      <TextBlock Text="• X11Platform — IWindowingPlatform"/>
+      <TextBlock Text="• X11Window — WindowImpl（XCreateWindow + XMapWindow）"/>
+      <TextBlock Text="• XI2 — 多点触摸 / Tablet"/>
+      <TextBlock Text="• DBus / FreeDesktop — DND / App menu / tray"/>
+      <TextBlock Text="系统托盘：StatusNotifierItem 协议（实验）"/>
+      <TextBlock Text="验收：列出 X11 入口" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

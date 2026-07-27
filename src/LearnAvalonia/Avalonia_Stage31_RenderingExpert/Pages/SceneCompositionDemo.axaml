@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.SceneCompositionDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 Scene / Composition" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Compositor 持有 CompositionVisual 树；CommitCompositionUpdate 提交帧。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="Compositor&#10;  └─ CompositionTarget (Draw to surface)&#10;       └─ ContainerVisual&#10;            └─ DrawVisual (RenderContent → DrawingContext)&#10;            └─ RectangleVisual / BorderVisual ..." Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="为什么用 Composition：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 在 GPU 上做 transform/opacity/clip — 不走 Layout/Render"/>
+      <TextBlock Text="• 动画驱动 CompositionVisual → 60fps 不阻塞 UI"/>
+      <TextBlock Text="• 滚动 / 触摸惯性走 Composition 线程"/>
+      <TextBlock Text="渲染者可见影响：Control.Render 产生的 Draw 会被 Compositor 包成 CompositionVisual。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：画出 composition 角色" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

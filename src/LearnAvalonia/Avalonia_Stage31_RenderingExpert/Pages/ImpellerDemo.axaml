@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.ImpellerDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§16 Impeller (🔴 跟踪)" FontWeight="Bold" FontSize="14" Foreground="OrangeRed"/>
+      <TextBlock Text="状态：Impeller 是 Flutter 的渲染器；Avalonia 仅为跟踪实验，不在生产路径。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="目前 Avalonia 主线 = Skia&#10;Impeller：🔴 实验跟踪，不发布&#10;  - Metal/Vulkan 后端预研&#10;  - 不与 Skia 路径共栈&#10;  - 不属于 12.1 稳定 API" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="本 demo 只跟踪文档进展；不在本 Capstone 实现。" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：标记实验，不生产" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

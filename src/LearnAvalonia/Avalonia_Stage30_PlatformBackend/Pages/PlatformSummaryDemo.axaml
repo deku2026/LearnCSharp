@@ -1,0 +1,55 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage30_PlatformBackend.Pages.PlatformSummaryDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 平台总览" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="平台覆盖表（本阶段 demo）：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="160,80,80,160" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="后端" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="实现" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="状态" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Text="备注" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Win32"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="✅"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="生产"/>
+          <TextBlock Grid.Row="1" Grid.Column="3" Text="Windows 默认"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="WinUI Composition"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="✅"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="生产"/>
+          <TextBlock Grid.Row="2" Grid.Column="3" Text="Win11 合成"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="macOS Native"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="✅"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="生产"/>
+          <TextBlock Grid.Row="3" Grid.Column="3" Text="AppKit 桥"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="X11"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="✅"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="生产"/>
+          <TextBlock Grid.Row="4" Grid.Column="3" Text="Linux 默认"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="Wayland"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="🧪"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="实验"/>
+          <TextBlock Grid.Row="5" Grid.Column="3" Text="12.1 实验"/>
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="Android"/>
+          <TextBlock Grid.Row="6" Grid.Column="1" Text="❌"/>
+          <TextBlock Grid.Row="6" Grid.Column="2" Text="非桌面"/>
+          <TextBlock Grid.Row="6" Grid.Column="3" Text="见 roadmap"/>
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="iOS"/>
+          <TextBlock Grid.Row="7" Grid.Column="1" Text="❌"/>
+          <TextBlock Grid.Row="7" Grid.Column="2" Text="非桌面"/>
+          <TextBlock Grid.Row="7" Grid.Column="3" Text="见 roadmap"/>
+          <TextBlock Grid.Row="8" Grid.Column="0" Text="Browser/WASM"/>
+          <TextBlock Grid.Row="8" Grid.Column="1" Text="❌"/>
+          <TextBlock Grid.Row="8" Grid.Column="2" Text="非桌面"/>
+          <TextBlock Grid.Row="8" Grid.Column="3" Text="见 roadmap"/>
+          <TextBlock Grid.Row="9" Grid.Column="0" Text="Headless"/>
+          <TextBlock Grid.Row="9" Grid.Column="1" Text="✅"/>
+          <TextBlock Grid.Row="9" Grid.Column="2" Text="测试"/>
+          <TextBlock Grid.Row="9" Grid.Column="3" Text="单测/CI"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：勾选平台表" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.RefreshRateDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 刷新率 / 帧时序" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="12.1 引入可变刷新率；Composition 与 Display 同步，不再固定 60fps。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="TopLevel.Renderer &#10;  RequestAnimationFrame → next vsync&#10;12.1: RenderTimer 自适应 DisplayFps&#10;  120Hz / 144Hz / VRR 显示器原生支持" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="注意：动画用 Avalonia.Animation 而不是自己 Composition.RequestUpdate。" TextWrapping="Wrap"/>
+      <TextBlock Text="陷阱：高刷新率下 Render 路径要短；超过 1/fps ms 掉帧。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：列出 12.1 变化" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

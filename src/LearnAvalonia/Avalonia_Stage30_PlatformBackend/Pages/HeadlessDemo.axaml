@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage30_PlatformBackend.Pages.HeadlessDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§10 Headless (桌面/测试后端)" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="职责边界：单测/CI 用；不创建真实窗口，渲染到内存位图。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="AppBuilder.Configure&lt;App&gt;()&#10;    .UseHeadless(new HeadlessPlatformOptions&#10;    {&#10;        Width = 1024,&#10;        Height = 768,&#10;        UseSoftwareRendering = true,&#10;    })" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="源码入口（Avalonia.Headless.dll / Avalonia.Headless.Vnc）：" FontWeight="SemiBold"/>
+      <TextBlock Text="• HeadlessPlatform — IWindowingPlatform"/>
+      <TextBlock Text="• HeadlessWindow — 内存窗口"/>
+      <TextBlock Text="• HeadlessTransform — 输入注入"/>
+      <TextBlock Text="用途：xUnit 测试、UI snapshot、AOT 检查"/>
+      <TextBlock Text="与 Stage24 Tests 关联：Headless 用于 AvaloniaTestApp&lt;T&gt;" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：列出 Headless 用途" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

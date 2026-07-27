@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.RetainedModeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§1 Retained-mode 概念" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Avalonia 是 retained-mode：维护持久化可视化树，绘制命令仅在失效后由 renderer 重新发出。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="Control.Render(DrawingContext) → 只在 InvalidateVisual() 后触发&#10;Retained 树 = Visual + VisualChildren + Bounds/RenderBounds&#10;vs Immediate-mode（如 ImGui）：每帧重发所有绘制命令" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="对开发者含义：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 设置属性 + InvalidateVisual → 自动重绘"/>
+      <TextBlock Text="• 不需要每帧主动画"/>
+      <TextBlock Text="• 命中测试走 Visual Tree，不走像素"/>
+      <TextBlock Text="• 动画 = 属性插值 + AffectsRender"/>
+      <TextBlock Text="源码导引：Control.Render 是 virtual；base.Render(context) 调子节点。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：解释 retained 与对开发者含义" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage29_SourceReading.Pages"
+             x:Class="LearnAvalonia.Avalonia_Stage29_SourceReading.Pages.TopLevelSourceDemo"
+             x:DataType="pages:TopLevelSourceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§13 TopLevel / Window —— 反射探查" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="反射 TopLevel / Window；展示 TopLevel 作为平台桥接点与 Renderer 入口。" TextWrapping="Wrap"/>
+      <ItemsControl ItemsSource="{Binding Entries}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate x:DataType="pages:ReflectionEntry">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <TextBlock Text="{Binding Key}" FontWeight="SemiBold" MinWidth="200"/>
+              <TextBlock Text="{Binding Value}" TextWrapping="Wrap"/>
+            </StackPanel>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+      <TextBlock Text="Window : TopLevel；TopLevel 是所有平台 UI 的视觉根 — 桥接 ITopLevelImpl" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace"/>
+      <TextBlock Text="验收：列出 TopLevel 平台入口" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

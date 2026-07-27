@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.PlatformRenderingTableDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§17 Direct2D1 移除 / 平台表" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Direct2D1 在 Avalonia 12 已彻底移除（曾 11.x 退出）；全平台走 Skia。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="// 禁止：12 中 UseDirect2D1 已删除，编译不过&#10;// 替代：UseSkia()（默认）或软件" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="平台默认 GPU 路径：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <Grid ColumnDefinitions="120,180,160" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="平台" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="默认 GPU" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" Text="回退" FontWeight="SemiBold"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Windows"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="Vulkan / Wgl / WinUI Comp"/>
+          <TextBlock Grid.Row="1" Grid.Column="2" Text="Software"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="macOS"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="Metal"/>
+          <TextBlock Grid.Row="2" Grid.Column="2" Text="Software"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="Linux X11"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Text="GLX / EGL"/>
+          <TextBlock Grid.Row="3" Grid.Column="2" Text="Software"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="Linux Wayland"/>
+          <TextBlock Grid.Row="4" Grid.Column="1" Text="EGL 🧪"/>
+          <TextBlock Grid.Row="4" Grid.Column="2" Text="Software"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="Browser"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" Text="WebGL2 / WebGPU"/>
+          <TextBlock Grid.Row="5" Grid.Column="2" Text="—"/>
+        </Grid>
+      </Border>
+      <TextBlock Text="验收：列出 12.1 渲染表" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

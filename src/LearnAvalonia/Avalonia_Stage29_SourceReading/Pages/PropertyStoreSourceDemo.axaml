@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage29_SourceReading.Pages"
+             x:Class="LearnAvalonia.Avalonia_Stage29_SourceReading.Pages.PropertyStoreSourceDemo"
+             x:DataType="pages:PropertyStoreSourceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 Property Store / 优先级 —— 概念精读" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="Property Store 是 AvaloniaObject 内部的 effective value 表，按优先级存储并通知。" TextWrapping="Wrap"/>
+      <ItemsControl ItemsSource="{Binding Entries}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate x:DataType="pages:ReflectionEntry">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <TextBlock Text="{Binding Key}" FontWeight="SemiBold" MinWidth="220"/>
+              <TextBlock Text="{Binding Value}" TextWrapping="Wrap"/>
+            </StackPanel>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+      <TextBlock Text="effective value = max-priority non-unset；AffectsRender=InvalidateVisual" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace"/>
+      <TextBlock Text="验收：解释优先级与 effective 值" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

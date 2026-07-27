@@ -3,6 +3,7 @@
     <OutputType>WinExe</OutputType>
     <AssemblyName>Avalonia_Capstone4_CustomControlAOT</AssemblyName>
     <RootNamespace>LearnAvalonia.Avalonia_Capstone4_CustomControlAOT</RootNamespace>
+    <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,5 +11,6 @@
     <PackageReference Include="Avalonia.Desktop" />
     <PackageReference Include="Avalonia.Themes.Fluent" />
     <PackageReference Include="Avalonia.Fonts.Inter" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.AccessibilityDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§9 无障碍 AutomationPeer" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="GaugeControl.OnCreateAutomationPeer 返回 GaugeAutomationPeer，实现 IRangeValueProvider。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="protected override AutomationPeer OnCreateAutomationPeer()&#10;    =&gt; new GaugeAutomationPeer(this);&#10;&#10;sealed class GaugeAutomationPeer : ControlAutomationPeer, IRangeValueProvider {&#10;    public double Minimum =&gt; 0;&#10;    public double Maximum =&gt; G.Maximum;&#10;    public double Value { get =&gt; G.Value; set =&gt; G.Value = value; }&#10;    public bool IsReadOnly =&gt; false;&#10;    protected override string GetClassNameCore() =&gt; &quot;GaugeControl&quot;;&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <pages:GaugeControl Width="200" Height="200" Maximum="100" Value="33" NeedleBrush="OrangeRed"
+                          AutomationProperties.Name="可读屏仪表"/>
+      <TextBlock Text="读屏将报「进度仪表 33/100」；最小满足：名称、类型、键盘/ATR 可读路径。" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：OnCreateAutomationPeer 返回" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

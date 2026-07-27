@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.TestStructureDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§11 测试结构" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="四层测试：" FontWeight="SemiBold"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="2">
+          <TextBlock Text="• Unit — GaugeControl.Value setter → NormalizedRatio 更新 + ValueChanged 触发"/>
+          <TextBlock Text="• Headless — Avalonia.Headless 渲染 GaugeControl → 像素快照对比"/>
+          <TextBlock Text="• 集成 / 跨平台 — 在 Win32/X11/Headless 三后端跑同一 demo"/>
+          <TextBlock Text="• a11y — 读 AutomationPeer 的 Minimum/Maximum/Value/Name"/>
+        </StackPanel>
+      </Border>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="[Fact]&#10;public void Value_Set_Raises_ValueChanged()&#10;{&#10;    var g = new GaugeControl { Maximum = 100 };&#10;    double? raised = null;&#10;    g.ValueChanged += (_, e) =&gt; raised = e.NewValue;&#10;    g.Value = 42;&#10;    Assert.Equal(42, raised);&#10;    Assert.Equal(0.42, g.NormalizedRatio, 2);&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="验收：Unit / Headless / 集成 / a11y" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

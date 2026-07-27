@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.ControlThemeDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§5 ControlTheme" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="ControlTheme 在 App.axaml 内 x:Key=typeof(GaugeControl)，自动应用。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;Application.Styles&gt;&#10;  &lt;FluentTheme /&gt;&#10;  &lt;ControlTheme x:Key=&quot;{x:Type pages:GaugeControl}&quot; TargetType=&quot;pages:GaugeControl&quot;&gt;&#10;    &lt;Setter Property=&quot;Background&quot; Value=&quot;White&quot;/&gt;&#10;    &lt;Setter Property=&quot;NeedleBrush&quot; Value=&quot;OrangeRed&quot;/&gt;&#10;    &lt;Template&gt;&#10;      &lt;ControlTemplate&gt;&#10;        &lt;ContentPresenter Name=&quot;PART_Content&quot;/&gt;&#10;      &lt;/ControlTemplate&gt;&#10;    &lt;/Template&gt;&#10;  &lt;/ControlTheme&gt;&#10;&lt;/Application.Styles&gt;" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="OnApplyTemplate：取 PART_xxx；本 demo 控件只走 Render，故模板极简。" TextWrapping="Wrap"/>
+      <TextBlock Text="验收：ControlTheme 注册并应用" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

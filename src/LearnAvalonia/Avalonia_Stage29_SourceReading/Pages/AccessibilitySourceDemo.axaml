@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage29_SourceReading.Pages"
+             x:Class="LearnAvalonia.Avalonia_Stage29_SourceReading.Pages.AccessibilitySourceDemo"
+             x:DataType="pages:AccessibilitySourceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§18 Accessibility Peers —— 反射探查" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="反射 AutomationPeer / ControlAutomationPeer / Provider 接口；展示 a11y 角色。" TextWrapping="Wrap"/>
+      <ItemsControl ItemsSource="{Binding Entries}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate x:DataType="pages:ReflectionEntry">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <TextBlock Text="{Binding Key}" FontWeight="SemiBold" MinWidth="280"/>
+              <TextBlock Text="{Binding Value}" TextWrapping="Wrap"/>
+            </StackPanel>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+      <TextBlock Text="路径：控件 OnCreateAutomationPeer → Peer → 平台 a11y 桥 → 读屏" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace"/>
+      <TextBlock Text="验收：解释 AutomationPeer 角色" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage29_SourceReading.Pages"
+             x:Class="LearnAvalonia.Avalonia_Stage29_SourceReading.Pages.PlatformStorageSourceDemo"
+             x:DataType="pages:PlatformStorageSourceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§17 Platform Storage —— 反射探查" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="反射 IPlatform / AvaloniaLocator；展示平台抽象边界与定位器入口。" TextWrapping="Wrap"/>
+      <ItemsControl ItemsSource="{Binding Entries}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate x:DataType="pages:ReflectionEntry">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <TextBlock Text="{Binding Key}" FontWeight="SemiBold" MinWidth="220"/>
+              <TextBlock Text="{Binding Value}" TextWrapping="Wrap"/>
+            </StackPanel>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+      <TextBlock Text="AppBuilder 在 Setup 阶段把各 I* 实现绑到 AvaloniaLocator.Current — 运行时按需取" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace"/>
+      <TextBlock Text="验收：列出 IPlatform 抽象边界" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

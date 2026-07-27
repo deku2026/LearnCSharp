@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Stage30_PlatformBackend.Pages.WaylandDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§6 Wayland (12.1 实验 🧪)" FontWeight="Bold" FontSize="14" Foreground="OrangeRed"/>
+      <TextBlock Text="状态：Avalonia.Wayland 包 12.1 标记为实验性；本桌面策略 demo 不实现运行。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="AppBuilder.Configure&lt;App&gt;()&#10;    .UseWayland()  // 🧪 实验&#10;    .With(new WaylandPlatformOptions { ... })" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="职责边界：wl_display + xdg_shell + EGL + libinput。" TextWrapping="Wrap"/>
+      <TextBlock Text="差异：无 X11 兼容；DND/DPI 走 wl_data_device / xdg_output。" TextWrapping="Wrap"/>
+      <TextBlock Text="实验状态：见 roadmap，不在本 Capstone 实现运行" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：标记实验，不实现" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

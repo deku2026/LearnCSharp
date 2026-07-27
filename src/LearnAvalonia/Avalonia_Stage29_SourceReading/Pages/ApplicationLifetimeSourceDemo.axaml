@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage29_SourceReading.Pages"
+             x:Class="LearnAvalonia.Avalonia_Stage29_SourceReading.Pages.ApplicationLifetimeSourceDemo"
+             x:DataType="pages:ApplicationLifetimeSourceDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§2 Application / Lifetime —— 反射探查" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="反射 typeof(Application) + 三个 IApplicationLifetime 接口；展示生命周期契约。" TextWrapping="Wrap"/>
+      <ItemsControl ItemsSource="{Binding Entries}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate x:DataType="pages:ReflectionEntry">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <TextBlock Text="{Binding Key}" FontWeight="SemiBold" MinWidth="280"/>
+              <TextBlock Text="{Binding Value}" TextWrapping="Wrap"/>
+            </StackPanel>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+      <TextBlock Text="调用序：构造 Application → Initialize() → OnFrameworkInitializationCompleted() → 设置 MainWindow/View" TextWrapping="Wrap" FontFamily="Consolas,Monaco,monospace"/>
+      <TextBlock Text="验收：列出 Lifetime 三分支与序" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

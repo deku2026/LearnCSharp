@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.TrimAotDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§13 Trim / Native AOT" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="本 csproj 设 &lt;IsAotCompatible&gt;true&lt;/IsAotCompatible&gt; 演示 AOT 兼容检查。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="&lt;PropertyGroup&gt;&#10;  &lt;IsAotCompatible&gt;true&lt;/IsAotCompatible&gt;&#10;&lt;/PropertyGroup&gt;&#10;&#10;// 发布：dotnet publish -r win-x64 -c Release /p:PublishAot=true" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="编译警告（典型）：" FontWeight="SemiBold"/>
+      <TextBlock Text="• IL2057 / IL2075 — 反射调用未注解 [DynamicallyAccessedMembers]"/>
+      <TextBlock Text="• IL3050 — AssemblyConfiguration 未指定 AOT 兼容"/>
+      <TextBlock Text="对照编译产物：" FontWeight="SemiBold"/>
+      <TextBlock Text="• JIT：~50MB dll；启动稍慢"/>
+      <TextBlock Text="• AOT：~10MB native exe；启动快；体积大"/>
+      <TextBlock Text="AOT 陷阱：自定义 XAML 加载需 AvaloniaXamlLoader；反射 ResourceManager 慎用。" TextWrapping="Wrap" Foreground="OrangeRed"/>
+      <TextBlock Text="验收：IsAotCompatible + 警告" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

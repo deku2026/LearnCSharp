@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LearnAvalonia.Avalonia_Capstone4_CustomControlAOT.Pages.BenchmarkDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§12 Benchmark 概念" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="目标：测 GaugeControl.Render 1000 次耗时；优化指标选 Render time / frame。" TextWrapping="Wrap"/>
+      <Border Background="#1E1E1E" Padding="8" CornerRadius="4">
+        <TextBlock Text="[MemoryDiagnoser]&#10;public class GaugeBench {&#10;    private readonly GaugeControl _g = new() { Width=200, Height=200, Value=50 };&#10;&#10;    [Benchmark]&#10;    public void Render_Once() {&#10;        using var bmp = new RenderTargetBitmap(new PixelSize(200,200));&#10;        _g.Measure(new Size(200,200)); _g.Arrange(new Rect(200,200));&#10;        bmp.Render(_g);&#10;    }&#10;}" Foreground="#D4D4D4" FontFamily="Consolas,Monaco,monospace" TextWrapping="Wrap"/>
+      </Border>
+      <TextBlock Text="优化方向：" FontWeight="SemiBold"/>
+      <TextBlock Text="• 缓存 Pen / FormattedText 而不是每帧 new"/>
+      <TextBlock Text="• Geometry 几何只算一次"/>
+      <TextBlock Text="• AffectsRender 范围最小化"/>
+      <TextBlock Text="本 demo 仅展示 stub；真实 Benchmark 需独立 console + BenchmarkDotNet。" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：BenchmarkDotNet stub" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

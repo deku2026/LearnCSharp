@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages"
+             x:Class="LearnAvalonia.Avalonia_Stage31_RenderingExpert.Pages.HitTestingDemo">
+  <ScrollViewer Padding="8">
+    <StackPanel Spacing="6" Margin="8">
+      <TextBlock Text="§4 Hit Testing / 命中测试" FontWeight="Bold" FontSize="14"/>
+      <TextBlock Text="下方圆为 EllipseHitControl：点击圆内才触发命中（黄色描边），点击圆外不触发。" TextWrapping="Wrap"/>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8" CornerRadius="4">
+        <StackPanel Spacing="4">
+          <TextBlock Text="• 默认命中走 Bounds 矩形"/>
+          <TextBlock Text="• 自定义命中：OnPointerPressed 内做几何判断"/>
+          <TextBlock Text="• Avalonia 12.1 中 HitTestCore 多为 internal，外层用 pointer 事件 + 几何判断更直观"/>
+          <TextBlock Text="• 用 e.GetPosition(this) 拿本地坐标"/>
+        </StackPanel>
+      </Border>
+      <pages:EllipseHitControl Width="220" Height="180" Fill="CornflowerBlue"/>
+      <TextBlock Text="点圆内：黄边 = 命中；点 Bounds 角落（圆外）：无反应。" TextWrapping="Wrap" Foreground="Gray"/>
+      <TextBlock Text="验收：演示命中测试非矩形" Foreground="DarkGreen"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>
