@@ -6,6 +6,11 @@ public static class MauiProgram
     {
         MauiAppBuilder builder = MauiApp.CreateBuilder();
         builder.UseMauiApp<App>();
+        builder.Services.AddSingleton<IBackgroundScheduler, InMemoryBackgroundScheduler>();
+        builder.Services.AddSingleton<BackgroundSyncCoordinator>();
+        builder.Services.AddSingleton<INotificationPlatformBridge, AndroidNotificationPlatformBridge>();
+        builder.Services.AddSingleton<PushRegistrationStore>();
+        builder.Services.AddTransient<MainPage>();
         return builder.Build();
     }
 }

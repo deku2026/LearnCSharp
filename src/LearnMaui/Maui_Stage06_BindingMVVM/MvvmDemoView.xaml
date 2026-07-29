@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LearnMaui.Maui_Stage06_BindingMVVM"
+             x:Class="LearnMaui.Maui_Stage06_BindingMVVM.MvvmDemoView"
+             x:DataType="local:NotesViewModel">
+    <Grid Padding="12" RowDefinitions="Auto,Auto,*,Auto" RowSpacing="8">
+        <SearchBar Text="{Binding Query, Mode=TwoWay}"
+                   Placeholder="Search notes" />
+        <HorizontalStackLayout Grid.Row="1" Spacing="8">
+            <Button Text="Refresh"
+                    Command="{Binding RefreshCommand, Mode=OneTime}" />
+            <Button Text="Cancel"
+                    Command="{Binding RefreshCancelCommand, Mode=OneTime}" />
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}" />
+        </HorizontalStackLayout>
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding Items}"
+                        SelectedItem="{Binding Selected, Mode=TwoWay}"
+                        SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:NoteItem">
+                    <Grid Padding="8" ColumnDefinitions="*,Auto">
+                        <Label Text="{Binding Title}" />
+                        <Label Grid.Column="1"
+                               Text="{Binding UpdatedAt, StringFormat='{0:t}'}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Label Grid.Row="3"
+               Text="{Binding ErrorMessage}"
+               TextColor="Red" />
+    </Grid>
+</ContentView>

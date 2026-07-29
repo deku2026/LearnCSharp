@@ -1,13 +1,57 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LearnMaui.Maui_Stage28_CollectionViewRuntime"
              x:Class="LearnMaui.Maui_Stage28_CollectionViewRuntime.MainPage"
+             x:DataType="local:CollectionLabViewModel"
              Title="CollectionView, Essentials and Runtime">
-    <VerticalStackLayout HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         Spacing="16">
-        <Label Text="Hello from Stage28_CollectionViewRuntime"
-               FontSize="24"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid RowDefinitions="240,*"
+          Padding="12"
+          RowSpacing="8">
+        <RefreshView IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+                     Command="{Binding RefreshCommand}">
+            <CollectionView x:Name="RuntimeList"
+                            ItemsSource="{Binding Items}"
+                            RemainingItemsThreshold="4"
+                            RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}"
+                            ItemsUpdatingScrollMode="KeepScrollOffset"
+                            ItemSizingStrategy="MeasureFirstItem"
+                            SelectionMode="Single"
+                            Scrolled="OnCollectionScrolled"
+                            AutomationId="RuntimeLab.Collection">
+                <CollectionView.EmptyView>
+                    <Label Text="没有运行时样本"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="6" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="local:RuntimeSampleItem">
+                        <Border Padding="10"
+                                StrokeThickness="1"
+                                Stroke="#667085">
+                            <Grid ColumnDefinitions="Auto,*"
+                                  ColumnSpacing="10">
+                                <Label Text="{Binding Sequence, StringFormat='#{0}'}"
+                                       FontAttributes="Bold" />
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Spacing="2">
+                                    <Label Text="{Binding Title}"
+                                           FontAttributes="Bold" />
+                                    <Label Text="{Binding Detail}"
+                                           FontSize="12"
+                                           LineBreakMode="TailTruncation" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <ContentView x:Name="StageHost"
+                     Grid.Row="1" />
+    </Grid>
 </ContentPage>

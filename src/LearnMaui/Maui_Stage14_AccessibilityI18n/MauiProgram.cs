@@ -6,6 +6,9 @@ public static class MauiProgram
     {
         MauiAppBuilder builder = MauiApp.CreateBuilder();
         builder.UseMauiApp<App>();
+        builder.Services.AddSingleton<LocalizedText>();
+        builder.Services.AddTransient<AccessibilityDemoView>();
+        builder.Services.AddTransient<MainPage>();
         return builder.Build();
     }
 }

@@ -3,11 +3,4 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearnMaui.Maui_Stage05_ControlsLayout.MainPage"
              Title="Controls, Layout and Resources">
-    <VerticalStackLayout HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         Spacing="16">
-        <Label Text="Hello from Stage05_ControlsLayout"
-               FontSize="24"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
 </ContentPage>

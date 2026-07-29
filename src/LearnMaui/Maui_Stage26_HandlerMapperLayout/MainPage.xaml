@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LearnMaui.Maui_Stage26_HandlerMapperLayout"
              x:Class="LearnMaui.Maui_Stage26_HandlerMapperLayout.MainPage"
              Title="Handler, Mapper and Layout">
-    <VerticalStackLayout HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         Spacing="16">
-        <Label Text="Hello from Stage26_HandlerMapperLayout"
-               FontSize="24"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid RowDefinitions="Auto,*"
+          Padding="12"
+          RowSpacing="8">
+        <local:TraceColumnLayout x:Name="LayoutLab"
+                                 Spacing="6">
+            <local:ExpertEntry x:Name="NativeEntry"
+                               Text="Handler lifecycle lab"
+                               AccentColor="MediumPurple"
+                               AutomationId="HandlerLab.Entry" />
+            <Button Text="CommandMapper：全选"
+                    Clicked="OnSelectAllClicked"
+                    AutomationId="HandlerLab.SelectAll" />
+        </local:TraceColumnLayout>
+        <ContentView x:Name="StageHost"
+                     Grid.Row="1" />
+    </Grid>
 </ContentPage>

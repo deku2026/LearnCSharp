@@ -6,6 +6,7 @@ public static class MauiProgram
     {
         MauiAppBuilder builder = MauiApp.CreateBuilder();
         builder.UseMauiApp<App>();
+        builder.Services.AddTransient<MainPage>();
         return builder.Build();
     }
 }

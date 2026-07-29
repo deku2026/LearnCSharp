@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LearnMaui.Maui_Stage25_BindableBindingXaml"
              x:Class="LearnMaui.Maui_Stage25_BindableBindingXaml.MainPage"
+             x:DataType="local:BindingLabViewModel"
              Title="BindableObject, Binding and XAML Compilation">
-    <VerticalStackLayout HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         Spacing="16">
-        <Label Text="Hello from Stage25_BindableBindingXaml"
-               FontSize="24"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid RowDefinitions="Auto,Auto,*"
+          Padding="12"
+          RowSpacing="8">
+        <local:SignalBadge Text="{Binding Summary, Mode=OneWay}"
+                           Severity="{Binding Severity, Mode=OneWay}"
+                           AutomationId="BindingLab.SignalBadge" />
+        <Button Grid.Row="1"
+                Text="改变 BindableProperty 源"
+                Command="{Binding AdvanceCommand}"
+                AutomationId="BindingLab.Advance" />
+        <ContentView x:Name="StageHost"
+                     Grid.Row="2" />
+    </Grid>
 </ContentPage>

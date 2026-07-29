@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LearnMaui.Maui_Stage08_StylesThemesAnimation"
+             x:Class="LearnMaui.Maui_Stage08_StylesThemesAnimation.InteractionDemoView">
+    <Grid Padding="16" RowDefinitions="Auto,Auto,Auto" RowSpacing="10">
+        <Border x:Name="Card"
+                Padding="16"
+                Stroke="{DynamicResource BrandPrimary}"
+                AutomationId="Stage08Card">
+            <Border.Shadow>
+                <Shadow Brush="#44000000" Offset="0,4" Radius="10" />
+            </Border.Shadow>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCardTapped" />
+                <PointerGestureRecognizer PointerEntered="OnPointerEntered"
+                                          PointerExited="OnPointerExited" />
+            </Border.GestureRecognizers>
+            <Label Text="Tap, point, theme and animate"
+                   HorizontalOptions="Center" />
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="Scale" Value="1.03" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="#E0F2FE" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Border>
+        <Entry Grid.Row="1" Text="Focus selects this text">
+            <Entry.Behaviors>
+                <local:SelectAllBehavior />
+            </Entry.Behaviors>
+        </Entry>
+        <Button Grid.Row="2"
+                Text="Primary action"
+                Style="{StaticResource PrimaryActionStyle}"
+                AutomationId="Stage08PrimaryAction" />
+    </Grid>
+</ContentView>

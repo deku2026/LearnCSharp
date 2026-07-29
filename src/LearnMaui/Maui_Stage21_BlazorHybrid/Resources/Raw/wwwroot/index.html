@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'">
+  <title>HybridWebView Lab</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="HybridWebView.js"></script>
+  <script src="lab.js" defer></script>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">LOCAL TRUSTED ASSET</p>
+    <h1>HybridWebView bridge lab</h1>
+    <p id="status">JavaScript 已加载，等待互操作。</p>
+    <button id="native" type="button">JavaScript → .NET</button>
+    <pre id="result" aria-live="polite"></pre>
+  </main>
+</body>
+</html>

@@ -8,6 +8,8 @@
     <ApplicationId>com.learnmaui.maui_stage25_bindablebindingxaml</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <MauiStrictXamlCompilation>true</MauiStrictXamlCompilation>
+    <MauiXamlInflator>SourceGen</MauiXamlInflator>
   </PropertyGroup>
 
   <ItemGroup>

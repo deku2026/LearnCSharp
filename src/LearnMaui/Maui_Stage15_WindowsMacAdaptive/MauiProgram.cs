@@ -6,6 +6,9 @@ public static class MauiProgram
     {
         MauiAppBuilder builder = MauiApp.CreateBuilder();
         builder.UseMauiApp<App>();
+        builder.Services.AddSingleton<WindowWorkspaceRegistry>();
+        builder.Services.AddSingleton<IDesktopPlatformService, DesktopPlatformService>();
+        builder.Services.AddTransient<MainPage>();
         return builder.Build();
     }
 }
