@@ -3,11 +3,4 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearnMaui.Maui_Stage19_TrimmingAOT.MainPage"
              Title="Trimming, AOT and Runtime">
-    <VerticalStackLayout HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         Spacing="16">
-        <Label Text="Hello from Stage19_TrimmingAOT"
-               FontSize="24"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
 </ContentPage>

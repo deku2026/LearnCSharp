@@ -8,9 +8,11 @@
     <ApplicationId>com.LearnMaui.Maui_Stage06_BindingMVVM</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <MauiStrictXamlCompilation>true</MauiStrictXamlCompilation>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="Microsoft.Maui.Controls" VersionOverride="$(MauiVersion)" />
   </ItemGroup>
 

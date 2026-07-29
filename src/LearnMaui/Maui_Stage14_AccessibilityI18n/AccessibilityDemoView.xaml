@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnMaui.Maui_Stage14_AccessibilityI18n.AccessibilityDemoView"
+             AutomationId="Stage14AccessibilityDemo">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label x:Name="TitleLabel"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   FontAutoScalingEnabled="True"
+                   SemanticProperties.HeadingLevel="Level1" />
+            <Image Source="appicon.svg"
+                   HeightRequest="96"
+                   SemanticProperties.Description="Blue .NET MAUI learning application icon" />
+            <Entry Placeholder="Write a note"
+                   MinimumHeightRequest="48"
+                   AutomationId="Stage14NoteEntry"
+                   SemanticProperties.Description="Note text"
+                   SemanticProperties.Hint="Enter the note that will be saved" />
+            <Button x:Name="SaveButton"
+                    MinimumHeightRequest="48"
+                    AutomationId="Stage14SaveButton"
+                    Clicked="OnSaveClicked"
+                    SemanticProperties.Hint="Saves the current note" />
+            <Label Text="Status messages are announced without moving focus."
+                   SemanticProperties.HeadingLevel="Level2" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

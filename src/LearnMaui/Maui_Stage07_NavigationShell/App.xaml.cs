@@ -2,13 +2,16 @@ namespace LearnMaui.Maui_Stage07_NavigationShell;
 
 public partial class App : Application
 {
-    public App()
+    private readonly AppShell _shell;
+
+    public App(AppShell shell)
     {
         InitializeComponent();
+        _shell = shell;
     }
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        return new Window(new MainPage());
+        return new Window(_shell);
     }
 }

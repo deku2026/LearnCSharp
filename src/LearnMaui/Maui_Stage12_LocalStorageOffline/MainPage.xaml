@@ -3,11 +3,4 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearnMaui.Maui_Stage12_LocalStorageOffline.MainPage"
              Title="Local Storage and Offline First">
-    <VerticalStackLayout HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         Spacing="16">
-        <Label Text="Hello from Stage12_LocalStorageOffline"
-               FontSize="24"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
 </ContentPage>

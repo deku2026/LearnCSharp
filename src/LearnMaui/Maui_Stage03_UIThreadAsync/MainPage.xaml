@@ -3,11 +3,4 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearnMaui.Maui_Stage03_UIThreadAsync.MainPage"
              Title="UI Thread and Async Discipline">
-    <VerticalStackLayout HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         Spacing="16">
-        <Label Text="Hello from Stage03_UIThreadAsync"
-               FontSize="24"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
 </ContentPage>

@@ -8,6 +8,8 @@
     <ApplicationId>com.learnmaui.maui_stage28_collectionviewruntime</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <MauiStrictXamlCompilation>true</MauiStrictXamlCompilation>
+    <MauiXamlInflator>SourceGen</MauiXamlInflator>
   </PropertyGroup>
 
   <ItemGroup>

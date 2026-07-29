@@ -4,4 +4,11 @@
     <TargetFramework>net10.0-android</TargetFramework>
     <SupportedOSPlatformVersion>24.0</SupportedOSPlatformVersion>
   </PropertyGroup>
+
+  <ItemGroup Condition="$([System.String]::Copy('$(MSBuildProjectName)').StartsWith('Maui_Stage'))">
+    <Compile Include="$(MSBuildThisFileDirectory)Shared\LearningStage.cs"
+             Link="Shared\LearningStage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shared\LearningStageView.cs"
+             Link="Shared\LearningStageView.cs" />
+  </ItemGroup>
 </Project>

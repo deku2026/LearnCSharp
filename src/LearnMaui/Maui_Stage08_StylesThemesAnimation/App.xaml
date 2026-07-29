@@ -3,5 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearnMaui.Maui_Stage08_StylesThemesAnimation.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BrandPrimary">#0369A1</Color>
+            <Color x:Key="PageSurface">#F8FAFC</Color>
+            <Style x:Key="BaseActionStyle" TargetType="Button">
+                <Setter Property="Padding" Value="16,10" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <Style x:Key="PrimaryActionStyle"
+                   TargetType="Button"
+                   BasedOn="{StaticResource BaseActionStyle}">
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource BrandPrimary}" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Light=#0F172A, Dark=#F8FAFC}" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

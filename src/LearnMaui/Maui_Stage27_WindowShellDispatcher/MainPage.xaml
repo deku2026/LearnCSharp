@@ -3,11 +3,5 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearnMaui.Maui_Stage27_WindowShellDispatcher.MainPage"
              Title="Window, Shell and Dispatcher">
-    <VerticalStackLayout HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         Spacing="16">
-        <Label Text="Hello from Stage27_WindowShellDispatcher"
-               FontSize="24"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentView x:Name="StageHost" />
 </ContentPage>

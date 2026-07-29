@@ -3,11 +3,4 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearnMaui.Maui_Stage17_TestingSystem.MainPage"
              Title="Testing System">
-    <VerticalStackLayout HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                         Spacing="16">
-        <Label Text="Hello from Stage17_TestingSystem"
-               FontSize="24"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
 </ContentPage>
