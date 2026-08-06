@@ -4,6 +4,7 @@
     <AssemblyName>Part07_DistributedComm</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Grpc.Net.Client" />
     <ProjectReference Include="..\Asp_Campus.ServiceDefaults\Asp_Campus.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Asp_Campus.Contracts\Asp_Campus.Contracts.csproj" />
     <ProjectReference Include="..\Asp_Part06_2_MessagingTools\Asp_Part06_2_MessagingTools.csproj" />
